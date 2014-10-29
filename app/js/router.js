@@ -11,6 +11,10 @@ Bees.Router = Parse.Router.extend({
         ':user_id': 'user',
         ':user_id/reviews': 'reviews',
 
+        'hivegroups': 'hiveGroups',
+        'hivegroups/:hiveGroup_id/view': 'viewHiveGroup',
+        'hivegroups/add': 'addHiveGroup',
+
         'bids': 'bidsIndex',
         'bids/:bid_id': 'showBid'
     },
@@ -29,7 +33,7 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-            // var query = new Parse.Query(Bees.Models.Pic);
+            // var query = new Parse.Query(Bees.Models.HiveGroup);
             // query.equalTo('photog', Parse.User.current())
             // var collection = query.collection();
             // collection.fetch().then(function() {
@@ -67,5 +71,23 @@ Bees.Router = Parse.Router.extend({
         }, function(error) {
             console.log(error);
         })
+    },
+
+    hiveGroups: function(){
+        console.log("Add Hive Group");
+        new Bees.Views.HiveGroupList({
+            $container: $('.main-container'),
+            model: user
+        });
+    },
+    viewHiveGroup: function(hiveGroup_id){
+        console.log("Viewing ", hiveGroup_id)
+    },
+
+    addHiveGroup: function(){
+        console.log("Add Hive Group");
+        new Bees.Views.AddHiveGroup({
+            $container: $('.main-container'),
+        });
     }
 });

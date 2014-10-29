@@ -1,11 +1,11 @@
-    // All pictures
+// All pictures
 
-    Pix.Collections.AllPix = Parse.Collection.extend({
-        model: Pix.Models.Pic
-    });
+Bees.Collections.HiveGroups = Parse.Collection.extend({
+    model: Bees.Models.HiveGroup
+});
 
-    // All Users (Photogs)
+// All Users (Photogs)
 
-    Pix.Collections.AllPhotogs = Parse.Collection.extend({
-        model: Pix.Models.Photog
-    });
+Bees.Collections.User = Parse.Collection.extend({
+    model: Bees.Models.User
+});

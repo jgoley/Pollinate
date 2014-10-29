@@ -8,11 +8,6 @@ Bees.Models.Session = Parse.Object.extend({
 
 Bees.Models.User = Parse.User.extend({
     className: "User",
-    initialize: function(){
-        console.log("making user");
-        this.set('custom', 'geoData');
-    },
-
     defaults:{
         username: '', //
         firstName: '', //
@@ -47,6 +42,7 @@ Bees.Models.Bid = Parse.Object.extend({
     defaults:{
         beekeeper: '',
         farmer: '',
+        hiveGroup: '',
         timestamp: new Date(),
         bidAmount: 0,
         status: ''
@@ -55,8 +51,9 @@ Bees.Models.Bid = Parse.Object.extend({
 
     
 Bees.Models.HiveGroup = Parse.Object.extend({
-    className: "Session",
+    className: "Hive_Group",
     defaults:{
+        id: '',
         beekeeper: '',
         hiveCount: '',
         availableBegin: '',
