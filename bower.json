@@ -1,0 +1,11 @@
+{
+  "name": "24-photo-share",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.0",
+    "underscore": "~1.7.0",
+    "neat": "~1.7.0",
+    "handlebars": "~2.0.0"
+  },
+  "devDependencies": {}
+}

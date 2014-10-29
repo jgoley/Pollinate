@@ -1,0 +1,289 @@
+@import "../bower_components/bourbon/dist/bourbon";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
+
+@font-face {
+    font-family: icons;
+    src: url(../fonts/icons.ttf);
+}
+
+.icon{
+    font-family: icons;
+}
+
+$gutter: 0;
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+    color:#333;
+
+}
+button{
+    cursor:pointer;
+    &:focus{
+        outline:0;
+        border:0;
+    }
+}
+
+h1, h2{
+    margin:0;
+    paddin:0;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a{
+    color:brown;
+    text-decoration: none;
+    &:hover{
+        color:light-blue;
+    }
+}
+
+.main-container {
+    @include outer-container;
+    @include span-columns(12);
+    max-width: 100%;
+    margin: em(60px) 0;
+    h1{
+        margin:0 1em 1em 1em;
+    }
+}
+
+header {
+    // height: em(50px);
+    padding: em(12px) em(12px) 0 em(12px);
+    height:em(50px);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    background: rgba(200, 200, 200, 0.9);
+    li {
+        display: inline-block;
+    }
+    h1{
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%, -50%);
+        // &::before{
+        //     @extend .icon;
+        //     content: "i";
+        //     color:brown;
+        //     font-size: .8em;
+        // }
+    }
+    h2{
+        display:inline-block;
+    }
+    h2{
+        font-size: 1em;
+        margin-right:.2em;
+        color:#999;
+        display: none;
+    }
+    button, h2{
+        vertical-align: middle;
+    }
+
+}
+
+.show-menu{
+    background: none;
+    border:0;
+    span{
+        vertical-align: middle;
+    }
+    &::before{
+        content: 'm';
+        @extend .icon;
+        font-size: 2em;
+        margin-right:.25em;
+        vertical-align: middle;
+    }
+    &:hover{
+        color:brown;
+    }
+    &:focus{
+        color:#999;
+    }
+}
+
+nav{
+    text-align: center;
+    margin-top:em(50px);
+    display: none;
+    li{
+        display: block;
+        border-bottom:1px solid #FFF;
+    }
+    a{
+        padding:1em .4em;
+        background: rgba(100,100,100,.1);
+        display: block;
+        font-size: .8em;
+        &:hover{
+            background: rgba(100,100,100,.2);
+        }
+    }
+}
+
+.auth {
+    span,{
+        vertical-align: middle;
+    }
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    background: none;
+    border:0;
+        &:hover{
+            color:brown;
+        }
+    &::after{
+        margin-left:.5em;
+        @extend .icon;
+        content:'s';
+        font-size: 1.5em;
+        vertical-align: middle;
+
+    }
+
+}
+
+.showing{
+    display:block;
+}
+
+.photos {
+    @include outer-container;
+    @include span-columns(12);
+    $max-width: 100%;
+    li {
+        position: relative;
+        margin-bottom: em(30px);
+    }
+    a {
+        display: block;
+    }
+    li {
+        @include span-columns(10);
+        @include shift(1);
+        @include omega;
+        background-size: cover !important;
+    }
+    img {
+        max-width: 100%;
+    }
+}
+
+.featuredPic, form{
+    @include span-columns(11);
+    @include shift(.5);
+    img{
+        max-width: 100%;
+    }
+}
+
+.like{
+    @extend .icon;
+    font-size:2em;
+    border:0;
+    background:none;
+    color:red;
+    cursor:pointer;
+    &:focus{
+        color:#333;
+    }
+    &:active{
+    }
+    &:hover{
+        color:pink;
+    }
+}
+
+.following, .photogs, .followers{
+    @include span-columns(11);
+    @include shift(.5);
+    li{
+        margin-bottom:.2em;
+        position:relative;
+    }
+    a{
+        display: block;
+        background:#ebebeb;
+        padding:.3em .5em;
+        border-radius: .2em;
+        &:hover{
+            background: #999;
+            color:#FFF;
+        }                
+    }
+        button{
+            position:absolute;
+            right:.3em;
+            top:50%;
+            transform: translate(0, -50%);
+            z-index: 10;
+        }
+}
+
+@include media(min-width 600px) {
+    .show-menu{
+        display: none;
+    }
+    .main-container{
+        margin-top: em(20px);
+    }
+    .photos {
+        @include span-columns(11.5);
+        @include outer-container;
+        @include shift(.25);
+        li {
+            $gutter: 0;
+            @include span-columns(4);
+            @include shift(0);
+            @include omega(3n);
+            margin-bottom: 30px;
+        }
+    }
+    nav{
+        background:#ebebeb;
+        display: block;
+        li{
+            display: inline-block;
+            border:0;
+        }
+        a{
+            padding:1em 1.5em;
+            &:hover{
+                background:#FFF;
+            }
+        }
+    }
+    .following, .photogs, .followers{
+        @include span-columns(4);
+        @include shift(4);
+    }
+    .featuredPic, form{
+        @include span-columns(4);
+        @include shift(4);
+        img{
+            max-width: 100%;
+        }
+    }
+    header{
+        h2{
+            display: block;
+        }
+    }
+}
