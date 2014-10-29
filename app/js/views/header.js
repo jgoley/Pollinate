@@ -9,10 +9,11 @@ Bees.Views.HeaderView = Parse.View.extend({
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
-            $container: opts.$container
+            $container: opts.$container,
         });
         options.$container.append(this.el);
         this.render();
+        console.log(this.session);
         //Bees.Auth.listenTo('change', _.bind(this.render, this));
     },
 
@@ -31,7 +32,7 @@ Bees.Views.HeaderView = Parse.View.extend({
 
     logout: function() {
         Parse.User.logOut();
-        Bees.Auth.set('user', null);
+        Bees.Models.Session.set('user', null);
         BeesApp.navigate('Bees', {
             trigger: true
         });

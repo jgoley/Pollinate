@@ -23,6 +23,7 @@ gulp.task('templates', function() {
       }
     }))
     .pipe(concat('templates.js'))
+    .pipe(gulp.dest('app/js/'));
 });
 
 // load plugins

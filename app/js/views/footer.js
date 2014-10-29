@@ -1,5 +1,4 @@
 Bees.Views.FooterView = Parse.View.extend({
-    tagName: 'footer',
     template: Bees.templates.footer, //Handlebars.compile($('#footer').html()),
     initialize: function(opts){
         var options = _.defaults({}, opts,{

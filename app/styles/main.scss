@@ -24,7 +24,7 @@ button{
     cursor:pointer;
     &:focus{
         outline:0;
-        border:0;
+        border:1px solid #CCC;
     }
 }
 
@@ -44,6 +44,29 @@ a{
     text-decoration: none;
     &:hover{
         color:light-blue;
+    }
+}
+
+form.user{
+    input, select{
+        width: 100%;
+        display: block;
+        padding: 1em;
+        border-radius: 3px;
+        border: 1px solid #CCC;
+        margin-bottom: 10px;
+        box-shadow: inset 2px 2px 4px rgba(200,200,200,.4);
+        font-size: 1em;
+        outline: 0;
+        height: 2.75em;
+    }
+    input[type=submit]{
+        cursor: pointer;
+        box-shadow: 0 3px 0 rgba(100,100,100,.8);
+    }
+    select{
+        height: 2.5em;
+        background: #FFF;
     }
 }
 
@@ -237,12 +260,16 @@ nav{
         }
 }
 
+footer{
+    background:#CCC;
+}
+
 @include media(min-width 600px) {
     .show-menu{
         display: none;
     }
     .main-container{
-        margin-top: em(20px);
+        margin-top: em(70px);
     }
     .photos {
         @include span-columns(11.5);

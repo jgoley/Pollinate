@@ -1,6 +1,7 @@
-Pix.Views.CreateUserView = Parse.View.extend({
+Bees.Views.NewUserView = Parse.View.extend({
     tagName: 'form',
-    template: _.template($('#create-template').html()),
+    className: 'user',
+    template: Bees.templates.newuser,
 
     events: {
         'submit': 'createUser'
@@ -10,7 +11,7 @@ Pix.Views.CreateUserView = Parse.View.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container
         });
-        options.$container.append(this.el);
+        options.$container.html(this.el);
         this.render();
     },
 
@@ -25,11 +26,11 @@ Pix.Views.CreateUserView = Parse.View.extend({
         var user = new Parse.User();
         user.set("username", credentials.userName);
         user.set("password", credentials.pass);
-
+        user.set("userType", credentials.userType);
         user.signUp(null, {
             success: function(user) {
-                Pix.Auth.set('user', user);
-                PixApp.navigate('/pix', {
+                Bees.Models.Session.set('user', user);
+                BeesApp.navigate('/', {
                     trigger: true
                 });
             },

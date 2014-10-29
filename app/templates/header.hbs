@@ -1,8 +1,8 @@
 <h1></h1>
 <button class='show-menu'><span>Menu</span></button>
-{{log this }}
-{{!-- {{#if Bees.Models.Session.get('user') }} --}}
+{{log session }}
+{{#if session }}
 <button class="auth log-out"><span>Log out</span></button>
-{{!-- {{else}} --}}
+{{else}}
 <button class="auth log-in"><span>Log in</span></button>
-{{!-- {{/if}} --}}
+{{/if}}

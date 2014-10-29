@@ -1,5 +1,6 @@
-Pix.Views.LoginView = Parse.View.extend({
+Bees.Views.LoginView = Parse.View.extend({
     tagName: 'form',
+    className: 'user',
     template: Bees.templates.login,
 
     events: {
@@ -8,13 +9,16 @@ Pix.Views.LoginView = Parse.View.extend({
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
-            $container: opts.$container
+            $container: opts.$container,
+            session: opts.session
         });
         options.$container.html(this.el);
+        console.log("Session", options.session);
         this.render();
     },
 
-    render: function() {
+    render: function() {    
+        console.log(this.template());
         this.$el.prepend(this.template());
     },
 
