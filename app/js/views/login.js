@@ -18,7 +18,6 @@ Bees.Views.LoginView = Parse.View.extend({
     },
 
     render: function() {    
-        console.log(this.template());
         this.$el.prepend(this.template());
     },
 
@@ -29,7 +28,7 @@ Bees.Views.LoginView = Parse.View.extend({
         Parse.User.logIn(credentials.userName, credentials.pass, {
             success: function(user) {
                 that.undelegateEvents();
-                Bees.Models.Session.set('user', user)
+                Bees.Session.set('user', user)
 
                 BeesApp.navigate('/', {
                     trigger: true

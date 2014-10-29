@@ -6,19 +6,23 @@ Bees.Models.Session = Parse.Object.extend({
     }
 });
 
-Bees.Models.User = Parse.Object.extend({
+Bees.Models.User = Parse.User.extend({
     className: "User",
+    initialize: function(){
+        console.log("making user");
+        this.set('custom', 'geoData');
+    },
+
     defaults:{
-        username: '',
-        firstName: '',
-        lastName: '',
-        streetAddress: '',
+        username: '', //
+        firstName: '', //
+        lastName: '', 
+        address: '',
         city: '',
         zip: '',
         state: '',
-        profileText: '',
         image: '',
-        geoData: {lat: 0, lng: 0},
+        geoCenter: new Parse.GeoPoint([0, 0]),
         geoRangeRadius: 0,
         userType: '',
         hiveGroups: [],
@@ -26,8 +30,17 @@ Bees.Models.User = Parse.Object.extend({
         rating: '',
         crop: '',
         farmAcerage: ''
-    }
+    },
+
 });
+
+Bees.Models.Profile = Parse.Object.extend({
+    className: 'Profile',
+    defaults: {
+        images: '',
+        text: '',
+    }
+})
 
 Bees.Models.Bid = Parse.Object.extend({
     className: "Bid",

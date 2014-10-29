@@ -1,7 +1,7 @@
 <h1></h1>
 <button class='show-menu'><span>Menu</span></button>
-{{log session }}
-{{#if session }}
+{{log session.user }}
+{{#if session.user }}
 <button class="auth log-out"><span>Log out</span></button>
 {{else}}
 <button class="auth log-in"><span>Log in</span></button>

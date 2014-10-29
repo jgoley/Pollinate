@@ -67,7 +67,11 @@ form.user{
     select{
         height: 2.5em;
         background: #FFF;
+        margin:em(30px) 0;
     }
+}
+.form-block{
+    margin-bottom:em(30px);
 }
 
 .main-container {

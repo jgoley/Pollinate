@@ -7,8 +7,9 @@ Bees.Router = Parse.Router.extend({
 
         'find': 'find',
 
-        '/:user_id': 'user',
-        'reviews/:user_id': 'reviews',
+        'account/edit': 'editAccount',
+        ':user_id': 'user',
+        ':user_id/reviews': 'reviews',
 
         'bids': 'bidsIndex',
         'bids/:bid_id': 'showBid'
@@ -28,16 +29,16 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-            var query = new Parse.Query(Bees.Models.Pic);
-            query.equalTo('photog', Parse.User.current())
-            var collection = query.collection();
-            collection.fetch().then(function() {
-                new Bees.Views.BeesListView({
-                    $container: $('.main-container'),
-                    collection: collection,
-                    title: Parse.User.current().get('username')
-                });
-            });
+            // var query = new Parse.Query(Bees.Models.Pic);
+            // query.equalTo('photog', Parse.User.current())
+            // var collection = query.collection();
+            // collection.fetch().then(function() {
+            //     new Bees.Views.BeesListView({
+            //         $container: $('.main-container'),
+            //         collection: collection,
+            //         title: Parse.User.current().get('username')
+            //     });
+            // });
         }
     },
 
@@ -54,6 +55,17 @@ Bees.Router = Parse.Router.extend({
         });
     },
 
-
-    
+    editAccount: function() {
+        var query = new Parse.Query(Bees.Models.User);
+        query.equalTo('username', Parse.User.current().get('username'))
+        var user = query.first(function(user) {
+            new Bees.Views.EditAccountView({
+                $container: $('.main-container'),
+                model: user
+            })
+            console.log("The user", user);
+        }, function(error) {
+            console.log(error);
+        })
+    }
 });

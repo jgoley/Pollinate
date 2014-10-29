@@ -13,12 +13,12 @@ Bees.Views.HeaderView = Parse.View.extend({
         });
         options.$container.append(this.el);
         this.render();
-        console.log(this.session);
-        //Bees.Auth.listenTo('change', _.bind(this.render, this));
+
+        Bees.Session.on('change', _.bind(this.render, this));
     },
 
     render: function() {
-        this.$el.html(this.template());
+        this.$el.html(this.template({session: Bees.Session.toJSON()}));
         new Bees.Views.NavView({
             $container:$('.menu')
         })
@@ -32,8 +32,8 @@ Bees.Views.HeaderView = Parse.View.extend({
 
     logout: function() {
         Parse.User.logOut();
-        Bees.Models.Session.set('user', null);
-        BeesApp.navigate('Bees', {
+        Bees.Session.set('user', null);
+        BeesApp.navigate('/', {
             trigger: true
         });
     },
