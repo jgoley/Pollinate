@@ -46,7 +46,7 @@ this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-
   },"useData":true});
 this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"2":function(depth0,helpers,partials,data) {
@@ -87,11 +87,15 @@ this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.
 },"useData":true});
 this["Bees"]["templates"]["account"] = this["Bees"]["templates"]["account"] || {};
 this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  return "Beekeeper\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "Farmer\n";
+  },"5":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<input type=\"text\" name=\"range\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
     + "\" placeholder=\"Range in miles\">\n";
-},"3":function(depth0,helpers,partials,data) {
+},"7":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<input type=\"text\" name=\"crop\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
@@ -99,9 +103,10 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\">\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<p>account type: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "</p>\n\n<input type=\"text\" name=\"firstName\" value=\""
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<p>account type: \n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "</p>\n\n\n<input type=\"text\" name=\"firstName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
     + "\" placeholder=\"First Name\">\n<input type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
@@ -114,7 +119,7 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
     + "\" placeholder=\"State\">\n<input type=\"text\" name=\"zipCode\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
     + "\" placeholder=\"Zip Code\">\n\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(5, data),"inverse":this.program(7, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});

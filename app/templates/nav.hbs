@@ -1,6 +1,6 @@
 <ul>
     {{#if session.user}}
-    	{{#if user.beekeeper}}
+    	{{#if user.userType.beekeeper}}
     		<li><a href="#/hivegroups">My hive groups</a></li>
     		<li><a href="#/search/farmers">Search for Farmers</a></li>
 		{{else}}

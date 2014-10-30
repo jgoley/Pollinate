@@ -1,4 +1,11 @@
-<p>account type: {{user.userType}}</p>
+<p>account type: 
+{{#if user.userType.beekeeper}}
+Beekeeper
+{{else}}
+Farmer
+{{/if}}
+</p>
+
 
 <input type="text" name="firstName" value="{{user.firstName}}" placeholder="First Name">
 <input type="text" name="lastName" value="{{user.lastName}}" placeholder="Last Name">

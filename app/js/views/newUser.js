@@ -37,9 +37,9 @@ Bees.Views.NewUserView = Parse.View.extend({
         var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
 
         if (credentials.userType == 'beekeeper') {
-            user.set('beekeeper', true);
+            user.set('userType', {beekeeper: true});
         } else {
-            user.set('farmer', true);
+            user.set('userType', {farmer: true});
         }
         // Get Geo location data
         $.ajax({

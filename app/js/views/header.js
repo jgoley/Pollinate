@@ -1,4 +1,4 @@
-Bees.Views.HeaderView = Parse.View.extend({
+Bees.Views.HeaderView = BaseView.extend({
     template: Bees.templates.header,
 
     events: {
@@ -15,7 +15,8 @@ Bees.Views.HeaderView = Parse.View.extend({
         options.$container.append(this.el);
         this.render();
 
-        Bees.Session.on('change', _.bind(this.render, this));
+        // Bees.Session.on('change', _.bind(this.render, this));
+        this.listenTo(Bees.Session, 'change', this.render);
     },
 
     render: function() {

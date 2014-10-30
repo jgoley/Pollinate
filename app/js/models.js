@@ -21,10 +21,10 @@ Bees.Models.User = Parse.User.extend({
         geoRangeRadius: 0,
         userType: '',
         hiveGroups: [],
-        bids: '',
-        rating: '',
+        bids: [],
+        rating: 0,
         crop: '',
-        farmAcerage: ''
+        farmAcerage: 0
     },
 
 });
