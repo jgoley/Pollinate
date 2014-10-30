@@ -4,17 +4,19 @@ this["Bees"]["templates"]["addHiveGroup"] = Handlebars.template({"compiler":[6,"
   return "\n<ul>\n	<li class='new-hive-group'>\n	<input type=\"text\" name=\"Name\" placeholder=\"Name\">\n	<input type=\"text\" name=\"hiveCount\" placeholder=\"Number of Hives\">\n	<label for=\"availableBegin\">Available starting<input type=\"date\" name=\"availableBegin\" placeholder=\"Available Start\"></label>\n	<label for=\"availableEnd\">Ending<input type=\"date\" name=\"availableEnd\" placeholder=\"Available End\"></label>\n	</li>\n</ul>\n<input type=\"submit\" value=\"Add Hives\">";
   },"useData":true});
 this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<header></header>\n<div class=\"main-container\"></div>\n<footer></footer>";
+  return "<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>";
   },"useData":true});
 this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
 },"useData":true});
 this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  return "<button class=\"auth log-out\"><span>Log out</span></button>\n";
+  return "<button class=\"account\"><span>My account</span></button>\n<button class=\"auth log-out\"><span>Log out</span></button>\n";
   },"3":function(depth0,helpers,partials,data) {
   return "<button class=\"auth log-in\"><span>Log in</span></button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, escapeExpression=this.escapeExpression, buffer = "<h1></h1>\n<button class='show-menu'><span>Menu</span></button>\n"
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "\n<h2>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</h2>\n<button class='show-menu'><span>Menu</span></button>\n"
     + escapeExpression(helpers.log.call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"log","hash":{},"data":data}))
     + "\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
@@ -22,24 +24,43 @@ this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,h
   return buffer;
 },"useData":true});
 this["Bees"]["templates"]["hiveGroupListItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, escapeExpression=this.escapeExpression, lambda=this.lambda;
-  return escapeExpression(helpers.log.call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.user : stack1), {"name":"log","hash":{},"data":data}))
-    + "\n\n<h1>"
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<ul>\n	<li><h1>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</h1>\n\n<p>"
+    + "</h1></li>\n	<li>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
-    + "</p>\n<p>"
+    + " hives</li>\n	<li>Available "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), depth0))
-    + "</p>\n<p>"
+    + " to "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), depth0))
-    + "</p>";
+    + "</li>\n	<button class=\"delete\">Delete</button>\n	<button class=\"edit\">Edit</button>\n	<button class=\"view\">View</button>\n</ul>";
 },"useData":true});
+this["Bees"]["templates"]["hiveGroups"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<button class=\"addGroup\">Add a Hive Group</button>";
+  },"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\">\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not logged in? <a href=\"#/newuser\">Create account</a></p>";
   },"useData":true});
-this["Bees"]["templates"]["nav"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<ul>\n    <li>1</li>\n    <li>2</li>\n    <li>3</li>\n</ul>";
+this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<div id=\"map_canvas\"></div>";
   },"useData":true});
+this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.beekeeper : stack1), {"name":"if","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"2":function(depth0,helpers,partials,data) {
+  return "    		<li><a href=\"#/hivegroups\">My hive groups</a></li>\n    		<li><a href=\"#/search/farmers\">Search for Farmers</a></li>\n";
+  },"4":function(depth0,helpers,partials,data) {
+  return "    		<li><a href=\"#/bids\">My Bids</a></li>\n    		<li><a href=\"#/search/beekeepers\">Search for Beekeepers</a></li>\n";
+  },"6":function(depth0,helpers,partials,data) {
+  return "    	<li><a href=\"\">Search Farmers</a></li>\n    	<li><a href=\"\">Search Beekeepers</a></li>\n";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<ul>\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(6, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "\n</ul>";
+},"useData":true});
 this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""

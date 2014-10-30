@@ -52,12 +52,13 @@ Bees.Views.NewUserView = Parse.View.extend({
                 success: function(user) {
                     console.log(user);
                     Bees.Session.set('user', user);
-                    BeesApp.navigate('/account/edit', {
-                        trigger: true
-                    });
                     var newProfile = new Bees.Models.Profile();
                     user.save(credentials);
                     newProfile.save({user: user});
+                    BeesApp.navigate('/', {
+                        trigger: true
+                    });
+                    that.remove();
                 },
                 error: function(user, error) {
                     alert('Error: ' + error.code + ' ' + error.message);

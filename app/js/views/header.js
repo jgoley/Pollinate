@@ -4,7 +4,8 @@ Bees.Views.HeaderView = Parse.View.extend({
     events: {
         'click .log-out': 'logout',
         'click .log-in': 'login',
-        'click .show-menu': 'showMenu'
+        'click .show-menu': 'showMenu',
+        'click .account': 'showAccount'
     },
 
     initialize: function(opts) {
@@ -18,9 +19,15 @@ Bees.Views.HeaderView = Parse.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template({session: Bees.Session.toJSON()}));
+        console.log("Header Rendered");
+        if (Parse.User.current()){
+            var user = Parse.User.current().toJSON()
+        }
+        this.$el.html(this.template({session: Bees.Session.toJSON(), user: user}));
         new Bees.Views.NavView({
-            $container:$('.menu')
+            $container:$('.menu'),
+            model: Bees.Session,
+            user: user
         })
     },
 
@@ -39,6 +46,11 @@ Bees.Views.HeaderView = Parse.View.extend({
     },
     showMenu: function(){
         $('nav').toggleClass('showing');
+    },
+    showAccount: function(){
+        BeesApp.navigate('/account', {
+            trigger: true
+        });  
     }
 });
 
@@ -48,14 +60,17 @@ Bees.Views.NavView = Parse.View.extend({
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
-            $container: opts.$container
+            $container: opts.$container,
+            user: opts.user
         });
+        this.user = options.user;
         options.$container.html(this.el);
         this.render();
     },
 
     render: function() {
-        this.$el.html(this.template());
+        console.log("nav rendered");
+        this.$el.html(this.template({session: this.model.toJSON(), user: this.user}));
     },
 });
 

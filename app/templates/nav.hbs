@@ -1,5 +1,15 @@
 <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
+    {{#if session.user}}
+    	{{#if user.beekeeper}}
+    		<li><a href="#/hivegroups">My hive groups</a></li>
+    		<li><a href="#/search/farmers">Search for Farmers</a></li>
+		{{else}}
+    		<li><a href="#/bids">My Bids</a></li>
+    		<li><a href="#/search/beekeepers">Search for Beekeepers</a></li>
+    	{{/if}}
+    {{else}}
+    	<li><a href="">Search Farmers</a></li>
+    	<li><a href="">Search Beekeepers</a></li>
+    {{/if}}
+
 </ul>

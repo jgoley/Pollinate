@@ -26,5 +26,7 @@ Bees.Views.AddHiveGroup = Parse.View.extend({
         var group = new Bees.Models.HiveGroup(groupData);
         console.log(group);
         group.save();
+        BeesApp.navigate('hivegroups', {trigger: true})
+        this.remove();
     }
 });

@@ -1,7 +1,9 @@
-<h1></h1>
+
+<h2>{{user.username}}</h2>
 <button class='show-menu'><span>Menu</span></button>
 {{log session.user }}
 {{#if session.user }}
+<button class="account"><span>My account</span></button>
 <button class="auth log-out"><span>Log out</span></button>
 {{else}}
 <button class="auth log-in"><span>Log in</span></button>

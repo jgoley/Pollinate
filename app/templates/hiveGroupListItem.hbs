@@ -1,7 +1,8 @@
-{{log group.user}}
-
-<h1>{{group.Name}}</h1>
-
-<p>{{group.hiveCount}}</p>
-<p>{{group.availableEnd}}</p>
-<p>{{group.availableBegin}}</p>
+<ul>
+	<li><h1>{{group.Name}}</h1></li>
+	<li>{{group.hiveCount}} hives</li>
+	<li>Available {{group.availableEnd}} to {{group.availableBegin}}</li>
+	<button class="delete">Delete</button>
+	<button class="edit">Edit</button>
+	<button class="view">View</button>
+</ul>
