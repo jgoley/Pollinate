@@ -1,7 +1,7 @@
 Bees.Views.AddHiveGroup = BaseView.extend({
     tagName: 'form',
     className: 'user',
-    template: Bees.templates.addHiveGroup,
+    template: Bees.templates.hiveGroups.add,
 
     events: {
         'submit': 'addHiveGroup'

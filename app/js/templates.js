@@ -1,8 +1,5 @@
 this["Bees"] = this["Bees"] || {};
 this["Bees"]["templates"] = this["Bees"]["templates"] || {};
-this["Bees"]["templates"]["addHiveGroup"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "\n<ul>\n	<li class='new-hive-group'>\n	<input type=\"text\" name=\"Name\" placeholder=\"Name\">\n	<input type=\"text\" name=\"hiveCount\" placeholder=\"Number of Hives\">\n	<label for=\"availableBegin\">Available starting<input type=\"date\" name=\"availableBegin\" placeholder=\"Available Start\"></label>\n	<label for=\"availableEnd\">Ending<input type=\"date\" name=\"availableEnd\" placeholder=\"Available End\"></label>\n	</li>\n</ul>\n<input type=\"submit\" value=\"Add Hives\">";
-  },"useData":true});
 this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>";
   },"useData":true});
@@ -23,45 +20,6 @@ this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,h
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"useData":true});
-this["Bees"]["templates"]["hiveGroup"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
-  return "<ul>\n	<li><h1>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</h1></li>\n	<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
-    + " hives</li>\n	<li>Available "
-    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), {"name":"dateFormat","hash":{},"data":data})))
-    + " to "
-    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
-    + "</li>\n	<button class=\"delete\">Delete</button>\n	<button class=\"edit\">Edit</button>\n</ul>";
-},"useData":true});
-this["Bees"]["templates"]["hiveGroupEdit"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<form>\n	<li><input type=\"text\" name=\"Name\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "\"></li>\n	<li><input type=\"text\" name=\"hiveCount\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
-    + "\"></li>\n	<input type=\"date\" name=\"availableEnd\" value="
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), depth0))
-    + " >\n	<input type=\"date\" name=\"availableBegin\" value="
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), depth0))
-    + " >\n	<div>\n	<button class=\"update\">Update</button>\n	<button class=\"delete\">Delete</button>\n	</div>\n</form>";
-},"useData":true});
-this["Bees"]["templates"]["hiveGroupListItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
-  return "<ul>\n	<li><h1>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</h1></li>\n	<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
-    + " hives</li>\n	<li>Available "
-    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), {"name":"dateFormat","hash":{},"data":data})))
-    + " to "
-    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
-    + "</li>\n	<button class=\"delete\">Delete</button>\n	<button class=\"edit\">Edit</button>\n	<button class=\"view\">View</button>\n</ul>";
-},"useData":true});
-this["Bees"]["templates"]["hiveGroups"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<button class=\"addGroup\">Add a Hive Group</button>";
-  },"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\">\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not logged in? <a href=\"#/newuser\">Create account</a></p>";
   },"useData":true});
@@ -143,4 +101,47 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+},"useData":true});
+this["Bees"]["templates"]["hiveGroups"] = this["Bees"]["templates"]["hiveGroups"] || {};
+this["Bees"]["templates"]["hiveGroups"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "\n<ul>\n	<li class='new-hive-group'>\n	<input type=\"text\" name=\"Name\" placeholder=\"Name\">\n	<input type=\"text\" name=\"hiveCount\" placeholder=\"Number of Hives\">\n	<label for=\"availableBegin\">Available starting<input type=\"date\" name=\"availableBegin\" placeholder=\"Available Start\"></label>\n	<label for=\"availableEnd\">Ending<input type=\"date\" name=\"availableEnd\" placeholder=\"Available End\"></label>\n	</li>\n</ul>\n<input type=\"submit\" value=\"Add Hives\">";
+  },"useData":true});
+this["Bees"]["templates"]["hiveGroups"]["edit"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<form>\n	<li><input type=\"text\" name=\"Name\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "\"></li>\n	<li><input type=\"text\" name=\"hiveCount\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
+    + "\"></li>\n	<input type=\"date\" name=\"availableEnd\" value="
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), depth0))
+    + " >\n	<input type=\"date\" name=\"availableBegin\" value="
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), depth0))
+    + " >\n	<div>\n	<button class=\"update\">Update</button>\n	<button class=\"delete\">Delete</button>\n	</div>\n</form>";
+},"useData":true});
+this["Bees"]["templates"]["hiveGroups"]["hiveGroup"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  return "<ul>\n	<li><h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</h1></li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
+    + " hives</li>\n	<li>Available "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + " to "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + "</li>\n	<button class=\"edit\">Edit</button>\n	<button class=\"delete\">Delete</button>\n</ul>";
+},"useData":true});
+this["Bees"]["templates"]["hiveGroups"]["list"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<button class=\"addGroup\">Add a Hive Group</button>";
+  },"useData":true});
+this["Bees"]["templates"]["hiveGroups"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  return "<ul>\n	<li><h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</h1></li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
+    + " hives</li>\n	<li>Available "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + " to "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + "</li>\n	<button class=\"view\">View</button>\n	<button class=\"edit\">Edit</button>\n	<button class=\"delete\">Delete</button>\n</ul>";
 },"useData":true});

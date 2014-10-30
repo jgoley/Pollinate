@@ -9,7 +9,7 @@ Bees.Views.Map = BaseView.extend({
     },
 
     render: function() {
-        window.colors = ['red','green','blue','orange'];
+        colors = ['red','green','blue','orange'];
         var that = this;
         var points;
         window.user = Parse.User.current();
@@ -20,7 +20,6 @@ Bees.Views.Map = BaseView.extend({
         });
         var i =0;
         this.collection.each(function(user) {
-            console.log(colors[i]);
             if(user.get('userType') === 'beekeeper'){
                 var icon = 'https://maps.google.com/mapfiles/kml/paddle/B.png';
             }   else{

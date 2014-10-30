@@ -1,6 +1,6 @@
 Bees.Views.HiveGroup = BaseView.extend({
     className: 'hive-group',
-    template: Bees.templates.hiveGroup,
+    template: Bees.templates.hiveGroups.hiveGroup,
 
     events:{
         'click .edit': 'editGroup',

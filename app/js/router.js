@@ -5,8 +5,7 @@ Bees.Router = Parse.Router.extend({
         'login': 'login',
         'newuser': 'newUser',
 
-        'search/farmers': 'searchFarmers',
-        'search/beekeepers': 'searchBeekeepers',
+        'search/:type': 'search',
 
         'account': 'account',
         'user/:user_id': 'user',
@@ -141,20 +140,40 @@ Bees.Router = Parse.Router.extend({
         });
     },
 
-    searchFarmers: function(){
-        console.log("hay");
-    },
+    search: function(type){
+        console.log(type);
+        if(type == "beekeeper"){
+           new Bees.Views.Search({
+                userType: type
+           })
 
-    searchBeekeepers: function(){
-        var distance = 50;
-        var query = newParse.Query(Bees.Models.User);
-        query.
-        collection.fetch().then(function(){
-            new Bees.Views.Map({
-                $container: $('.main-container'),
-                collection: collection,
-            })    
-        })
+            // var distance = 100;
+            // var query = new Parse.Query(Bees.Models.User);
+            // query.equalTo('userType', 'beekeeper');
+            // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
+            // var collection = query.collection();
+            // collection.fetch().then(function(){
+            //     console.log(collection);
+            //     new Bees.Views.Map({
+            //         $container: $('.main-container'),
+            //         collection: collection,
+            //     })    
+            // })
+        }
+        else{
+            var distance = 200;
+            var query = new Parse.Query(Bees.Models.User);
+            query.equalTo('userType', 'farmer');
+            query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
+            var collection = query.collection();
+            collection.fetch().then(function(){
+                console.log(collection);
+                new Bees.Views.Map({
+                    $container: $('.main-container'),
+                    collection: collection,
+                })    
+            })
+        }
     },
 
     map: function(){

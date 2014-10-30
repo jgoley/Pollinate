@@ -1,7 +1,7 @@
 Bees.Views.HiveGroupEdit = BaseView.extend({
     tagName: 'form',
     className: 'hive-group',
-    template: Bees.templates.hiveGroupEdit,
+    template: Bees.templates.hiveGroups.edit,
 
     events:{
         'click .update': 'update'

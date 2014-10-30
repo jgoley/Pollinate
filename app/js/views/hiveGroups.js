@@ -1,7 +1,7 @@
 Bees.Views.HiveGroupList = BaseView.extend({
     tagName: 'ul',
     className: 'hive-groups',
-    template: Bees.templates.hiveGroups,
+    template: Bees.templates.hiveGroups.list,
 
     events:{
         'click .addGroup': 'addGroup'
@@ -38,7 +38,7 @@ Bees.Views.HiveGroupList = BaseView.extend({
 Bees.Views.HiveGroupListItem = BaseView.extend({
     tagName: 'li',
     className: 'hive-group',
-    template: Bees.templates.hiveGroupListItem,
+    template: Bees.templates.hiveGroups.listItem,
 
     events: {
         'click .delete': 'deleteGroup',
