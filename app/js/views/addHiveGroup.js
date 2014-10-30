@@ -28,6 +28,10 @@ Bees.Views.AddHiveGroup = BaseView.extend({
         console.log(group);
         group.save();
         user.addUnique('hiveGroups', group);
+        if (user.get('hiveCount'))
+            user.set('hiveCount', user.get('hiveCount')+groupData.hiveCount);
+        else 
+            user.set('hiveCount', groupData.hiveCount);
         user.save();
         BeesApp.navigate('hivegroups', {trigger: true})
         this.remove();

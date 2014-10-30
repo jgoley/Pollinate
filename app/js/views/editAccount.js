@@ -22,10 +22,10 @@ Bees.Views.EditAccountView = BaseView.extend({
     },
 
     saveUser: function(e) {
-        var user = this.model;
         e.preventDefault();
         var credentials = this.$el.serializeObject();
-        user.save(credentials);
-        profile.set()
+        this.model.save(credentials);
+        BeesApp.navigate('/', {trigger: true});
+        this.remove();
     }
 });

@@ -1,6 +1,9 @@
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
+
+$primary: #999;
+
 @font-face {
     font-family: icons;
     src: url(../fonts/icons.ttf);
@@ -40,7 +43,7 @@ ul, li {
 }
 
 a{
-    color:brown;
+    color:$primary;
     text-decoration: none;
     &:hover{
         color:light-blue;
@@ -79,6 +82,18 @@ form.user{
     @include span-columns(12);
     max-width: 100%;
     margin: em(60px) 0;
+    button{
+        background: $primary;
+        padding:em(10px) em(20px);
+        border-radius:4px;
+        color:#FFF;
+        border:none;
+        tansition:.5s;
+        &:hover{
+            background:#999;
+            tansition:.5s;
+        }
+    }
 }
 
 header {
@@ -206,6 +221,11 @@ footer{
     ul{
         margin-bottom:10px;
     }
+}
+
+.addGroup{
+    margin-bottom:2em;
+    padding:1em 3em;
 }
 
 

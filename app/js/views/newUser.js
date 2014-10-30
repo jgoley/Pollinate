@@ -46,7 +46,7 @@ Bees.Views.NewUserView = BaseView.extend({
             url: geoRequest,
             dataType: 'json'
         }).done(function(geoData) {
-            //credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
+            credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
             console.log('Saving user');
             user.signUp(null, {
                 success: function(user) {

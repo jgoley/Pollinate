@@ -19,13 +19,13 @@ Bees.Models.User = Parse.User.extend({
         state: '',
         image: '',
         geoCenter: new Parse.GeoPoint([0, 0]),
-        geoRangeRadius: 0,
+        geoRangeRadius: '',
         userType: '',
         hiveGroups: [],
         bids: [],
         rating: 0,
         crop: '',
-        farmAcerage: 0
+        farmAcerage: ''
     },
 
 });

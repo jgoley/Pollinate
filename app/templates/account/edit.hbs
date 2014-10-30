@@ -10,7 +10,7 @@
 <input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code">
 
 {{#if_eq user.userType "beekeeper"}}
-<input type="text" name="range" value="{{user.geoRangeRadius}}" placeholder="Range in miles">
+<input type="text" name="geoRangeRadius" value="{{user.geoRangeRadius}}" placeholder="Range in miles">
 {{else}}
 <input type="text" name="crop" value="{{user.crop}}" placeholder="Crop">
 <input type="text" name="farmAcerage" value="{{user.farmAcerage}}" placeholder="Farm acerage">

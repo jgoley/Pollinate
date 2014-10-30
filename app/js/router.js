@@ -146,7 +146,15 @@ Bees.Router = Parse.Router.extend({
     },
 
     searchBeekeepers: function(){
-        console.log("hay beekeeprs");
+        var distance = 50;
+        var query = newParse.Query(Bees.Models.User);
+        query.
+        collection.fetch().then(function(){
+            new Bees.Views.Map({
+                $container: $('.main-container'),
+                collection: collection,
+            })    
+        })
     },
 
     map: function(){
@@ -158,7 +166,6 @@ Bees.Router = Parse.Router.extend({
             })    
         })
     },
-
 
     checkUserType: function(){
         if (Parse.User.current().get('userType') == 'beekeeper')

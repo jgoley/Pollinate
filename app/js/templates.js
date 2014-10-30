@@ -87,7 +87,7 @@ this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,help
 },"useData":true});
 this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""
+  return "<input type=\"text\" name=\"username\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
     + "\" placeholder=\"Email address\">\n<input type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
@@ -114,7 +114,7 @@ this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.
 this["Bees"]["templates"]["account"] = this["Bees"]["templates"]["account"] || {};
 this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<input type=\"text\" name=\"range\" value=\""
+  return "<input type=\"text\" name=\"geoRangeRadius\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
     + "\" placeholder=\"Range in miles\">\n";
 },"3":function(depth0,helpers,partials,data) {
