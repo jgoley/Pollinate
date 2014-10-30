@@ -38,9 +38,8 @@ Bees.Views.Map = Parse.View.extend({
               click: function(e) {
                 // alert('You clicked in this marker');
               },
-
                 infoWindow: {
-                  content: user.get('firstName'),
+                  content: user.get('lastName'),
                 }
             });
         })
