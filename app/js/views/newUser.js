@@ -1,4 +1,4 @@
-Bees.Views.NewUserView = Parse.View.extend({
+Bees.Views.NewUserView = BaseView.extend({
     tagName: 'form',
     className: 'user',
     template: Bees.templates.newuser,
@@ -37,16 +37,16 @@ Bees.Views.NewUserView = Parse.View.extend({
         var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
 
         if (credentials.userType == 'beekeeper') {
-            user.set('userType', {beekeeper: true});
+            user.set('userType', 'beekeeper');
         } else {
-            user.set('userType', {farmer: true});
+            user.set('userType', 'farmer');
         }
         // Get Geo location data
         $.ajax({
             url: geoRequest,
             dataType: 'json'
         }).done(function(geoData) {
-            credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
+            //credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
             console.log('Saving user');
             user.signUp(null, {
                 success: function(user) {

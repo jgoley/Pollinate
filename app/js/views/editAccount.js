@@ -1,4 +1,4 @@
-Bees.Views.EditAccountView = Parse.View.extend({
+Bees.Views.EditAccountView = BaseView.extend({
     tagName: 'form',
     className: 'user',
     template: Bees.templates.account.edit,

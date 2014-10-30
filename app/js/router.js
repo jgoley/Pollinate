@@ -12,10 +12,11 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
 
-        'hivegroups': 'hiveGroups', 
-        'hivegroups/all': 'hiveGroupsAll',
-        'hivegroups/:user_id': 'hiveGroupsUser',
-        'hivegroup/view/:hiveGroup_id': 'viewHiveGroup',
+        'hivegroups': 'hiveGroups',
+        'hivegroups/view/all': 'hiveGroupsAll',
+        'hivegroups/user/:user_id': 'hiveGroupsUser',
+        'hivegroup/:hiveGroup_id/view': 'viewHiveGroup',
+        'hivegroup/:hiveGroup_id/edit': 'editHiveGroup',
         'hivegroup/add': 'addHiveGroup',
 
         'bids': 'bidsIndex',
@@ -108,6 +109,29 @@ Bees.Router = Parse.Router.extend({
 
     viewHiveGroup: function(hiveGroup_id){
         console.log("Viewing ", hiveGroup_id)
+        var query = new Parse.Query(Bees.Models.HiveGroup);
+        query.equalTo('objectId', hiveGroup_id);
+        query.first().then(function(group){
+            console.log("The group",group);
+            new Bees.Views.HiveGroup({
+                $container: $('.main-container'),
+                model: group
+            });
+        })
+    },
+    editHiveGroup: function(hiveGroup_id){
+        var query = new Parse.Query(Bees.Models.HiveGroup);
+        query.equalTo('objectId', hiveGroup_id);
+        query.first().then(function(group){
+            console.log(group);
+            new Bees.Views.HiveGroupEdit({
+                $container: $('.main-container'),
+                model: group
+            });
+        })
+    },
+    hiveGroupsUser: function(){
+        console.log('hiveGroupsUser');
     },
 
     addHiveGroup: function(){
@@ -115,12 +139,6 @@ Bees.Router = Parse.Router.extend({
         new Bees.Views.AddHiveGroup({
             $container: $('.main-container'),
         });
-    },
-
-    checkUserType: function(){
-        if (Parse.User.current() && Parse.User.current().get('beekeeper'))
-            return true;
-        else return false
     },
 
     searchFarmers: function(){
@@ -139,5 +157,12 @@ Bees.Router = Parse.Router.extend({
                 collection: collection,
             })    
         })
-    }
+    },
+
+
+    checkUserType: function(){
+        if (Parse.User.current().get('userType') == 'beekeeper')
+            return true;
+        else return false
+    },
 });

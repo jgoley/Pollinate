@@ -9,6 +9,7 @@ Bees.Models.Session = Parse.Object.extend({
 Bees.Models.User = Parse.User.extend({
     className: "User",
     defaults:{
+        businessName: '',
         username: '', //
         firstName: '', //
         lastName: '', 

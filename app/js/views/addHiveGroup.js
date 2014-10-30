@@ -1,4 +1,4 @@
-Bees.Views.AddHiveGroup = Parse.View.extend({
+Bees.Views.AddHiveGroup = BaseView.extend({
     tagName: 'form',
     className: 'user',
     template: Bees.templates.addHiveGroup,
@@ -21,11 +21,14 @@ Bees.Views.AddHiveGroup = Parse.View.extend({
 
     addHiveGroup: function(e){
         e.preventDefault();
+        user = Parse.User.current();
         var groupData = this.$el.serializeObject();
-        groupData.user = Parse.User.current();
+        groupData.user = user;
         var group = new Bees.Models.HiveGroup(groupData);
         console.log(group);
         group.save();
+        user.addUnique('hiveGroups', group);
+        user.save();
         BeesApp.navigate('hivegroups', {trigger: true})
         this.remove();
     }

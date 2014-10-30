@@ -1,10 +1,4 @@
-<p>account type: 
-{{#if user.userType.beekeeper}}
-Beekeeper
-{{else}}
-Farmer
-{{/if}}
-</p>
+<p>account type: {{user.userType}}</p>
 
 
 <input type="text" name="firstName" value="{{user.firstName}}" placeholder="First Name">
@@ -15,11 +9,11 @@ Farmer
 <input type="text" name="state" value="{{user.state}}" placeholder="State">
 <input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code">
 
-{{#if user.beekeeper}}
+{{#if_eq user.userType "beekeeper"}}
 <input type="text" name="range" value="{{user.geoRangeRadius}}" placeholder="Range in miles">
 {{else}}
 <input type="text" name="crop" value="{{user.crop}}" placeholder="Crop">
 <input type="text" name="farmAcerage" value="{{user.farmAcerage}}" placeholder="Farm acerage">
-{{/if}}
+{{/if_eq}}
 
 <input type="submit" name="" value="Update Account">

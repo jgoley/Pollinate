@@ -1,4 +1,4 @@
-Bees.Views.HiveGroupList = Parse.View.extend({
+Bees.Views.HiveGroupList = BaseView.extend({
     tagName: 'ul',
     className: 'hive-groups',
     template: Bees.templates.hiveGroups,
@@ -35,7 +35,7 @@ Bees.Views.HiveGroupList = Parse.View.extend({
     }
 });
 
-Bees.Views.HiveGroupListItem = Parse.View.extend({
+Bees.Views.HiveGroupListItem = BaseView.extend({
     tagName: 'li',
     className: 'hive-group',
     template: Bees.templates.hiveGroupListItem,
@@ -52,7 +52,8 @@ Bees.Views.HiveGroupListItem = Parse.View.extend({
         });
         options.$container.append(this.el);
         this.render();
-        this.model.on('change', _.bind(this.render, this))
+        this.listenTo(this.model, 'change', this.render)
+        // this.model.on('change', _.bind(this.render, this))
 
     },
 
@@ -63,27 +64,25 @@ Bees.Views.HiveGroupListItem = Parse.View.extend({
     },
 
     deleteGroup: function() {
-        console.log("Deleting");
+        var user = Parse.User.current();
+        user.remove('hiveGroups', this.model);
+        user.save();
         this.model.destroy();
+        this.undelegateEvents();
+        this.remove()
     },
 
     editGroup: function() {
-        console.log("Edit");
+        BeesApp.navigate('hivegroup/'+this.model.id+'/edit', {
+            trigger: true
+        });
     },
 
     viewGroup: function() {
-        console.log(this.model);
         console.log("navigating to ", this.model.id);
-        BeesApp.navigate('hivegroups/view/'+this.model.id, {
+        BeesApp.navigate('hivegroup/'+this.model.id+'/view', {
             trigger: true
         });
-        this.remove();
-    },
-
-    remove: function() {
-        this.$el.remove();
-        this.model.off('change', _.bind(this.render, this))
-        return this;
     },
 
 

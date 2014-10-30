@@ -6,7 +6,6 @@ var BaseView = function(options) {
 _.extend(BaseView.prototype, Parse.View.prototype, {
 
     listenTo: function(model, ev, callback) {
-
         model.bind(ev, callback, this);
         this.bindings.push({
             model: model,
@@ -14,7 +13,6 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
             callback: callback
         });
         console.log('listening');
-
     },
 
     stopListeningAll: function() {
@@ -23,7 +21,6 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         });
         this.bindings = [];
         console.log('stop listening');
-
     },
 
     dispose: function() {
@@ -48,3 +45,22 @@ $.fn.serializeObject = function() {
         return acum;
     }, {});
 };
+
+
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if(a === b)
+        return opts.fn(this);
+    else
+        return opts.inverse(this);
+});
+
+Handlebars.registerHelper('dateFormat', function(context, block) {
+  if (window.moment) {
+    console.log(context);
+    //var f = block.hash.format || "MMM Do, YYYY";
+    //return moment(context);
+    return moment(context).format("dddd, MMMM Do YYYY"); 
+  }else{
+    return context;   //  moment plugin not available. return data as is.
+  };
+});
