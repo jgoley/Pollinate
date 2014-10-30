@@ -21,6 +21,19 @@ this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,h
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"useData":true});
+this["Bees"]["templates"]["hiveGroupListItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, escapeExpression=this.escapeExpression, lambda=this.lambda;
+  return escapeExpression(helpers.log.call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.user : stack1), {"name":"log","hash":{},"data":data}))
+    + "\n\n<h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</h1>\n\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
+    + "</p>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), depth0))
+    + "</p>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), depth0))
+    + "</p>";
+},"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\">\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not logged in? <a href=\"#/newuser\">Create account</a></p>";
   },"useData":true});

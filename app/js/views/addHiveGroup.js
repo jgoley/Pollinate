@@ -22,7 +22,6 @@ Bees.Views.AddHiveGroup = Parse.View.extend({
     addHiveGroup: function(e){
         e.preventDefault();
         var groupData = this.$el.serializeObject();
-        groupData.id = 234;
         groupData.user = Parse.User.current();
         var group = new Bees.Models.HiveGroup(groupData);
         console.log(group);

@@ -11,8 +11,8 @@ Bees.Router = Parse.Router.extend({
         ':user_id': 'user',
         ':user_id/reviews': 'reviews',
 
-        'hivegroups': 'hiveGroups',
-        'hivegroups/:hiveGroup_id/view': 'viewHiveGroup',
+        'hivegroups/all': 'hiveGroups',
+        'hivegroups/view/:hiveGroup_id': 'viewHiveGroup',
         'hivegroups/add': 'addHiveGroup',
 
         'bids': 'bidsIndex',
@@ -74,12 +74,19 @@ Bees.Router = Parse.Router.extend({
     },
 
     hiveGroups: function(){
-        console.log("Add Hive Group");
-        new Bees.Views.HiveGroupList({
-            $container: $('.main-container'),
-            model: user
-        });
+        console.log("Hive Group");
+        var query = new Parse.Query(Bees.Models.HiveGroup);
+        query.equalTo('user', Parse.User.current());
+        var collection = query.collection();
+        console.log(collection);
+        collection.fetch().then(function(){
+            new Bees.Views.HiveGroupList({
+                $container: $('.main-container'),
+                collection: collection
+            });
+        })
     },
+
     viewHiveGroup: function(hiveGroup_id){
         console.log("Viewing ", hiveGroup_id)
     },

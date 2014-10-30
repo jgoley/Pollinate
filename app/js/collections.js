@@ -9,3 +9,4 @@ Bees.Collections.HiveGroups = Parse.Collection.extend({
 Bees.Collections.User = Parse.Collection.extend({
     model: Bees.Models.User
 });
+

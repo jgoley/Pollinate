@@ -53,7 +53,6 @@ Bees.Models.Bid = Parse.Object.extend({
 Bees.Models.HiveGroup = Parse.Object.extend({
     className: "Hive_Group",
     defaults:{
-        id: '',
         beekeeper: '',
         hiveCount: '',
         availableBegin: '',
