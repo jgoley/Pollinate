@@ -4,7 +4,7 @@ Bees.Views.Map = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container
         });
-        options.$container.html(this.el);
+        options.$container.append(this.el);
         this.render();
     },
 
@@ -12,13 +12,24 @@ Bees.Views.Map = BaseView.extend({
         colors = ['red','green','blue','orange'];
         var that = this;
         var points;
-        window.user = Parse.User.current();
+        var curUser = Parse.User.current();
         var map = new GMaps({
             div: '#map',
-            lat: user.get('geoCenter').latitude,
-            lng: user.get('geoCenter').longitude,
+            lat: curUser.get('geoCenter').latitude,
+            lng: curUser.get('geoCenter').longitude,
         });
         var i =0;
+
+        // Add marker for current user
+        map.addMarker({
+                lat: curUser.get('geoCenter').latitude,
+                lng: curUser.get('geoCenter').longitude,
+                icon: 'https://maps.google.com/mapfiles/kml/paddle/U.png',
+        });
+
+        
+
+        // Add markers for the collection of users
         this.collection.each(function(user) {
             if(user.get('userType') === 'beekeeper'){
                 var icon = 'https://maps.google.com/mapfiles/kml/paddle/B.png';

@@ -141,11 +141,10 @@ Bees.Router = Parse.Router.extend({
     },
 
     search: function(type){
-        console.log(type);
-        if(type == "beekeeper"){
-           new Bees.Views.Search({
-                userType: type
-           })
+        new Bees.Views.Search({
+            userType: type,
+            $container: $('.main-container'),
+        })
 
             // var distance = 100;
             // var query = new Parse.Query(Bees.Models.User);
@@ -159,21 +158,21 @@ Bees.Router = Parse.Router.extend({
             //         collection: collection,
             //     })    
             // })
-        }
-        else{
-            var distance = 200;
-            var query = new Parse.Query(Bees.Models.User);
-            query.equalTo('userType', 'farmer');
-            query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
-            var collection = query.collection();
-            collection.fetch().then(function(){
-                console.log(collection);
-                new Bees.Views.Map({
-                    $container: $('.main-container'),
-                    collection: collection,
-                })    
-            })
-        }
+        // }
+        // else{
+        //     var distance = 200;
+        //     var query = new Parse.Query(Bees.Models.User);
+        //     query.equalTo('userType', 'farmer');
+        //     query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
+        //     var collection = query.collection();
+        //     collection.fetch().then(function(){
+        //         console.log(collection);
+        //         new Bees.Views.Map({
+        //             $container: $('.main-container'),
+        //             collection: collection,
+        //         })    
+        //     })
+        // }
     },
 
     map: function(){

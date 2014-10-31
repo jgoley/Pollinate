@@ -32,9 +32,9 @@ this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,help
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"2":function(depth0,helpers,partials,data) {
-  return "    		<li><a href=\"#/hivegroups\">My hive groups</a></li>\n    		<li><a href=\"#/search/farmers\">Search for Farmers</a></li>\n";
+  return "    		<li><a href=\"#/hivegroups\">My hive groups</a></li>\n    		<li><a href=\"#/search/farmer\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
-  return "    		<li><a href=\"#/bids\">My Bids</a></li>\n    		<li><a href=\"#/search/beekeepers\">Search for Beekeepers</a></li>\n";
+  return "    		<li><a href=\"#/bids\">My Bids</a></li>\n    		<li><a href=\"#/search/beekeeper\">Search for Beekeepers</a></li>\n";
   },"6":function(depth0,helpers,partials,data) {
   return "    	<li><a href=\"\">Search Farmers</a></li>\n    	<li><a href=\"\">Search Beekeepers</a></li>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -68,6 +68,12 @@ this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.
     + "\" name=\"state\" placeholder=\"State\">\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
     + "\" name=\"zipCode\" placeholder=\"Zip Code\">\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
+},"useData":true});
+this["Bees"]["templates"]["search"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
+  },"useData":true});
+this["Bees"]["templates"]["searchResults"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "";
 },"useData":true});
 this["Bees"]["templates"]["account"] = this["Bees"]["templates"]["account"] || {};
 this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -145,3 +151,13 @@ this["Bees"]["templates"]["hiveGroups"]["listItem"] = Handlebars.template({"comp
     + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
     + "</li>\n	<button class=\"view\">View</button>\n	<button class=\"edit\">Edit</button>\n	<button class=\"delete\">Delete</button>\n</ul>";
 },"useData":true});
+this["Bees"]["templates"]["search"] = this["Bees"]["templates"]["search"] || {};
+this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";
+  },"useData":true});
+this["Bees"]["templates"]["search"]["name"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
+  },"useData":true});
+this["Bees"]["templates"]["search"]["nameSearch"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n";
+  },"useData":true});
