@@ -91,7 +91,7 @@ Bees.Router = Parse.Router.extend({
 
     reviews: function(){
 
-    }
+    },
 
     search: function(type){
         new Bees.Views.Search({
@@ -198,7 +198,7 @@ Bees.Router = Parse.Router.extend({
 
     showBid: function(bid_id){
 
-    }
+    },
 
 
     map: function(){

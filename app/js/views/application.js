@@ -8,10 +8,9 @@ Bees.Views.ApplicationView = Parse.View.extend({
         this.render();
     },
     render: function(){
-        this.$el.html(this.template()
+        this.$el.html(this.template());
         new Bees.Views.HeaderView({
             $container: $('header'),
-            user: 
         })
         new Bees.Views.FooterView({
             $container:  $('footer')

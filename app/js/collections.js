@@ -26,7 +26,7 @@ Bees.Collections.UserSearch = Parse.Collection.extend({
             user:opts.user,
             distance: opts.distance 
         });
-        this.query = new Parse.Query(Bees.Models.User).withinMiles('geoCenter', options.user.get('geoCenter'), options.distance))
+        this.query = new Parse.Query(Bees.Models.User).withinMiles('geoCenter', options.user.get('geoCenter'), options.distance);
 	},
     model: Bees.Models.User,
 });
