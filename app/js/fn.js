@@ -30,6 +30,7 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         // because this view will be garbage collected.
         this.remove(); // Uses the default Parse.View.remove() method which
         // removes this.el from the DOM and removes DOM events.
+        _.invoke(this.subViews, 'dispose');
         console.log('removing view');
     }
 

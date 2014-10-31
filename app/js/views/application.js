@@ -4,12 +4,14 @@ Bees.Views.ApplicationView = Parse.View.extend({
     
     initialize: function(opts){
         Bees.Session = new Bees.Models.Session({user: Parse.User.current()})
+        this.model = Bees.Session;
         this.render();
     },
     render: function(){
-        this.$el.html(this.template())
+        this.$el.html(this.template()
         new Bees.Views.HeaderView({
-            $container: $('header')
+            $container: $('header'),
+            user: 
         })
         new Bees.Views.FooterView({
             $container:  $('footer')

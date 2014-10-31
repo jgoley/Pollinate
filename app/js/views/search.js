@@ -129,7 +129,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
 
 Bees.Views.SearchResults = BaseView.extend({
     className: 'search-results',
-
+    subViews: [],
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -141,17 +141,26 @@ Bees.Views.SearchResults = BaseView.extend({
         //this.listenTo(this.collection, 'change', this.render);
     },
 
+
+
     render: function() {
         console.log('Search results rendering')
-        new Bees.Views.SearchResultsList({
+        _.invoke(this.subViews, 'dispose');
+        this.subViews = [];
+
+        this.subViews.push(
+            new Bees.Views.SearchResultsList({
             $container: this.$el,
             collection: this.collection
-        })
-        new Bees.Views.Map({
-            $container: this.$el,
-            collection: this.collection,
-            radius: this.radius
-        })
+        }));
+
+        this.subViews.push(
+            new Bees.Views.Map({
+                $container: this.$el,
+                collection: this.collection,
+                radius: this.radius
+            })
+        );
     },
 
 })

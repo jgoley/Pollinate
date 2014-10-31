@@ -5,11 +5,11 @@ Bees.Router = Parse.Router.extend({
         'login': 'login',
         'newuser': 'newUser',
 
-        'search/:type': 'search',
-
         'account': 'account',
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
+
+        'search/:type': 'search',
 
         'hivegroups': 'hiveGroups',
         'hivegroups/view/all': 'hiveGroupsAll',
@@ -85,6 +85,49 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
+    user: function(user_id){
+        console.log(user_id);
+    },
+
+    reviews: function(){
+
+    }
+
+    search: function(type){
+        new Bees.Views.Search({
+            userType: type,
+            $container: $('.main-container'),
+        })
+
+            // var distance = 100;
+            // var query = new Parse.Query(Bees.Models.User);
+            // query.equalTo('userType', 'beekeeper');
+            // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
+            // var collection = query.collection();
+            // collection.fetch().then(function(){
+            //     console.log(collection);
+            //     new Bees.Views.Map({
+            //         $container: $('.main-container'),
+            //         collection: collection,
+            //     })    
+            // })
+        // }
+        // else{
+        //     var distance = 200;
+        //     var query = new Parse.Query(Bees.Models.User);
+        //     query.equalTo('userType', 'farmer');
+        //     query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
+        //     var collection = query.collection();
+        //     collection.fetch().then(function(){
+        //         console.log(collection);
+        //         new Bees.Views.Map({
+        //             $container: $('.main-container'),
+        //             collection: collection,
+        //         })    
+        //     })
+        // }
+    },
+
     hiveGroups: function(){
         if(!this.checkUserType()){
             BeesApp.navigate('/', {trigger:true});
@@ -125,6 +168,7 @@ Bees.Router = Parse.Router.extend({
             });
         })
     },
+
     editHiveGroup: function(hiveGroup_id){
         var query = new Parse.Query(Bees.Models.HiveGroup);
         query.equalTo('objectId', hiveGroup_id);
@@ -136,6 +180,7 @@ Bees.Router = Parse.Router.extend({
             });
         })
     },
+
     hiveGroupsUser: function(){
         console.log('hiveGroupsUser');
     },
@@ -147,40 +192,14 @@ Bees.Router = Parse.Router.extend({
         });
     },
 
-    search: function(type){
-        new Bees.Views.Search({
-            userType: type,
-            $container: $('.main-container'),
-        })
+    bidsIndex: function(){
 
-            // var distance = 100;
-            // var query = new Parse.Query(Bees.Models.User);
-            // query.equalTo('userType', 'beekeeper');
-            // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
-            // var collection = query.collection();
-            // collection.fetch().then(function(){
-            //     console.log(collection);
-            //     new Bees.Views.Map({
-            //         $container: $('.main-container'),
-            //         collection: collection,
-            //     })    
-            // })
-        // }
-        // else{
-        //     var distance = 200;
-        //     var query = new Parse.Query(Bees.Models.User);
-        //     query.equalTo('userType', 'farmer');
-        //     query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
-        //     var collection = query.collection();
-        //     collection.fetch().then(function(){
-        //         console.log(collection);
-        //         new Bees.Views.Map({
-        //             $container: $('.main-container'),
-        //             collection: collection,
-        //         })    
-        //     })
-        // }
     },
+
+    showBid: function(bid_id){
+
+    }
+
 
     map: function(){
         var collection = new Bees.Collections.User();
