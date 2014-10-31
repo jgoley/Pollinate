@@ -69,12 +69,6 @@ this["Bees"]["templates"]["newuser"] = Handlebars.template({"compiler":[6,">= 2.
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
     + "\" name=\"zipCode\" placeholder=\"Zip Code\">\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
-this["Bees"]["templates"]["search"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
-  },"useData":true});
-this["Bees"]["templates"]["searchResults"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "";
-},"useData":true});
 this["Bees"]["templates"]["account"] = this["Bees"]["templates"]["account"] || {};
 this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -159,5 +153,17 @@ this["Bees"]["templates"]["search"]["name"] = Handlebars.template({"compiler":[6
   return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
   },"useData":true});
 this["Bees"]["templates"]["search"]["nameSearch"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n";
+  return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n\n<input value=\"Search\" type=\"submit\">\n";
   },"useData":true});
+this["Bees"]["templates"]["search"]["resultItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<ul>\n	<li><a href=\"#/user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
+    + "</a></li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crops : stack1), depth0))
+    + "</li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
+    + "</li>\n</ul>";
+},"useData":true});

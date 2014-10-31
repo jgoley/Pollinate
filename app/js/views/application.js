@@ -1,5 +1,5 @@
 Bees.Views.ApplicationView = Parse.View.extend({
-    
+    className: 'pollinate',
     template: Bees.templates.application,
     
     initialize: function(opts){

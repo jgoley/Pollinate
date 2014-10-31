@@ -38,16 +38,23 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-            // var query = new Parse.Query(Bees.Models.HiveGroup);
-            // query.equalTo('photog', Parse.User.current())
-            // var collection = query.collection();
-            // collection.fetch().then(function() {
-            //     new Bees.Views.BeesListView({
-            //         $container: $('.main-container'),
-            //         collection: collection,
-            //         title: Parse.User.current().get('username')
-            //     });
-            // });
+
+            if(Parse.User.current().get('userType') == 'beekeeper'){
+                var query = new Parse.Query(Bees.Models.HiveGroup);
+                query.equalTo('user', Parse.User.current());
+                var collection = query.collection();
+                console.log(collection);
+                collection.fetch().then(function(){
+                    new Bees.Views.HiveGroupList({
+                        $container: $('.main-container'),
+                        collection: collection
+                    });
+                })
+            }
+            else{
+                
+            }
+
         }
     },
 
