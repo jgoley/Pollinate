@@ -65,3 +65,7 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
     return context;   //  moment plugin not available. return data as is.
   };
 });
+
+Handlebars.registerHelper("log", function(data) {
+  return console.log(data);
+});

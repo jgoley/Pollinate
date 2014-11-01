@@ -50,7 +50,7 @@ Bees.Models.Profile = Parse.Object.extend({
 })
 
 Bees.Models.Bid = Parse.Object.extend({
-    className: "Bid",
+    className: "Bids",
     defaults:{
         beekeeper: '',
         farmer: '',
@@ -69,5 +69,12 @@ Bees.Models.HiveGroup = Parse.Object.extend({
         hiveCount: '',
         availableBegin: '',
         availableEnd: ''
+    }
+});
+
+Bees.Models.Review = Parse.Object.extend({
+    className: 'Reviews',
+    defaults: {
+        review: '',
     }
 });

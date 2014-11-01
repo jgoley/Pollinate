@@ -50,9 +50,9 @@ a {
     }
 }
 
-form.user, form.search {
+form.user, form.search, form.review {
     margin-top:em(20px);
-    input, select {
+    input, select, textarea {
         width: 100%;
         display: block;
         padding: 1em;
@@ -74,6 +74,12 @@ form.user, form.search {
         margin: em(30px) 0;
     }
 }
+
+textarea{
+    width:100%;
+    min-height: em(200px);
+}
+
 .search-container{
 }
 
@@ -276,11 +282,7 @@ footer {
             }
         }
     }
-    .following, .photogs, .followers {
-        @include span-columns(4);
-        @include shift(4);
-    }
-    .featuredPic, form {
+    form {
         @include span-columns(4);
         @include shift(4);
         img {
