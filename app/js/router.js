@@ -9,6 +9,7 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
 
+
         'search/:type': 'search',
 
         'hivegroups': 'hiveGroups',
@@ -90,7 +91,15 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
-    reviews: function() {},
+    reviews: function(user_id) {
+        var query = new Parse.Query(Bees.Models.User);
+        query.get(user_id).then(function(model){
+            new Bees.Views.UserReviews({
+                model: model,
+                $container: $('.main-container')
+            })
+        })
+    },
 
     search: function(type) {
         new Bees.Views.Search({
