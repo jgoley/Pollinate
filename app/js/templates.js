@@ -3,6 +3,18 @@ this["Bees"]["templates"] = this["Bees"]["templates"] || {};
 this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div class=''>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>\n</div>";
   },"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</h1>\n<div class=\"hive-groups\"></div>";
+},"useData":true});
+this["Bees"]["templates"]["farmerIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</h1>";
+},"useData":true});
 this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
 },"useData":true});
@@ -11,9 +23,9 @@ this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,h
   },"3":function(depth0,helpers,partials,data) {
   return "<button class=\"auth log-in\"><span>Log in</span></button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<h2>"
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<h2><a href=\"#/\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</h2>\n<button class='show-menu'><span>Menu</span></button>\n"
+    + "</a></h2>\n<button class='show-menu'><span>Menu</span></button>\n"
     + escapeExpression(helpers.log.call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"log","hash":{},"data":data}))
     + "\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});

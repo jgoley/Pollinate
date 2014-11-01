@@ -40,15 +40,16 @@ Bees.Router = Parse.Router.extend({
             });
         } else {
             if (Parse.User.current().get('userType') == 'beekeeper') {
-                    var collection = new Bees.Collections.UserHiveGroups();
-                    collection.fetch().then(function() {
-                        new Bees.Views.HiveGroupList({
-                            $container: $('.main-container'),
-                            collection: collection
-                        });
-                    });
+                console.log("A beekeeper");
+                new Bees.Views.BeekeeperIndex({
+                    $container: $('.main-container'),
+                });
 
             } else {
+                console.log("A Farmer");
+                new Bees.Views.FarmerIndex({
+                    $container: $('.main-container'),
+                });
             }
 
         }
