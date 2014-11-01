@@ -15,7 +15,6 @@ Bees.Views.HeaderView = BaseView.extend({
         options.$container.append(this.el);
         this.render();
 
-        // Bees.Session.on('change', _.bind(this.render, this));
         this.listenTo(Bees.Session, 'change', this.render);
     },
 
@@ -55,7 +54,7 @@ Bees.Views.HeaderView = BaseView.extend({
     }
 });
 
-Bees.Views.NavView = Parse.View.extend({
+Bees.Views.NavView = BaseView.extend({
     tagName: 'nav',
     template: Bees.templates.nav,
 

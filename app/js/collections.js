@@ -12,21 +12,21 @@ Bees.Collections.User = Parse.Collection.extend({
 
 
 Bees.Collections.UserHiveGroups = Parse.Collection.extend({
-	initialize: function(){
-		this.user =  Parse.User.current();
-		console.log("User in collection",this.user);
+	initialize: function(opts){
+        this.query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current())
 	},
     model: Bees.Models.HiveGroup,
-    query: (new Parse.Query(Bees.Models.HiveGroup)).equalTo('user', this.user)
 });
 
 Bees.Collections.UserSearch = Parse.Collection.extend({
 	initialize: function(opts){
         var options = _.defaults({}, opts, {
-            user:opts.user,
-            distance: opts.distance 
+            distance: opts.distance,
+            userType: opts.userType
         });
-        this.query = new Parse.Query(Bees.Models.User).withinMiles('geoCenter', options.user.get('geoCenter'), options.distance);
+        this.query = new Parse.Query(Bees.Models.User)
+                        .equalTo('userType', options.userType)
+                        .withinMiles('geoCenter', Parse.User.current().get('geoCenter'), options.distance);
 	},
     model: Bees.Models.User,
 });

@@ -29,18 +29,20 @@ Bees.Views.Map = BaseView.extend({
             icon: 'https://maps.google.com/mapfiles/kml/paddle/U.png',
         });
 
-        map.drawCircle({
-            lat: curUser.get('geoCenter').latitude,
-            lng: curUser.get('geoCenter').longitude,
-            radius: this.searchRadius / 0.00062137, // convert miles to meters
-            fillColor: 'black',
-            fillOpacity: .3,
-            strokeColor: '#999',
-            strokeWeight: 1,
-            strokeOpacity: .8,
-            clickable: true
+        if (curUser.get('userType') == 'beekeeper') {
+            map.drawCircle({
+                lat: curUser.get('geoCenter').latitude,
+                lng: curUser.get('geoCenter').longitude,
+                radius: this.searchRadius / 0.00062137, // convert miles to meters
+                fillColor: 'black',
+                fillOpacity: .3,
+                strokeColor: '#999',
+                strokeWeight: 1,
+                strokeOpacity: .8,
+                clickable: true
 
-        });
+            });
+        }
 
         // Add markers for the collection of users
         this.collection.each(function(user) {
@@ -56,10 +58,10 @@ Bees.Views.Map = BaseView.extend({
                 icon: icon,
                 click: function(e) {
                     // alert('You clicked in this marker');
-                    BeesApp.navigate('user/' + user.get('username'), {
+                    BeesApp.navigate('user/' + user.id, {
                         trigger: true
                     });
-                    that.remove();
+                    that.dispose();
                 },
                 infoWindow: {
                     content: user.get('userType'),

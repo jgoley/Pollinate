@@ -38,21 +38,16 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-
-            if(Parse.User.current().get('userType') == 'beekeeper'){
-                var query = new Parse.Query(Bees.Models.HiveGroup);
-                query.equalTo('user', Parse.User.current());
-                var collection = query.collection();
-                console.log(collection);
-                collection.fetch().then(function(){
-                    new Bees.Views.HiveGroupList({
-                        $container: $('.main-container'),
-                        collection: collection
+            if (Parse.User.current().get('userType') == 'beekeeper') {
+                    var collection = new Bees.Collections.UserHiveGroups();
+                    collection.fetch().then(function() {
+                        new Bees.Views.HiveGroupList({
+                            $container: $('.main-container'),
+                            collection: collection
+                        });
                     });
-                })
-            }
-            else{
-                
+
+            } else {
             }
 
         }
@@ -85,59 +80,33 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
-    user: function(user_id){
-        console.log(user_id);
+    user: function(user_id) {
+        var query = new Parse.Query(Bees.Models.User);
+        query.get(user_id).then(function(model){
+            new Bees.Views.User({
+                model: model,
+                $container: $('.main-container')
+            })
+        })
     },
 
-    reviews: function(){
+    reviews: function() {},
 
-    },
-
-    search: function(type){
+    search: function(type) {
         new Bees.Views.Search({
             userType: type,
             $container: $('.main-container'),
         })
-
-            // var distance = 100;
-            // var query = new Parse.Query(Bees.Models.User);
-            // query.equalTo('userType', 'beekeeper');
-            // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
-            // var collection = query.collection();
-            // collection.fetch().then(function(){
-            //     console.log(collection);
-            //     new Bees.Views.Map({
-            //         $container: $('.main-container'),
-            //         collection: collection,
-            //     })    
-            // })
-        // }
-        // else{
-        //     var distance = 200;
-        //     var query = new Parse.Query(Bees.Models.User);
-        //     query.equalTo('userType', 'farmer');
-        //     query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), distance);
-        //     var collection = query.collection();
-        //     collection.fetch().then(function(){
-        //         console.log(collection);
-        //         new Bees.Views.Map({
-        //             $container: $('.main-container'),
-        //             collection: collection,
-        //         })    
-        //     })
-        // }
     },
 
-    hiveGroups: function(){
-        if(!this.checkUserType()){
-            BeesApp.navigate('/', {trigger:true});
-        }
-        else{
-            var query = new Parse.Query(Bees.Models.HiveGroup);
-            query.equalTo('user', Parse.User.current());
-            var collection = query.collection();
-            console.log(collection);
-            collection.fetch().then(function(){
+    hiveGroups: function() {
+        if (!this.checkUserType()) {
+            BeesApp.navigate('/', {
+                trigger: true
+            });
+        } else {
+            var collection = new Bees.Collections.UserHiveGroups();
+            collection.fetch().then(function() {
                 new Bees.Views.HiveGroupList({
                     $container: $('.main-container'),
                     collection: collection
@@ -146,9 +115,9 @@ Bees.Router = Parse.Router.extend({
         }
     },
 
-    hiveGroupsAll: function(){
+    hiveGroupsAll: function() {
         var collection = new Bees.Collections.HiveGroups();
-        collection.fetch().then(function(){
+        collection.fetch().then(function() {
             new Bees.Views.HiveGroupList({
                 $container: $('.main-container'),
                 collection: collection
@@ -156,12 +125,11 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
-    viewHiveGroup: function(hiveGroup_id){
+    viewHiveGroup: function(hiveGroup_id) {
         console.log("Viewing ", hiveGroup_id)
         var query = new Parse.Query(Bees.Models.HiveGroup);
         query.equalTo('objectId', hiveGroup_id);
-        query.first().then(function(group){
-            console.log("The group",group);
+        query.first().then(function(group) {
             new Bees.Views.HiveGroup({
                 $container: $('.main-container'),
                 model: group
@@ -169,11 +137,10 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
-    editHiveGroup: function(hiveGroup_id){
+    editHiveGroup: function(hiveGroup_id) {
         var query = new Parse.Query(Bees.Models.HiveGroup);
         query.equalTo('objectId', hiveGroup_id);
-        query.first().then(function(group){
-            console.log(group);
+        query.first().then(function(group) {
             new Bees.Views.HiveGroupEdit({
                 $container: $('.main-container'),
                 model: group
@@ -181,37 +148,37 @@ Bees.Router = Parse.Router.extend({
         })
     },
 
-    hiveGroupsUser: function(){
+    hiveGroupsUser: function() {
         console.log('hiveGroupsUser');
     },
 
-    addHiveGroup: function(){
+    addHiveGroup: function() {
         console.log("Add Hive Group");
         new Bees.Views.AddHiveGroup({
             $container: $('.main-container'),
         });
     },
 
-    bidsIndex: function(){
+    bidsIndex: function() {
 
     },
 
-    showBid: function(bid_id){
+    showBid: function(bid_id) {
 
     },
 
 
-    map: function(){
+    map: function() {
         var collection = new Bees.Collections.User();
-        collection.fetch().then(function(){
+        collection.fetch().then(function() {
             new Bees.Views.Map({
                 $container: $('.main-container'),
                 collection: collection,
-            })    
+            })
         })
     },
 
-    checkUserType: function(){
+    checkUserType: function() {
         if (Parse.User.current().get('userType') == 'beekeeper')
             return true;
         else return false

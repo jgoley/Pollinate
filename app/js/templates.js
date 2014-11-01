@@ -167,3 +167,10 @@ this["Bees"]["templates"]["search"]["resultItem"] = Handlebars.template({"compil
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "</li>\n</ul>";
 },"useData":true});
+this["Bees"]["templates"]["user"] = this["Bees"]["templates"]["user"] || {};
+this["Bees"]["templates"]["user"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
+    + "</h1>\n\n";
+},"useData":true});

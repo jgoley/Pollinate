@@ -141,6 +141,9 @@ Bees.Views.SearchResults = BaseView.extend({
         //this.listenTo(this.collection, 'change', this.render);
     },
 
+    events:{
+        'click a': 'removeView'
+    },
 
 
     render: function() {
@@ -162,6 +165,13 @@ Bees.Views.SearchResults = BaseView.extend({
             })
         );
     },
+
+    removeView: function(){
+        console.log("Removing");
+        console.log(this.subViews);
+        _.invoke(this.subViews, 'dispose');
+         
+    }
 
 })
 

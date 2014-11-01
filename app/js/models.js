@@ -30,6 +30,17 @@ Bees.Models.User = Parse.User.extend({
 
 });
 
+// Bees.Models.SelectedUser = Parse.Object.extend({
+//     className: 'SelectedUser',
+//     initialize: function(opts){
+//         var options = _.defaults({}, opts, {
+//             userId: opts.userId
+//         });
+//         console.log(options.userId);
+//         this.query = new Parse.Query(Bees.Models.User).equalTo('objectId', options.userId);
+//     }
+// })
+
 Bees.Models.Profile = Parse.Object.extend({
     className: 'Profile',
     defaults: {
