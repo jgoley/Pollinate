@@ -129,7 +129,7 @@ this["Bees"]["templates"]["hiveGroups"]["UserListItem"] = Handlebars.template({"
     + " to "
     + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
     + "</li>\n";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.bid : stack1), {"name":"unless","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.bid : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</ul>";
 },"useData":true});
