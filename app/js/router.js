@@ -75,7 +75,6 @@ Bees.Router = Parse.Router.extend({
                 $container: $('.main-container'),
                 model: user
             })
-            console.log("The user", user);
         }, function(error) {
             console.log(error);
         })
@@ -135,7 +134,6 @@ Bees.Router = Parse.Router.extend({
     },
 
     viewHiveGroup: function(hiveGroup_id) {
-        console.log("Viewing ", hiveGroup_id)
         var query = new Parse.Query(Bees.Models.HiveGroup);
         query.equalTo('objectId', hiveGroup_id);
         query.first().then(function(group) {
@@ -169,6 +167,15 @@ Bees.Router = Parse.Router.extend({
     },
 
     bidsIndex: function() {
+
+         new Bees.Collections.UserBids({
+            user: Parse.User.current()
+         }).fetch().then(function(collection){
+            new Bees.Views.BidsIndex({
+                $container: $('.main-container'),
+                collection: collection
+            })   
+         })
 
     },
 

@@ -12,7 +12,6 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
             ev: ev,
             callback: callback
         });
-        console.log('listening');
     },
 
     stopListeningAll: function() {
@@ -81,9 +80,6 @@ Handlebars.registerHelper('if_eq', function(a, b, opts) {
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
   if (window.moment) {
-    console.log(context);
-    //var f = block.hash.format || "MMM Do, YYYY";
-    //return moment(context);
     return moment(context).format("dddd, MMMM Do YYYY"); 
   }else{
     return context;   //  moment plugin not available. return data as is.

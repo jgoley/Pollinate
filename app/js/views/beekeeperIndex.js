@@ -7,7 +7,6 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
         })
         options.$container.html(this.el);
         this.render();
-        console.log('BeekeeperIndex');
     },
     render: function(){
         var that = this;
@@ -15,7 +14,6 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
         var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current());
         var collection = query.collection();
         collection.fetch().then(function(hiveGroups){
-            console.log("Hive groups",hiveGroups);
             new Bees.Views.HiveGroupList({
                 $container: $('.hive-groups'),
                 collection: collection

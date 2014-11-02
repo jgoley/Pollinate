@@ -27,7 +27,6 @@ Bees.Views.HiveGroupList = BaseView.extend({
     },
 
     renderChildren: function(hiveGroup) {
-        console.log("Page render",this.page)
         new Bees.Views.HiveGroupListItem({
             $container: this.$el,
             model: hiveGroup,
@@ -96,24 +95,25 @@ Bees.Views.HiveGroupListItem = BaseView.extend({
     },
 
     viewGroup: function() {
-        console.log("navigating to ", this.model.id);
         BeesApp.navigate('hivegroup/'+this.model.id+'/view', {
             trigger: true
         });
     },
 
     bid: function(){
+        var farmer = Parse.User.current();
         console.log("bidding", this.model);
         var newBid = new Bees.Models.Bid();
         newBid.set('hiveGroup', this.model);
         newBid.set('beekeeper', this.beekeeper);
-        newBid.set('farmer', Parse.User.current());
+        newBid.set('farmer', farmer);
         newBid.set('accepted', false);
         var that = this;
         newBid.save().then(function(){
             that.model.set('bid', newBid);
             that.model.save();
-            // that.dispose();
+            var message = "Hi, "+farmer.get('username')+" just put a bid on "+that.model.get('Name')+"!"
+            sendMail(farmer.get('email'), that.beekeeper.get('email'), 'New bid on a hive group', message)
         }, function(bid, err){
             console.log(err);
         });

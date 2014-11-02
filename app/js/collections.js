@@ -53,3 +53,14 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
     },
     model: Bees.Models.Review,
 });
+
+Bees.Collections.UserBids = Parse.Collection.extend({
+    initialize: function(opts){
+        var options = _.defaults({}, opts, {
+            user: opts.user
+        });
+        this.query = new Parse.Query('Bids')
+            .equalTo('farmer', options.user);
+    },
+    model: Bees.Models.Bid
+})

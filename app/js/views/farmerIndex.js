@@ -7,7 +7,6 @@ Bees.Views.FarmerIndex = BaseView.extend({
         })
         options.$container.html(this.el);
         this.render();
-        console.log('farmerIndex');
     },
     render: function(){
         this.$el.append(this.template({user: Parse.User.current().toJSON()}))
