@@ -20,14 +20,15 @@ Bees.Views.User = Parse.View.extend({
                 that.$el.append(that.template({user: that.model.toJSON(), hiveGroups: collection}));
                 new Bees.Views.HiveGroupList({
                     $container: $('.user'),
-                    collection: collection
+                    collection: collection,
+                    model: that.model,
+                    page: 'user'
                 })
             })
         }
         else
             this.$el.append(this.template({user: this.model.toJSON()}));
-
-    }
+        }
 
 });
 

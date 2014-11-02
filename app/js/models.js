@@ -55,9 +55,8 @@ Bees.Models.Bid = Parse.Object.extend({
         beekeeper: '',
         farmer: '',
         hiveGroup: '',
-        timestamp: new Date(),
         bidAmount: 0,
-        status: ''
+        accepted: false
     }
 });
 
@@ -68,7 +67,8 @@ Bees.Models.HiveGroup = Parse.Object.extend({
         beekeeper: '',
         hiveCount: '',
         availableBegin: '',
-        availableEnd: ''
+        availableEnd: '',
+        bid: ''
     }
 });
 

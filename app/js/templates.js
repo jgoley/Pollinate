@@ -115,6 +115,24 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
   return buffer + "\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
 this["Bees"]["templates"]["hiveGroups"] = this["Bees"]["templates"]["hiveGroups"] || {};
+this["Bees"]["templates"]["hiveGroups"]["UserListItem"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  return "	<p>Open bid</p>\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "	<button class=\"bid\">Bid</button>\n";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "<ul>\n	<li><h1>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</h1></li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.hiveCount : stack1), depth0))
+    + " hives</li>\n	<li>Available "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableEnd : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + " to "
+    + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
+    + "</li>\n";
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.bid : stack1), {"name":"unless","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</ul>";
+},"useData":true});
 this["Bees"]["templates"]["hiveGroups"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "\n<ul>\n	<li class='new-hive-group'>\n	<input type=\"text\" name=\"Name\" placeholder=\"Name\">\n	<input type=\"text\" name=\"hiveCount\" placeholder=\"Number of Hives\">\n	<label for=\"availableBegin\">Available starting<input type=\"date\" name=\"availableBegin\" placeholder=\"Available Start\"></label>\n	<label for=\"availableEnd\">Ending<input type=\"date\" name=\"availableEnd\" placeholder=\"Available End\"></label>\n	</li>\n</ul>\n<input type=\"submit\" value=\"Add Hives\">";
   },"useData":true});
@@ -156,6 +174,12 @@ this["Bees"]["templates"]["hiveGroups"]["listItem"] = Handlebars.template({"comp
     + " to "
     + escapeExpression(((helpers.dateFormat || (depth0 && depth0.dateFormat) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.group : depth0)) != null ? stack1.availableBegin : stack1), {"name":"dateFormat","hash":{},"data":data})))
     + "</li>\n	<button class=\"view\">View</button>\n	<button class=\"edit\">Edit</button>\n	<button class=\"delete\">Delete</button>\n</ul>";
+},"useData":true});
+this["Bees"]["templates"]["hiveGroups"]["listUser"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1>Hive groups of "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</h1>";
 },"useData":true});
 this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
 this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -200,5 +224,7 @@ this["Bees"]["templates"]["user"]["index"] = Handlebars.template({"compiler":[6,
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<h1>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "</h1>\n\n";
+    + "</h1>\n<a href=\"#/user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "/reviews\">Add a review</a>\n";
 },"useData":true});

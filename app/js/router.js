@@ -9,7 +9,6 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
 
-
         'search/:type': 'search',
 
         'hivegroups': 'hiveGroups',

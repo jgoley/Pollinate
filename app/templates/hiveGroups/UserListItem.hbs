@@ -1,0 +1,10 @@
+<ul>
+	<li><h1>{{group.Name}}</h1></li>
+	<li>{{group.hiveCount}} hives</li>
+	<li>Available {{dateFormat group.availableEnd}} to {{dateFormat group.availableBegin}}</li>
+	{{#unless group.bid}}
+	<p>Open bid</p>
+	{{else}}
+	<button class="bid">Bid</button>
+	{{/unless}}
+</ul>

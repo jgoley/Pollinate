@@ -1,32 +1,39 @@
 Bees.Views.HiveGroupList = BaseView.extend({
     tagName: 'ul',
     className: 'hive-groups',
-    template: Bees.templates.hiveGroups.list,
 
-    events:{
-        'click .addGroup': 'addGroup'
-    },
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
-            $container: opts.$container
+            $container: opts.$container,
+            page: opts.page
         });
         options.$container.html(this.el);
+        this.page = options.page;
+        if(options.page === 'user'){
+            this.template = Bees.templates.hiveGroups.listUser;
+        }
+        else{
+            this.template = Bees.templates.hiveGroups.list;
+            this.events = {'click .addGroup': 'addGroup'};   
+        }            
         this.render();
         // this.collection.on('change', _.bind(this.render, this))
     },
 
     render: function() {
-        this.$el.html(this.template());
+        this.$el.html(this.template({user: this.model.toJSON()}));
         this.collection.each(_.bind(this.renderChildren, this));
     },
 
     renderChildren: function(hiveGroup) {
-        console.log(hiveGroup);
+        console.log("Page render",this.page)
         new Bees.Views.HiveGroupListItem({
             $container: this.$el,
-            model: hiveGroup
-        })
+            model: hiveGroup,
+            page: this.page,
+            beekeeper: this.model
+        });
     },
 
     addGroup: function(){
@@ -38,23 +45,32 @@ Bees.Views.HiveGroupList = BaseView.extend({
 Bees.Views.HiveGroupListItem = BaseView.extend({
     tagName: 'li',
     className: 'hive-group',
-    template: Bees.templates.hiveGroups.listItem,
 
-    events: {
-        'click .delete': 'deleteGroup',
-        'click .edit': 'editGroup',
-        'click .view': 'viewGroup',
-    },
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
-            $container: opts.$container
+            $container: opts.$container,
+            page: opts.page,
+            beekeeper: opts.beekeeper
         });
         options.$container.append(this.el);
+        this.beekeeper = options.beekeeper;
+        if(options.page === 'user'){
+            this.template = Bees.templates.hiveGroups.UserListItem;
+            this.events =  {
+                'click .bid': 'bid'
+            }
+        }
+        else {
+            this.template = Bees.templates.hiveGroups.listItem;
+            this.events =  {
+                'click .delete': 'deleteGroup',
+                'click .edit': 'editGroup',
+                'click .view': 'viewGroup',
+            };
+        }
         this.render();
         this.listenTo(this.model, 'change', this.render)
-        // this.model.on('change', _.bind(this.render, this))
-
     },
 
     render: function() {
@@ -69,13 +85,14 @@ Bees.Views.HiveGroupListItem = BaseView.extend({
         user.save();
         this.model.destroy();
         this.undelegateEvents();
-        this.remove()
+        this.remove();
     },
 
     editGroup: function() {
         BeesApp.navigate('hivegroup/'+this.model.id+'/edit', {
             trigger: true
         });
+
     },
 
     viewGroup: function() {
@@ -85,5 +102,20 @@ Bees.Views.HiveGroupListItem = BaseView.extend({
         });
     },
 
-
+    bid: function(){
+        console.log("bidding", this.model);
+        var newBid = new Bees.Models.Bid();
+        newBid.set('hiveGroup', this.model);
+        newBid.set('beekeeper', this.beekeeper);
+        newBid.set('farmer', Parse.User.current());
+        newBid.set('accepted', false);
+        var that = this;
+        newBid.save().then(function(){
+            that.model.set('bid', newBid);
+            that.model.save();
+            // that.dispose();
+        }, function(bid, err){
+            console.log(err);
+        });
+    }
 });

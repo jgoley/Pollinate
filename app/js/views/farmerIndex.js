@@ -1,5 +1,5 @@
 Bees.Views.FarmerIndex = BaseView.extend({
-    className: 'beekeeper',
+    className: 'farmer',
     template: Bees.templates.farmerIndex,
     initialize: function(opts){
         var options = _.defaults({}, opts, {
@@ -7,10 +7,10 @@ Bees.Views.FarmerIndex = BaseView.extend({
         })
         options.$container.html(this.el);
         this.render();
-        console.log('BeekeeperIndex');
+        console.log('farmerIndex');
     },
     render: function(){
-        this.$el(this.template(user: Parse.User.current().toJSON()))
+        this.$el.append(this.template({user: Parse.User.current().toJSON()}))
     }
 
 });

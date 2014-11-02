@@ -39,6 +39,30 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
 BaseView.extend = Parse.View.extend;
 
 
+function sendMail(fromEmail, toEmail, subject, body){
+
+    $.ajax({
+      type: "POST",
+      url: "https://mandrillapp.com/api/1.0/messages/send.json",
+      data: {
+        'key': '_U-Rcirs9KnY-ZUFR2FBdQ',
+        'message': {
+          'from_email': fromEmail,
+          'to': [
+              {
+                'email': toEmail,
+                'type': 'to'
+              }
+            ],
+          'autotext': 'true',
+          'subject': subject,
+          'html': body
+        }
+      }
+     })
+}
+
+
 // Turn form data into object
 $.fn.serializeObject = function() {
     return this.serializeArray().reduce(function(acum, i) {
