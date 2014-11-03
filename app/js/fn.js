@@ -23,7 +23,7 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
     },
 
     dispose: function() {
-        this.unbindFromAll(); // Will unbind all events this view has bound to
+        this.stopListeningAll(); // Will unbind all events this view has bound to
         this.unbind(); // This will unbind all listeners to events from 
         // this view. This is probably not necessary 
         // because this view will be garbage collected.

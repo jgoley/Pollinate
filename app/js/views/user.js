@@ -47,6 +47,10 @@ Bees.Views.User = Parse.View.extend({
             this.$el.append(this.template({
                 user: this.model.toJSON()
             }));
+            new Bees.Views.UserReviews({
+                $container: $('.reviews'),
+                model: this.model,
+            });
         }
     }
 

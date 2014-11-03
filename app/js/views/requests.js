@@ -42,6 +42,7 @@ Bees.Views.RequestListItem = BaseView.extend({
 
     render: function() {
         var that = this;
+        this.model.set('formattedDate', moment( this.model.get('createdAt')).format('MMMM Do YYYY, h:mm:ss a') )
         var query = new Parse.Query(Bees.Models.User);
         query.get(this.model.get('farmer').id).then(function(farmer){
             that.$el.append(that.template({

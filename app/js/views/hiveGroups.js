@@ -22,7 +22,7 @@ Bees.Views.HiveGroupList = BaseView.extend({
     },
 
     render: function() {
-        this.$el.html(this.template({user: this.model.toJSON()}));
+        //this.$el.html(this.template({user: this.model.toJSON()}));
         this.collection.each(_.bind(this.renderChildren, this));
     },
 

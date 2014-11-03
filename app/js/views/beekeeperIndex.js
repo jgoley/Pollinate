@@ -22,14 +22,14 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
             });
         })
 
-        var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current());
-        var hiveGroups = query.collection();
-        hiveGroups.fetch().then(function(hiveGroups){
-            new Bees.Views.HiveGroupList({
-                $container: $('.hive-groups'),
-                collection: hiveGroups
-            })
-        })
+        // var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current());
+        // var hiveGroups = query.collection();
+        // hiveGroups.fetch().then(function(hiveGroups){
+        //     new Bees.Views.HiveGroupList({
+        //         $container: $('.hive-groups'),
+        //         collection: hiveGroups
+        //     })
+        // })
 
     }
 

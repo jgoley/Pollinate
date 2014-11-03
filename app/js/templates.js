@@ -112,6 +112,60 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
+this["Bees"]["templates"]["account"]["editBeekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<p>account type: "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
+    + "</p>\n\n<input type=\"text\" name=\"firstName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
+    + "\" placeholder=\"First Name\">\n<input type=\"text\" name=\"lastName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
+    + "\" placeholder=\"Last Name\">\n\n<input type=\"text\" name=\"businessName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
+    + "\" placeholder=\"Business name\">\n\n<input type=\"text\" name=\"address\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
+    + "\" placeholder=\"Street Address\">\n<input type=\"text\" name=\"city\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
+    + "\" placeholder=\"City\">\n<input type=\"text\" name=\"state\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
+    + "\" placeholder=\"State\">\n<label for=\"zipCode\">Zip code</label><input type=\"text\" name=\"zipCode\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
+    + "\" placeholder=\"Zip Code\">\n\n<label for=\"hivesTotal\">Total number of Hives</label><input type=\"text\" name=\"hivesTotal\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
+    + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
+    + "\" placeholder=\"\">\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"text\" name=\"geoRangeRadius\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
+    + "\" placeholder=\"miles\">\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"text\" name=\"maxDistFree\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
+    + "\" placeholder=\"miles\">\n<label for=\"costPerMile\">Cost Per Mile</label><input type=\"text\" name=\"costPerMile\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
+    + "\" placeholder=\"$\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+},"useData":true});
+this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<p>account type: "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
+    + "</p>\n\n<input type=\"text\" name=\"firstName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
+    + "\" placeholder=\"First Name\">\n<input type=\"text\" name=\"lastName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
+    + "\" placeholder=\"Last Name\">\n\n<input type=\"text\" name=\"businessName\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
+    + "\" placeholder=\"Business name\">\n\n<input type=\"text\" name=\"address\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
+    + "\" placeholder=\"Street Address\">\n<input type=\"text\" name=\"city\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
+    + "\" placeholder=\"City\">\n<input type=\"text\" name=\"state\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
+    + "\" placeholder=\"State\">\n<input type=\"text\" name=\"zipCode\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
+    + "\" placeholder=\"Zip Code\">\n\n<input type=\"text\" name=\"crop\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
+    + "\" placeholder=\"Crop\">\n<input type=\"text\" name=\"farmAcerage\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
+    + "\" placeholder=\"Farm acerage\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+},"useData":true});
 this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
 this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
@@ -205,8 +259,27 @@ this["Bees"]["templates"]["requests"]["listItem"] = Handlebars.template({"compil
     + "</li>\n	<li>Miles over: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
     + "</li>\n	<li>Requested: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.formattedDate : stack1), depth0))
     + "</li>\n</ul>";
+},"useData":true});
+this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
+this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\">";
+  },"useData":true});
+this["Bees"]["templates"]["reviews"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<button class=\"addReview\">Add a Review</button>";
+  },"useData":true});
+this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1><a href='#/user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "'>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</a></h1>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
+    + "</p>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + "</p>";
 },"useData":true});
 this["Bees"]["templates"]["search"] = this["Bees"]["templates"]["search"] || {};
 this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -230,25 +303,6 @@ this["Bees"]["templates"]["search"]["resultItem"] = Handlebars.template({"compil
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "</li>\n</ul>";
 },"useData":true});
-this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
-this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\">";
-  },"useData":true});
-this["Bees"]["templates"]["reviews"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<button class=\"addReview\">Add a Review</button>";
-  },"useData":true});
-this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<h1><a href='#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "'>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</a></h1>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
-    + "</p>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
-    + "</p>";
-},"useData":true});
 this["Bees"]["templates"]["user"] = this["Bees"]["templates"]["user"] || {};
 this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -268,9 +322,7 @@ this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"compile
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<h1>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "</h1>\n<div class=\"reviews\"></div>\n<a href=\"#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "/reviews\">Add a review</a>\n";
+    + "</h1>\n<div class=\"reviews\"></div>\n";
 },"useData":true});
 this["Bees"]["templates"]["user"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;

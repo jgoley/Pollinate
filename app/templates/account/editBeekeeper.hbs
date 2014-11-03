@@ -1,0 +1,20 @@
+<p>account type: {{user.userType}}</p>
+
+<input type="text" name="firstName" value="{{user.firstName}}" placeholder="First Name">
+<input type="text" name="lastName" value="{{user.lastName}}" placeholder="Last Name">
+
+<input type="text" name="businessName" value="{{user.businessName}}" placeholder="Business name">
+
+<input type="text" name="address" value="{{user.address}}" placeholder="Street Address">
+<input type="text" name="city" value="{{user.city}}" placeholder="City">
+<input type="text" name="state" value="{{user.state}}" placeholder="State">
+<label for="zipCode">Zip code</label><input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code">
+
+<label for="hivesTotal">Total number of Hives</label><input type="text" name="hivesTotal" value="{{user.hivesTotal}}" placeholder="">
+<label for="costPerHive">Cost Per hive</label><input type="text" name="costPerHive" value="{{user.costPerHive}}" placeholder="">
+
+<label for="geoRangeRadius">Geographic range</label><input type="text" name="geoRangeRadius" value="{{user.geoRangeRadius}}" placeholder="miles">
+<label for="maxDistFree">Maximum transport distance before charge</label><input type="text" name="maxDistFree" value="{{user.maxDistFree}}" placeholder="miles">
+<label for="costPerMile">Cost Per Mile</label><input type="text" name="costPerMile" value="{{user.costPerMile}}" placeholder="$">
+
+<input type="submit" name="" value="Update Account">
