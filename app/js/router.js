@@ -39,7 +39,7 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-            if (Parse.User.current().get('userType') == 'beekeeper') {
+            if (Parse.User.current().get('userType') === 'beekeeper') {
                 console.log("A beekeeper");
                 new Bees.Views.BeekeeperIndex({
                     $container: $('.main-container'),
@@ -207,7 +207,7 @@ Bees.Router = Parse.Router.extend({
     },
 
     checkUserType: function() {
-        if (Parse.User.current().get('userType') == 'beekeeper')
+        if (Parse.User.current().get('userType') === 'beekeeper')
             return true;
         else return false
     },

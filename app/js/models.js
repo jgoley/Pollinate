@@ -82,3 +82,9 @@ Bees.Models.Review = Parse.Object.extend({
         review: '',
     }
 });
+
+Bees.Models.Request = Parse.Object.extend({
+    className: 'Requests',
+    defaults: {
+    }
+})

@@ -84,19 +84,32 @@ Bees.Views.Request = BaseView.extend({
             miles,
             numHives;
 
-        numHives = $('[name=numHives]').val();
+        numHives = +$('[name=numHives]').val();
         distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
         if (distance > beek.get('maxDistFree')){
             miles = distance - beek.get('maxDistFree');
-            milageCost = roundToTwo(miles* beek.get('costPerMile'));
+            milageCost = roundToTwo(miles * beek.get('costPerMile'));
         }
         totalCost = roundToTwo(milageCost + (numHives * beek.get('costPerHive')));
-        this.model.set('cost', {'total':totalCost, 'milage': milageCost});
+        this.model.set('cost', {'total':totalCost, 'milage': milageCost, 'numHives': numHives});
     },
 
     getBees: function(){
         // create new request
+        // add details to request
+        // save request
+
+        var newRequest = new Bees.Models.Request();
+        newRequest.set('beekeeper', this.model);
+        newRequest.set('farmer', Parse.User.current());
+        newRequest.set(this.model.toJSON().cost);
+
+        newRequest.save().then(function(){
+
+            
+            
+        })
+
         console.log("Getting bees");
     }
-
 });

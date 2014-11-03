@@ -268,13 +268,13 @@ this["Bees"]["templates"]["user"]["index"] = Handlebars.template({"compiler":[6,
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
     + " if distance is over "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + " miles</li>\n</ul>\n\n<div class=\"request\"></div>\n\n<div class=\"reviews\"></div>\n<a href=\"#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "/reviews\">Add a review</a>\n";
+    + " miles</li>\n</ul>\n\n<div class=\"request\"></div>\n\n<div class=\"reviews\"></div>\n<button class=\"addReview\">Add a review</button>\n\n";
 },"useData":true});
 this["Bees"]["templates"]["user"]["request"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<p>Milage Cost: $"
+  return "<p>Number of hives requested: "
+    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.cost : stack1)) != null ? stack1.numHives : stack1), depth0))
+    + "</p>\n<p>Milage Cost: $"
     + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.cost : stack1)) != null ? stack1.milage : stack1), depth0))
     + "</p>\n<h3>Total Cost: $"
     + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.cost : stack1)) != null ? stack1.total : stack1), depth0))

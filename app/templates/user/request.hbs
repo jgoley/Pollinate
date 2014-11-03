@@ -4,6 +4,7 @@
 <button class='calculate' >calculate cost</button>
 
 {{#if user.cost}}
+<p>Number of hives requested: {{user.cost.numHives}}</p>
 <p>Milage Cost: ${{user.cost.milage}}</p>
 <h3>Total Cost: ${{user.cost.total}}</h3>
 
