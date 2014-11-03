@@ -65,50 +65,62 @@ Bees.Views.Request = BaseView.extend({
             $container: opts.$container,
         });
         options.$container.append(this.el);
+        this.request = new Bees.Models.Request();
         this.render();
-        this.listenTo(this.model, 'change', this.render)
+        this.listenTo(this.request, 'change', this.render)
     },
     render: function() {
         // this.dispose();
+        console.log("Rendering");
         this.$el.html(this.template({
-            user: this.model.toJSON()
+            user: this.model.toJSON(),
+            request: this.request.toJSON()
         }));
     },
 
     calculate: function(e){
         e.preventDefault();
+        // console.log(this.request);
         var cost = 0,
             milageCost = 0,
             beek = this.model,
-            distance,
-            miles,
-            numHives;
+            distance = 0,
+            milesOver = 0,
+            numHives = 0;
 
         numHives = +$('[name=numHives]').val();
         distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
         if (distance > beek.get('maxDistFree')){
-            miles = distance - beek.get('maxDistFree');
-            milageCost = roundToTwo(miles * beek.get('costPerMile'));
+            milesOver = distance - beek.get('maxDistFree');
+            milageCost = roundToTwo(milesOver * beek.get('costPerMile'));
         }
         totalCost = roundToTwo(milageCost + (numHives * beek.get('costPerHive')));
-        this.model.set('cost', {'total':totalCost, 'milage': milageCost, 'numHives': numHives});
+        this.request.set({'totalCost':totalCost, 'milage': milesOver, 'milageCost': milageCost, 'numHives': numHives});
     },
 
     getBees: function(){
         // create new request
         // add details to request
         // save request
-
-        var newRequest = new Bees.Models.Request();
+        window.newRequest = new Bees.Models.Request();
         newRequest.set('beekeeper', this.model);
         newRequest.set('farmer', Parse.User.current());
-        newRequest.set(this.model.toJSON().cost);
+        newRequest.set(this.request.toJSON().cost);
 
-        newRequest.save().then(function(){
+        newRequest.save({
+            success:function(a){
 
-            
-            
-        })
+            },
+            error: function(a, err){
+                console.log(a,err);
+            }
+        });
+
+        // .then(function(){
+        //     console.log("saved")
+        // }, function(request, err){
+        //     console.log(err)
+        // })
 
         console.log("Getting bees");
     }

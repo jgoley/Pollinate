@@ -3,10 +3,11 @@
 <input name='numHives' value="" type='text'>
 <button class='calculate' >calculate cost</button>
 
-{{#if user.cost}}
-<p>Number of hives requested: {{user.cost.numHives}}</p>
-<p>Milage Cost: ${{user.cost.milage}}</p>
-<h3>Total Cost: ${{user.cost.total}}</h3>
+{{#if request}}
+<p>Number of hives requested: {{request.numHives}}</p>
+<p>Miles over: {{request.milesOver}}</p>
+<p>Milage Cost: ${{request.milageCost}}</p>
+<h3>Total Cost: ${{request.totalCost}}</h3>
 
 <button class='getBees' >Get some Bees</button>
 
