@@ -78,7 +78,7 @@ Bees.Views.BidsListItem = BaseView.extend({
         console.log(this.hiveGroup);
         this.hiveGroup.unset('bid');
         this.hiveGroup.save();
-        // this.model.destroy();
+        this.model.destroy();
     }
 
 });
