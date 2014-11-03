@@ -254,6 +254,14 @@ footer {
     margin:30px 0;
 }
 
+.requestDetails{
+    background:#ebebeb;
+    padding:10px;
+    margin:20px 0;
+}
+
+
+
 .user{
     @include span-columns(6);
     @include shift(3);

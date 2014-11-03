@@ -1,5 +1,6 @@
 Bees.Views.UserReviews = BaseView.extend({
     className: 'user-reviews',
+    template: Bees.templates.reviews.index,
     subViews: [],
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -8,10 +9,14 @@ Bees.Views.UserReviews = BaseView.extend({
         options.$container.append(this.el);
         this.render();
         // this.listenTo(this.collection, 'change', this.render); 
+    },
 
+    events:{
+        'click .addReview': 'addReview'
     },
 
     render: function() {
+        this.$el.append(this.template());
         var that = this;
         console.log('Search results rendering')
         _.invoke(this.subViews, 'dispose');
@@ -34,6 +39,14 @@ Bees.Views.UserReviews = BaseView.extend({
             }));
         });
     },
+
+    addReview: function(){
+        console.log("add Review");
+        new Bees.Views.UserReviewsAdd({
+            $container: this.$el,
+            model: this.model
+        })
+    }
 });
 
 
@@ -51,7 +64,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.html(this.el);
+        options.$container.prepend(this.el);
         this.render();
     },
 
@@ -60,6 +73,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
     },
 
     submitReview: function(e) {
+        console.log("submitting");
         e.preventDefault();
         var reviewData = this.$el.serializeObject();
         var review = new Bees.Models.Review();
