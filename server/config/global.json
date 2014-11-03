@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "pollinate"
+        }, 
+        "pollinate": {
+            "applicationId": "HJ2pcl7OeW4shsUtxq04ZzZAQeAgwSIhe5IaWiQt", 
+            "masterKey": "5zIJRJ1n8bCgac7iwDkvZ5FBIzp9EQwrXhvuwGrD"
+        }
+    }
+}
