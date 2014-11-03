@@ -35,21 +35,34 @@ Relieves the burden on both farmers and beekeepers of finding service/clients.
 
 ### Routes
 
-- index 			// '/'
-- login 			// 'login'
-- newuser			// 'newuser'
+```js
 
-- findIndex			// '/find/'
-- findBeekeeper		// '/find/beekeeper'
-- findFarmer		// '/find/farmer'
+'': 'index',
+'login': 'login',
+'newuser': 'newUser',
 
-- user				// '/:user_id'
-	- reviews		// '/reviews/:user_id'
+'account': 'account',
+'user/:user_id': 'user',
+'user/:user_id/reviews': 'reviews',
+// 'user/:user_id/request': 'request',
 
-- bids				// '/bids/'
-- bids				// '/bids/:bid_id'
+'search/:type': 'search',
+
+// 'hivegroups': 'hiveGroups',
+// 'hivegroups/view/all': 'hiveGroupsAll',
+// 'hivegroups/user/:user_id': 'hiveGroupsUser',
+// 'hivegroup/:hiveGroup_id/view': 'viewHiveGroup',
+// 'hivegroup/:hiveGroup_id/edit': 'editHiveGroup',
+// 'hivegroup/add': 'addHiveGroup',
 
 
+'bids': 'bidsIndex',
+'bids/:bid_id': 'showBid',
+
+'map': 'map'
+
+
+```
 ### Maps
 - Maps of beekeepers should show the geographic scope
 - Maps of farmers should show location and distance from current location (or beekeepers default location)
