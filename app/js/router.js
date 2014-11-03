@@ -8,6 +8,7 @@ Bees.Router = Parse.Router.extend({
         'account': 'account',
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
+        // 'user/:user_id/request': 'request',
 
         'search/:type': 'search',
 
@@ -82,9 +83,9 @@ Bees.Router = Parse.Router.extend({
 
     user: function(user_id) {
         var query = new Parse.Query(Bees.Models.User);
-        query.get(user_id).then(function(model){
+        query.get(user_id).then(function(user) {
             new Bees.Views.User({
-                model: model,
+                model: user,
                 $container: $('.main-container')
             })
         })
@@ -92,13 +93,24 @@ Bees.Router = Parse.Router.extend({
 
     reviews: function(user_id) {
         var query = new Parse.Query(Bees.Models.User);
-        query.get(user_id).then(function(model){
+        query.get(user_id).then(function(user) {
             new Bees.Views.UserReviews({
-                model: model,
+                model: user,
                 $container: $('.main-container')
             })
         })
     },
+
+    // request: function(user_id) {
+    //     var query = new Parse.Query(Bees.Models.User);
+    //     query.get(user_id).then(function(model) {
+    //         new Bees.Views.UserReviews({
+    //             model: model,
+    //             $container: $('.main-container')
+    //         })
+    //     });
+
+    // },
 
     search: function(type) {
         new Bees.Views.Search({
@@ -168,14 +180,14 @@ Bees.Router = Parse.Router.extend({
 
     bidsIndex: function() {
 
-         new Bees.Collections.UserBids({
+        new Bees.Collections.UserBids({
             user: Parse.User.current()
-         }).fetch().then(function(collection){
+        }).fetch().then(function(collection) {
             new Bees.Views.BidsIndex({
                 $container: $('.main-container'),
                 collection: collection
-            })   
-         })
+            })
+        })
 
     },
 

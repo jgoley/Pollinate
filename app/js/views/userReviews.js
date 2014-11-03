@@ -5,7 +5,7 @@ Bees.Views.UserReviews = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.html(this.el);
+        options.$container.append(this.el);
         this.render();
         // this.listenTo(this.collection, 'change', this.render); 
 
@@ -21,11 +21,11 @@ Bees.Views.UserReviews = BaseView.extend({
             user: this.model
         });
         collection.fetch().then(function() {
-            that.subViews.push(
-                new Bees.Views.UserReviewsAdd({
-                    $container: that.$el,
-                    model: that.model
-                }));
+            // that.subViews.push(
+            //     new Bees.Views.UserReviewsAdd({
+            //         $container: that.$el,
+            //         model: that.model
+            //     }));
             that.subViews.push(
                 new Bees.Views.UserReviewsList({
                     $container: that.$el,

@@ -249,6 +249,16 @@ footer {
     padding: 100px;
 }
 
+
+.request, .reviews{
+    margin:30px 0;
+}
+
+.user{
+    @include span-columns(6);
+    @include shift(3);
+}
+
 @include media(min-width 600px) {
     .show-menu {
         display: none;
@@ -282,13 +292,13 @@ footer {
             }
         }
     }
-    form {
-        @include span-columns(4);
-        @include shift(4);
-        img {
-            max-width: 100%;
-        }
-    }
+    // form {
+    //     @include span-columns(4);
+    //     @include shift(4);
+    //     img {
+    //         max-width: 100%;
+    //     }
+    // }
     header {
         h2 {
             display: inline-block;

@@ -12,7 +12,7 @@ Bees.Models.User = Parse.User.extend({
         businessName: '',
         username: '', //
         firstName: '', //
-        lastName: '', 
+        lastName: '',
         address: '',
         city: '',
         zip: '',
@@ -22,6 +22,10 @@ Bees.Models.User = Parse.User.extend({
         geoRangeRadius: '',
         userType: '',
         hiveGroups: [],
+        totalHives: '',
+        availableHives: '',
+        maxDistFree: '',
+        costPerMile: '',
         bids: [],
         rating: 0,
         crop: '',

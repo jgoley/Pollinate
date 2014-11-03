@@ -61,6 +61,10 @@ function sendMail(fromEmail, toEmail, subject, body){
      })
 }
 
+// Round numbers
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
 
 // Turn form data into object
 $.fn.serializeObject = function() {
@@ -69,7 +73,6 @@ $.fn.serializeObject = function() {
         return acum;
     }, {});
 };
-
 
 Handlebars.registerHelper('if_eq', function(a, b, opts) {
     if(a === b)
@@ -89,3 +92,4 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
 Handlebars.registerHelper("log", function(data) {
   return console.log(data);
 });
+

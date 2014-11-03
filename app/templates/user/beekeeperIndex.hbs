@@ -1,0 +1,14 @@
+<h1>{{user.businessName}}</h1>
+
+<h3>Number of hives available: {{user.availableHives}}</h3>
+<ul>
+	<li>Base Cost per hive ${{user.costPerHive}}</li>
+	<li>Transport cost: ${{user.costPerMile}} per mile if distance is over {{user.maxDistFree}} miles</li>
+</ul>
+
+<div class="request"></div>
+
+<div class="reviews">
+	<h2>Reviews</h2>
+</div>
+<a href="#/user/{{user.objectId}}/reviews">Add a review</a>
