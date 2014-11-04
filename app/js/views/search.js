@@ -57,7 +57,7 @@ Bees.Views.NameSearch = BaseView.extend({
         console.log(data);
         var query = new Parse.Query(Bees.Models.User);
         query.equalTo('userType', this.userType);
-        query.contains('businessName', data.businessName);
+        query.contains('businessName', data.businessName.toLowerCase());
         var collection = query.collection();
         collection.fetch().then(function(){
             console.log("The search results",collection);
@@ -103,25 +103,36 @@ Bees.Views.DistanceSearch = BaseView.extend({
 
     search: function(e){
         e.preventDefault();
-        var that = this;
-        var data = this.$el.serializeObject();
-        var query = new Parse.Query(Bees.Models.User);
-        query.equalTo('userType', this.userType);
-        query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
-        var collection = query.collection();
-        collection.fetch().then(function(){
-            console.log("The search results",collection.length);
-            if(collection.length > 0){
-                new Bees.Views.SearchResults({
-                    collection: collection,
-                    radius: data.distance,
-                    $container: $('.search-results-container')
-                })
-            }
-            else{
-                $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+
+        Parse.Cloud.run('queryBeekeepers', {}, {
+            success: function(result) {
+                console.log("Result from cloud fn",result);
+            },
+            error: function(error) {
+                console.log(error)
             }
         });
+
+
+        // var that = this;
+        // var data = this.$el.serializeObject();
+        // var query = new Parse.Query(Bees.Models.User);
+        // query.equalTo('userType', this.userType);
+        // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+        // var collection = query.collection();
+        // collection.fetch().then(function(){
+        //     console.log("The search results",collection.length);
+        //     if(collection.length > 0){
+        //         new Bees.Views.SearchResults({
+        //             collection: collection,
+        //             radius: data.distance,
+        //             $container: $('.search-results-container')
+        //         })
+        //     }
+        //     else{
+        //         $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+        //     }
+        // });
 
     }
 
