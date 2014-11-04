@@ -24,7 +24,6 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         this.remove();
         _.invoke(this.subViews, 'dispose');
     }
-
 });
 BaseView.extend = Parse.View.extend;
 

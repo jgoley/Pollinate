@@ -26,7 +26,9 @@ Bees.Views.RequestListItem = BaseView.extend({
     className: 'request',
     template: Bees.templates.requests.listItem,
     events:{
-        'click .accept': 'acceptRequest'
+        'click .accept': 'acceptRequest',
+        'click .archive': 'archiveRequest',
+        'click .delete': 'deleteRequest',
     },
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -35,11 +37,16 @@ Bees.Views.RequestListItem = BaseView.extend({
         options.$container.append(this.el);
         this.render();
         this.listenTo(this.model, 'change:accepted', this.render);
+        this.listenTo(this.model, 'change:archived', this.render);
+        this.listenTo(this.model, 'change:delete', this.render);
     },
     render: function() {
         var that = this;
-        console.log("rendering");
-        this.model.set('formattedDate', moment( this.model.createdAt ).format('MMMM Do YYYY, h:mm:ss a') )
+        var formattedDates = {
+            'created':      moment(this.model.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
+            // 'startDate':    moment( this.model.get('startDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+            // 'endDate':      moment( this.model.get('endDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+        };
         var query = new Parse.Query(Bees.Models.User);
         query.get(this.model.get('farmer').id)
             .then(function(farmer){
@@ -51,7 +58,22 @@ Bees.Views.RequestListItem = BaseView.extend({
     },
     acceptRequest: function(){
         this.model.set('accepted', true);
-        console.log(this.model);
         this.model.save();
+        Parse.Cloud.run('confirmRequest', {}, {
+          success: function(result) {
+            console.log(result)
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+    },
+    archiveRequest: function(){
+        this.model.set('archived', true);
+        this.model.save();
+    },
+    deleteRequest: function(){
+        this.model.destroy();
+        this.dispose();
     }
 })

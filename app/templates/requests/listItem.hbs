@@ -1,13 +1,17 @@
-<ul class="{{#if request.accepted}}
-accepted
-{{else}}
-notAccepted
-{{/if}}
-">
+<ul class="{{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archived}}archived {{/if}}">
 	<li>Farmer: {{farmer.username}}</li>
 	<li>Number of Hives: {{request.numHives}}</li>
-	<li>Cost: {{request.totalCost}}</li>
+	<li>Cost: ${{request.totalCost}}</li>
 	<li>Miles over: {{request.milesOver}}</li>
+	<li>Dates: {{request.startDate}}</li>
 	<li>Requested: {{request.formattedDate}}</li>
 </ul>
+{{#if request.accepted}}
+	{{#if request.archived}}
+	<button class='delete'>Delete</button>
+	{{else}}
+	<button class='archive'>Archive</button>
+	{{/if}}
+{{else}}
 <button class='accept'>Accept</button>
+{{/if}}

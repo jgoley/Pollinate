@@ -19,7 +19,6 @@ Bees.Views.HeaderView = BaseView.extend({
     },
 
     render: function() {
-        console.log("Header Rendered");
         if (Parse.User.current()){
             var user = Parse.User.current().toJSON()
         }
@@ -40,7 +39,7 @@ Bees.Views.HeaderView = BaseView.extend({
     logout: function() {
         Parse.User.logOut();
         Bees.Session.set('user', null);
-        BeesApp.navigate('/', {
+        BeesApp.navigate('login', {
             trigger: true
         });
     },
@@ -69,7 +68,6 @@ Bees.Views.NavView = BaseView.extend({
     },
 
     render: function() {
-        console.log("nav rendered");
         this.$el.html(this.template({session: this.model.toJSON(), user: this.user}));
     },
 });

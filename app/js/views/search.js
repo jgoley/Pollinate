@@ -66,7 +66,7 @@ Bees.Views.NameSearch = BaseView.extend({
                     collection: collection,
                     radius: data.distance,
                     $container: $('.search-results-container')
-                })
+                });
             }
             else{
                 $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')

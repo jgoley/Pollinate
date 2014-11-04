@@ -260,6 +260,18 @@ footer {
     margin:20px 0;
 }
 
+.accepted{
+    background:RGBA(0, 115, 0, .2);
+    transition:.3s;
+}
+
+.notAccepted{
+    background:RGBA(255, 0, 0, .2);
+    transition:.3s;
+}
+.archived{
+    background:RGBA(225, 225, 225, .4);
+}
 
 
 .user{
