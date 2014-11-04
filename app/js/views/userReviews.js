@@ -11,7 +11,7 @@ Bees.Views.UserReviews = BaseView.extend({
         // this.listenTo(this.collection, 'change', this.render); 
     },
 
-    events:{
+    events: {
         'click .addReview': 'addReview'
     },
 
@@ -36,11 +36,11 @@ Bees.Views.UserReviews = BaseView.extend({
                     $container: that.$el,
                     model: that.model,
                     collection: collection
-            }));
+                }));
         });
     },
 
-    addReview: function(){
+    addReview: function() {
         console.log("add Review");
         new Bees.Views.UserReviewsAdd({
             $container: this.$el,
@@ -99,11 +99,11 @@ Bees.Views.UserReviewsList = BaseView.extend({
     },
 
     renderChildren: function(review) {
-        console.log("A review",review)
-            new Bees.Views.UserReviewsListItem({
-                model: review,
-                $container: this.$el,
-                // reviewer: reviewer
+        console.log("A review", review)
+        new Bees.Views.UserReviewsListItem({
+            model: review,
+            $container: this.$el,
+            // reviewer: reviewer
             // }, function(user, error){
             //     console.log(error);
             // })
@@ -123,18 +123,14 @@ Bees.Views.UserReviewsListItem = BaseView.extend({
         options.$container.append(this.el);
         this.render();
     },
-
     render: function() {
         var that = this;
         var query = new Parse.Query(Bees.Models.User);
-        query.get(this.model.get('reviewer').id).then(function(reviewer){
+        query.get(this.model.get('reviewer').id).then(function(reviewer) {
             that.$el.append(that.template({
-            review: that.model.toJSON(),
-            reviewer: reviewer.toJSON()
-        }));
-
+                review: that.model.toJSON(),
+                reviewer: reviewer.toJSON()
+            }));
         })
     },
-
-
 })

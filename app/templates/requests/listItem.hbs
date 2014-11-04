@@ -1,7 +1,13 @@
-<ul>
+<ul class="{{#if request.accepted}}
+accepted
+{{else}}
+notAccepted
+{{/if}}
+">
 	<li>Farmer: {{farmer.username}}</li>
 	<li>Number of Hives: {{request.numHives}}</li>
 	<li>Cost: {{request.totalCost}}</li>
 	<li>Miles over: {{request.milesOver}}</li>
 	<li>Requested: {{request.formattedDate}}</li>
 </ul>
+<button class='accept'>Accept</button>

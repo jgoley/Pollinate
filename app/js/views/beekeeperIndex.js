@@ -15,7 +15,6 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
         var query = new Parse.Query(Bees.Models.Request).equalTo('beekeeper', Parse.User.current());
         var requests = query.collection();
         requests.fetch().then(function(requests){
-            console.log(requests);
             new Bees.Views.RequestList({
                 $container: $('.requests'),
                 collection: requests
