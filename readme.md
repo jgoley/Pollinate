@@ -1,6 +1,6 @@
 #Pollinate™
 
-A marketplace for farmers where they can search for and hire beekeepers who offer pollination services.
+A marketplace where farmers can search for and hire beekeepers who offer pollination services.
 
 ##Solved problems:
 Relieves the burden on both farmers and beekeepers of finding service/clients.
