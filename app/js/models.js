@@ -12,20 +12,25 @@ Bees.Models.User = Parse.User.extend({
         businessName: '',
         username: '', //
         firstName: '', //
-        lastName: '', 
+        lastName: '',
         address: '',
         city: '',
         zip: '',
         state: '',
         image: '',
-        geoCenter: new Parse.GeoPoint([0, 0]),
-        geoRangeRadius: '',
-        userType: '',
-        hiveGroups: [],
-        bids: [],
-        rating: 0,
-        crop: '',
-        farmAcerage: ''
+        // geoCenter: new Parse.GeoPoint([0, 0]),
+        // geoRangeRadius: 0,
+        // userType: '',
+        // hiveGroups: [],
+        // totalHives: 0,
+        // hivesTotal: 0,
+        // hivesAvailable: 0,
+        // maxDistFree: 0,
+        // costPerMile: 0,
+        // bids: [],
+        // rating: 0,
+        // crop: '',
+        // farmAcerage: 0
     },
 
 });
@@ -78,3 +83,10 @@ Bees.Models.Review = Parse.Object.extend({
         review: '',
     }
 });
+
+Bees.Models.Request = Parse.Object.extend({
+    className: 'Requests',
+    defaults: {
+        accepted: false,
+    }
+})

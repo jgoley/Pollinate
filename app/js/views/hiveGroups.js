@@ -16,13 +16,13 @@ Bees.Views.HiveGroupList = BaseView.extend({
         else{
             this.template = Bees.templates.hiveGroups.list;
             this.events = {'click .addGroup': 'addGroup'};   
-        }            
+        }      
         this.render();
         // this.collection.on('change', _.bind(this.render, this))
     },
 
     render: function() {
-        this.$el.html(this.template({user: this.model.toJSON()}));
+        //this.$el.html(this.template({user: this.model.toJSON()}));
         this.collection.each(_.bind(this.renderChildren, this));
     },
 

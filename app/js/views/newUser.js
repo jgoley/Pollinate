@@ -28,9 +28,9 @@ Bees.Views.NewUserView = BaseView.extend({
         var credentials = this.$el.serializeObject();
         var user = new Bees.Models.User();
         console.log(credentials);
-        user.set('username', credentials.userName);
-        user.set('password', credentials.password);
-        user.set('email', credentials.email);
+        // user.set('username', credentials.userName);
+        // user.set('password', credentials.password);
+        // user.set('email', credentials.email);
 
         var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
         var address = (credentials.address + ',' + credentials.city + ',' + credentials.state).replace(/\s+/g, '+');
@@ -48,13 +48,14 @@ Bees.Views.NewUserView = BaseView.extend({
         }).done(function(geoData) {
             credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
             console.log('Saving user');
+            user.set(credentials);
             user.signUp(null, {
                 success: function(user) {
                     console.log(user);
                     Bees.Session.set('user', user);
                     var newProfile = new Bees.Models.Profile();
-                    user.save(credentials);
-                    newProfile.save({user: user});
+                    // user.save(credentials);
+                    //newProfile.save({user: user});
                     BeesApp.navigate('/', {
                         trigger: true
                     });

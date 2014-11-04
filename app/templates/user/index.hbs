@@ -1,2 +1,15 @@
 <h1>{{user.businessName}}</h1>
-<a href="#/user/{{user.objectId}}/reviews">Add a review</a>
+
+<h1>Number of hives available: {{user.availableHives}}</h1>
+<h2>Details</h2>
+<ul>
+	<li>Base Cost per hive ${{user.costPerHive}}</li>
+	<li>Transport cost: ${{user.costPerMile}} if distance is over {{user.maxDistFree}} miles</li>
+</ul>
+
+<div class="request"></div>
+
+<div class="reviews"></div>
+<button class="addReview">Add a review</button>
+
+{{!-- <a href="#/user/{{user.objectId}}/reviews">Add a review</a> --}}

@@ -11,14 +11,25 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
     render: function(){
         var that = this;
         this.$el.append(this.template({user: Parse.User.current().toJSON()}));
-        var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current());
-        var collection = query.collection();
-        collection.fetch().then(function(hiveGroups){
-            new Bees.Views.HiveGroupList({
-                $container: $('.hive-groups'),
-                collection: collection
-            })
+
+        var query = new Parse.Query(Bees.Models.Request).equalTo('beekeeper', Parse.User.current());
+        var requests = query.collection();
+        requests.fetch().then(function(requests){
+            new Bees.Views.RequestList({
+                $container: $('.requests'),
+                collection: requests
+            });
         })
+
+        // var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', Parse.User.current());
+        // var hiveGroups = query.collection();
+        // hiveGroups.fetch().then(function(hiveGroups){
+        //     new Bees.Views.HiveGroupList({
+        //         $container: $('.hive-groups'),
+        //         collection: hiveGroups
+        //     })
+        // })
+
     }
 
 });
