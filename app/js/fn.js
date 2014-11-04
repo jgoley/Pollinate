@@ -27,35 +27,10 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
 });
 BaseView.extend = Parse.View.extend;
 
-
-function sendMail(fromEmail, toEmail, subject, body){
-    $.ajax({
-      type: "POST",
-      url: "https://mandrillapp.com/api/1.0/messages/send.json",
-      data: {
-        'key': '_U-Rcirs9KnY-ZUFR2FBdQ',
-        'message': {
-          'from_email': fromEmail,
-          'to': [
-              {
-                'email': toEmail,
-                'type': 'to'
-              }
-            ],
-          'autotext': 'true',
-          'subject': subject,
-          'html': body
-        }
-      }
-     })
-}
-
-
 // Round numbers
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
 }
-
 
 // Turn form data into object
 $.fn.serializeObject = function() {
