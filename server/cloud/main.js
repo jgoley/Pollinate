@@ -5,8 +5,8 @@ Parse.Cloud.define("sendEmail", function(request, response) {
 
     Mandrill.sendEmail({
         message: {
-            text: "Test email",
-            subject: "Testing out the cloud code function",
+            text: request.params.message,
+            subject: request.params.subject,
             from_email: "jgoley.etc@gmail.com",
             from_name: "JGo",
             to: [{

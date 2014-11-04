@@ -45,7 +45,13 @@ Bees.Views.UserReviews = BaseView.extend({
         new Bees.Views.UserReviewsAdd({
             $container: this.$el,
             model: this.model
-        })
+        });
+
+        // Notify User they were reviewed
+        // Parse.Cloud.run('sendEmail', {}, {
+        //   success: function(result) {console.log(result)},
+        //   error: function(error) {console.log(error);}
+        // });
     }
 });
 

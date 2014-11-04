@@ -59,13 +59,10 @@ Bees.Views.RequestListItem = BaseView.extend({
     acceptRequest: function(){
         this.model.set('accepted', true);
         this.model.save();
-        Parse.Cloud.run('confirmRequest', {}, {
-          success: function(result) {
-            console.log(result)
-          },
-          error: function(error) {
-            console.log(error);
-          }
+        // Send Confirmation Email to farmer
+        Parse.Cloud.run('sendEmail', {message: 'Your request has been accepted by the beekeeper', subject: 'Request for bees accepted'}, {
+          success: function(result) {console.log(result)},
+          error: function(error) {console.log(error);}
         });
     },
     archiveRequest: function(){

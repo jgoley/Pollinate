@@ -34,15 +34,14 @@ Bees.Views.User = Parse.View.extend({
             //     }));
 
 
-                // new Bees.Views.HiveGroupList({
-                //     $container: $('.user'),
-                //     collection: collection,
-                //     model: that.model,
-                //     page: 'user'
-                // })
+            // new Bees.Views.HiveGroupList({
+            //     $container: $('.user'),
+            //     collection: collection,
+            //     model: that.model,
+            //     page: 'user'
             // })
-        }
-         else{
+            // })
+        } else {
             this.template = Bees.templates.user.farmerIndex;
             this.$el.append(this.template({
                 user: this.model.toJSON()
@@ -59,9 +58,9 @@ Bees.Views.User = Parse.View.extend({
 
 Bees.Views.Request = BaseView.extend({
     template: Bees.templates.user.request,
-    events:{
+    events: {
         'click .calculate': 'calculate',
-        'click .getBees' : 'getBees'
+        'click .getBees': 'getBees'
     },
 
     initialize: function(opts) {
@@ -82,7 +81,7 @@ Bees.Views.Request = BaseView.extend({
         }));
     },
 
-    calculate: function(e){
+    calculate: function(e) {
         e.preventDefault();
         // console.log(this.request);
         var cost = 0,
@@ -94,29 +93,41 @@ Bees.Views.Request = BaseView.extend({
 
         numHives = +$('[name=numHives]').val();
         distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
-        if (distance > beek.get('maxDistFree')){
+        if (distance > beek.get('maxDistFree')) {
             milesOver = Math.floor(distance - beek.get('maxDistFree'));
             mileageCost = roundToTwo(milesOver * beek.get('costPerMile'));
         }
         totalCost = roundToTwo(mileageCost + (numHives * beek.get('costPerHive')));
-        this.request.set({'totalCost':totalCost, 'milesOver': milesOver, 'mileageCost': mileageCost, 'numHives': numHives});
+        this.request.set({
+            'totalCost': totalCost,
+            'milesOver': milesOver,
+            'mileageCost': mileageCost,
+            'numHives': numHives
+        });
     },
 
-    getBees: function(){
+    getBees: function() {
         var that = this;
+        var startDate = $('[name=startDate]').val();
+        var endDate = $('[name=endDate]').val();
         newRequest = new Bees.Models.Request();
         newRequest.set('beekeeper', this.model);
         newRequest.set('farmer', Parse.User.current());
-        console.log(this.request.toJSON());
+        newRequest.set('startDate', startDate);
+        newRequest.set('endDate', endDate);
         newRequest.set(this.request.toJSON());
-
-        newRequest.save({
-            success:function(a){
-            },
-            error: function(a, err){
-                console.log(a,err);
-            }
+        newRequest.save().then(function(){
+            Parse.Cloud.run('sendEmail', {message: 'A farmer is requesting some of your hives', subject: 'New Request for bees'}, {
+                success: function(result) {
+                    console.log(result)
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+           
         });
+
         that.remove();
     }
 });
