@@ -42,7 +42,6 @@ Bees.Collections.UserSearch = Parse.Collection.extend({
     model: Bees.Models.User,
 });
 
-
 Bees.Collections.UserReviews = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
@@ -54,13 +53,14 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
     model: Bees.Models.Review,
 });
 
-Bees.Collections.UserBids = Parse.Collection.extend({
+
+Bees.Collections.Requests = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
             user: opts.user
         });
-        this.query = new Parse.Query('Bids')
-            .equalTo('farmer', options.user);
+        this.query = new Parse.Query('Requests')
+            .equalTo('reviewee', options.user)
     },
-    model: Bees.Models.Bid
-})
+    model: Bees.Models.Review,
+});

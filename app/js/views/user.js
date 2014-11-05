@@ -92,31 +92,47 @@ Bees.Views.Request = BaseView.extend({
             numHives = 0;
 
         numHives = +$('[name=numHives]').val();
-        distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
-        if (distance > beek.get('maxDistFree')) {
-            milesOver = Math.floor(distance - beek.get('maxDistFree'));
-            mileageCost = roundToTwo(milesOver * beek.get('costPerMile'));
+        if (numHives <= beek.get('hivesAvailable')) {
+            distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
+            if (distance > beek.get('maxDistFree')) {
+                milesOver = Math.floor(distance - beek.get('maxDistFree'));
+                mileageCost = roundToTwo(milesOver * beek.get('costPerMile'));
+            }
+            totalCost = roundToTwo(mileageCost + (numHives * beek.get('costPerHive')));
+            this.request.set({
+                'totalCost': totalCost,
+                'milesOver': milesOver,
+                'mileageCost': mileageCost,
+                'numHives': numHives
+            });
+        } else {
+            alert("You've selected more hives than the beekeeper has");
         }
-        totalCost = roundToTwo(mileageCost + (numHives * beek.get('costPerHive')));
-        this.request.set({
-            'totalCost': totalCost,
-            'milesOver': milesOver,
-            'mileageCost': mileageCost,
-            'numHives': numHives
-        });
     },
 
     getBees: function() {
         var that = this;
+        var user = Parse.User.current();
+        var beekeeper = this.model;
         var startDate = $('[name=startDate]').val();
         var endDate = $('[name=endDate]').val();
+
         newRequest = new Bees.Models.Request();
-        newRequest.set('beekeeper', this.model);
-        newRequest.set('farmer', Parse.User.current());
+        newRequest.set('beekeeper', beekeeper);
+        newRequest.set('farmer', user);
         newRequest.set('startDate', startDate);
         newRequest.set('endDate', endDate);
         newRequest.set(this.request.toJSON());
-        newRequest.save().then(sendMail(messageParams));
-        that.dispose();
+        newRequest.save().then(function() {
+            sendMail({});
+            var relation = user.relation("requests");
+            relation.add(newRequest);
+            user.save();
+
+            var relation = beekeeper.relation("requests");
+            relation.add(newRequest);
+            beekeeper.save();
+            that.dispose();
+        });
     }
 });

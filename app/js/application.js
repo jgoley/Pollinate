@@ -20,6 +20,8 @@
     Bees.Views = {};
     Bees.Models = {};
     Bees.Collections = {};
+    Bees.currentView = null;
+    Bees.viewIndex = {};
     
 })();
 

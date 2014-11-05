@@ -1,3 +1,7 @@
+// App.curentView = new ...
+
+// if (Bees.currentView) Bees.currentView.dispose();
+
 Bees.Router = Parse.Router.extend({
 
     routes: {
@@ -10,17 +14,9 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id/reviews': 'reviews',
         // 'user/:user_id/request': 'request',
 
+        'requests': 'requests',
+
         'search/:type': 'search',
-
-        'hivegroups': 'hiveGroups',
-        'hivegroups/view/all': 'hiveGroupsAll',
-        'hivegroups/user/:user_id': 'hiveGroupsUser',
-        'hivegroup/:hiveGroup_id/view': 'viewHiveGroup',
-        'hivegroup/:hiveGroup_id/edit': 'editHiveGroup',
-        'hivegroup/add': 'addHiveGroup',
-
-        'bids': 'bidsIndex',
-        'bids/:bid_id': 'showBid',
 
         'map': 'map'
     },
@@ -39,15 +35,15 @@ Bees.Router = Parse.Router.extend({
                 trigger: true
             });
         } else {
-            if (Parse.User.current().get('userType') === 'beekeeper') {
+            //disposeViews();
+            if (this.checkUserType()) {
                 console.log("A beekeeper");
-                new Bees.Views.BeekeeperIndex({
+                Bees.currentView = new Bees.Views.BeekeeperIndex({
                     $container: $('.main-container'),
                 });
 
             } else {
-                console.log("A Farmer");
-                new Bees.Views.FarmerIndex({
+                Bees.currentView = new Bees.Views.FarmerIndex({
                     $container: $('.main-container'),
                 });
             }
@@ -56,23 +52,26 @@ Bees.Router = Parse.Router.extend({
     },
 
     login: function() {
-        new Bees.Views.LoginView({
+        disposeViews();
+        Bees.currentView = new Bees.Views.LoginView({
             $container: $('.main-container'),
             session: new Bees.Models.Session()
         });
     },
 
     newUser: function() {
+        disposeViews();
         new Bees.Views.NewUserView({
             $container: $('.main-container')
         });
     },
 
     account: function() {
+        disposeViews();
         var query = new Parse.Query(Bees.Models.User);
         query.equalTo('username', Parse.User.current().get('username'))
         var user = query.first(function(user) {
-            new Bees.Views.EditAccountView({
+            Bees.currentView = new Bees.Views.EditAccountView({
                 $container: $('.main-container'),
                 model: user
             })
@@ -82,9 +81,10 @@ Bees.Router = Parse.Router.extend({
     },
 
     user: function(user_id) {
+        disposeViews();
         var query = new Parse.Query(Bees.Models.User);
         query.get(user_id).then(function(user) {
-            new Bees.Views.User({
+            Bees.currentView = new Bees.Views.User({
                 model: user,
                 $container: $('.main-container')
             })
@@ -92,114 +92,45 @@ Bees.Router = Parse.Router.extend({
     },
 
     reviews: function(user_id) {
+        disposeViews();        
         var query = new Parse.Query(Bees.Models.User);
         query.get(user_id).then(function(user) {
-            new Bees.Views.UserReviews({
+            Bees.currentView = new Bees.Views.UserReviews({
                 model: user,
                 $container: $('.main-container')
             })
         })
     },
 
-    // request: function(user_id) {
-    //     var query = new Parse.Query(Bees.Models.User);
-    //     query.get(user_id).then(function(model) {
-    //         new Bees.Views.UserReviews({
-    //             model: model,
-    //             $container: $('.main-container')
-    //         })
-    //     });
+    requests: function() {
+        // var type = Parse.User.current().get('userType');
+        // if (Parse.User.current().get('userType') === 'beekeeper'){
+        // else
+        disposeViews();
+        var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
+        var requests = query.collection();
+        requests.fetch().then(function(requests){
+            Bees.currentView = new Bees.Views.RequestList({
+                $container: $('.main-container'),
+                collection: requests
+            });
+        });
 
-    // },
+    },
 
     search: function(type) {
-        new Bees.Views.Search({
+        disposeViews();
+        Bees.currentView = new Bees.Views.Search({
             userType: type,
             $container: $('.main-container'),
         })
     },
 
-    hiveGroups: function() {
-        if (!this.checkUserType()) {
-            BeesApp.navigate('/', {
-                trigger: true
-            });
-        } else {
-            var collection = new Bees.Collections.UserHiveGroups();
-            collection.fetch().then(function() {
-                new Bees.Views.HiveGroupList({
-                    $container: $('.main-container'),
-                    collection: collection
-                });
-            })
-        }
-    },
-
-    hiveGroupsAll: function() {
-        var collection = new Bees.Collections.HiveGroups();
-        collection.fetch().then(function() {
-            new Bees.Views.HiveGroupList({
-                $container: $('.main-container'),
-                collection: collection
-            });
-        })
-    },
-
-    viewHiveGroup: function(hiveGroup_id) {
-        var query = new Parse.Query(Bees.Models.HiveGroup);
-        query.equalTo('objectId', hiveGroup_id);
-        query.first().then(function(group) {
-            new Bees.Views.HiveGroup({
-                $container: $('.main-container'),
-                model: group
-            });
-        })
-    },
-
-    editHiveGroup: function(hiveGroup_id) {
-        var query = new Parse.Query(Bees.Models.HiveGroup);
-        query.equalTo('objectId', hiveGroup_id);
-        query.first().then(function(group) {
-            new Bees.Views.HiveGroupEdit({
-                $container: $('.main-container'),
-                model: group
-            });
-        })
-    },
-
-    hiveGroupsUser: function() {
-        console.log('hiveGroupsUser');
-    },
-
-    addHiveGroup: function() {
-        console.log("Add Hive Group");
-        new Bees.Views.AddHiveGroup({
-            $container: $('.main-container'),
-        });
-    },
-
-    bidsIndex: function() {
-
-        new Bees.Collections.UserBids({
-            user: Parse.User.current()
-        }).fetch().then(function(collection) {
-            new Bees.Views.BidsIndex({
-                $container: $('.main-container'),
-                collection: collection
-            })
-        })
-
-    },
-
-    showBid: function(bid_id) {
-
-    },
-
-
     map: function() {
+        disposeViews();
         var collection = new Bees.Collections.User();
         collection.fetch().then(function() {
-            new Bees.Views.Map({
+            Bees.currentView = new Bees.Views.Map({
                 $container: $('.main-container'),
                 collection: collection,
             })

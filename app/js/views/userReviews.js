@@ -60,7 +60,6 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
 
     tagName: 'form',
     className: 'review',
-
     events: {
         'submit': 'submitReview'
     },
@@ -90,7 +89,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
 })
 
 Bees.Views.UserReviewsList = BaseView.extend({
-
+    subViews: [],
     tagName: 'ul',
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -106,14 +105,14 @@ Bees.Views.UserReviewsList = BaseView.extend({
 
     renderChildren: function(review) {
         console.log("A review", review)
-        new Bees.Views.UserReviewsListItem({
+        this.subViews.push(new Bees.Views.UserReviewsListItem({
             model: review,
             $container: this.$el,
             // reviewer: reviewer
             // }, function(user, error){
             //     console.log(error);
             // })
-        });
+        }));
     }
 
 })
