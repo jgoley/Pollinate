@@ -12,12 +12,8 @@
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}
-	{{#if request.archived}}
-	<button class='delete'>Delete</button>
-	{{else}}
 	<button class='archive'>Archive</button>
-	{{/if}}
-{{else}}
-<button class='accept'>Accept</button>
+	{{else}}
+	<button class='accept'>Accept</button>
 {{/if}}
 </div>

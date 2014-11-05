@@ -18,13 +18,6 @@ Bees.Router = Parse.Router.extend({
 
         'search/:type': 'search',
 
-        // 'hivegroups': 'hiveGroups',
-        // 'hivegroups/view/all': 'hiveGroupsAll',
-        // 'hivegroups/user/:user_id': 'hiveGroupsUser',
-        // 'hivegroup/:hiveGroup_id/view': 'viewHiveGroup',
-        // 'hivegroup/:hiveGroup_id/edit': 'editHiveGroup',
-        // 'hivegroup/add': 'addHiveGroup',
-
         'map': 'map'
     },
 
@@ -122,7 +115,6 @@ Bees.Router = Parse.Router.extend({
                 collection: requests
             });
         });
-               
 
     },
 
@@ -133,65 +125,6 @@ Bees.Router = Parse.Router.extend({
             $container: $('.main-container'),
         })
     },
-
-    // hiveGroups: function() {
-    //     if (!this.checkUserType()) {
-    //         BeesApp.navigate('/', {
-    //             trigger: true
-    //         });
-    //     } else {
-    //         var collection = new Bees.Collections.UserHiveGroups();
-    //         collection.fetch().then(function() {
-    //             Bees.currentView = new Bees.Views.HiveGroupList({
-    //                 $container: $('.main-container'),
-    //                 collection: collection
-    //             });
-    //         })
-    //     }
-    // },
-
-    // hiveGroupsAll: function() {
-    //     var collection = new Bees.Collections.HiveGroups();
-    //     collection.fetch().then(function() {
-    //         Bees.currentView = new Bees.Views.HiveGroupList({
-    //             $container: $('.main-container'),
-    //             collection: collection
-    //         });
-    //     })
-    // },
-
-    // viewHiveGroup: function(hiveGroup_id) {
-    //     var query = new Parse.Query(Bees.Models.HiveGroup);
-    //     query.equalTo('objectId', hiveGroup_id);
-    //     query.first().then(function(group) {
-    //         Bees.currentView = new Bees.Views.HiveGroup({
-    //             $container: $('.main-container'),
-    //             model: group
-    //         });
-    //     })
-    // },
-
-    // editHiveGroup: function(hiveGroup_id) {
-    //     var query = new Parse.Query(Bees.Models.HiveGroup);
-    //     query.equalTo('objectId', hiveGroup_id);
-    //     query.first().then(function(group) {
-    //         new Bees.Views.HiveGroupEdit({
-    //             $container: $('.main-container'),
-    //             model: group
-    //         });
-    //     })
-    // },
-
-    // hiveGroupsUser: function() {
-    //     console.log('hiveGroupsUser');
-    // },
-
-    // addHiveGroup: function() {
-    //     console.log("Add Hive Group");
-    //     new Bees.Views.AddHiveGroup({
-    //         $container: $('.main-container'),
-    //     });
-    // },
 
     map: function() {
         disposeViews();

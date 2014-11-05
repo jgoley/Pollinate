@@ -27,10 +27,6 @@ Bees.Views.NewUserView = BaseView.extend({
         var that = this;
         var credentials = this.$el.serializeObject();
         var user = new Bees.Models.User();
-        console.log(credentials);
-        // user.set('username', credentials.userName);
-        // user.set('password', credentials.password);
-        // user.set('email', credentials.email);
 
         var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
         var address = (credentials.address + ',' + credentials.city + ',' + credentials.state).replace(/\s+/g, '+');
@@ -57,15 +53,20 @@ Bees.Views.NewUserView = BaseView.extend({
         //         alert('Error: ' + error.code + ' ' + error.message);
         //     }
         // });
-
+        user.set(credentials);
+        user.set('costPerHive',+credentials.costPerHive);
+        user.set('maxDistFree',+credentials.maxDistFree);
+        user.set('costPerMile',+credentials.costPerMile);
+        user.set('hivesAvailable',+credentials.hivesAvailable);
+        user.set('hivesTotal',+credentials.hivesTotal);
+        user.set('zipCode',+credentials.zipCode);
+        user.set('geoRangeRadius',+credentials.geoRangeRadius);
 
         $.ajax({
             url: geoRequest,
             dataType: 'json'
         }).done(function(geoData) {
-            credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
-            console.log('Saving user');
-            user.set(credentials);
+            user.set('geoCenter', new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
             user.signUp(null, {
                 success: function(user) {
                     console.log(user);

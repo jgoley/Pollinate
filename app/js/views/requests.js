@@ -26,8 +26,7 @@ Bees.Views.RequestListItem = BaseView.extend({
     className: 'request',
     events:{
         'click .accept': 'acceptRequest',
-        'click .archive': 'archiveRequest',
-        'click .delete': 'deleteRequest',
+        'click .archive': 'archiveRequest'
     },
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -88,9 +87,5 @@ Bees.Views.RequestListItem = BaseView.extend({
         user.save();
         request.set('archived', true);
         request.save();
-    },
-    deleteRequest: function(){
-        this.model.destroy();
-        this.dispose();
-    },
+    }
 })

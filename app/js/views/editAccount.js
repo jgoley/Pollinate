@@ -20,7 +20,6 @@ Bees.Views.EditAccountView = BaseView.extend({
         } else {
             this.template = Bees.templates.account.editFarmer;
         }
-
         this.$el.prepend(this.template({
             user: this.model.toJSON()
         }));
@@ -28,8 +27,24 @@ Bees.Views.EditAccountView = BaseView.extend({
 
     saveUser: function(e) {
         e.preventDefault();
+        var user = this.model;
         var credentials = this.$el.serializeObject();
-        this.model.save(credentials);
+        user.set(credentials);
+        user.set('costPerHive',+credentials.costPerHive);
+        user.set('maxDistFree',+credentials.maxDistFree);
+        user.set('costPerMile',+credentials.costPerMile);
+        user.set('hivesAvailable',+credentials.hivesAvailable);
+        user.set('hivesTotal',+credentials.hivesTotal);
+        user.set('zipCode',+credentials.zipCode);
+        user.set('geoRangeRadius',+credentials.geoRangeRadius);
+        user.save(null, {
+            success: function(a, b){
+                console.log(a,b)
+            },
+            error: function(a,err){
+                console.log(err)
+            }
+        });
         BeesApp.navigate('/', {
             trigger: true
         });

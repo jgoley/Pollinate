@@ -257,16 +257,9 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
   },"5":function(depth0,helpers,partials,data) {
   return "archived ";
   },"7":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archived : stack1), {"name":"if","hash":{},"fn":this.program(8, data),"inverse":this.program(10, data),"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer;
-},"8":function(depth0,helpers,partials,data) {
-  return "	<button class='delete'>Delete</button>\n";
-  },"10":function(depth0,helpers,partials,data) {
   return "	<button class='archive'>Archive</button>\n";
-  },"12":function(depth0,helpers,partials,data) {
-  return "<button class='accept'>Accept</button>\n";
+  },"9":function(depth0,helpers,partials,data) {
+  return "	<button class='accept'>Accept</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = "\n"
     + escapeExpression(helpers.log.call(depth0, (depth0 != null ? depth0.formattedDates : depth0), {"name":"log","hash":{},"data":data}))
@@ -291,7 +284,7 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
     + "</li>\n		<li>Requested: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.createdAt : stack1), depth0))
     + "</li>\n	</ul>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.program(12, data),"data":data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.program(9, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>";
 },"useData":true});
@@ -304,16 +297,9 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   },"7":function(depth0,helpers,partials,data) {
   return "	<h1>Accepted!</h1>\n";
   },"9":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archived : stack1), {"name":"if","hash":{},"fn":this.program(10, data),"inverse":this.program(12, data),"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer;
-},"10":function(depth0,helpers,partials,data) {
-  return "	<button class='delete'>Delete</button>\n";
-  },"12":function(depth0,helpers,partials,data) {
   return "	<button class='archive'>Archive</button>\n";
-  },"14":function(depth0,helpers,partials,data) {
-  return "<button class='delete'>Cancel Request</button>\n";
+  },"11":function(depth0,helpers,partials,data) {
+  return "	<button class='delete'>Cancel Request</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = "\n"
     + escapeExpression(helpers.log.call(depth0, (depth0 != null ? depth0.formattedDates : depth0), {"name":"log","hash":{},"data":data}))
@@ -343,7 +329,7 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
     + "</li>\n		<li>Requested: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.createdAt : stack1), depth0))
     + "</li>\n	</ul>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(14, data),"data":data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(11, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>";
 },"useData":true});
