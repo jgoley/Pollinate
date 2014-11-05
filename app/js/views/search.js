@@ -103,37 +103,51 @@ Bees.Views.DistanceSearch = BaseView.extend({
 
     search: function(e){
         e.preventDefault();
+        var that = this;
+        var data = this.$el.serializeObject();
+        if (this.userType == 'beekeeper'){
+            console.log(this.userType);
 
-        Parse.Cloud.run('queryBeekeepers', {}, {
-            success: function(result) {
-                console.log("Result from cloud fn",result);
-            },
-            error: function(error) {
-                console.log(error)
-            }
-        });
-
-
-        // var that = this;
-        // var data = this.$el.serializeObject();
-        // var query = new Parse.Query(Bees.Models.User);
-        // query.equalTo('userType', this.userType);
-        // query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
-        // var collection = query.collection();
-        // collection.fetch().then(function(){
-        //     console.log("The search results",collection.length);
-        //     if(collection.length > 0){
-        //         new Bees.Views.SearchResults({
-        //             collection: collection,
-        //             radius: data.distance,
-        //             $container: $('.search-results-container')
-        //         })
-        //     }
-        //     else{
-        //         $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
-        //     }
-        // });
-
+            Parse.Cloud.run('getLocation', {}, {
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            });
+            queryBeekeepers().then(function(inRange){
+                var collection = new Parse.Collection(inRange);
+                if(inRange.length > 0){
+                    new Bees.Views.SearchResults({
+                        collection: collection,
+                        radius: data.distance,
+                        $container: $('.search-results-container')
+                    })
+                }
+                else{
+                    $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+                }          
+            })
+        }
+        else {
+            query.equalTo('userType', this.userType);
+            query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+            var collection = query.collection();
+            collection.fetch().then(function(){
+                console.log("The search results",collection.length);
+                if(collection.length > 0){
+                    new Bees.Views.SearchResults({
+                        collection: collection,
+                        radius: data.distance,
+                        $container: $('.search-results-container')
+                    })
+                }
+                else{
+                    $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+                }
+            });
+        }
     }
 
 });
@@ -181,7 +195,6 @@ Bees.Views.SearchResults = BaseView.extend({
         console.log("Removing");
         console.log(this.subViews);
         _.invoke(this.subViews, 'dispose');
-         
     }
 
 })

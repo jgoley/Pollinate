@@ -14,13 +14,14 @@ function sendMail(params) {
 
 }
 
-function() {
-    Parse.Cloud.run('queryBeekeepers', {}, {
+function queryBeekeepers(){
+    return Parse.Cloud.run('queryBeekeepers', {}, {
         success: function(result) {
-            console.log("Result from cloud fn", result);
+    		return result;
         },
         error: function(error) {
             console.log(error)
         }
     });
+
 }

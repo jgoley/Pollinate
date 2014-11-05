@@ -41,31 +41,48 @@ Bees.Views.NewUserView = BaseView.extend({
         } else {
             user.set('userType', 'farmer');
         }
+        user.set(credentials);
         // Get Geo location data
-        $.ajax({
-            url: geoRequest,
-            dataType: 'json'
-        }).done(function(geoData) {
-            credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
-            console.log('Saving user');
-            user.set(credentials);
-            user.signUp(null, {
-                success: function(user) {
-                    console.log(user);
-                    Bees.Session.set('user', user);
-                    var newProfile = new Bees.Models.Profile();
-                    // user.save(credentials);
-                    //newProfile.save({user: user});
-                    BeesApp.navigate('/', {
-                        trigger: true
-                    });
-                    that.remove();
-                },
-                error: function(user, error) {
-                    alert('Error: ' + error.code + ' ' + error.message);
-                }
-            });
-
+        user.signUp(null, {
+            success: function(user) {
+                Bees.Session.set('user', user);
+                // var newProfile = new Bees.Models.Profile();
+                //newProfile.save({user: user});
+                BeesApp.navigate('/', {
+                    trigger: true
+                });
+                that.remove();
+            },
+            error: function(user, error) {
+                alert('Error: ' + error.code + ' ' + error.message);
+            }
         });
+
+
+        // $.ajax({
+        //     url: geoRequest,
+        //     dataType: 'json'
+        // }).done(function(geoData) {
+        //     credentials.geoCenter =  new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]);
+        //     console.log('Saving user');
+        //     user.set(credentials);
+        //     user.signUp(null, {
+        //         success: function(user) {
+        //             console.log(user);
+        //             Bees.Session.set('user', user);
+        //             var newProfile = new Bees.Models.Profile();
+        //             // user.save(credentials);
+        //             //newProfile.save({user: user});
+        //             BeesApp.navigate('/', {
+        //                 trigger: true
+        //             });
+        //             that.remove();
+        //         },
+        //         error: function(user, error) {
+        //             alert('Error: ' + error.code + ' ' + error.message);
+        //         }
+        //     });
+
+        // });
     }
 });
