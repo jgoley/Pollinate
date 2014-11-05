@@ -57,17 +57,22 @@ Bees.Views.RequestListItem = BaseView.extend({
         })
     },
     acceptRequest: function(){
+        var user = Parse.User.current();
+        var request = this.model;
         this.model.set('accepted', true);
         this.model.save();
+        user.set('hivesAvailable', user.get('hivesAvailable') - this.model.get('numHives'));
+        user.save();
         // Send Confirmation Email to farmer
-        Parse.Cloud.run('sendEmail', {message: 'Your request has been accepted by the beekeeper', subject: 'Request for bees accepted'}, {
-          success: function(result) {console.log(result)},
-          error: function(error) {console.log(error);}
-        });
+        sendMail({});
     },
     archiveRequest: function(){
-        this.model.set('archived', true);
-        this.model.save();
+        var user = Parse.User.current();
+        var request = this.model;
+        user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
+        user.save();
+        request.set('archived', true);
+        request.save();
     },
     deleteRequest: function(){
         this.model.destroy();

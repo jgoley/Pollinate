@@ -116,7 +116,7 @@ Bees.Views.Request = BaseView.extend({
         newRequest.set('startDate', startDate);
         newRequest.set('endDate', endDate);
         newRequest.set(this.request.toJSON());
-        newRequest.save().then(sendMail(messageParams));
+        newRequest.save().then(sendMail({}));
         that.dispose();
     }
 });

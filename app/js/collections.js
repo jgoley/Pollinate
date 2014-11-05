@@ -42,7 +42,6 @@ Bees.Collections.UserSearch = Parse.Collection.extend({
     model: Bees.Models.User,
 });
 
-
 Bees.Collections.UserReviews = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {

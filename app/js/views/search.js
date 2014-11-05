@@ -123,7 +123,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
-                    })
+                    });
                 }
                 else{
                     $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
@@ -131,6 +131,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
             })
         }
         else {
+            var query = new Parse.Query(Bees.Models.User);
             query.equalTo('userType', this.userType);
             query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
             var collection = query.collection();
