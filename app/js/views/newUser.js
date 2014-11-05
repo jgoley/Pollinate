@@ -3,7 +3,16 @@ Bees.Views.NewUserView = BaseView.extend({
     className: 'user',
     template: Bees.templates.newuser,
 
-    user: {email:'jgoley@gmail.com',firstName: 'Jonathan', lastName: 'Goley', address: '2433 Lower Richland Blvd.', city: 'hopkins', state: 'SC', zipCode: '29061', password: 'pass'},
+    user: {
+        email: 'jgoley@gmail.com',
+        firstName: 'Jonathan',
+        lastName: 'Goley',
+        address: '2433 Lower Richland Blvd.',
+        city: 'hopkins',
+        state: 'SC',
+        zipCode: '29061',
+        password: 'pass'
+    },
 
     events: {
         'submit': 'createUser'
@@ -19,7 +28,9 @@ Bees.Views.NewUserView = BaseView.extend({
     },
 
     render: function() {
-        this.$el.prepend(this.template({user: this.model}));
+        this.$el.prepend(this.template({
+            user: this.model
+        }));
     },
 
     createUser: function(e) {
@@ -33,62 +44,34 @@ Bees.Views.NewUserView = BaseView.extend({
             user.set('userType', 'farmer');
         }
         user.set(credentials);
-        user.set('costPerHive',+credentials.costPerHive);
-        user.set('maxDistFree',+credentials.maxDistFree);
-        user.set('costPerMile',+credentials.costPerMile);
-        user.set('hivesAvailable',+credentials.hivesAvailable);
-        user.set('hivesTotal',+credentials.hivesTotal);
-        user.set('zipCode',+credentials.zipCode);
-        user.set('geoRangeRadius',+credentials.geoRangeRadius);
-
-        // var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
-        // var address = (credentials.address + ',' + credentials.city + ',' + credentials.state).replace(/\s+/g, '+');
-        // var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
-
-        // Get Geo location data
+        user.set('costPerHive', +credentials.costPerHive);
+        user.set('maxDistFree', +credentials.maxDistFree);
+        user.set('costPerMile', +credentials.costPerMile);
+        user.set('hivesAvailable', +credentials.hivesAvailable);
+        user.set('hivesTotal', +credentials.hivesTotal);
+        user.set('zipCode', +credentials.zipCode);
+        user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.signUp(null, {
             success: function(user) {
-                Bees.Session.set('user', user);
-                BeesApp.navigate('/', {
-                    trigger: true
-                });
-                that.remove();
+                Parse.Cloud.run('saveLocation', {}, {
+                    success: function(response) {
+                        console.log(response);
+                        Parse.User.current().fetch();
+                        Bees.Session.set('user', user);
+                        BeesApp.navigate('/', {
+                            trigger: true
+                        });
+                        that.remove();
+                    },
+                    error: function() {}
+                })
+               
             },
             error: function(user, error) {
                 alert('Error: ' + error.code + ' ' + error.message);
             }
         });
         // saveLocation
-        Parse.Cloud.run('saveLocation', {}, {
-            success:function(response){
-                console.log(response);
-            },
-            error:function(){}
-        })
 
-
-        // $.ajax({
-        //     url: geoRequest,
-        //     dataType: 'json'
-        // }).done(function(geoData) {
-        //     user.set('geoCenter', new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
-        //     user.signUp(null, {
-        //         success: function(user) {
-        //             console.log(user);
-        //             Bees.Session.set('user', user);
-        //             var newProfile = new Bees.Models.Profile();
-        //             // user.save(credentials);
-        //             //newProfile.save({user: user});
-        //             BeesApp.navigate('/', {
-        //                 trigger: true
-        //             });
-        //             that.remove();
-        //         },
-        //         error: function(user, error) {
-        //             alert('Error: ' + error.code + ' ' + error.message);
-        //         }
-        //     });
-
-        // });
     }
 });

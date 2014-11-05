@@ -16,7 +16,7 @@ Bees.Views.EditAccountView = BaseView.extend({
 
     render: function() {
         if (Parse.User.current().get('userType') === 'beekeeper') {
-            this.template =  Bees.templates.account.editBeekeeper;
+            this.template = Bees.templates.account.editBeekeeper;
         } else {
             this.template = Bees.templates.account.editFarmer;
         }
@@ -30,28 +30,33 @@ Bees.Views.EditAccountView = BaseView.extend({
         var user = this.model;
         var credentials = this.$el.serializeObject();
         user.set(credentials);
-        user.set('costPerHive',+credentials.costPerHive);
-        user.set('maxDistFree',+credentials.maxDistFree);
-        user.set('costPerMile',+credentials.costPerMile);
-        user.set('hivesAvailable',+credentials.hivesAvailable);
-        user.set('hivesTotal',+credentials.hivesTotal);
-        user.set('zipCode',+credentials.zipCode);
-        user.set('geoRangeRadius',+credentials.geoRangeRadius);
+        user.set('costPerHive', +credentials.costPerHive);
+        user.set('maxDistFree', +credentials.maxDistFree);
+        user.set('costPerMile', +credentials.costPerMile);
+        user.set('hivesAvailable', +credentials.hivesAvailable);
+        user.set('hivesTotal', +credentials.hivesTotal);
+        user.set('zipCode', +credentials.zipCode);
+        user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.save(null, {
-            success: function(a, b){
-                console.log(a,b)
+            success: function(a, b) {
+                console.log(a, b);
+                Parse.Cloud.run('saveLocation', {}, {
+                success: function(response) {
+                    console.log("Response from cloud function:", response);
+                    Parse.User.current().fetch();
+                },
+                error: function(response) {
+                    console.log(response)
+                }
+            })
             },
-            error: function(a,err){
+            error: function(a, err) {
                 console.log(err)
             }
         });
         // saveLocation
-        Parse.Cloud.run('saveLocation', {}, {
-            success:function(response){
-                console.log(response);
-            },
-            error:function(){}
-        })
+
+
         BeesApp.navigate('/', {
             trigger: true
         });

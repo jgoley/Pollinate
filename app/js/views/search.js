@@ -118,7 +118,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
             queryBeekeepers().then(function(inRange) {
                 var collection = new Parse.Collection(inRange);
                 if (inRange.length > 0) {
-                    this.subViews.push(new Bees.Views.SearchResults({
+                    that.subViews.push(new Bees.Views.SearchResults({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
@@ -135,7 +135,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
             collection.fetch().then(function() {
                 console.log("The search results", collection.length);
                 if (collection.length > 0) {
-                    this.subViews.push(new Bees.Views.SearchResults({
+                    that.subViews.push(new Bees.Views.SearchResults({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
