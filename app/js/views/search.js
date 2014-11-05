@@ -1,6 +1,6 @@
 Bees.Views.Search = BaseView.extend({
     className: 'search-container',
-
+    subViews: [],
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -13,15 +13,14 @@ Bees.Views.Search = BaseView.extend({
 
     render: function() {
         this.$el.append('<div class="form-container"></div><div class="search-results-container"></div>');
-
-        new Bees.Views.NameSearch({
+        this.subViews.push(new Bees.Views.NameSearch({
             userType: this.userType,
             $container: $('.form-container')
-        })
-        new Bees.Views.DistanceSearch({
+        }));
+        this.subViews.push(new Bees.Views.DistanceSearch({
             userType: this.userType,
             $container: $('.form-container')
-        })
+        }));
     },
 
 });
@@ -30,7 +29,7 @@ Bees.Views.NameSearch = BaseView.extend({
     tagName: 'form',
     className: 'search',
     template: Bees.templates.search.nameSearch,
-
+    subViews: [],
     events: {
         'submit': 'search'
     },
@@ -63,11 +62,11 @@ Bees.Views.NameSearch = BaseView.extend({
         collection.fetch().then(function() {
             console.log("The search results", collection);
             if (collection.length > 0) {
-                new Bees.Views.SearchResults({
+                this.subViews.push(new Bees.Views.SearchResults({
                     collection: collection,
                     radius: data.distance,
                     $container: $('.search-results-container')
-                });
+                }));
             } else {
                 $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
             }
@@ -81,7 +80,7 @@ Bees.Views.DistanceSearch = BaseView.extend({
     tagName: 'form',
     className: 'search',
     template: Bees.templates.search.distance,
-
+    subViews: [],
     events: {
         'submit': 'search'
     },
@@ -119,11 +118,11 @@ Bees.Views.DistanceSearch = BaseView.extend({
             queryBeekeepers().then(function(inRange) {
                 var collection = new Parse.Collection(inRange);
                 if (inRange.length > 0) {
-                    new Bees.Views.SearchResults({
+                    this.subViews.push(new Bees.Views.SearchResults({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
-                    });
+                    }));
                 } else {
                     $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
                 }
@@ -136,11 +135,11 @@ Bees.Views.DistanceSearch = BaseView.extend({
             collection.fetch().then(function() {
                 console.log("The search results", collection.length);
                 if (collection.length > 0) {
-                    new Bees.Views.SearchResults({
+                    this.subViews.push(new Bees.Views.SearchResults({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
-                    })
+                    }));
                 } else {
                     $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
                 }

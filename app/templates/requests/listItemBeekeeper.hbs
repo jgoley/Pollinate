@@ -1,8 +1,8 @@
-{{!-- Requests on Farmer pages --}}
+{{!-- Requests on Beekeeper pages --}}
 
 {{log formattedDates}}
 
-<div class="{{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archived}}archived {{/if}}">
+<div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<ul>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
@@ -12,7 +12,9 @@
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}
-	<button class='archive'>Archive</button>
+	{{#unless request.archivedBeekeeper}}
+		<button class='archive'>Archive</button>
+	{{/unless}}
 	{{else}}
 	<button class='accept'>Accept</button>
 {{/if}}

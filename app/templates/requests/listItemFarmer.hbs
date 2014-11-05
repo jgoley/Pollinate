@@ -15,8 +15,10 @@
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}
-	<button class='archive'>Archive</button>
-	{{else}}
-	<button class='delete'>Cancel Request</button>
+	{{#unless request.archivedFarmer}}
+		<button class='archive'>Archive</button>
+	{{/unless}}
+{{!-- {{else}}
+	<button class='delete'>Cancel Request</button> --}}
 {{/if}}
 </div>

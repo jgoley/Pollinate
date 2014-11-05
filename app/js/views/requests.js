@@ -26,7 +26,9 @@ Bees.Views.RequestListItem = BaseView.extend({
     className: 'request',
     events:{
         'click .accept': 'acceptRequest',
-        'click .archive': 'archiveRequest'
+        'click .archive': 'archiveRequest',
+        'click .cancel': 'cancelRequest',
+        'click .delete': 'deleteRequest',
     },
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -43,7 +45,8 @@ Bees.Views.RequestListItem = BaseView.extend({
 
         this.render();
         this.listenTo(this.model, 'change:accepted', this.render);
-        this.listenTo(this.model, 'change:archived', this.render);
+        this.listenTo(this.model, 'change:archivedBeekeeper', this.render);
+        this.listenTo(this.model, 'change:archivedFarmer', this.render);
         this.listenTo(this.model, 'change:delete', this.render);
     },
     render: function() {
@@ -85,7 +88,15 @@ Bees.Views.RequestListItem = BaseView.extend({
         var request = this.model;
         user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
         user.save();
-        request.set('archived', true);
+        request.set('archivedBeekeeper', true);
         request.save();
-    }
+    },
+    cancelRequest: function(){
+        this.model.set('archivedFarmer', true);
+        this.model.save();
+    },
+    deleteRequest: function(){
+        this.model.destroy();
+        this.dispose();
+    },
 })

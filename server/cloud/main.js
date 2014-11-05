@@ -45,52 +45,33 @@ Parse.Cloud.define('queryBeekeepers', function(request, response) {
     });
 });
 
-Parse.Cloud.define('getLocation', function(request, response) {
+function saveLocation(user){
     var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
-    var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=2433+lower+richland+blvd+hopkins+SC&key=' + googleToken;
+    var address = (user.get('address') + ',' + user.get('city') + ',' + user.get('state')).replace(/\s+/g, '+');
+    var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
 
     Parse.Cloud.httpRequest({
+        method: 'GET',
         url: geoRequest,
         success: function (geoData) {
-            response.success(geoData);
+            user.set('geoCenter', new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
         },
         error: function (httpResponse) {
-            console.error('Request failed with response code ' + httpResponse.status);
+
         }
     });
+}
 
+Parse.Cloud.afterSave(Parse.User, function(request){
+    saveLocation(request.user);
 });
 
+Parse.Cloud.define('saveLocation', function(request, response){
+    saveLocation(request.user);
+})
 
-// beforeSave
+
 Parse.Cloud.beforeSave(Parse.User, function(request, response) {
-
-    if (request.object.dirty('address') || request.object.dirty('city') || request.object.dirty('state')){
-
-        // Works
-        // request.object.set('geoCenter', new Parse.GeoPoint('0','0')); 
-
-        var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
-        var address = (request.object.get('address') + ',' + request.object.get('city') + ',' + request.object.get('state')).replace(/\s+/g, '+');
-        var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
-        var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=2433+lower+richland+blvd+hopkins+SC&key=' + googleToken;
-
-        Parse.Cloud.httpRequest({
-            method: 'GET',
-            url: geoRequest,
-            success: function (geoData) {
-                request.object.set('geoCenter', geoData); //new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
-                // response.success();
-                response(geoData);
-            },
-            error: function (httpResponse) {
-                request.object.set('geoCenter', new Parse.GeoPoint('10','10'));
-                // response.error('Request failed with response code ' + httpResponse.status);
-                response(httpResponse);
-            }
-        });
-
-    }
 
     if (request.object.dirty('businessName') || request.object.dirty('firstName') || request.object.dirty('lastName')){
         if (request.object.get('businessName'))
@@ -100,7 +81,5 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
         if (request.object.get('lastName'))
             request.object.set('lastNameLowercase', request.object.get('lastName').toLowerCase() );
     }
-
-response.success();
-
+    response.success();
 })

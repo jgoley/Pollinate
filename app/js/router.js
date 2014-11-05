@@ -30,12 +30,12 @@ Bees.Router = Parse.Router.extend({
 
     index: function() {
         var user = Parse.User.current();
-        disposeViews();
         if (!user) {
             this.navigate('/login', {
                 trigger: true
             });
         } else {
+            //disposeViews();
             if (this.checkUserType()) {
                 console.log("A beekeeper");
                 Bees.currentView = new Bees.Views.BeekeeperIndex({
