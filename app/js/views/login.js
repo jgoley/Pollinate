@@ -1,4 +1,4 @@
-Bees.Views.LoginView = Parse.View.extend({
+Bees.Views.LoginView = BaseView.extend({
     tagName: 'form',
     className: 'user',
     template: Bees.templates.login,

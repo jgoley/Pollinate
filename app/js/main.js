@@ -21,7 +21,7 @@
     Bees.Models = {};
     Bees.Collections = {};
 
-    Bees.Views.ApplicationView = Parse.View.extend({
+    Bees.Views.ApplicationView = BaseView.extend({
 
         template: Handlebars.compile($('#application').html()),
         initialize: function(opts){

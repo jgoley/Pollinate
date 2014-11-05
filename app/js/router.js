@@ -29,15 +29,14 @@ Bees.Router = Parse.Router.extend({
     },
 
     index: function() {
+        disposeViews();
         var user = Parse.User.current();
         if (!user) {
             this.navigate('/login', {
                 trigger: true
             });
         } else {
-            //disposeViews();
             if (this.checkUserType()) {
-                console.log("A beekeeper");
                 Bees.currentView = new Bees.Views.BeekeeperIndex({
                     $container: $('.main-container'),
                 });
@@ -103,9 +102,6 @@ Bees.Router = Parse.Router.extend({
     },
 
     requests: function() {
-        // var type = Parse.User.current().get('userType');
-        // if (Parse.User.current().get('userType') === 'beekeeper'){
-        // else
         disposeViews();
         var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
         var requests = query.collection();

@@ -1,4 +1,4 @@
-Bees.Views.User = Parse.View.extend({
+Bees.Views.User = BaseView.extend({
     className: 'user',
 
     initialize: function(opts) {

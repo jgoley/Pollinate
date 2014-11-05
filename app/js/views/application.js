@@ -1,4 +1,4 @@
-Bees.Views.ApplicationView = Parse.View.extend({
+Bees.Views.ApplicationView = BaseView.extend({
     className: 'pollinate',
     template: Bees.templates.application,
     

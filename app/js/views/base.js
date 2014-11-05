@@ -1,4 +1,4 @@
-Bees.Views.BaseView = Parse.View.extend({
+Bees.Views.BaseView = BaseView.extend({
     template: Handlebars.compile($('#base').html()),
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
