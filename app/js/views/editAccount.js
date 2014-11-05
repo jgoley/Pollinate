@@ -45,6 +45,13 @@ Bees.Views.EditAccountView = BaseView.extend({
                 console.log(err)
             }
         });
+        // saveLocation
+        Parse.Cloud.run('saveLocation', {}, {
+            success:function(response){
+                console.log(response);
+            },
+            error:function(){}
+        })
         BeesApp.navigate('/', {
             trigger: true
         });

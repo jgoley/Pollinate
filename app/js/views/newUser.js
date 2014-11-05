@@ -27,32 +27,11 @@ Bees.Views.NewUserView = BaseView.extend({
         var that = this;
         var credentials = this.$el.serializeObject();
         var user = new Bees.Models.User();
-
-        var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
-        var address = (credentials.address + ',' + credentials.city + ',' + credentials.state).replace(/\s+/g, '+');
-        var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
-
         if (credentials.userType == 'beekeeper') {
             user.set('userType', 'beekeeper');
         } else {
             user.set('userType', 'farmer');
         }
-        // user.set(credentials);
-        // Get Geo location data
-        // user.signUp(null, {
-        //     success: function(user) {
-        //         Bees.Session.set('user', user);
-        //         // var newProfile = new Bees.Models.Profile();
-        //         //newProfile.save({user: user});
-        //         BeesApp.navigate('/', {
-        //             trigger: true
-        //         });
-        //         that.remove();
-        //     },
-        //     error: function(user, error) {
-        //         alert('Error: ' + error.code + ' ' + error.message);
-        //     }
-        // });
         user.set(credentials);
         user.set('costPerHive',+credentials.costPerHive);
         user.set('maxDistFree',+credentials.maxDistFree);
@@ -62,28 +41,54 @@ Bees.Views.NewUserView = BaseView.extend({
         user.set('zipCode',+credentials.zipCode);
         user.set('geoRangeRadius',+credentials.geoRangeRadius);
 
-        $.ajax({
-            url: geoRequest,
-            dataType: 'json'
-        }).done(function(geoData) {
-            user.set('geoCenter', new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
-            user.signUp(null, {
-                success: function(user) {
-                    console.log(user);
-                    Bees.Session.set('user', user);
-                    var newProfile = new Bees.Models.Profile();
-                    // user.save(credentials);
-                    //newProfile.save({user: user});
-                    BeesApp.navigate('/', {
-                        trigger: true
-                    });
-                    that.remove();
-                },
-                error: function(user, error) {
-                    alert('Error: ' + error.code + ' ' + error.message);
-                }
-            });
+        // var googleToken = 'AIzaSyDIWzTq_5JQgHCLIvfNuU-CeLFYmdYiQ5U';
+        // var address = (credentials.address + ',' + credentials.city + ',' + credentials.state).replace(/\s+/g, '+');
+        // var geoRequest = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleToken;
 
+        // Get Geo location data
+        user.signUp(null, {
+            success: function(user) {
+                Bees.Session.set('user', user);
+                BeesApp.navigate('/', {
+                    trigger: true
+                });
+                that.remove();
+            },
+            error: function(user, error) {
+                alert('Error: ' + error.code + ' ' + error.message);
+            }
         });
+        // saveLocation
+        Parse.Cloud.run('saveLocation', {}, {
+            success:function(response){
+                console.log(response);
+            },
+            error:function(){}
+        })
+
+
+        // $.ajax({
+        //     url: geoRequest,
+        //     dataType: 'json'
+        // }).done(function(geoData) {
+        //     user.set('geoCenter', new Parse.GeoPoint([geoData.results[0].geometry.location.lat, geoData.results[0].geometry.location.lng]));
+        //     user.signUp(null, {
+        //         success: function(user) {
+        //             console.log(user);
+        //             Bees.Session.set('user', user);
+        //             var newProfile = new Bees.Models.Profile();
+        //             // user.save(credentials);
+        //             //newProfile.save({user: user});
+        //             BeesApp.navigate('/', {
+        //                 trigger: true
+        //             });
+        //             that.remove();
+        //         },
+        //         error: function(user, error) {
+        //             alert('Error: ' + error.code + ' ' + error.message);
+        //         }
+        //     });
+
+        // });
     }
 });
