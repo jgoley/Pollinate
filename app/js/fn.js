@@ -1,7 +1,9 @@
 // Add listenTo method
+
 var BaseView = function(options) {
     this.bindings = [];
     Parse.View.apply(this, [options]);
+    Bees.viewIndex[this.cid] = this;
 };
 _.extend(BaseView.prototype, Parse.View.prototype, {
     listenTo: function(model, ev, callback) {
@@ -23,9 +25,17 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         this.unbind();
         this.remove();
         _.invoke(this.subViews, 'dispose');
+        delete Bees.viewIndex[this.cid];
+        console.log("View removed");
     }
 });
 BaseView.extend = Parse.View.extend;
+
+
+function disposeViews(){
+    console.log("The Current View",Bees.currentView);
+    if(Bees.currentView) Bees.currentView.dispose();
+}
 
 // Round numbers
 function roundToTwo(num) {    

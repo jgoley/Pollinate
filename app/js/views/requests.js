@@ -5,7 +5,7 @@ Bees.Views.RequestList = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.append(this.el);
+        options.$container.html(this.el);
         this.render();
     },
     render: function() {
@@ -24,7 +24,6 @@ Bees.Views.RequestList = BaseView.extend({
 Bees.Views.RequestListItem = BaseView.extend({
     tagName: 'li',
     className: 'request',
-    template: Bees.templates.requests.listItem,
     events:{
         'click .accept': 'acceptRequest',
         'click .archive': 'archiveRequest',
@@ -35,6 +34,14 @@ Bees.Views.RequestListItem = BaseView.extend({
             $container: opts.$container,
         });
         options.$container.append(this.el);
+        this.userType = Parse.User.current().get('userType');
+        if(this.userType === 'beekeeper'){
+            this.template = Bees.templates.requests.listItemBeekeeper;
+        }
+        else{
+            this.template = Bees.templates.requests.listItemFarmer;
+        }
+
         this.render();
         this.listenTo(this.model, 'change:accepted', this.render);
         this.listenTo(this.model, 'change:archived', this.render);
@@ -43,18 +50,26 @@ Bees.Views.RequestListItem = BaseView.extend({
     render: function() {
         var that = this;
         var formattedDates = {
-            'created':      moment(this.model.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
-            // 'startDate':    moment( this.model.get('startDate') ).format('MMMM Do YYYY, h:mm:ss a'),
-            // 'endDate':      moment( this.model.get('endDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+            'createdAt':    moment(this.model.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
+            'startDate':    moment( this.model.get('startDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+            'endDate':      moment( this.model.get('endDate') ).format('MMMM Do YYYY, h:mm:ss a'),
         };
+        if(this.userType === 'beekeeper'){
+            w = 'farmer';
+        }   else{
+            w = 'beekeeper';
+        }
+
         var query = new Parse.Query(Bees.Models.User);
-        query.get(this.model.get('farmer').id)
-            .then(function(farmer){
+        query.get(this.model.get(w).id)
+            .then(function(user){
                 that.$el.html(that.template({
                 request: that.model.toJSON(),
-                farmer: farmer.toJSON()
+                user: user.toJSON(),
+                formattedDates: formattedDates 
             }));
         })
+
     },
     acceptRequest: function(){
         var user = Parse.User.current();
@@ -77,5 +92,5 @@ Bees.Views.RequestListItem = BaseView.extend({
     deleteRequest: function(){
         this.model.destroy();
         this.dispose();
-    }
+    },
 })

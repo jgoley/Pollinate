@@ -27,13 +27,11 @@ Bees.Views.LoginView = Parse.View.extend({
         var credentials = this.$el.serializeObject();
         Parse.User.logIn(credentials.userName, credentials.pass, {
             success: function(user) {
-                that.undelegateEvents();
                 Bees.Session.set('user', user)
-
                 BeesApp.navigate('/', {
                     trigger: true
                 });
-                that.remove();
+                // that.dispose();
             },
             error: function(user, error) {
                 alert(error.message);

@@ -1,10 +1,10 @@
 <ul>
     {{#if session.user}}
     	{{#if_eq user.userType "beekeeper"}}
-    		<li><a href="#/hivegroups">My hive groups</a></li>
+    		<li><a href="#/requests">My requests</a></li>
     		<li><a href="#/search/farmer">Search for Farmers</a></li>
 		{{else}}
-    		<li><a href="#/bids">My Bids</a></li>
+    		<li><a href="#/requests">My Requests</a></li>
     		<li><a href="#/search/beekeeper">Search for Beekeepers</a></li>
     	{{/if_eq}}
     {{else}}

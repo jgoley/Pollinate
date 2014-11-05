@@ -20,7 +20,7 @@ Bees.Views.Search = BaseView.extend({
         })
         new Bees.Views.DistanceSearch({
             userType: this.userType,
-            $container:  $('.form-container')
+            $container: $('.form-container')
         })
     },
 
@@ -50,7 +50,7 @@ Bees.Views.NameSearch = BaseView.extend({
         this.$el.prepend(this.template());
     },
 
-    search: function(e){
+    search: function(e) {
         var that = this;
         e.preventDefault();
         var data = this.$el.serializeObject();
@@ -58,18 +58,18 @@ Bees.Views.NameSearch = BaseView.extend({
         var query = new Parse.Query(Bees.Models.User);
         query.equalTo('userType', this.userType);
         query.contains('businessName', data.businessName.toLowerCase());
+        
         var collection = query.collection();
-        collection.fetch().then(function(){
-            console.log("The search results",collection);
-            if(collection.length > 0){
+        collection.fetch().then(function() {
+            console.log("The search results", collection);
+            if (collection.length > 0) {
                 new Bees.Views.SearchResults({
                     collection: collection,
                     radius: data.distance,
                     $container: $('.search-results-container')
                 });
-            }
-            else{
-                $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+            } else {
+                $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
             }
         });
 
@@ -101,11 +101,11 @@ Bees.Views.DistanceSearch = BaseView.extend({
         this.$el.prepend(this.template());
     },
 
-    search: function(e){
+    search: function(e) {
         e.preventDefault();
         var that = this;
         var data = this.$el.serializeObject();
-        if (this.userType == 'beekeeper'){
+        if (this.userType == 'beekeeper') {
             console.log(this.userType);
 
             Parse.Cloud.run('getLocation', {}, {
@@ -116,36 +116,33 @@ Bees.Views.DistanceSearch = BaseView.extend({
                     console.log(error)
                 }
             });
-            queryBeekeepers().then(function(inRange){
-                var collection = new Parse.Collection(inRange);
-                if(inRange.length > 0){
-                    new Bees.Views.SearchResults({
-                        collection: collection,
-                        radius: data.distance,
-                        $container: $('.search-results-container')
-                    });
-                }
-                else{
-                    $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
-                }          
-            })
-        }
-        else {
+            // queryBeekeepers().then(function(inRange) {
+            //     var collection = new Parse.Collection(inRange);
+            //     if (inRange.length > 0) {
+            //         new Bees.Views.SearchResults({
+            //             collection: collection,
+            //             radius: data.distance,
+            //             $container: $('.search-results-container')
+            //         });
+            //     } else {
+            //         $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+            //     }
+            // })
+        } else {
             var query = new Parse.Query(Bees.Models.User);
             query.equalTo('userType', this.userType);
             query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
             var collection = query.collection();
-            collection.fetch().then(function(){
-                console.log("The search results",collection.length);
-                if(collection.length > 0){
+            collection.fetch().then(function() {
+                console.log("The search results", collection.length);
+                if (collection.length > 0) {
                     new Bees.Views.SearchResults({
                         collection: collection,
                         radius: data.distance,
                         $container: $('.search-results-container')
                     })
-                }
-                else{
-                    $('.search-results-container').html('<h2>No '+that.userType+'s found</h2>')
+                } else {
+                    $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
                 }
             });
         }
@@ -167,21 +164,20 @@ Bees.Views.SearchResults = BaseView.extend({
         //this.listenTo(this.collection, 'change', this.render);
     },
 
-    events:{
+    events: {
         'click a': 'removeView'
     },
 
 
     render: function() {
-        console.log('Search results rendering')
         _.invoke(this.subViews, 'dispose');
         this.subViews = [];
 
         this.subViews.push(
             new Bees.Views.SearchResultsList({
-            $container: this.$el,
-            collection: this.collection
-        }));
+                $container: this.$el,
+                collection: this.collection
+            }));
 
         this.subViews.push(
             new Bees.Views.Map({
@@ -192,7 +188,7 @@ Bees.Views.SearchResults = BaseView.extend({
         );
     },
 
-    removeView: function(){
+    removeView: function() {
         console.log("Removing");
         console.log(this.subViews);
         _.invoke(this.subViews, 'dispose');
@@ -232,7 +228,7 @@ Bees.Views.SearchResultsListItem = BaseView.extend({
     template: Bees.templates.search.resultItem,
 
     events: {
-
+        'click .user': 'getUser',
     },
 
     initialize: function(opts) {
@@ -248,5 +244,9 @@ Bees.Views.SearchResultsListItem = BaseView.extend({
             user: this.model.toJSON()
         }))
     },
-});
 
+    getUser: function(e){
+        e.preventDefault();
+        BeesApp.navigate('/user/'+this.model.id);
+    }
+});
