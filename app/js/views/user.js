@@ -24,23 +24,7 @@ Bees.Views.User = BaseView.extend({
                 $container: $('.reviews'),
                 model: this.model,
             });
-
-            // var query = new Parse.Query(Bees.Models.HiveGroup).equalTo('user', this.model);
-            // var collection = query.collection();
-            // collection.fetch().then(function(hiveGroups) {
-            //     that.$el.append(that.template({
-            //         user: that.model.toJSON(),
-            //         hiveGroups: collection
-            //     }));
-
-
-            // new Bees.Views.HiveGroupList({
-            //     $container: $('.user'),
-            //     collection: collection,
-            //     model: that.model,
-            //     page: 'user'
-            // })
-            // })
+            
         } else {
             this.template = Bees.templates.user.farmerIndex;
             this.$el.append(this.template({
@@ -125,13 +109,6 @@ Bees.Views.Request = BaseView.extend({
         newRequest.set(this.request.toJSON());
         newRequest.save().then(function() {
             sendMail({});
-            var relation = user.relation("requests");
-            relation.add(newRequest);
-            user.save();
-
-            var relation = beekeeper.relation("requests");
-            relation.add(newRequest);
-            beekeeper.save();
             that.dispose();
         });
     }

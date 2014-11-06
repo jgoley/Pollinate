@@ -94,9 +94,13 @@ Bees.Views.RequestListItem = BaseView.extend({
     cancelRequest: function(){
         this.model.set('archivedFarmer', true);
         this.model.save();
+        sendMail({});
     },
     deleteRequest: function(){
-        this.model.destroy();
-        this.dispose();
+        var check = confirm("Are you sure you want to delete the request?");
+        if (check){
+            this.model.destroy();
+            this.dispose();
+        }
     },
 })

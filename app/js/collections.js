@@ -48,7 +48,8 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
             user: opts.user
         });
         this.query = new Parse.Query('Reviews')
-            .equalTo('reviewee', options.user)
+            .equalTo('reviewee', options.user).
+            ascending('createdAt');
     },
     model: Bees.Models.Review,
 });
