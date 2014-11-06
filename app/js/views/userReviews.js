@@ -18,12 +18,17 @@ Bees.Views.UserReviews = BaseView.extend({
         });
 
         collection.fetch().then(function() {
-            that.subViews.push(
-                new Bees.Views.UserReviewsNew({
-                    collection: collection,
-                    model: that.model,
-                    $container: that.$el,
-                }));
+            var already = collection.find(function(model){
+                return model.get('reviewer').id === Parse.User.current().id;
+            });
+            if(!already){
+                that.subViews.push(
+                    new Bees.Views.UserReviewsNew({
+                        collection: collection,
+                        model: that.model,
+                        $container: that.$el,
+                    }));
+            }
             that.subViews.push(
                 new Bees.Views.UserReviewsList({
                     $container: that.$el,
@@ -42,7 +47,6 @@ Bees.Views.UserReviewsList = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        console.log(this.collection);
         options.$container.append(this.el);
         this.render();
         this.listenTo(this.collection, 'add', this.render); 
@@ -52,7 +56,6 @@ Bees.Views.UserReviewsList = BaseView.extend({
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(review) {
-        console.log("A review", review)
         this.subViews.push(new Bees.Views.UserReviewsListItem({
             model: review,
             $container: this.$el,
