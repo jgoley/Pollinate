@@ -31,15 +31,28 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
 });
 BaseView.extend = Parse.View.extend;
 
+Parse.Collection.prototype.where = function(attrs, first) {
+    if (_.isEmpty(attrs)) return first ? void 0 : [];
+    return this[first ? 'find' : 'filter'](function(model) {
+        for (var key in attrs) {
+            if (attrs[key] !== model.get(key)) return false;
+        }
+        return true;
+    });
+};
 
-function disposeViews(){
-    console.log("The Current View",Bees.currentView);
-    if(Bees.currentView) Bees.currentView.dispose();
+Parse.Collection.prototype.findWhere = function(attrs) {
+    return this.where(attrs, true);
+};
+
+function disposeViews() {
+    console.log("The Current View", Bees.currentView);
+    if (Bees.currentView) Bees.currentView.dispose();
 }
 
 // Round numbers
-function roundToTwo(num) {    
-    return +(Math.round(num + "e+2")  + "e-2");
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
 }
 
 // Turn form data into object
@@ -51,13 +64,12 @@ $.fn.serializeObject = function() {
 };
 
 Handlebars.registerHelper('if_eq', function(a, b, opts) {
-    if(a === b)
+    if (a === b)
         return opts.fn(this);
     else
         return opts.inverse(this);
 });
 
 Handlebars.registerHelper("log", function(data) {
-  return console.log(data);
+    return console.log(data);
 });
-
