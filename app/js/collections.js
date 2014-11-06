@@ -54,6 +54,8 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
     model: Bees.Models.Review,
 });
 
+// var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
+// var requests = query.collection();
 
 Bees.Collections.Requests = Parse.Collection.extend({
     initialize: function(opts){
@@ -61,7 +63,8 @@ Bees.Collections.Requests = Parse.Collection.extend({
             user: opts.user
         });
         this.query = new Parse.Query('Requests')
-            .equalTo('reviewee', options.user)
+            .equalTo(options.user.get('userType'), options.user);
+        console.log("User!!!!",options.user);
     },
-    model: Bees.Models.Review,
+    model: Bees.Models.Request,
 });

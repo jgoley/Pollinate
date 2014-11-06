@@ -79,12 +79,12 @@ Bees.Views.RequestListItem = BaseView.extend({
     acceptRequest: function(){
         var user = Parse.User.current();
         var request = this.model;
-        this.model.set('accepted', true);
-        this.model.save();
+        request.set({'accepted': true, 'acceptedDate': new Date()});
+        request.save();
         user.set('hivesAvailable', user.get('hivesAvailable') - this.model.get('numHives'));
         user.save();
         // Send Confirmation Email to farmer
-        sendMail({});
+        // sendMail({});
     },
     archiveRequest: function(){
         var user = Parse.User.current();
@@ -97,7 +97,7 @@ Bees.Views.RequestListItem = BaseView.extend({
     cancelRequest: function(){
         this.model.set('archivedFarmer', true);
         this.model.save();
-        sendMail({});
+        // sendMail({});
     },
     deleteRequest: function(){
         var check = confirm("Are you sure you want to delete the request?");

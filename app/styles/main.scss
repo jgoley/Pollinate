@@ -50,6 +50,18 @@ a {
     }
 }
 
+.beekeeper{
+    header{ 
+        background:rgba(254, 253, 178, .8);
+    }
+}
+
+.farmer{
+    header{ 
+        background:rgba(10, 253, 178, .8);
+    }
+}
+
 form.user, form.search, form.review {
     margin-top:em(20px);
     input, select, textarea {

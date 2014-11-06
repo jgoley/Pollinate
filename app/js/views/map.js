@@ -57,7 +57,6 @@ Bees.Views.Map = BaseView.extend({
                 title: user.get('firstName'),
                 icon: icon,
                 click: function(e) {
-                    // alert('You clicked in this marker');
                     BeesApp.navigate('user/' + user.id, {
                         trigger: true
                     });
@@ -78,13 +77,11 @@ Bees.Views.Map = BaseView.extend({
                     strokeWeight: 1,
                     strokeOpacity: .8,
                     clickable: true
-
                 })
             }
             i++;
         })
         map.fitZoom();
-        // map.fitBounds();
     },
 
 });

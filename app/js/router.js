@@ -1,23 +1,15 @@
-// App.curentView = new ...
-
-// if (Bees.currentView) Bees.currentView.dispose();
-
 Bees.Router = Parse.Router.extend({
 
     routes: {
         '': 'index',
         'login': 'login',
         'newuser': 'newUser',
-
         'account': 'account',
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
         // 'user/:user_id/request': 'request',
-
         'requests': 'requests',
-
         'search/:type': 'search',
-
         'map': 'map'
     },
 
@@ -91,7 +83,7 @@ Bees.Router = Parse.Router.extend({
     },
 
     reviews: function(user_id) {
-        disposeViews();        
+        disposeViews();
         var query = new Parse.Query(Bees.Models.User);
         query.get(user_id).then(function(user) {
             Bees.currentView = new Bees.Views.UserReviews({
