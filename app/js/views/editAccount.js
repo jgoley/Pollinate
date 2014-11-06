@@ -39,27 +39,15 @@ Bees.Views.EditAccountView = BaseView.extend({
         user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.save(null, {
             success: function(a, b) {
-                console.log(a, b);
-                Parse.Cloud.run('saveLocation', {}, {
-                success: function(response) {
-                    console.log("Response from cloud function:", response);
-                    Parse.User.current().fetch();
-                },
-                error: function(response) {
-                    console.log(response)
-                }
-            })
+                saveLocation();
             },
             error: function(a, err) {
                 console.log(err)
             }
         });
-        // saveLocation
-
-
         BeesApp.navigate('/', {
             trigger: true
         });
-        this.remove();
+        this.dispose();
     }
 });

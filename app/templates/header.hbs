@@ -1,4 +1,6 @@
+{{#if user}}
 <h2><a href="#/">{{user.username}} ({{user.userType}})</a></h2>
+{{/if}}
 <button class='show-menu'><span>Menu</span></button>
 {{#if session.user }}
 <button class="account"><span>My account</span></button>

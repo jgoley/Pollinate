@@ -128,7 +128,8 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
     tagName: 'form',
     className: 'review',
     events: {
-        'submit': 'submitReview'
+        'submit': 'submitReview',
+        'click .cancel-review': 'cancel'
     },
 
     template: Bees.templates.reviews.add,
@@ -156,5 +157,13 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
         this.collection.add(review);
         this.dispose();
         //sendMail({});
+    },
+    cancel: function(){
+        this.dispose();
+        new Bees.Views.UserReviewsNew({
+            collection: this.collection,
+            model: this.model,
+            $container: $('.user-reviews')
+        })
     }
 })

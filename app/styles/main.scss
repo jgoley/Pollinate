@@ -1,6 +1,9 @@
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
+$farmerColor: rgba(39,164,123,.9);
+$beekeeperColor: rgba(247,171,59,.9);
+
 $primary: RGBA(116, 150, 131, 1);
 
 @font-face {
@@ -52,13 +55,13 @@ a {
 
 .beekeeper{
     header{ 
-        background:rgba(254, 253, 178, .8);
+        background:$beekeeperColor;
     }
 }
 
 .farmer{
     header{ 
-        background:rgba(10, 253, 178, .8);
+        background:$farmerColor;
     }
 }
 
@@ -168,6 +171,12 @@ header {
     }
     button, h2 {
         vertical-align: middle;
+    }
+    a{
+        color:#000;
+        &:hover{
+            color:#FFF;
+        }
     }
 }
 

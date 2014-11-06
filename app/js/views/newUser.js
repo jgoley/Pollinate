@@ -54,19 +54,13 @@ Bees.Views.NewUserView = BaseView.extend({
         user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.signUp(null, {
             success: function(user) {
-                Parse.Cloud.run('saveLocation', {}, {
-                    success: function(response) {
-                        console.log(response);
-                        Parse.User.current().fetch();
-                        Bees.Session.set('user', user);
+                saveLocation().then(function(){
+                    Bees.Session.set('user', user);
                         BeesApp.navigate('/', {
                             trigger: true
                         });
                         that.remove();
-                    },
-                    error: function() {}
-                })
-               
+                    })
             },
             error: function(user, error) {
                 alert('Error: ' + error.code + ' ' + error.message);
