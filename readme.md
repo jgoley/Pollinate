@@ -52,17 +52,6 @@ Relieves the burden on both farmers and beekeepers of finding service/clients.
 
 'search/:type': 'search',
 
-// 'hivegroups': 'hiveGroups',
-// 'hivegroups/view/all': 'hiveGroupsAll',
-// 'hivegroups/user/:user_id': 'hiveGroupsUser',
-// 'hivegroup/:hiveGroup_id/view': 'viewHiveGroup',
-// 'hivegroup/:hiveGroup_id/edit': 'editHiveGroup',
-// 'hivegroup/add': 'addHiveGroup',
-
-
-'bids': 'bidsIndex',
-'bids/:bid_id': 'showBid',
-
 'map': 'map'
 
 
