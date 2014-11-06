@@ -1,7 +1,7 @@
 <input type="text" name="username" value="" placeholder="Username">
 <input type="email" name="email" value="{{user.email}}" placeholder="Email address">
 <input type="email" name="email" value="{{user.email}}" placeholder="Confirm Email address">
-<select name='userType'>
+<select name='userType' class='userType'>
 	<option>User Type</option>
 	<option value="beekeeper">Beekeeper</option>
 	<option value="farmer">Farmer</option>
@@ -22,6 +22,10 @@
 	<input type="text" value="{{user.city}}" name="city" placeholder="City">
 	<input type="text" value="{{user.state}}" name="state" placeholder="State">
 	<input type="text" value="{{user.zipCode}}" name="zipCode" placeholder="Zip Code">
+</div>
+
+<div class="userType-info">
+	
 </div>
 
 <input type="submit" name="" value="Login">

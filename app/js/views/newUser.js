@@ -1,8 +1,8 @@
 Bees.Views.NewUserView = BaseView.extend({
     tagName: 'form',
     className: 'user',
-    template: Bees.templates.newuser,
-
+    template: Bees.templates.newUser.index,
+    subViews: [],
     user: {
         email: 'jgoley@gmail.com',
         firstName: 'Jonathan',
@@ -15,7 +15,8 @@ Bees.Views.NewUserView = BaseView.extend({
     },
 
     events: {
-        'submit': 'createUser'
+        'submit': 'createUser',
+        'change .userType': 'addUserInfo'
     },
 
     initialize: function(opts) {
@@ -73,5 +74,41 @@ Bees.Views.NewUserView = BaseView.extend({
         });
         // saveLocation
 
+    },
+
+    addUserInfo: function(e){
+        _.invoke(this.subViews, 'dispose');
+        var userType = $(e.target).val();
+        this.subViews.push(
+            new Bees.Views.UserTypeFormFields({
+            $container: $('.userType-info'),
+            userType: userType
+        }));
     }
+});
+
+
+Bees.Views.UserTypeFormFields = BaseView.extend({
+
+    initialize: function(opts) {
+        var options = _.defaults({}, opts, {
+            $container: opts.$container,
+            userType: opts.userType
+        });
+
+        options.$container.html(this.el);
+
+        if(options.userType === 'beekeeper'){
+            this.template = Bees.templates.newUser.beekeeper;
+        } else{
+            this.template = Bees.templates.newUser.farmer;
+        }
+        this.render();
+    },
+
+    render: function() {
+        this.$el.prepend(this.template());
+    },
+
+
 });

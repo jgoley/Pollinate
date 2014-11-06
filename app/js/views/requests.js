@@ -1,6 +1,7 @@
 Bees.Views.RequestList = BaseView.extend({
     tagName: 'ul',
     className: 'requests',
+    subViews: [],
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -13,10 +14,11 @@ Bees.Views.RequestList = BaseView.extend({
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request) {
-        new Bees.Views.RequestListItem({
+        this.subViews.push(
+            new Bees.Views.RequestListItem({
             model: request,
             $container: this.$el,
-        });
+        }));
     }
 
 })
@@ -31,6 +33,7 @@ Bees.Views.RequestListItem = BaseView.extend({
         'click .delete': 'deleteRequest',
     },
     initialize: function(opts) {
+        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });

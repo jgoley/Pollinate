@@ -10,9 +10,8 @@ Bees.Views.UserReviews = BaseView.extend({
     },
 
     render: function() {
-        this.subViews = [];
+        _.invoke(this.subViews, 'dispose');
         var that = this;
-
         var collection = new Bees.Collections.UserReviews({
             user: this.model
         });
@@ -27,14 +26,16 @@ Bees.Views.UserReviews = BaseView.extend({
                         collection: collection,
                         model: that.model,
                         $container: that.$el,
-                    }));
+                    })
+                );
             }
             that.subViews.push(
                 new Bees.Views.UserReviewsList({
                     $container: that.$el,
                     model: that.model,
                     collection: collection
-                }));
+                })
+            );
         });
     },
 });
@@ -44,6 +45,8 @@ Bees.Views.UserReviewsList = BaseView.extend({
     tagName: 'ul',
     subViews: [],
     initialize: function(opts) {
+ 
+        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
@@ -56,10 +59,12 @@ Bees.Views.UserReviewsList = BaseView.extend({
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(review) {
-        this.subViews.push(new Bees.Views.UserReviewsListItem({
-            model: review,
-            $container: this.$el,
-        }));
+        this.subViews.push(
+            new Bees.Views.UserReviewsListItem({
+                model: review,
+                $container: this.$el,
+            })
+        );
     },
 })
 
@@ -68,6 +73,7 @@ Bees.Views.UserReviewsListItem = BaseView.extend({
     tagName: 'li',
     template: Bees.templates.reviews.listItem,
     initialize: function(opts) {
+        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
@@ -94,6 +100,7 @@ Bees.Views.UserReviewsNew = BaseView.extend({
     },
     template: Bees.templates.reviews.new,
     initialize: function(opts) {
+        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
@@ -108,10 +115,11 @@ Bees.Views.UserReviewsNew = BaseView.extend({
     addReview: function() {
         this.subViews.push(
             new Bees.Views.UserReviewsAdd({
-            $container: this.$el,
-            model: this.model,
-            collection: this.collection
-        }));
+                $container: this.$el,
+                model: this.model,
+                collection: this.collection
+            })
+        );
     }
 });
 
@@ -125,6 +133,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
 
     template: Bees.templates.reviews.add,
     initialize: function(opts) {
+        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
