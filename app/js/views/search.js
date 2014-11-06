@@ -12,6 +12,7 @@ Bees.Views.Search = BaseView.extend({
     },
 
     render: function() {
+        _.invoke(this.subViews, 'dispose');
         this.$el.append('<div class="form-container"></div><div class="search-results-container"></div>');
         this.subViews.push(new Bees.Views.NameSearch({
             userType: this.userType,
@@ -62,7 +63,7 @@ Bees.Views.NameSearch = BaseView.extend({
         collection.fetch().then(function() {
             console.log("The search results", collection);
             if (collection.length > 0) {
-                this.subViews.push(new Bees.Views.SearchResults({
+                that.subViews.push(new Bees.Views.SearchResults({
                     collection: collection,
                     radius: data.distance,
                     $container: $('.search-results-container')
@@ -163,10 +164,6 @@ Bees.Views.SearchResults = BaseView.extend({
         //this.listenTo(this.collection, 'change', this.render);
     },
 
-    events: {
-        'click a': 'removeView'
-    },
-
 
     render: function() {
         _.invoke(this.subViews, 'dispose');
@@ -185,12 +182,6 @@ Bees.Views.SearchResults = BaseView.extend({
                 radius: this.radius
             })
         );
-    },
-
-    removeView: function() {
-        console.log("Removing");
-        console.log(this.subViews);
-        _.invoke(this.subViews, 'dispose');
     }
 
 })
@@ -246,6 +237,6 @@ Bees.Views.SearchResultsListItem = BaseView.extend({
 
     getUser: function(e){
         e.preventDefault();
-        BeesApp.navigate('/user/'+this.model.id);
+        BeesApp.navigate('user/'+this.model.id, {trigger: true});
     }
 });
