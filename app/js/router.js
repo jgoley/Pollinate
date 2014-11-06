@@ -15,6 +15,7 @@ Bees.Router = Parse.Router.extend({
 
     initialize: function() {
         this.currentUser = Parse.User.current();
+        this.userType = this.currentUser.get('userType'),
         new Bees.Views.ApplicationView({
             el: 'body'
         });
@@ -22,11 +23,8 @@ Bees.Router = Parse.Router.extend({
 
     index: function() {
         disposeViews();
-        var user = Parse.User.current();
-        if (!user) {
-            this.navigate('/login', {
-                trigger: true
-            });
+        if (!this.currentUser) {
+            this.goLogin();
         } else {
             if (this.checkUserType()) {
                 Bees.currentView = new Bees.Views.BeekeeperIndex({
@@ -59,6 +57,9 @@ Bees.Router = Parse.Router.extend({
 
     account: function() {
         disposeViews();
+        if (!this.currentUser) {
+            this.goLogin();
+        }
         var query = new Parse.Query(Bees.Models.User);
         query.equalTo('username', Parse.User.current().get('username'))
         var user = query.first(function(user) {
@@ -73,6 +74,9 @@ Bees.Router = Parse.Router.extend({
 
     user: function(user_id) {
         disposeViews();
+        if (!this.currentUser) {
+            this.goLogin();
+        } 
         var query = new Parse.Query(Bees.Models.User);
         query.get(user_id).then(function(user) {
             Bees.currentView = new Bees.Views.User({
@@ -95,6 +99,9 @@ Bees.Router = Parse.Router.extend({
 
     requests: function() {
         disposeViews();
+        if (!this.currentUser) {
+            this.goLogin();
+        } 
         var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
         var requests = query.collection();
         requests.fetch().then(function(requests){
@@ -126,8 +133,13 @@ Bees.Router = Parse.Router.extend({
     },
 
     checkUserType: function() {
-        if (Parse.User.current().get('userType') === 'beekeeper')
+        if (this.userType === 'beekeeper')
             return true;
         else return false
     },
+    goLogin: function(){
+        this.navigate('/login', {
+            trigger: true
+        });
+    }
 });
