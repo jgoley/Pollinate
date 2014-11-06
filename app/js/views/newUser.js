@@ -49,7 +49,7 @@ Bees.Views.NewUserView = BaseView.extend({
         user.set('maxDistFree', +credentials.maxDistFree);
         user.set('costPerMile', +credentials.costPerMile);
         user.set('hivesAvailable', +credentials.hivesAvailable);
-        user.set('hivesTotal', +credentials.hivesTotal);
+        user.set('hivesTotal', +credentials.hivesAvailable);
         user.set('zipCode', +credentials.zipCode);
         user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.signUp(null, {

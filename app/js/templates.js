@@ -235,7 +235,7 @@ this["Bees"]["templates"]["hiveGroups"]["listUser"] = Handlebars.template({"comp
 this["Bees"]["templates"]["newUser"] = this["Bees"]["templates"]["newUser"] || {};
 this["Bees"]["templates"]["newUser"]["beekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<label for=\"hivesTotal\">Total number of Hives</label><input type=\"text\" name=\"hivesTotal\" value=\""
+  return "<label for=\"hivesTotal\">Total number of Hives Available</label><input type=\"text\" name=\"hivesAvailable\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
     + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))

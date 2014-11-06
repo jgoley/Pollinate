@@ -21,7 +21,6 @@ function queryBeekeepers() {
             console.log(error)
         }
     });
-
 }
 
 function saveLocation() {

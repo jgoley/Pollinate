@@ -54,7 +54,7 @@ Bees.Views.Map = BaseView.extend({
             map.addMarker({
                 lat: user.get('geoCenter').latitude,
                 lng: user.get('geoCenter').longitude,
-                title: user.get('firstName'),
+                title: user.get('businessName'),
                 icon: icon,
                 click: function(e) {
                     BeesApp.navigate('user/' + user.id, {
