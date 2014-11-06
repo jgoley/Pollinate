@@ -1,6 +1,5 @@
 Bees.Views.UserReviews = BaseView.extend({
     className: 'user-reviews',
-    template: Bees.templates.reviews.index,
     subViews: [],
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -8,29 +7,23 @@ Bees.Views.UserReviews = BaseView.extend({
         });
         options.$container.append(this.el);
         this.render();
-        // this.listenTo(this.collection, 'change', this.render); 
-    },
-
-    events: {
-        'click .addReview': 'addReview'
     },
 
     render: function() {
-        this.$el.append(this.template());
-        var that = this;
-        console.log('Search results rendering')
-        _.invoke(this.subViews, 'dispose');
         this.subViews = [];
-        console.log("Model of slected user", this.model);
+        var that = this;
+
         var collection = new Bees.Collections.UserReviews({
             user: this.model
         });
+
         collection.fetch().then(function() {
-            // that.subViews.push(
-            //     new Bees.Views.UserReviewsAdd({
-            //         $container: that.$el,
-            //         model: that.model
-            //     }));
+            that.subViews.push(
+                new Bees.Views.UserReviewsNew({
+                    collection: collection,
+                    model: that.model,
+                    $container: that.$el,
+                }));
             that.subViews.push(
                 new Bees.Views.UserReviewsList({
                     $container: that.$el,
@@ -39,22 +32,85 @@ Bees.Views.UserReviews = BaseView.extend({
                 }));
         });
     },
-
-    addReview: function() {
-        console.log("add Review");
-        new Bees.Views.UserReviewsAdd({
-            $container: this.$el,
-            model: this.model
-        });
-
-        // Notify User they were reviewed
-        // Parse.Cloud.run('sendEmail', {}, {
-        //   success: function(result) {console.log(result)},
-        //   error: function(error) {console.log(error);}
-        // });
-    }
 });
 
+
+Bees.Views.UserReviewsList = BaseView.extend({
+    tagName: 'ul',
+    subViews: [],
+    initialize: function(opts) {
+        var options = _.defaults({}, opts, {
+            $container: opts.$container,
+        });
+        console.log(this.collection);
+        options.$container.append(this.el);
+        this.render();
+        this.listenTo(this.collection, 'add', this.render); 
+    },
+    render: function() {
+        this.$el.empty();
+        this.collection.each(_.bind(this.renderChildren, this));
+    },
+    renderChildren: function(review) {
+        console.log("A review", review)
+        this.subViews.push(new Bees.Views.UserReviewsListItem({
+            model: review,
+            $container: this.$el,
+        }));
+    },
+})
+
+Bees.Views.UserReviewsListItem = BaseView.extend({
+
+    tagName: 'li',
+    template: Bees.templates.reviews.listItem,
+    initialize: function(opts) {
+        var options = _.defaults({}, opts, {
+            $container: opts.$container,
+        });
+        options.$container.prepend(this.el);
+        this.render();
+    },
+    render: function() {
+        var that = this;
+        var query = new Parse.Query(Bees.Models.User);
+        query.get(this.model.get('reviewer').id).then(function(reviewer) {
+            that.$el.append(that.template({
+                review: that.model.toJSON(),
+                reviewer: reviewer.toJSON()
+            }));
+        })
+    },
+});
+
+Bees.Views.UserReviewsNew = BaseView.extend({
+    className: 'new-review',
+    subViews: [],
+    events: {
+        'click .addReview': 'addReview'
+    },
+    template: Bees.templates.reviews.new,
+    initialize: function(opts) {
+        var options = _.defaults({}, opts, {
+            $container: opts.$container,
+        });
+        options.$container.append(this.el);
+        this.render();
+    },
+
+    render: function() {
+        this.$el.append(this.template());
+    },
+
+    addReview: function() {
+        this.subViews.push(
+            new Bees.Views.UserReviewsAdd({
+            $container: this.$el,
+            model: this.model,
+            collection: this.collection
+        }));
+    }
+});
 
 Bees.Views.UserReviewsAdd = BaseView.extend({
 
@@ -69,7 +125,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.prepend(this.el);
+        options.$container.html(this.el);
         this.render();
     },
 
@@ -85,57 +141,8 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
         review.set('reviewer', Parse.User.current());
         review.set('reviewee', this.model);
         review.save(reviewData);
+        this.collection.add(review);
+        this.dispose();
+        //sendMail({});
     }
-})
-
-Bees.Views.UserReviewsList = BaseView.extend({
-    subViews: [],
-    tagName: 'ul',
-    initialize: function(opts) {
-        var options = _.defaults({}, opts, {
-            $container: opts.$container,
-        });
-        options.$container.append(this.el);
-        this.render();
-    },
-
-    render: function() {
-        this.collection.each(_.bind(this.renderChildren, this));
-    },
-
-    renderChildren: function(review) {
-        console.log("A review", review)
-        this.subViews.push(new Bees.Views.UserReviewsListItem({
-            model: review,
-            $container: this.$el,
-            // reviewer: reviewer
-            // }, function(user, error){
-            //     console.log(error);
-            // })
-        }));
-    }
-
-})
-
-Bees.Views.UserReviewsListItem = BaseView.extend({
-
-    tagName: 'li',
-    template: Bees.templates.reviews.listItem,
-    initialize: function(opts) {
-        var options = _.defaults({}, opts, {
-            $container: opts.$container,
-        });
-        options.$container.append(this.el);
-        this.render();
-    },
-    render: function() {
-        var that = this;
-        var query = new Parse.Query(Bees.Models.User);
-        query.get(this.model.get('reviewer').id).then(function(reviewer) {
-            that.$el.append(that.template({
-                review: that.model.toJSON(),
-                reviewer: reviewer.toJSON()
-            }));
-        })
-    },
 })
