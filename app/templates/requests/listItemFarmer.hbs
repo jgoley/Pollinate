@@ -1,17 +1,17 @@
 {{!-- Requests on Farmer pages --}}
 
-{{log formattedDates}}
-
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archived}}archived {{/if}}">
 	{{#if request.accepted}}
 	<h1>Accepted!</h1>
+	{{else}}
+	<h1>Pending!</h1>
 	{{/if}}
 	<ul>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
 		<li>Cost: ${{request.totalCost}}</li>
 		<li>Miles over: {{request.milesOver}}</li>
-		<li>Dates: {{request.startDate}} - {{request.endDate}}</li>
+		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}

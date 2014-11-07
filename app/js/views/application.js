@@ -6,9 +6,12 @@ Bees.Views.ApplicationView = BaseView.extend({
         Bees.Session = new Bees.Models.Session({user: Parse.User.current()})
         this.model = Bees.Session;
         this.render();
+        this.listenTo(Bees.Session, 'change', this.render);
     },
     render: function(){
-        this.$el.html(this.template());
+        console.log("rendering application");
+        if ( Parse.User.current()) var user = Parse.User.current().toJSON();
+        this.$el.html(this.template({user: user}));
         new Bees.Views.HeaderView({
             $container: $('header'),
         })

@@ -49,24 +49,18 @@ Bees.Views.NewUserView = BaseView.extend({
         user.set('maxDistFree', +credentials.maxDistFree);
         user.set('costPerMile', +credentials.costPerMile);
         user.set('hivesAvailable', +credentials.hivesAvailable);
-        user.set('hivesTotal', +credentials.hivesTotal);
+        user.set('hivesTotal', +credentials.hivesAvailable);
         user.set('zipCode', +credentials.zipCode);
         user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.signUp(null, {
             success: function(user) {
-                Parse.Cloud.run('saveLocation', {}, {
-                    success: function(response) {
-                        console.log(response);
-                        Parse.User.current().fetch();
-                        Bees.Session.set('user', user);
+                saveLocation().then(function(){
+                    Bees.Session.set('user', user);
                         BeesApp.navigate('/', {
                             trigger: true
                         });
                         that.remove();
-                    },
-                    error: function() {}
-                })
-               
+                    })
             },
             error: function(user, error) {
                 alert('Error: ' + error.code + ' ' + error.message);

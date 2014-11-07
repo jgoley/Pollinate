@@ -154,7 +154,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch([
         'app/*.html',
         '.tmp/styles/**/*.css',
-        'app/scripts/**/*.js',
+        'app/js/**/*.js',
         'app/images/**/*',
         'app/templates/**/*.hbs'
     ]).on('change', function (file) {
@@ -163,7 +163,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
 
     gulp.watch('app/templates/**/*.hbs', ['templates']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/js/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch('bower.json', ['wiredep']);
 });

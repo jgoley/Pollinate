@@ -54,10 +54,9 @@ Bees.Views.Map = BaseView.extend({
             map.addMarker({
                 lat: user.get('geoCenter').latitude,
                 lng: user.get('geoCenter').longitude,
-                title: user.get('firstName'),
+                title: user.get('businessName'),
                 icon: icon,
                 click: function(e) {
-                    // alert('You clicked in this marker');
                     BeesApp.navigate('user/' + user.id, {
                         trigger: true
                     });
@@ -78,13 +77,11 @@ Bees.Views.Map = BaseView.extend({
                     strokeWeight: 1,
                     strokeOpacity: .8,
                     clickable: true
-
                 })
             }
             i++;
         })
         map.fitZoom();
-        // map.fitBounds();
     },
 
 });

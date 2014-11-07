@@ -10,7 +10,7 @@ Bees.Views.RequestList = BaseView.extend({
         this.render();
     },
     render: function() {
-        console.log(this.collection);
+        console.log("Requests in list view",this.collection);
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request) {
@@ -54,10 +54,11 @@ Bees.Views.RequestListItem = BaseView.extend({
     },
     render: function() {
         var that = this;
+        var request = this.model;
         var formattedDates = {
-            'createdAt':    moment(this.model.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
-            'startDate':    moment( this.model.get('startDate') ).format('MMMM Do YYYY, h:mm:ss a'),
-            'endDate':      moment( this.model.get('endDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+            'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
+            'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
+            'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
         };
         if(this.userType === 'beekeeper'){
             w = 'farmer';
@@ -65,13 +66,13 @@ Bees.Views.RequestListItem = BaseView.extend({
             w = 'beekeeper';
         }
 
-        var query = new Parse.Query(Bees.Models.User);
-        query.get(this.model.get(w).id)
+        var user = new Parse.Query(Bees.Models.User);
+        user.get(request.get(w).id)
             .then(function(user){
                 that.$el.html(that.template({
-                request: that.model.toJSON(),
-                user: user.toJSON(),
-                formattedDates: formattedDates 
+                    request: request.toJSON(),
+                    user: user.toJSON(),
+                    formattedDates: formattedDates 
             }));
         })
 
@@ -79,12 +80,12 @@ Bees.Views.RequestListItem = BaseView.extend({
     acceptRequest: function(){
         var user = Parse.User.current();
         var request = this.model;
-        this.model.set('accepted', true);
-        this.model.save();
+        request.set({'accepted': true, 'acceptedDate': new Date()});
+        request.save();
         user.set('hivesAvailable', user.get('hivesAvailable') - this.model.get('numHives'));
         user.save();
         // Send Confirmation Email to farmer
-        sendMail({});
+        // sendMail({});
     },
     archiveRequest: function(){
         var user = Parse.User.current();
@@ -97,7 +98,7 @@ Bees.Views.RequestListItem = BaseView.extend({
     cancelRequest: function(){
         this.model.set('archivedFarmer', true);
         this.model.save();
-        sendMail({});
+        // sendMail({});
     },
     deleteRequest: function(){
         var check = confirm("Are you sure you want to delete the request?");

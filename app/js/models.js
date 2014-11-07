@@ -15,7 +15,6 @@ Bees.Models.User = Parse.User.extend({
         lastName: '',
         address: '',
         city: '',
-        zip: '',
         state: '',
         image: '',
         // geoCenter: new Parse.GeoPoint([0, 0]),

@@ -1,6 +1,9 @@
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
+$farmerColor: rgba(39,164,123,.9);
+$beekeeperColor: rgba(247,171,59,.9);
+
 $primary: RGBA(116, 150, 131, 1);
 
 @font-face {
@@ -50,6 +53,18 @@ a {
     }
 }
 
+.beekeeper{
+    header{ 
+        background:$beekeeperColor;
+    }
+}
+
+.farmer{
+    header{ 
+        background:$farmerColor;
+    }
+}
+
 form.user, form.search, form.review {
     margin-top:em(20px);
     input, select, textarea {
@@ -84,8 +99,9 @@ textarea{
 }
 
 .form-container{
+    @include outer-container;
     @include span-columns(12);
-    @include shift(2)
+    @include shift(2);
 }
 
 form.search{
@@ -99,9 +115,9 @@ form.search{
 }
 
 .main-container {
-    @include outer-container;
-    @include span-columns(12);
-    max-width: 100%;
+    // @include outer-container;
+    // max-width: 100%;
+    // @include span-columns(12);
     margin: em(60px) 0;
     button {
         background: $primary;
@@ -156,6 +172,12 @@ header {
     }
     button, h2 {
         vertical-align: middle;
+    }
+    a{
+        color:#000;
+        &:hover{
+            color:#FFF;
+        }
     }
 }
 
@@ -249,6 +271,13 @@ footer {
     padding: 100px;
 }
 
+.cost-details{
+    span{
+        display: block;
+        color:#999;
+        font-size: 75%;
+    }
+}
 
 .request, .reviews{
     margin:30px 0;
@@ -284,8 +313,18 @@ footer {
 
 
 .user{
-    @include span-columns(6);
-    @include shift(3);
+    a{
+        padding:1em;
+        display: block;
+        &:hover{
+            background:#ebebeb;
+        }
+        border-bottom:1px solid #ebebeb;
+    }
+    li{
+    }
+    @include span-columns(11);
+    @include shift(.5);
 }
 
 @include media(min-width 600px) {

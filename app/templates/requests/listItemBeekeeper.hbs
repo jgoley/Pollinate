@@ -1,14 +1,13 @@
 {{!-- Requests on Beekeeper pages --}}
 
-{{log formattedDates}}
-
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<ul>
+		<li>{{request.objectId}}</li>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
 		<li>Cost: ${{request.totalCost}}</li>
 		<li>Miles over: {{request.milesOver}}</li>
-		<li>Dates: {{request.startDate}}</li>
+		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}

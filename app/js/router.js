@@ -1,28 +1,22 @@
-// App.curentView = new ...
-
-// if (Bees.currentView) Bees.currentView.dispose();
-
 Bees.Router = Parse.Router.extend({
 
     routes: {
         '': 'index',
         'login': 'login',
         'newuser': 'newUser',
-
         'account': 'account',
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
-        // 'user/:user_id/request': 'request',
-
         'requests': 'requests',
-
         'search/:type': 'search',
-
         'map': 'map'
     },
 
     initialize: function() {
-        this.currentUser = Parse.User.current();
+        if(Parse.User.current()){
+            this.currentUser = Parse.User.current();
+            this.userType = this.currentUser.get('userType');
+        }
         new Bees.Views.ApplicationView({
             el: 'body'
         });
@@ -30,11 +24,8 @@ Bees.Router = Parse.Router.extend({
 
     index: function() {
         disposeViews();
-        var user = Parse.User.current();
-        if (!user) {
-            this.navigate('/login', {
-                trigger: true
-            });
+        if (!this.currentUser) {
+            this.goLogin();
         } else {
             if (this.checkUserType()) {
                 Bees.currentView = new Bees.Views.BeekeeperIndex({
@@ -67,31 +58,33 @@ Bees.Router = Parse.Router.extend({
 
     account: function() {
         disposeViews();
-        var query = new Parse.Query(Bees.Models.User);
-        query.equalTo('username', Parse.User.current().get('username'))
-        var user = query.first(function(user) {
+        if (!this.currentUser) {
+            this.goLogin();
+        } else{
             Bees.currentView = new Bees.Views.EditAccountView({
                 $container: $('.main-container'),
-                model: user
-            })
-        }, function(error) {
-            console.log(error);
-        })
+                model: Parse.User.current()
+            });
+        }
     },
 
     user: function(user_id) {
         disposeViews();
-        var query = new Parse.Query(Bees.Models.User);
-        query.get(user_id).then(function(user) {
-            Bees.currentView = new Bees.Views.User({
-                model: user,
-                $container: $('.main-container')
+        if (!this.currentUser) {
+            this.goLogin();
+        } else{
+            var query = new Parse.Query(Bees.Models.User);
+            query.get(user_id).then(function(user) {
+                Bees.currentView = new Bees.Views.User({
+                    model: user,
+                    $container: $('.main-container')
+                })
             })
-        })
+        }
     },
 
     reviews: function(user_id) {
-        disposeViews();        
+        disposeViews();
         var query = new Parse.Query(Bees.Models.User);
         query.get(user_id).then(function(user) {
             Bees.currentView = new Bees.Views.UserReviews({
@@ -103,15 +96,19 @@ Bees.Router = Parse.Router.extend({
 
     requests: function() {
         disposeViews();
-        var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
-        var requests = query.collection();
-        requests.fetch().then(function(requests){
-            Bees.currentView = new Bees.Views.RequestList({
-                $container: $('.main-container'),
-                collection: requests
+        if (!this.currentUser) {
+            this.goLogin();
+        } else{
+            var requests = new Bees.Collections.Requests({
+                user: this.currentUser
+            })
+            requests.fetch().then(function(requests){
+                Bees.currentView = new Bees.Views.RequestList({
+                    $container: $('.main-container'),
+                    collection: requests
+                });
             });
-        });
-
+        }
     },
 
     search: function(type) {
@@ -134,8 +131,13 @@ Bees.Router = Parse.Router.extend({
     },
 
     checkUserType: function() {
-        if (Parse.User.current().get('userType') === 'beekeeper')
+        if (this.userType === 'beekeeper')
             return true;
         else return false
     },
+    goLogin: function(){
+        this.navigate('/login', {
+            trigger: true
+        });
+    }
 });

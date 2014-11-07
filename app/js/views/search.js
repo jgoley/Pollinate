@@ -1,6 +1,7 @@
 Bees.Views.Search = BaseView.extend({
-    className: 'search-container',
     subViews: [],
+    className: 'search-container',
+    template: Bees.templates.search.index,
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -13,19 +14,38 @@ Bees.Views.Search = BaseView.extend({
 
     render: function() {
         _.invoke(this.subViews, 'dispose');
-        this.$el.append('<div class="form-container"></div><div class="search-results-container"></div>');
-        this.subViews.push(new Bees.Views.NameSearch({
-            userType: this.userType,
-            $container: $('.form-container')
-        }));
-        this.subViews.push(new Bees.Views.DistanceSearch({
-            userType: this.userType,
-            $container: $('.form-container')
-        }));
+        var that = this;
+        this.$el.append(this.template());
+
+        if (Parse.User.current().get('userType') == 'farmer'){
+
+            queryBeekeepers().then(function(beekeepers) {
+                beekeepers = new Parse.Collection(beekeepers);
+                that.subViews.push(new Bees.Views.SearchResultsList({
+                    $container: $('.initial-results-container'),
+                    collection: beekeepers
+                }));
+
+                that.subViews.push(new Bees.Views.NameSearch({
+                    userType: that.userType,
+                    $container: $('.form-container')
+                }));
+            })
+        }
+        else {
+            that.subViews.push(new Bees.Views.NameSearch({
+                userType: that.userType,
+                $container: $('.form-container')
+            }));
+            that.subViews.push(new Bees.Views.DistanceSearch({
+                userType: that.userType,
+                $container: $('.form-container')
+            }));
+        
+        }
     },
 
 });
-
 Bees.Views.NameSearch = BaseView.extend({
     tagName: 'form',
     className: 'search',
@@ -51,20 +71,19 @@ Bees.Views.NameSearch = BaseView.extend({
     },
 
     search: function(e) {
-        var that = this;
+        _.invoke(this.subViews, 'dispose');
         e.preventDefault();
+        var that = this;
         var data = this.$el.serializeObject();
-        console.log(data);
-        var query = new Parse.Query(Bees.Models.User);
-        query.equalTo('userType', this.userType);
-        query.contains('businessName', data.businessName.toLowerCase());
-        
-        var collection = query.collection();
-        collection.fetch().then(function() {
-            console.log("The search results", collection);
-            if (collection.length > 0) {
+        var searchResults = new Bees.Collections.NameSearch({
+            userType: this.userType,
+            business: data.businessName.toLowerCase()
+        });
+        searchResults.fetch().then(function() {
+            console.log("The search results", searchResults);
+            if (searchResults.length > 0) {
                 that.subViews.push(new Bees.Views.SearchResults({
-                    collection: collection,
+                    collection: searchResults,
                     radius: data.distance,
                     $container: $('.search-results-container')
                 }));
@@ -102,20 +121,12 @@ Bees.Views.DistanceSearch = BaseView.extend({
     },
 
     search: function(e) {
+        // _.invoke(this.subViews, 'dispose');
         e.preventDefault();
         var that = this;
         var data = this.$el.serializeObject();
         if (this.userType === 'beekeeper') {
             console.log(this.userType);
-
-            // Parse.Cloud.run('getLocation', {}, {
-            //     success: function(result) {
-            //         console.log(result);
-            //     },
-            //     error: function(error) {
-            //         console.log(error)
-            //     }
-            // });
             queryBeekeepers().then(function(inRange) {
                 var collection = new Parse.Collection(inRange);
                 if (inRange.length > 0) {
@@ -134,7 +145,6 @@ Bees.Views.DistanceSearch = BaseView.extend({
             query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
             var collection = query.collection();
             collection.fetch().then(function() {
-                console.log("The search results", collection.length);
                 if (collection.length > 0) {
                     that.subViews.push(new Bees.Views.SearchResults({
                         collection: collection,
@@ -204,7 +214,7 @@ Bees.Views.SearchResultsList = BaseView.extend({
     },
 
     renderChildren: function(user) {
-        console.log(user);
+        _.invoke(this.subViews, 'dispose');
         new Bees.Views.SearchResultsListItem({
             $container: this.$el,
             model: user
