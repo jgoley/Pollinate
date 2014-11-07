@@ -99,8 +99,9 @@ textarea{
 }
 
 .form-container{
+    @include outer-container;
     @include span-columns(12);
-    @include shift(2)
+    @include shift(2);
 }
 
 form.search{
@@ -114,9 +115,9 @@ form.search{
 }
 
 .main-container {
-    @include outer-container;
-    @include span-columns(12);
-    max-width: 100%;
+    // @include outer-container;
+    // max-width: 100%;
+    // @include span-columns(12);
     margin: em(60px) 0;
     button {
         background: $primary;
@@ -312,8 +313,18 @@ footer {
 
 
 .user{
-    @include span-columns(6);
-    @include shift(3);
+    a{
+        padding:1em;
+        display: block;
+        &:hover{
+            background:#ebebeb;
+        }
+        border-bottom:1px solid #ebebeb;
+    }
+    li{
+    }
+    @include span-columns(11);
+    @include shift(.5);
 }
 
 @include media(min-width 600px) {

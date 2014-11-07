@@ -20,7 +20,18 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
 
         requests.fetch().then(function(requests){
 
-            console.log(requests);
+            var accepted = new Parse.Collection(
+                requests.filter(function(request){
+                    return request.get('accepted');
+            }));
+
+            var unAccepted = new Parse.Collection(
+                requests.filter(function(request){
+                    return !request.get('accepted');
+            }));
+
+            console.log("Accepted", accepted);
+            console.log("Not Accepted", unAccepted);
 
             new Bees.Views.RequestList({
                 $container: $('.requests'),

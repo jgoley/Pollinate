@@ -10,6 +10,7 @@ Bees.Views.RequestList = BaseView.extend({
         this.render();
     },
     render: function() {
+        console.log("Requests in list view",this.collection);
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request) {
@@ -56,8 +57,8 @@ Bees.Views.RequestListItem = BaseView.extend({
         var request = this.model;
         var formattedDates = {
             'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
-            'startDate':    moment( request.get('startDate') ).format('MMM D, YYYY'),
-            'endDate':      moment( request.get('endDate') ).format('MMM D, YYYY'),
+            'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
+            'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
         };
         if(this.userType === 'beekeeper'){
             w = 'farmer';
@@ -65,13 +66,13 @@ Bees.Views.RequestListItem = BaseView.extend({
             w = 'beekeeper';
         }
 
-        var query = new Parse.Query(Bees.Models.User);
-        query.get(request.get(w).id)
+        var user = new Parse.Query(Bees.Models.User);
+        user.get(request.get(w).id)
             .then(function(user){
                 that.$el.html(that.template({
-                request: request.toJSON(),
-                user: user.toJSON(),
-                formattedDates: formattedDates 
+                    request: request.toJSON(),
+                    user: user.toJSON(),
+                    formattedDates: formattedDates 
             }));
         })
 

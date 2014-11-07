@@ -26,7 +26,7 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         this.remove();
         _.invoke(this.subViews, 'dispose');
         delete Bees.viewIndex[this.cid];
-        console.log("View removed");
+        console.log("View removed", this.cid);
     }
 });
 BaseView.extend = Parse.View.extend;

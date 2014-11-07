@@ -2,6 +2,7 @@
 
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<ul>
+		<li>{{request.objectId}}</li>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
 		<li>Cost: ${{request.totalCost}}</li>

@@ -6,13 +6,6 @@ Bees.Collections.User = Parse.Collection.extend({
     model: Bees.Models.User
 });
 
-Bees.Collections.UserHiveGroups = Parse.Collection.extend({
-	initialize: function(opts){
-        this.query = new Parse.Query('Hive_Group').equalTo('user', Parse.User.current())
-	},
-    model: Bees.Models.HiveGroup,
-});
-
 Bees.Collections.UserSearchGeo = Parse.Collection.extend({
 	initialize: function(opts){
         var options = _.defaults({}, opts, {
