@@ -13,8 +13,10 @@ Bees.Router = Parse.Router.extend({
     },
 
     initialize: function() {
-        this.currentUser = Parse.User.current();
-        this.userType = this.currentUser.get('userType'),
+        if(Parse.User.current()){
+            this.currentUser = Parse.User.current();
+            this.userType = this.currentUser.get('userType');
+        }
         new Bees.Views.ApplicationView({
             el: 'body'
         });
@@ -58,31 +60,27 @@ Bees.Router = Parse.Router.extend({
         disposeViews();
         if (!this.currentUser) {
             this.goLogin();
-        }
-        var query = new Parse.Query(Bees.Models.User);
-        query.equalTo('username', Parse.User.current().get('username'))
-        var user = query.first(function(user) {
+        } else{
             Bees.currentView = new Bees.Views.EditAccountView({
                 $container: $('.main-container'),
-                model: user
-            })
-        }, function(error) {
-            console.log(error);
-        })
+                model: Parse.User.current()
+            });
+        }
     },
 
     user: function(user_id) {
         disposeViews();
         if (!this.currentUser) {
             this.goLogin();
-        } 
-        var query = new Parse.Query(Bees.Models.User);
-        query.get(user_id).then(function(user) {
-            Bees.currentView = new Bees.Views.User({
-                model: user,
-                $container: $('.main-container')
+        } else{
+            var query = new Parse.Query(Bees.Models.User);
+            query.get(user_id).then(function(user) {
+                Bees.currentView = new Bees.Views.User({
+                    model: user,
+                    $container: $('.main-container')
+                })
             })
-        })
+        }
     },
 
     reviews: function(user_id) {
@@ -100,16 +98,17 @@ Bees.Router = Parse.Router.extend({
         disposeViews();
         if (!this.currentUser) {
             this.goLogin();
-        } 
-        var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current()).descending('createdAt');
-        var requests = query.collection();
-        requests.fetch().then(function(requests){
-            Bees.currentView = new Bees.Views.RequestList({
-                $container: $('.main-container'),
-                collection: requests
+        } else{
+            var requests = new Bees.Collections.Requests({
+                user: this.currentUser
+            })
+            requests.fetch().then(function(requests){
+                Bees.currentView = new Bees.Views.RequestList({
+                    $container: $('.main-container'),
+                    collection: requests
+                });
             });
-        });
-
+        }
     },
 
     search: function(type) {
