@@ -12,8 +12,10 @@ Bees.Views.User = BaseView.extend({
         var that = this;
         if (this.model.get('userType') === 'beekeeper') {
             this.template = Bees.templates.user.beekeeperIndex;
+            var distance = Math.ceil(this.model.get('geoCenter').milesTo(Parse.User.current().get('geoCenter')));
             this.$el.append(this.template({
-                user: this.model.toJSON()
+                user: this.model.toJSON(),
+                distance: distance
             }));
             new Bees.Views.Request({
                 $container: $('.request'),
@@ -61,7 +63,8 @@ Bees.Views.Request = BaseView.extend({
         console.log("Rendering");
         this.$el.html(this.template({
             user: this.model.toJSON(),
-            request: this.request.toJSON()
+            request: this.request.toJSON(),
+            distance: this.distance
         }));
     },
 

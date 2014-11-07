@@ -68,3 +68,19 @@ Bees.Collections.Requests = Parse.Collection.extend({
     },
     model: Bees.Models.Request,
 });
+
+Bees.Collections.NameSearch = Parse.Collection.extend({
+    initialize: function(opts){
+        var options = _.defaults({}, opts, {
+            userType: opts.userType,
+            business: opts.business
+        });
+        console.log("Colection:",options.userType, options.business)
+        this.query = new Parse.Query(Bees.Models.User)
+                            .equalTo('userType', options.userType)
+                            .contains('businessNameLowercase', options.business);
+    },
+    model: Bees.Models.User,
+});
+
+

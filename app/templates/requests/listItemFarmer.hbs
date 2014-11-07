@@ -1,10 +1,10 @@
 {{!-- Requests on Farmer pages --}}
 
-{{log formattedDates}}
-
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archived}}archived {{/if}}">
 	{{#if request.accepted}}
 	<h1>Accepted!</h1>
+	{{else}}
+	<h1>Pending!</h1>
 	{{/if}}
 	<ul>
 		<li>{{user.userType}}: {{user.username}}</li>

@@ -10,7 +10,6 @@ Bees.Views.RequestList = BaseView.extend({
         this.render();
     },
     render: function() {
-        console.log(this.collection);
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request) {

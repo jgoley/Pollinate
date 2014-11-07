@@ -51,20 +51,19 @@ Bees.Views.NameSearch = BaseView.extend({
     },
 
     search: function(e) {
-        var that = this;
+        _.invoke(this.subViews, 'dispose');
         e.preventDefault();
+        var that = this;
         var data = this.$el.serializeObject();
-        console.log(data);
-        var query = new Parse.Query(Bees.Models.User);
-        query.equalTo('userType', this.userType);
-        query.contains('businessName', data.businessName.toLowerCase());
-        
-        var collection = query.collection();
-        collection.fetch().then(function() {
-            console.log("The search results", collection);
-            if (collection.length > 0) {
+        var searchResults = new Bees.Collections.NameSearch({
+            userType: this.userType,
+            business: data.businessName.toLowerCase()
+        });
+        searchResults.fetch().then(function() {
+            console.log("The search results", searchResults);
+            if (searchResults.length > 0) {
                 that.subViews.push(new Bees.Views.SearchResults({
-                    collection: collection,
+                    collection: searchResults,
                     radius: data.distance,
                     $container: $('.search-results-container')
                 }));
@@ -102,20 +101,12 @@ Bees.Views.DistanceSearch = BaseView.extend({
     },
 
     search: function(e) {
+        _.invoke(this.subViews, 'dispose');
         e.preventDefault();
         var that = this;
         var data = this.$el.serializeObject();
         if (this.userType === 'beekeeper') {
             console.log(this.userType);
-
-            // Parse.Cloud.run('getLocation', {}, {
-            //     success: function(result) {
-            //         console.log(result);
-            //     },
-            //     error: function(error) {
-            //         console.log(error)
-            //     }
-            // });
             queryBeekeepers().then(function(inRange) {
                 var collection = new Parse.Collection(inRange);
                 if (inRange.length > 0) {

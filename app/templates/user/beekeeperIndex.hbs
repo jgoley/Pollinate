@@ -1,9 +1,12 @@
 <h1>{{user.businessName}}</h1>
 
+{{log this}}
+
 <h3>Number of hives available: {{user.hivesAvailable}}</h3>
-<ul>
+<h4>Distance from you: {{distance}} miles</h4>
+<ul class="cost-details">
 	<li>Cost per hive ${{user.costPerHive}}</li>
-	<li>Transportation fee: ${{user.costPerMile}} per mile if distance is over {{user.maxDistFree}} miles</li>
+	<li>Transportation fee: ${{user.costPerMile}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
 </ul>
 
 <div class="request"></div>

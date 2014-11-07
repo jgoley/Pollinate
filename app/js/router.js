@@ -7,7 +7,6 @@ Bees.Router = Parse.Router.extend({
         'account': 'account',
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
-        // 'user/:user_id/request': 'request',
         'requests': 'requests',
         'search/:type': 'search',
         'map': 'map'
@@ -102,7 +101,7 @@ Bees.Router = Parse.Router.extend({
         if (!this.currentUser) {
             this.goLogin();
         } 
-        var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
+        var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current()).descending('createdAt');
         var requests = query.collection();
         requests.fetch().then(function(requests){
             Bees.currentView = new Bees.Views.RequestList({
