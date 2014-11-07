@@ -1,6 +1,6 @@
 Bees.Views.User = BaseView.extend({
     className: 'user',
-
+    subViews: [],
     initialize: function(opts) {
         options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -9,33 +9,42 @@ Bees.Views.User = BaseView.extend({
         this.render();
     },
     render: function() {
+        _.invoke(this.subViews, 'dispose');
         var that = this;
         if (this.model.get('userType') === 'beekeeper') {
             this.template = Bees.templates.user.beekeeperIndex;
             var distance = Math.ceil(this.model.get('geoCenter').milesTo(Parse.User.current().get('geoCenter')));
+
             this.$el.append(this.template({
                 user: this.model.toJSON(),
                 distance: distance
             }));
-            new Bees.Views.Request({
-                $container: $('.request'),
-                model: this.model,
-            });
-
-            new Bees.Views.UserReviews({
-                $container: $('.reviews'),
-                model: this.model,
-            });
             
+            this.subViews.push(
+                new Bees.Views.Request({
+                    $container: $('.request'),
+                    model: this.model,
+                })
+            );
+
+            this.subViews.push(
+                new Bees.Views.UserReviews({
+                    $container: $('.reviews'),
+                    model: this.model,
+                })
+            );
+
         } else {
             this.template = Bees.templates.user.farmerIndex;
             this.$el.append(this.template({
                 user: this.model.toJSON()
             }));
-            new Bees.Views.UserReviews({
-                $container: $('.reviews'),
-                model: this.model,
-            });
+            this.subViews.push(
+                new Bees.Views.UserReviews({
+                    $container: $('.reviews'),
+                    model: this.model,
+                })
+            );
         }
     }
 

@@ -53,10 +53,11 @@ Bees.Views.RequestListItem = BaseView.extend({
     },
     render: function() {
         var that = this;
+        var request = this.model;
         var formattedDates = {
-            'createdAt':    moment(this.model.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
-            'startDate':    moment( this.model.get('startDate') ).format('MMMM Do YYYY, h:mm:ss a'),
-            'endDate':      moment( this.model.get('endDate') ).format('MMMM Do YYYY, h:mm:ss a'),
+            'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
+            'startDate':    moment( request.get('startDate') ).format('MMM D, YYYY'),
+            'endDate':      moment( request.get('endDate') ).format('MMM D, YYYY'),
         };
         if(this.userType === 'beekeeper'){
             w = 'farmer';
@@ -65,10 +66,10 @@ Bees.Views.RequestListItem = BaseView.extend({
         }
 
         var query = new Parse.Query(Bees.Models.User);
-        query.get(this.model.get(w).id)
+        query.get(request.get(w).id)
             .then(function(user){
                 that.$el.html(that.template({
-                request: that.model.toJSON(),
+                request: request.toJSON(),
                 user: user.toJSON(),
                 formattedDates: formattedDates 
             }));

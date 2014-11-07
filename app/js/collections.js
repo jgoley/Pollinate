@@ -1,15 +1,10 @@
-// All pictures
-
 Bees.Collections.HiveGroups = Parse.Collection.extend({
     model: Bees.Models.HiveGroup
 });
 
-// All Users (Photogs)
-
 Bees.Collections.User = Parse.Collection.extend({
     model: Bees.Models.User
 });
-
 
 Bees.Collections.UserHiveGroups = Parse.Collection.extend({
 	initialize: function(opts){
@@ -42,6 +37,19 @@ Bees.Collections.UserSearch = Parse.Collection.extend({
     model: Bees.Models.User,
 });
 
+Bees.Collections.NameSearch = Parse.Collection.extend({
+    initialize: function(opts){
+        var options = _.defaults({}, opts, {
+            userType: opts.userType,
+            business: opts.business
+        });
+        this.query = new Parse.Query('User')
+                            .equalTo('userType', options.userType)
+                            .contains('businessNameLowercase', options.business);
+    },
+    model: Bees.Models.User,
+});
+
 Bees.Collections.UserReviews = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
@@ -54,9 +62,6 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
     model: Bees.Models.Review,
 });
 
-// var query = new Parse.Query(Bees.Models.Request).equalTo(Parse.User.current().get('userType'), Parse.User.current());
-// var requests = query.collection();
-
 Bees.Collections.Requests = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
@@ -64,23 +69,47 @@ Bees.Collections.Requests = Parse.Collection.extend({
         });
         this.query = new Parse.Query('Requests')
             .equalTo(options.user.get('userType'), options.user);
-        console.log("User!!!!",options.user);
     },
     model: Bees.Models.Request,
 });
 
-Bees.Collections.NameSearch = Parse.Collection.extend({
+Bees.Collections.RequestsAccepted = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
-            userType: opts.userType,
-            business: opts.business
+            user: opts.user
         });
-        console.log("Colection:",options.userType, options.business)
-        this.query = new Parse.Query(Bees.Models.User)
-                            .equalTo('userType', options.userType)
-                            .contains('businessNameLowercase', options.business);
+        this.query = new Parse.Query('Requests')
+            .equalTo(options.user.get('userType'), options.user)
+            .equalTo('accepted', true);
     },
-    model: Bees.Models.User,
+    model: Bees.Models.Request,
 });
+
+Bees.Collections.RequestsNotAccepted = Parse.Collection.extend({
+    initialize: function(opts){
+        var options = _.defaults({}, opts, {
+            user: opts.user
+        });
+        this.query = new Parse.Query('Requests')
+            .equalTo(options.user.get('userType'), options.user)
+            .equalTo('accepted', false);
+    },
+    model: Bees.Models.Request,
+});
+
+Bees.Collections.HivesOut = Parse.Collection.extend({
+    initialize: function(opts){
+        var options = _.defaults({}, opts, {
+            user: opts.user
+        });
+        this.query = new Parse.Query('Requests')
+                            .equalTo(options.user.get('userType'), options.user)
+                            .equalTo('accepted', true)
+                            .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
+                            .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD'))
+    },
+    model: Bees.Models.Request
+});
+
 
 

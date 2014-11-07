@@ -11,7 +11,7 @@
 		<li>Number of Hives: {{request.numHives}}</li>
 		<li>Cost: ${{request.totalCost}}</li>
 		<li>Miles over: {{request.milesOver}}</li>
-		<li>Dates: {{request.startDate}} - {{request.endDate}}</li>
+		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
 		<li>Requested: {{formattedDates.createdAt}}</li>
 	</ul>
 {{#if request.accepted}}
