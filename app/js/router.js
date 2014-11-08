@@ -28,10 +28,14 @@ Bees.Router = Parse.Router.extend({
             this.goLogin();
         } else {
             if (this.checkUserType()) {
-                Bees.currentView = new Bees.Views.BeekeeperIndex({
-                    $container: $('.main-container'),
-                });
-
+                new Bees.Collections.Requests({
+                    user: Parse.User.current()
+                }).fetch().then(function(collection){
+                    Bees.currentView = new Bees.Views.BeekeeperIndex({
+                        $container: $('.main-container'),
+                        collection: collection
+                    });    
+                })
             } else {
                 Bees.currentView = new Bees.Views.FarmerIndex({
                     $container: $('.main-container'),
@@ -103,7 +107,7 @@ Bees.Router = Parse.Router.extend({
                 user: this.currentUser
             })
             requests.fetch().then(function(requests){
-                Bees.currentView = new Bees.Views.RequestList({
+                Bees.currentView = new Bees.Views.Requests({
                     $container: $('.main-container'),
                     collection: requests
                 });

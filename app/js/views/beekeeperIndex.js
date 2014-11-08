@@ -1,61 +1,66 @@
 Bees.Views.BeekeeperIndex = BaseView.extend({
     className: 'beekeeper',
+    subViews: [],
     currentDate: moment().format('YYYY-MM-DD'),
+    template: Bees.templates.beekeeperIndex.base,
     initialize: function(opts){
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         })
         options.$container.html(this.el);
         this.render();
+        this.listenTo(this.collection, 'change', this.render);
     },
     render: function(){
         var that = this;
-        this.$el.append(this.el);
-        new Bees.Collections.Requests({
-            user: Parse.User.current()
-        }).fetch().then(function(requests){
-            var accepted = new Parse.Collection(
-                requests.filter(function(request){
-                    return request.get('accepted');
-            }));
+        requests = this.collection;
+        this.$el.html(this.template());
 
-            var unAccepted = new Parse.Collection(
-                requests.filter(function(request){
-                    return !request.get('accepted');
-            }));
+        var hivesOut = new Parse.Collection(
+            requests.filter(function(request){
+                return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
+        }));
 
-            var hivesOut = new Parse.Collection(
-                requests.filter(function(request){
-                    return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
-            }));
+        var unAccepted = new Parse.Collection(
+            requests.filter(function(request){
+                return !request.get('accepted');
+        }));
 
-            console.log("Hives out: ",hivesOut);
-
-            console.log("Accepted", accepted);
-            console.log("Not Accepted", unAccepted);
-            console.log("All Requests", requests);
-
+        this.subViews.push(
             new Bees.Views.BeekeeperIndexInfo({
-                $container: that.$el,
-            });
+                $container: $('.top-info'),
+        }));
 
+        this.subViews.push(
             new Bees.Views.BeekeeperHivesOut({
-                $container: that.$el,
+                $container: $('.top-info'),
                 collection: hivesOut
-            });
+        }));
 
+        this.subViews.push(
             new Bees.Views.RequestList({
-                $container: that.$el,
-                collection: requests
-            });
-        })
+                $container: this.$el,
+                collection: unAccepted,
+                info: {title: 'Un-accepted Requests', class:'unAccepted'}
+        }));
+
+
+        // search for nearby farmers
+        // limit to 5 
+        // link to profile page
+        // 
+        // this.subViews.push(
+        //     new Bees.Views.SearchResults({
+        //         $container: this.$el,
+        //         collection: ,
+        // }));
     }
 
 });
 
 
 Bees.Views.BeekeeperIndexInfo = BaseView.extend({
-    className: 'beekeeper',
+    className: 'beekeeper-details',
     template: Bees.templates.beekeeperIndex.details,
     initialize: function(opts){
         var options = _.defaults({}, opts, {
@@ -68,8 +73,6 @@ Bees.Views.BeekeeperIndexInfo = BaseView.extend({
         var that = this;
         this.$el.append(this.template(Parse.User.current().toJSON()));
     }
-
-
 })
 
 Bees.Views.BeekeeperHivesOut = BaseView.extend({
@@ -90,7 +93,6 @@ Bees.Views.BeekeeperHivesOut = BaseView.extend({
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request){
-        console.log(request);
         this.subViews.push(
             new Bees.Views.BeekeeperHivesOutListItem({
                 $container: this.$el,
@@ -115,7 +117,16 @@ Bees.Views.BeekeeperHivesOutListItem = BaseView.extend({
     },
     render: function(){
         var that = this;
-        this.$el.append(this.template({request: this.model.toJSON()}));
+        if(Parse.User.current().get('userType') === 'beekeeper'){
+            w = 'farmer';
+        }   else{
+            w = 'beekeeper';
+        }
+        var user = new Parse.Query(Bees.Models.User);
+        user.get(this.model.get(w).id)
+            .then(function(user){
+                that.$el.append(that.template({request: that.model.toJSON(), user: user.toJSON()}));
+        });
     }
 
 })

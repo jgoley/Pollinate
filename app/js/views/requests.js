@@ -1,7 +1,6 @@
-Bees.Views.RequestList = BaseView.extend({
-    tagName: 'ul',
-    className: 'requests',
+Bees.Views.Requests = BaseView.extend({
     subViews: [],
+    template: Bees.templates.requests.base,
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -10,7 +9,69 @@ Bees.Views.RequestList = BaseView.extend({
         this.render();
     },
     render: function() {
-        console.log("Requests in list view",this.collection);
+        var requests = this.collection;
+        this.$el.append(this.template())
+
+        if (this.collection.length === 0){
+            this.$el.append('<p>Currently, you have no requests</p>')
+        }
+
+        var unAccepted = new Parse.Collection(
+            requests.filter(function(request){
+                return !request.get('accepted');
+        }));
+
+        var accepted = new Parse.Collection(
+            requests.filter(function(request){
+                return request.get('accepted') &&  !request.get('archivedBeekeeper');
+        }));
+        
+        var archived = new Parse.Collection(
+            requests.filter(function(request){
+                return request.get('archivedBeekeeper');
+        }));            
+
+        this.subViews.push(
+            new Bees.Views.RequestList({
+                $container: this.$el,
+                collection: unAccepted,
+                // info: {title: 'Un-accepted Requests', class:'unAccepted'}
+        }));
+
+        this.subViews.push(
+            new Bees.Views.RequestList({
+                $container: $('.request-container'),
+                collection: accepted,
+                // info: {title: 'Accepted Requests', class:'accepted'}
+        }));
+
+        this.subViews.push(
+            new Bees.Views.RequestList({
+                $container: $('.request-container'),
+                collection: archived,
+                // info: {title: 'Archived', class:'archived'}
+        }));
+    },
+
+})
+
+Bees.Views.RequestList = BaseView.extend({
+    tagName: 'ul',
+    subViews: [],
+    className: 'request-list',
+    template: Bees.templates.requests.base,
+    initialize: function(opts) {
+        var options = _.defaults({}, opts, {
+            $container: opts.$container,
+        });
+        options.$container.append(this.el);
+        this.render();
+    },
+    render: function() {
+        this.$el.append(this.template())
+        if (this.collection.length === 0){
+            this.$el.append();
+        }
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(request) {
