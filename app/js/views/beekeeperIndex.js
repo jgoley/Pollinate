@@ -36,23 +36,30 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
                 collection: hivesOut
         }));
 
-        this.subViews.push(
-            new Bees.Views.RequestList({
-                $container: $('.request-container'),
-                collection: unAccepted,
-                info: {title: 'Un-accepted Requests', class:'unAccepted'}
-        }));
+        if(unAccepted > 0){
+            this.subViews.push(
+                new Bees.Views.RequestList({
+                    $container: $('.request-container'),
+                    collection: unAccepted,
+                    info: {title: 'Un-accepted Requests', class:'unAccepted'}
+            }));
+        } else{
+            $('.request-container').append('<p>Currently you have no open requests.</p>')
+        }
 
-        var userReviews = new Bees.Collections.UserReviews({
+        new Bees.Collections.UserReviews({
             user: Parse.User.current(),
             limit:5,
-        })
-        userReviews.fetch().then(function(){
-            that.subViews.push( 
-                new Bees.Views.UserReviewsList({
-                    $container: $('.review-container'),
-                    collection: userReviews
-                }))
+        }).fetch().then(function(userReviews){
+            if(userReviews > 0){
+                that.subViews.push( 
+                    new Bees.Views.UserReviewsList({
+                        $container: $('.review-container'),
+                        collection: userReviews
+                    }))
+            } else{
+                $('.review-container').append('<p>No user reviews.</p>')
+            }
         });
 
         var farmersNear = new Bees.Collections.UserSearchGeo({

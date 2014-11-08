@@ -133,7 +133,6 @@ Bees.Views.DistanceSearch = BaseView.extend({
     },
 
     search: function(e) {
-        // _.invoke(this.subViews, 'dispose');
         e.preventDefault();
         var that = this;
         var data = this.$el.serializeObject();
@@ -252,6 +251,7 @@ Bees.Views.SearchResultsListItem = BaseView.extend({
     },
 
     render: function() {
+        _.invoke(this.subViews, 'dispose');
         this.$el.html(this.template({
             user: this.model.toJSON()
         }))

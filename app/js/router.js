@@ -130,10 +130,14 @@ Bees.Router = Parse.Router.extend({
             new Bees.Collections.UserReviews({
                 user: this.currentUser
             }).fetch().then(function(reviews){
-                Bees.currentView = new Bees.Views.UserReviewsList({
-                    $container: $('.main-container'),
-                    collection: reviews
-                });
+                if(reviews > 0){
+                    Bees.currentView = new Bees.Views.UserReviewsList({
+                        $container: $('.main-container'),
+                        collection: reviews
+                    });
+                } else{
+                    $('.main-container').html('<p>No reviews.</p>')
+                }
             });   
         }
     },

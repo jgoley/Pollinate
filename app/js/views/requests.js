@@ -120,6 +120,7 @@ Bees.Views.RequestListItem = BaseView.extend({
             'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
             'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
             'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
+            'archivedBeekeeperDate':      moment(request.get('archivedBeekeeperDate')).format('MMM D, YYYY'),
         };
         if(this.userType === 'beekeeper'){
             w = 'farmer';
@@ -154,11 +155,11 @@ Bees.Views.RequestListItem = BaseView.extend({
         user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
         user.save();
         request.set('archivedBeekeeper', true);
+        request.set('archivedBeekeeperDate', new Date());
         request.save();
     },
     cancelRequest: function(){
-        this.model.set('archivedFarmer', true);
-        this.model.save();
+        this.model.destroy();
         // sendMail({});
     },
     deleteRequest: function(){

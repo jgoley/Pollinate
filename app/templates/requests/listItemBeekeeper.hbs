@@ -9,6 +9,9 @@
 		<li>Miles over: {{request.milesOver}}</li>
 		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
 		<li>Requested: {{formattedDates.createdAt}}</li>
+		{{#if request.archivedBeekeeper}}
+		<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>
+		{{/if}}
 	</ul>
 {{#if request.accepted}}
 	{{#unless request.archivedBeekeeper}}

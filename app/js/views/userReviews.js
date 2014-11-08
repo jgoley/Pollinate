@@ -29,13 +29,17 @@ Bees.Views.UserReviews = BaseView.extend({
                     })
                 );
             }
-            that.subViews.push(
-                new Bees.Views.UserReviewsList({
-                    $container: that.$el,
-                    model: that.model,
-                    collection: collection
-                })
-            );
+            if(collection.length > 0){
+                that.subViews.push(
+                    new Bees.Views.UserReviewsList({
+                        $container: that.$el,
+                        model: that.model,
+                        collection: collection
+                    })
+                );  
+            } else {
+                that.$el.append('<p>No user ratings</p>');
+            }
         });
     },
 });
@@ -56,6 +60,7 @@ Bees.Views.UserReviewsList = BaseView.extend({
         this.listenTo(this.collection, 'add', this.render); 
     },
     render: function() {
+        _.invoke(this.subViews, 'dispose');
         this.$el.empty();
         this.collection.each(_.bind(this.renderChildren, this));
     },
@@ -75,7 +80,6 @@ Bees.Views.UserReviewsListItem = BaseView.extend({
     className: 'review-list-item',
     template: Bees.templates.reviews.listItem,
     initialize: function(opts) {
-        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });

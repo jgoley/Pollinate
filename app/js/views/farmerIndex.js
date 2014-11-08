@@ -36,11 +36,16 @@ Bees.Views.FarmerIndex = BaseView.extend({
             user: Parse.User.current(),
             limit:5,
         }).fetch().then(function(userReviews){
-            that.subViews.push( 
-                new Bees.Views.UserReviewsList({
-                    $container: $('.review-container'),
-                    collection: userReviews
-                }))
+            if(userReviews > 0){
+                that.subViews.push( 
+                    new Bees.Views.UserReviewsList({
+                        $container: $('.review-container'),
+                        collection: userReviews
+                    }))
+            } else{
+                $('.review-container').append('<p>No user reviews.</p>')
+            }
+
         });
 
         queryBeekeepers().then(function(beekeepers) {
