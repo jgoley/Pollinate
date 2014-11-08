@@ -5,10 +5,13 @@ Bees.Views.Search = BaseView.extend({
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
-            userType: opts.userType
+            queryText: opts.queryText
         });
         options.$container.html(this.el);
-        this.userType = options.userType;
+        this.queryText = options.queryText;
+        this.userType = Parse.User.current().get('userType');
+        if (this.userType == 'beekeeper') this.searchType = 'farmer'
+            else this.searchType = 'beekeeper'
         this.render();
     },
 
@@ -16,46 +19,74 @@ Bees.Views.Search = BaseView.extend({
         _.invoke(this.subViews, 'dispose');
         var that = this;
         this.$el.append(this.template());
+        console.log("!!!!!!!!!!!!!!!!!!!", this.queryText);
+        if (this.userType === 'farmer') {
 
-        if (Parse.User.current().get('userType') == 'farmer') {
+            if (this.queryText) {
+                this.searchByText();
+            } else {
+                queryBeekeepers().then(function(beekeepers) {
+                    var beekeepers = new Parse.Collection(beekeepers);
+                    that.subViews.push(new Bees.Views.SearchResultsList({
+                        $container: $('.search-results-container'),
+                        collection: beekeepers
+                    }));
 
-            queryBeekeepers().then(function(beekeepers) {
-                beekeepers = new Parse.Collection(beekeepers);
-                that.subViews.push(new Bees.Views.SearchResultsList({
-                    $container: $('.search-results-container'),
-                    collection: beekeepers
-                }));
+                    that.subViews.push(new Bees.Views.NameSearch({
+                        userType: that.searchType,
+                        $container: $('.form-container')
+                    }));
+                });
+            }
 
-                that.subViews.push(new Bees.Views.NameSearch({
-                    userType: that.userType,
-                    $container: $('.form-container')
-                }));
-            })
         } else {
 
-            new Bees.Collections.UserSearchGeo({
-                userType: 'farmer',
-                distance: 200,
-                limit: 5,
-            }).fetch().then(function(beekeepers) {
-                that.subViews.push(new Bees.Views.SearchResultsList({
-                    $container: $('.search-results-container'),
-                    collection: beekeepers
+            if (this.queryText) {
+                this.searchByText('farmer');
+            } else {
+
+
+                new Bees.Collections.UserSearchGeo({
+                    userType: 'farmer',
+                    distance: 200,
+                    limit: 5,
+                }).fetch().then(function(beekeepers) {
+                    that.subViews.push(new Bees.Views.SearchResultsList({
+                        $container: $('.search-results-container'),
+                        collection: beekeepers
+                    }));
+                });
+
+                that.subViews.push(new Bees.Views.NameSearch({
+                    userType: that.searchType,
+                    $container: $('.form-container')
                 }));
-            });
 
-            that.subViews.push(new Bees.Views.NameSearch({
-                userType: that.userType,
-                $container: $('.form-container')
-            }));
-
-            that.subViews.push(new Bees.Views.DistanceSearch({
-                userType: that.userType,
-                $container: $('.form-container')
-            }));
-
+                that.subViews.push(new Bees.Views.DistanceSearch({
+                    userType: that.searchType,
+                    $container: $('.form-container')
+                }));
+            }
         }
     },
+
+    searchByText: function(){
+        var that = this;
+        var searchResults = new Bees.Collections.NameSearch({
+                    userType: this.searchType,
+                    business: this.queryText.toLowerCase()
+                });
+                searchResults.fetch().then(function() {
+                    if (searchResults.length > 0) {
+                        that.subViews.push(new Bees.Views.SearchResults({
+                            collection: searchResults,
+                            $container: $('.search-results-container')
+                        }));
+                    } else {
+                        $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+                    }
+                });
+    }
 
 });
 Bees.Views.NameSearch = BaseView.extend({

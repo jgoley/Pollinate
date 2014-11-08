@@ -9,7 +9,8 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id/reviews': 'reviews',
         'requests': 'requests',
         'reviews': 'reviews',
-        'search/:type': 'search',
+        'search': 'search',
+        'search/:query_text': 'search',
         'map': 'map'
     },
 
@@ -142,12 +143,13 @@ Bees.Router = Parse.Router.extend({
         }
     },
 
-    search: function(type) {
+    search: function(queryText) {
         disposeViews();
+        console.log("queryText");
         Bees.currentView = new Bees.Views.Search({
-            userType: type,
+            queryText: queryText,
             $container: $('.main-container'),
-        })
+        });
     },
 
     map: function() {
@@ -157,8 +159,8 @@ Bees.Router = Parse.Router.extend({
             Bees.currentView = new Bees.Views.Map({
                 $container: $('.main-container'),
                 collection: collection,
-            })
-        })
+            });
+        });
     },
 
     checkUserType: function() {

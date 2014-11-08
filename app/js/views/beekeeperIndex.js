@@ -36,7 +36,7 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
                 collection: hivesOut
         }));
 
-        if(unAccepted > 0){
+        if(unAccepted.length > 0){
             this.subViews.push(
                 new Bees.Views.RequestList({
                     $container: $('.request-container'),
@@ -51,7 +51,7 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
             user: Parse.User.current(),
             limit:5,
         }).fetch().then(function(userReviews){
-            if(userReviews > 0){
+            if(userReviews.length > 0){
                 that.subViews.push( 
                     new Bees.Views.UserReviewsList({
                         $container: $('.review-container'),
@@ -62,19 +62,16 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
             }
         });
 
-        var farmersNear = new Bees.Collections.UserSearchGeo({
+        new Bees.Collections.UserSearchGeo({
             userType: 'farmer',
             distance: 200,
             limit:5,
-        })
-
-
-        farmersNear.fetch().then(function(){
-            // console.log("Near",farmersNear)
+        }).fetch().then(function(farmersNear){
             that.subViews.push(
                 new Bees.Views.UserShortList({
                     $container: $('.near-users'),
-                    collection: farmersNear
+                    collection: farmersNear,
+                    type: 'Farmers'
                 }))     
         });
     }
