@@ -61,7 +61,7 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
             limit:5,
         })
 
-        
+
         farmersNear.fetch().then(function(){
             // console.log("Near",farmersNear)
             that.subViews.push(
@@ -104,6 +104,7 @@ Bees.Views.BeekeeperHivesOut = BaseView.extend({
         this.render();
     },
     render: function(){
+        _.invoke(this.subViews, 'dispose');
         var that = this;
         this.$el.append(this.template());
         this.collection.each(_.bind(this.renderChildren, this));

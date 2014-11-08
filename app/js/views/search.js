@@ -17,12 +17,12 @@ Bees.Views.Search = BaseView.extend({
         var that = this;
         this.$el.append(this.template());
 
-        if (Parse.User.current().get('userType') == 'farmer'){
+        if (Parse.User.current().get('userType') == 'farmer') {
 
             queryBeekeepers().then(function(beekeepers) {
                 beekeepers = new Parse.Collection(beekeepers);
                 that.subViews.push(new Bees.Views.SearchResultsList({
-                    $container: $('.initial-results-container'),
+                    $container: $('.search-results-container'),
                     collection: beekeepers
                 }));
 
@@ -31,17 +31,29 @@ Bees.Views.Search = BaseView.extend({
                     $container: $('.form-container')
                 }));
             })
-        }
-        else {
+        } else {
+
+            new Bees.Collections.UserSearchGeo({
+                userType: 'farmer',
+                distance: 200,
+                limit: 5,
+            }).fetch().then(function(beekeepers) {
+                that.subViews.push(new Bees.Views.SearchResultsList({
+                    $container: $('.search-results-container'),
+                    collection: beekeepers
+                }));
+            });
+
             that.subViews.push(new Bees.Views.NameSearch({
                 userType: that.userType,
                 $container: $('.form-container')
             }));
+
             that.subViews.push(new Bees.Views.DistanceSearch({
                 userType: that.userType,
                 $container: $('.form-container')
             }));
-        
+
         }
     },
 
@@ -245,8 +257,10 @@ Bees.Views.SearchResultsListItem = BaseView.extend({
         }))
     },
 
-    getUser: function(e){
+    getUser: function(e) {
         e.preventDefault();
-        BeesApp.navigate('user/'+this.model.id, {trigger: true});
+        BeesApp.navigate('user/' + this.model.id, {
+            trigger: true
+        });
     }
 });

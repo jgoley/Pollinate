@@ -51,7 +51,7 @@ Bees.Views.UserReviewsList = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.append(this.el);
+        options.$container.html(this.el);
         this.render();
         this.listenTo(this.collection, 'add', this.render); 
     },
