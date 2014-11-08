@@ -45,14 +45,14 @@ this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-
   return "<div id=\"map_canvas\"></div>";
   },"useData":true});
 this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "        <li><a href=\"#/\">Home</a></li>\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer;
+  return buffer + "        <li><a href=\"#/reviews\">Reviews</a></li>\n\n";
 },"2":function(depth0,helpers,partials,data) {
-  return "    		<li><a href=\"#/requests\">My requests</a></li>\n    		<li><a href=\"#/search/farmer\">Search for Farmers</a></li>\n";
+  return "    		<li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search/farmer\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
-  return "    		<li><a href=\"#/requests\">My Requests</a></li>\n    		<li><a href=\"#/search/beekeeper\">Search for Beekeepers</a></li>\n";
+  return "            <li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search/beekeeper\">Search for Beekeepers</a></li>\n";
   },"6":function(depth0,helpers,partials,data) {
   return "    	<li><a href=\"\">Search Farmers</a></li>\n    	<li><a href=\"\">Search Beekeepers</a></li>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -152,23 +152,9 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
-this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
-this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "";
-},"useData":true});
-this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<ul>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
-    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
-},"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
 this["Bees"]["templates"]["beekeeperIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"top-info\"></div>\n<div class=\"request-container\"></div>\n<div class=\"review-container\"></div>\n<div class=\"near-users\"></div>\n";
+  return "<div class=\"top-info\"></div>\n<div class=\"request-container\">\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n<div class=\"review-container\"></div>\n<div class=\"near-users\">\n	<a href=\"#/search/\">Find More</a>\n</div>\n";
   },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"]["details"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -190,6 +176,27 @@ this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.tem
     + "</a>\n<p>Pickup date: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
     + "</p>";
+},"useData":true});
+this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
+this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "";
+},"useData":true});
+this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<ul>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
+    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
+},"useData":true});
+this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
+this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<div class=\"top-info\"></div>\n\n<div class=\"request-container\">\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n<div class=\"review-container\"></div>\n\n<div class=\"near-users\">\n	<a href=\"#/search/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
+    + "\">Find More</a>\n</div>\n";
 },"useData":true});
 this["Bees"]["templates"]["hiveGroups"] = this["Bees"]["templates"]["hiveGroups"] || {};
 this["Bees"]["templates"]["hiveGroups"]["UserListItem"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {

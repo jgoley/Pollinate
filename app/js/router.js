@@ -8,6 +8,7 @@ Bees.Router = Parse.Router.extend({
         'user/:user_id': 'user',
         'user/:user_id/reviews': 'reviews',
         'requests': 'requests',
+        'reviews': 'reviews',
         'search/:type': 'search',
         'map': 'map'
     },
@@ -37,9 +38,15 @@ Bees.Router = Parse.Router.extend({
                     });    
                 })
             } else {
-                Bees.currentView = new Bees.Views.FarmerIndex({
-                    $container: $('.main-container'),
-                });
+                new Bees.Collections.Requests({
+                    user: Parse.User.current()
+                }).fetch().then(function(collection){
+                    Bees.currentView = new Bees.Views.FarmerIndex({
+                        $container: $('.main-container'),
+                        collection: collection
+                    });
+                })
+
             }
 
         }
@@ -112,6 +119,22 @@ Bees.Router = Parse.Router.extend({
                     collection: requests
                 });
             });
+        }
+    },
+
+    reviews: function(){
+        disposeViews();
+        if (!this.currentUser) {
+            this.goLogin();
+        } else{
+            new Bees.Collections.UserReviews({
+                user: this.currentUser
+            }).fetch().then(function(reviews){
+                Bees.currentView = new Bees.Views.UserReviewsList({
+                    $container: $('.main-container'),
+                    collection: reviews
+                });
+            });   
         }
     },
 

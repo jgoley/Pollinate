@@ -49,12 +49,14 @@ Bees.Collections.UserReviews = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
             user: opts.user,
-            limit: opts.limit
+            limit: opts.limit,
+            skip: opts.skip
         });
         this.query = new Parse.Query('Reviews')
-            .equalTo('reviewee', options.user).
-            ascending('createdAt')
-            .limit();
+            .equalTo('reviewee', options.user)
+            .ascending('createdAt')
+            .limit(options.limit)
+            .skip(options.skip);
     },
     model: Bees.Models.Review,
 });

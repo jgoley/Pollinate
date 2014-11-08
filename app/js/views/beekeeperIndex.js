@@ -9,7 +9,6 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
         })
         options.$container.html(this.el);
         this.render();
-        this.listenTo(this.collection, 'change', this.render);
     },
     render: function(){
         var that = this;
@@ -45,7 +44,8 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
         }));
 
         var userReviews = new Bees.Collections.UserReviews({
-            user: Parse.User.current()
+            user: Parse.User.current(),
+            limit:5,
         })
         userReviews.fetch().then(function(){
             that.subViews.push( 
@@ -57,8 +57,11 @@ Bees.Views.BeekeeperIndex = BaseView.extend({
 
         var farmersNear = new Bees.Collections.UserSearchGeo({
             userType: 'farmer',
-            distance: 200
+            distance: 200,
+            limit:5,
         })
+
+        
         farmersNear.fetch().then(function(){
             // console.log("Near",farmersNear)
             that.subViews.push(
@@ -140,49 +143,5 @@ Bees.Views.BeekeeperHivesOutListItem = BaseView.extend({
             .then(function(user){
                 that.$el.append(that.template({request: that.model.toJSON(), user: user.toJSON()}));
         });
-    }
-})
-
-
-Bees.Views.UserShortList = BaseView.extend({
-    subViews: [],
-    tagName: 'ul',
-    className: 'short-list',
-    initialize: function(opts){
-        var options = _.defaults({}, opts, {
-            $container: opts.$container,
-        })
-        options.$container.append(this.el);
-        this.render();
-    },
-    render: function(){
-        var that = this;
-        // this.$el.append(this.template());
-        this.collection.each(_.bind(this.renderChildren, this));
-    },
-    renderChildren: function(user){
-        this.subViews.push(
-            new Bees.Views.UserShortListItem({
-                $container: this.$el,
-                model: user
-            })
-        );
-    }
-
-})
-            
-Bees.Views.UserShortListItem = BaseView.extend({
-    tagName: 'li',
-    className: 'short-list-item',
-    template: Bees.templates.shortList,
-    initialize: function(opts){
-        var options = _.defaults({}, opts, {
-            $container: opts.$container,
-        })
-        options.$container.append(this.el);
-        this.render();
-    },
-    render: function(){
-        this.$el.append(this.template({user: this.model.toJSON()}));
     }
 })
