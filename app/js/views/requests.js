@@ -21,15 +21,20 @@ Bees.Views.Requests = BaseView.extend({
                 return !request.get('accepted');
         }));
 
+        if(Parse.User.current().get('userType') === 'beekeeper'){
+            var archivedCheck = 'archivedBeekeeper'
+        } else var archivedCheck = 'archivedFarmer'
+
         var accepted = new Parse.Collection(
             requests.filter(function(request){
-                return request.get('accepted') &&  (!request.get('archivedBeekeeper') || request.get('archivedFarmer')) ;
+                return request.get('accepted') &&  !request.get(archivedCheck) ;
         }));
         
         var archived = new Parse.Collection(
             requests.filter(function(request){
-                return request.get('archivedBeekeeper') || request.get('archivedFarmer');
+                return request.get(archivedCheck);
         }));            
+
 
         this.subViews.push(
             new Bees.Views.RequestList({
@@ -59,7 +64,6 @@ Bees.Views.RequestList = BaseView.extend({
     tagName: 'ul',
     subViews: [],
     className: 'request-list',
-    template: Bees.templates.requests.base,
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
             $container: opts.$container,
@@ -68,7 +72,7 @@ Bees.Views.RequestList = BaseView.extend({
         this.render();
     },
     render: function() {
-        this.$el.append(this.template())
+        this.$el.append()
         if (this.collection.length === 0){
             this.$el.append();
         }
