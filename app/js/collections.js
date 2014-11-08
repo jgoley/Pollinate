@@ -10,11 +10,13 @@ Bees.Collections.UserSearchGeo = Parse.Collection.extend({
 	initialize: function(opts){
         var options = _.defaults({}, opts, {
             distance: opts.distance,
-            userType: opts.userType
+            userType: opts.userType,
+            limit: opts.limit
         });
         this.query = new Parse.Query('User')
                         .equalTo('userType', options.userType)
-                        .withinMiles('geoCenter', Parse.User.current().get('geoCenter'), options.distance);
+                        .withinMiles('geoCenter', Parse.User.current().get('geoCenter'), options.distance)
+                        .limit(options.limit);
 	},
     model: Bees.Models.User,
 });
@@ -46,11 +48,13 @@ Bees.Collections.NameSearch = Parse.Collection.extend({
 Bees.Collections.UserReviews = Parse.Collection.extend({
     initialize: function(opts){
         var options = _.defaults({}, opts, {
-            user: opts.user
+            user: opts.user,
+            limit: opts.limit
         });
         this.query = new Parse.Query('Reviews')
             .equalTo('reviewee', options.user).
-            ascending('createdAt');
+            ascending('createdAt')
+            .limit();
     },
     model: Bees.Models.Review,
 });

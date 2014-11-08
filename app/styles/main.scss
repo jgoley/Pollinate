@@ -53,10 +53,23 @@ a {
     }
 }
 
+// Beekeeper
+
 .beekeeper{
     header{ 
         background:$beekeeperColor;
     }
+}
+
+.top-info{
+    @include outer-container;
+    margin-top:em(20px);
+}
+.beekeeper-details{
+    @include span-columns(5 of 10);
+}
+.hives-out{
+    @include span-columns(5 of 10);
 }
 
 .farmer{
@@ -115,10 +128,8 @@ form.search{
 }
 
 .main-container {
-    // @include outer-container;
-    // max-width: 100%;
-    // @include span-columns(12);
-    margin: em(60px) 0;
+    @include outer-container;
+    $max-width: 1000px;
     button {
         background: $primary;
         padding: em(10px) em(20px);

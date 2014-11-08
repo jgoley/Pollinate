@@ -43,6 +43,7 @@ Bees.Views.UserReviews = BaseView.extend({
 
 Bees.Views.UserReviewsList = BaseView.extend({
     tagName: 'ul',
+    className: 'review-list',
     subViews: [],
     initialize: function(opts) {
  
@@ -71,6 +72,7 @@ Bees.Views.UserReviewsList = BaseView.extend({
 Bees.Views.UserReviewsListItem = BaseView.extend({
 
     tagName: 'li',
+    className: 'review-list-item',
     template: Bees.templates.reviews.listItem,
     initialize: function(opts) {
         _.invoke(this.subViews, 'dispose');
