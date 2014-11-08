@@ -10,7 +10,7 @@ this["Bees"]["templates"]["beekeeperIndex"] = Handlebars.template({"compiler":[6
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<h1>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</h1>\n\n<div class=\"requests\"></div>\n\n<div class=\"hive-groups\"></div>";
+    + "</h1>\n\n<div class=\"basic-info\"></div>\n<div class=\"requests\"></div>\n";
 },"useData":true});
 this["Bees"]["templates"]["farmerIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -147,6 +147,31 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
     + "\" placeholder=\"Crop\">\n<input type=\"text\" name=\"farmAcerage\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+},"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
+this["Bees"]["templates"]["beekeeperIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<div class=\"basic-info\"></div>\n<div class=\"requests\"></div>";
+  },"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"]["details"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "You have "
+    + escapeExpression(((helper = (helper = helpers.hivesAvailable || (depth0 != null ? depth0.hivesAvailable : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"hivesAvailable","hash":{},"data":data}) : helper)))
+    + " out of "
+    + escapeExpression(((helper = (helper = helpers.hivesTotal || (depth0 != null ? depth0.hivesTotal : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"hivesTotal","hash":{},"data":data}) : helper)))
+    + " hives available\n";
+},"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"]["hivesOut"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<h1>Hives currently out:</h1>";
+  },"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "\n"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.startDate : stack1), depth0))
+    + " - "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
+    + "\n\n";
 },"useData":true});
 this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
 this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

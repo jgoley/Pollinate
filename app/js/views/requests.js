@@ -6,7 +6,7 @@ Bees.Views.RequestList = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.html(this.el);
+        options.$container.append(this.el);
         this.render();
     },
     render: function() {
@@ -33,7 +33,6 @@ Bees.Views.RequestListItem = BaseView.extend({
         'click .delete': 'deleteRequest',
     },
     initialize: function(opts) {
-        _.invoke(this.subViews, 'dispose');
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
@@ -53,6 +52,7 @@ Bees.Views.RequestListItem = BaseView.extend({
         this.listenTo(this.model, 'change:delete', this.render);
     },
     render: function() {
+        _.invoke(this.subViews, 'dispose');
         var that = this;
         var request = this.model;
         var formattedDates = {
