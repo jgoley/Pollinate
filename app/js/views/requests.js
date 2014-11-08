@@ -23,17 +23,17 @@ Bees.Views.Requests = BaseView.extend({
 
         var accepted = new Parse.Collection(
             requests.filter(function(request){
-                return request.get('accepted') &&  !request.get('archivedBeekeeper');
+                return request.get('accepted') &&  (!request.get('archivedBeekeeper') || request.get('archivedFarmer')) ;
         }));
         
         var archived = new Parse.Collection(
             requests.filter(function(request){
-                return request.get('archivedBeekeeper');
+                return request.get('archivedBeekeeper') || request.get('archivedFarmer');
         }));            
 
         this.subViews.push(
             new Bees.Views.RequestList({
-                $container: this.$el,
+                $container: $('.request-container'),
                 collection: unAccepted,
                 // info: {title: 'Un-accepted Requests', class:'unAccepted'}
         }));
@@ -92,6 +92,7 @@ Bees.Views.RequestListItem = BaseView.extend({
         'click .archive': 'archiveRequest',
         'click .cancel': 'cancelRequest',
         'click .delete': 'deleteRequest',
+        'click .more-info': 'moreInfo'
     },
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -162,10 +163,14 @@ Bees.Views.RequestListItem = BaseView.extend({
     archiveRequest: function(){
         var user = Parse.User.current();
         var request = this.model;
-        user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
-        user.save();
-        request.set('archivedBeekeeper', true);
-        request.set('archivedBeekeeperDate', new Date());
+        if(user.get('userType') === 'beekeeper'){
+            user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
+            user.save();
+            request.set('archivedBeekeeper', true);
+            request.set('archivedBeekeeperDate', new Date());
+        } else{
+            request.set('archivedFarmer', true);
+        }
         request.save();
     },
     cancelRequest: function(){
@@ -185,4 +190,8 @@ Bees.Views.RequestListItem = BaseView.extend({
             this.dispose();
         }
     },
+    moreInfo: function(){
+        console.log('asdfasdf');
+        this.$el.find('ul').toggleClass('hidden');
+    }
 })

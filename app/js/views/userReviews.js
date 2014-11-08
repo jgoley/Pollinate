@@ -135,7 +135,7 @@ Bees.Views.UserReviewsAdd = BaseView.extend({
     className: 'review',
     events: {
         'submit': 'submitReview',
-        'click .cancel-review': 'cancel'
+        'click .cancel-review': 'cancel',
     },
 
     template: Bees.templates.reviews.add,

@@ -1,12 +1,8 @@
 {{!-- Requests on Farmer pages --}}
 
-<div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archived}}archived {{/if}}">
-	{{#if request.accepted}}
-	<h1>Accepted!</h1>
-	{{else}}
-	<h1>Pending!</h1>
-	{{/if}}
-	<ul>
+<div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedFarmer}}archived {{/if}}">
+	<p>{{request.numHives}} hives from {{user.username}}</p>
+	<ul class='hidden'>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
 		<li>Cost: ${{request.totalCost}}</li>
@@ -14,9 +10,10 @@
 		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
 		<li>Requested: {{formattedDates.createdAt}}</li>
 		{{#if request.archivedFarmer}}
-			<li>Archived: {{formattedDates.archivedFarmerate}}</li>
+			<li>Archived: {{formattedDates.archivedFarmerDate}}</li>
 		{{/if}}
 	</ul>
+	<div class="actions">
 {{#if request.accepted}}
 	{{#unless request.archivedFarmer}}
 		<button class='archive'>Archive</button>
@@ -24,4 +21,6 @@
 {{else}}
 	<button class='delete'>Cancel Request</button>
 {{/if}}
+	<button class='more-info'>More Info</button>
+	</div>
 </div>
