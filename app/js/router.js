@@ -26,10 +26,11 @@ Bees.Router = Parse.Router.extend({
 
     index: function() {
         disposeViews();
+        console.log("The Current User:",Parse.User.current());
         if (!this.currentUser) {
             this.goLogin();
         } else {
-            if (this.checkUserType()) {
+            if (Parse.User.current().get('userType') == 'beekeeper') {
                 new Bees.Collections.Requests({
                     user: Parse.User.current()
                 }).fetch().then(function(collection){
@@ -131,7 +132,8 @@ Bees.Router = Parse.Router.extend({
             new Bees.Collections.UserReviews({
                 user: this.currentUser
             }).fetch().then(function(reviews){
-                if(reviews > 0){
+                console.log(reviews)
+                if(reviews.length > 0){
                     Bees.currentView = new Bees.Views.UserReviewsList({
                         $container: $('.main-container'),
                         collection: reviews

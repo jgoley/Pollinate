@@ -38,7 +38,7 @@ Bees.Views.UserReviews = BaseView.extend({
                     })
                 );  
             } else {
-                that.$el.append('<p>No user ratings</p>');
+                that.$el.append('<p>No user reviews</p>');
             }
         });
     },
@@ -55,9 +55,9 @@ Bees.Views.UserReviewsList = BaseView.extend({
         var options = _.defaults({}, opts, {
             $container: opts.$container,
         });
-        options.$container.html(this.el);
+        options.$container.append(this.el);
         this.render();
-        this.listenTo(this.collection, 'add', this.render); 
+        this.listenTo(this.collection, 'change', this.render); 
     },
     render: function() {
         _.invoke(this.subViews, 'dispose');

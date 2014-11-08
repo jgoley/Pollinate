@@ -27,7 +27,7 @@ Bees.Views.FarmerIndex = BaseView.extend({
 
         this.subViews.push(
             new Bees.Views.RequestList({
-                $container: $('.request-container'),
+                $container: $('.request-list-container'),
                 collection: unAccepted,
                 info: {title: 'Un-accepted Requests', class:'unAccepted'}
         }));

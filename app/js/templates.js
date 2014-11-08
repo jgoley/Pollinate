@@ -4,7 +4,7 @@ this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<div class='"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></section>\n<footer></footer>\n</div>";
+    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -195,7 +195,7 @@ this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":
 },"useData":true});
 this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
 this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"top-info\"></div>\n\n<div class=\"request-container\">\n	<h1>Requests</h1>\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n<div class=\"near-users\">\n	<a href=\"#/search\">Find More</a>\n</div>\n\n<div class=\"review-container\">\n	<h1>Reviews</h1>\n</div>\n\n";
+  return "<div class=\"top-info\"></div>\n\n<div class=\"request-container\">\n	<h1>Open Requests</h1>\n	<div class=\"request-list-container\"></div>\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n<div class=\"near-users\">\n	<a href=\"#/search\">Find More</a>\n</div>\n\n<div class=\"review-container\">\n	<h1>Reviews</h1>\n</div>\n\n";
   },"useData":true});
 this["Bees"]["templates"]["hiveGroups"] = this["Bees"]["templates"]["hiveGroups"] || {};
 this["Bees"]["templates"]["hiveGroups"]["UserListItem"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -263,55 +263,6 @@ this["Bees"]["templates"]["hiveGroups"]["listUser"] = Handlebars.template({"comp
   return "<h1>Hive groups of "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
     + "</h1>";
-},"useData":true});
-this["Bees"]["templates"]["newUser"] = this["Bees"]["templates"]["newUser"] || {};
-this["Bees"]["templates"]["newUser"]["beekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<label for=\"hivesTotal\">Total number of Hives Available</label><input type=\"text\" name=\"hivesAvailable\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
-    + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
-    + "\" placeholder=\"\">\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"text\" name=\"geoRangeRadius\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"text\" name=\"maxDistFree\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"costPerMile\">Cost Per Mile</label><input type=\"text\" name=\"costPerMile\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
-    + "\" placeholder=\"$\">";
-},"useData":true});
-this["Bees"]["templates"]["newUser"]["farmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<input type=\"text\" name=\"crop\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
-    + "\" placeholder=\"Crop\">\n<input type=\"text\" name=\"farmAcerage\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
-    + "\" placeholder=\"Farm acerage\">";
-},"useData":true});
-this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<input type=\"text\" name=\"username\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"Email address\">\n<input type=\"email\" name=\"email\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"Confirm Email address\">\n<select name='userType' class='userType'>\n	<option>User Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input type=\"password\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
-    + "\" name=\"password\" type=\"password\" placeholder=\"password\">\n	<input type=\"password\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
-    + "\" placeholder=\"Confirm password\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\" name=\"businessName\" placeholder=\"Name of Business\">\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
-    + "\" name=\"firstName\" placeholder=\"First Name\">\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "\" name=\"lastName\" placeholder=\"Last Name\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
-    + "\" name=\"address\" placeholder=\"Street Address\">\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" name=\"city\" placeholder=\"City\">\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
-    + "\" name=\"state\" placeholder=\"State\">\n	<input type=\"text\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" name=\"zipCode\" placeholder=\"Zip Code\">\n</div>\n\n<div class=\"userType-info\">\n	\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -430,6 +381,55 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(13, data),"inverse":this.program(16, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>";
+},"useData":true});
+this["Bees"]["templates"]["newUser"] = this["Bees"]["templates"]["newUser"] || {};
+this["Bees"]["templates"]["newUser"]["beekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<label for=\"hivesTotal\">Total number of Hives Available</label><input type=\"text\" name=\"hivesAvailable\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
+    + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
+    + "\" placeholder=\"\">\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"text\" name=\"geoRangeRadius\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
+    + "\" placeholder=\"miles\">\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"text\" name=\"maxDistFree\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
+    + "\" placeholder=\"miles\">\n<label for=\"costPerMile\">Cost Per Mile</label><input type=\"text\" name=\"costPerMile\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
+    + "\" placeholder=\"$\">";
+},"useData":true});
+this["Bees"]["templates"]["newUser"]["farmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<input type=\"text\" name=\"crop\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
+    + "\" placeholder=\"Crop\">\n<input type=\"text\" name=\"farmAcerage\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
+    + "\" placeholder=\"Farm acerage\">";
+},"useData":true});
+this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<input type=\"text\" name=\"username\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
+    + "\" placeholder=\"Email address\">\n<input type=\"email\" name=\"email\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
+    + "\" placeholder=\"Confirm Email address\">\n<select name='userType' class='userType'>\n	<option>User Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input type=\"password\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
+    + "\" name=\"password\" type=\"password\" placeholder=\"password\">\n	<input type=\"password\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
+    + "\" placeholder=\"Confirm password\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
+    + "\" name=\"businessName\" placeholder=\"Name of Business\">\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
+    + "\" name=\"firstName\" placeholder=\"First Name\">\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
+    + "\" name=\"lastName\" placeholder=\"Last Name\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
+    + "\" name=\"address\" placeholder=\"Street Address\">\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
+    + "\" name=\"city\" placeholder=\"City\">\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
+    + "\" name=\"state\" placeholder=\"State\">\n	<input type=\"text\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
+    + "\" name=\"zipCode\" placeholder=\"Zip Code\">\n</div>\n\n<div class=\"userType-info\">\n	\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
 this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
 this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
