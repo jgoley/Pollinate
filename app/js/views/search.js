@@ -11,7 +11,7 @@ Bees.Views.Search = BaseView.extend({
         this.queryText = options.queryText;
         this.userType = Parse.User.current().get('userType');
         if (this.userType == 'beekeeper') this.searchType = 'farmer'
-            else this.searchType = 'beekeeper'
+        else this.searchType = 'beekeeper'
         this.render();
     },
 
@@ -19,7 +19,6 @@ Bees.Views.Search = BaseView.extend({
         _.invoke(this.subViews, 'dispose');
         var that = this;
         this.$el.append(this.template());
-        console.log("!!!!!!!!!!!!!!!!!!!", this.queryText);
         if (this.userType === 'farmer') {
 
             if (this.queryText) {
@@ -36,25 +35,38 @@ Bees.Views.Search = BaseView.extend({
                         userType: that.searchType,
                         $container: $('.form-container')
                     }));
+                    that.subViews.push(
+                        new Bees.Views.Map({
+                            $container: that.$el,
+                            collection: that.collection,
+                            radius: that.radius
+                        })
+                    );
                 });
             }
 
         } else {
-
             if (this.queryText) {
                 this.searchByText('farmer');
             } else {
-
-
                 new Bees.Collections.UserSearchGeo({
                     userType: 'farmer',
                     distance: 200,
                     limit: 5,
-                }).fetch().then(function(beekeepers) {
+                }).fetch().then(function(farmers) {
+                    console.log("!!!!!!!!!!!!!!!!!!!",farmers)
                     that.subViews.push(new Bees.Views.SearchResultsList({
                         $container: $('.search-results-container'),
-                        collection: beekeepers
+                        collection: farmers
                     }));
+
+                    that.subViews.push(
+                    new Bees.Views.Map({
+                        $container: $('.search-results-container'),
+                        collection: farmers,
+                        radius: that.radius
+                    })
+                );
                 });
 
                 that.subViews.push(new Bees.Views.NameSearch({
@@ -66,26 +78,27 @@ Bees.Views.Search = BaseView.extend({
                     userType: that.searchType,
                     $container: $('.form-container')
                 }));
+
             }
         }
     },
 
-    searchByText: function(){
+    searchByText: function() {
         var that = this;
         var searchResults = new Bees.Collections.NameSearch({
-                    userType: this.searchType,
-                    business: this.queryText.toLowerCase()
-                });
-                searchResults.fetch().then(function() {
-                    if (searchResults.length > 0) {
-                        that.subViews.push(new Bees.Views.SearchResults({
-                            collection: searchResults,
-                            $container: $('.search-results-container')
-                        }));
-                    } else {
-                        $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
-                    }
-                });
+            userType: this.searchType,
+            business: this.queryText.toLowerCase()
+        });
+        searchResults.fetch().then(function() {
+            if (searchResults.length > 0) {
+                that.subViews.push(new Bees.Views.SearchResults({
+                    collection: searchResults,
+                    $container: $('.search-results-container')
+                }));
+            } else {
+                $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+            }
+        });
     }
 
 });
@@ -123,7 +136,6 @@ Bees.Views.NameSearch = BaseView.extend({
             business: data.businessName.toLowerCase()
         });
         searchResults.fetch().then(function() {
-            console.log("The search results", searchResults);
             if (searchResults.length > 0) {
                 that.subViews.push(new Bees.Views.SearchResults({
                     collection: searchResults,

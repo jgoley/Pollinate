@@ -1,6 +1,6 @@
 Bees.Views.HeaderView = BaseView.extend({
+    subViews: [],
     template: Bees.templates.header,
-
     events: {
         'click .log-out': 'logout',
         'click .log-in': 'login',
@@ -23,11 +23,12 @@ Bees.Views.HeaderView = BaseView.extend({
             var user = Parse.User.current().toJSON()
         }
         this.$el.html(this.template({session: Bees.Session.toJSON(), user: user}));
-        new Bees.Views.NavView({
-            $container:$('.menu'),
-            model: Bees.Session,
-            user: user
-        })
+        this.subViews.push(
+            new Bees.Views.NavView({
+                $container:$('.menu'),
+                model: Bees.Session,
+                user: user
+            }));
     },
 
     login: function() {
