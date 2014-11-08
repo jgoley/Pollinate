@@ -1,8 +1,5 @@
 function sendMail(params) {
-    Parse.Cloud.run('sendEmail', {
-        message: 'A farmer is requesting some of your hives',
-        subject: 'New Request for bees'
-    }, {
+    Parse.Cloud.run('sendEmail', params, {
         success: function(result) {
             console.log(result)
         },

@@ -1,9 +1,11 @@
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
+$text: rgba(75, 75, 75, 1);
+
 $farmerPrimary: rgba(90, 129, 107, .9);
 $farmerSecondary: rgba(145, 115, 80, 1);
-$farmerText: rgba(75, 75, 75, 1);
+$farmerText: $text;
 
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(247, 171, 59, 0.9);
@@ -30,7 +32,7 @@ body {
     font-size: 100%;
     padding: 0;
     margin: 0;
-    color: #333;
+    color: $text;
     text-shadow: 0 1px 0 rgba(255,255,255,.4);
 }
 
@@ -114,6 +116,13 @@ form.user, form.search, form.review {
         height: 2.5em;
         background: #FFF;
         margin: em(30px) 0;
+    }
+}
+
+form.search{
+    input{
+        display: inline-block;
+        width:auto;
     }
 }
 

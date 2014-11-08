@@ -120,7 +120,13 @@ Bees.Views.Request = BaseView.extend({
         newRequest.set('endDate', endDate);
         newRequest.set(this.request.toJSON());
         newRequest.save().then(function() {
-            sendMail({});
+            var email = {
+                message: 'Go to the website and accept the request',
+                subject: 'New Request for bees',
+                from: 'jgoley@gmail.com',
+                to: beekeeper.get('email'),
+            }
+            sendMail(email);
             that.dispose();
         });
     }

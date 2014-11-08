@@ -152,16 +152,16 @@ Bees.Router = Parse.Router.extend({
         });
     },
 
-    map: function() {
-        disposeViews();
-        var collection = new Bees.Collections.User();
-        collection.fetch().then(function() {
-            Bees.currentView = new Bees.Views.Map({
-                $container: $('.main-container'),
-                collection: collection,
-            });
-        });
-    },
+    // map: function() {
+    //     disposeViews();
+    //     var collection = new Bees.Collections.User();
+    //     collection.fetch().then(function() {
+    //         Bees.currentView = new Bees.Views.Map({
+    //             $container: $('.main-container'),
+    //             collection: collection,
+    //         });
+    //     });
+    // },
 
     checkUserType: function() {
         if (this.userType === 'beekeeper')

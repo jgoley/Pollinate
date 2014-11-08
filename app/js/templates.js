@@ -4,7 +4,7 @@ this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<div class='"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>\n</div>";
+    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></section>\n<footer></footer>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -45,21 +45,19 @@ this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-
   return "<div id=\"map_canvas\"></div>";
   },"useData":true});
 this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "        <li><a href=\"#/\">Home</a></li>\n";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "<ul>\n\n        <li><a href=\"#/\">Home</a></li>\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "        <li><a href=\"#/reviews\">Reviews</a></li>\n\n";
+  return buffer + "        <li><a href=\"#/reviews\">Reviews</a></li>\n</ul>\n";
 },"2":function(depth0,helpers,partials,data) {
   return "    		<li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
   return "            <li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search\">Search for Beekeepers</a></li>\n";
-  },"6":function(depth0,helpers,partials,data) {
-  return "    	<li><a href=\"\">Search Farmers</a></li>\n    	<li><a href=\"\">Search Beekeepers</a></li>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<ul>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(6, data),"data":data});
+  var stack1, buffer = "";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "\n</ul>";
+  return buffer;
 },"useData":true});
 this["Bees"]["templates"]["shortList"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;

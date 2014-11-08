@@ -1,5 +1,6 @@
-<ul>
     {{#if session.user}}
+<ul>
+
         <li><a href="#/">Home</a></li>
     	{{#if_eq user.userType "beekeeper"}}
     		<li><a href="#/requests">Requests</a></li>
@@ -9,10 +10,10 @@
     		<li><a href="#/search">Search for Beekeepers</a></li>
     	{{/if_eq}}
         <li><a href="#/reviews">Reviews</a></li>
-
+{{!-- 
     {{else}}
-    	<li><a href="">Search Farmers</a></li>
-    	<li><a href="">Search Beekeepers</a></li>
-    {{/if}}
-
+    	<li><a href="#/search">Search Farmers</a></li>
+    	<li><a href="#/search">Search Beekeepers</a></li>
+    {{/if}} --}}
 </ul>
+{{/if}}

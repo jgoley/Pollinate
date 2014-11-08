@@ -147,7 +147,17 @@ Bees.Views.RequestListItem = BaseView.extend({
         user.set('hivesAvailable', user.get('hivesAvailable') - this.model.get('numHives'));
         user.save();
         // Send Confirmation Email to farmer
-        // sendMail({});
+        request.get('farmer').fetch().done(function(farmer){
+            var email = {
+                subject: 'Request for Bees Accepted!',
+                message: 'Your request for bees has been accepted. Details:'+Parse.User.current().get('username')+' '+request.id+' '+request.get('startDate')+' '+request.get('endDate')
+                ,
+                from: 'jgoley.etc@gmail.com',
+                to: 'jgoley@gmail.com',//farmer.get('email'),
+            };
+            console.log(farmer, email.message);
+            sendMail(email);  
+        })
     },
     archiveRequest: function(){
         var user = Parse.User.current();
@@ -160,7 +170,13 @@ Bees.Views.RequestListItem = BaseView.extend({
     },
     cancelRequest: function(){
         this.model.destroy();
-        // sendMail({});
+        var email = {
+            subject: 'Request for Bees Canceled',
+            message: Parse.User.current().get('username')+' canceled their request for beens',
+            from: 'jgoley.etc@gmail.com',
+            to: 'jgoley@gmail.com',//beekeeper.get('email'),
+        }
+        sendMail(email);
     },
     deleteRequest: function(){
         var check = confirm("Are you sure you want to delete the request?");

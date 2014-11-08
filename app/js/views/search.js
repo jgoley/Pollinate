@@ -38,7 +38,7 @@ Bees.Views.Search = BaseView.extend({
                     that.subViews.push(
                         new Bees.Views.Map({
                             $container: that.$el,
-                            collection: that.collection,
+                            collection: beekeepers,
                             radius: that.radius
                         })
                     );
