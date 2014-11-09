@@ -1,7 +1,6 @@
 (function(){
 
-    'use strict'
-
+    'use strict';
 
     Bees.Router = Parse.Router.extend({
 
@@ -54,9 +53,7 @@
                             collection: collection
                         });
                     })
-
                 }
-
             }
         },
 
@@ -101,17 +98,6 @@
                 })
             }
         },
-
-        // reviews: function(user_id) {
-        //     disposeViews();
-        //     var query = new Parse.Query(Bees.Models.User);
-        //     query.get(user_id).then(function(user) {
-        //         Bees.currentView = new Bees.Views.UserReviews({
-        //             model: user,
-        //             $container: $('.main-container')
-        //         })
-        //     })
-        // },
 
         requests: function() {
             disposeViews();
@@ -158,17 +144,6 @@
                 $container: $('.main-container'),
             });
         },
-
-        // map: function() {
-        //     disposeViews();
-        //     var collection = new Bees.Collections.User();
-        //     collection.fetch().then(function() {
-        //         Bees.currentView = new Bees.Views.Map({
-        //             $container: $('.main-container'),
-        //             collection: collection,
-        //         });
-        //     });
-        // },
 
         checkUserType: function() {
             if (this.userType === 'beekeeper')
