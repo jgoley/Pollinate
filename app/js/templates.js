@@ -4,7 +4,7 @@ this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<div class='"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"></section>\n<footer></footer>\n</div>";
+    + "'>\n<header></header>\n<section class='menu'></section>\n<section class=\"main-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>\n<footer></footer>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -315,7 +315,7 @@ this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":
 },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"request-container\"></div>";
+  return "<div class=\"request-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></div>";
   },"useData":true});
 this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "accepted";

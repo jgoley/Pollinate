@@ -2,21 +2,18 @@
 
     'use strict';
 
-
     Bees.Views.Requests = BaseView.extend({
+        className: 'request-container',
         subViews: [],
-        template: Bees.templates.requests.base,
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
-            options.$container.append(this.el);
+            options.$container.html(this.el);
             this.render();
         },
         render: function() {
             var requests = this.collection;
-            this.$el.append(this.template())
-
             if (this.collection.length === 0){
                 this.$el.append('<p>Currently, you have no requests</p>')
             }

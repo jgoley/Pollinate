@@ -2,7 +2,6 @@
 
     'use strict';
 
-
     Bees.Views.UserReviews = BaseView.extend({
         className: 'user-reviews',
         subViews: [],
