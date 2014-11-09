@@ -3,12 +3,16 @@
 
 $text: rgba(75, 75, 75, 1);
 
+$action: rgba(247, 122, 59, .15);
+
 $farmerPrimary: rgba(90, 129, 107, 0.9);
 $farmerSecondary: rgba(145, 115, 80, 1);
+$farmerSecondarySubtle: rgba(145, 115, 80, .2);
 $farmerText: $text;
 
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(98, 152, 208, 1);
+$beekeeperSecondarySubtle: rgba(98, 152, 208, .2);
 
 $subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
@@ -52,7 +56,8 @@ body {
 form,
 body,
 ul,
-input{
+input,
+button{
     @extend .sourceFont;
     color: $text;
     @extend .white-shadow;
@@ -84,9 +89,10 @@ ul, li {
 a {
     color: $primary;
     text-decoration: none;
+    transition: .2s;
     &:hover {
-        color: light-blue;
         text-shadow: none;
+        transition: .2s;
     }
 }
 
@@ -102,13 +108,15 @@ a {
     transition: .3s;
 }
 
+.short-list{
+    margin-bottom:em(15px);
+}
 
 .button{
     padding:10px 20px;
     color:#fff;
     border-radius: 3px;
     display: block;
-    width:30%;
     &:hover{
         // @extend .white-shadow;
     }
@@ -118,8 +126,11 @@ a {
 .beekeeper {
     header {
         background: $beekeeperPrimary;
+        a{
+            color: #000;
+        }
     }
-    .button{
+    .button, button{
         background: $beekeeperPrimary;
         color:$text;
         @extend .white-shadow;
@@ -128,6 +139,9 @@ a {
             color:#FFF;
             @extend .black-shadow;
         }
+    }
+    a{
+        color:$beekeeperSecondary
     }
 }
 
@@ -150,8 +164,11 @@ a {
     }
     .button{
         background: $farmerPrimary;
+        @extend .black-shadow;
         &:hover{
             background: $farmerSecondary;
+            color:#FFF;
+            @extend .black-shadow;
         }
     }
 }
@@ -238,19 +255,15 @@ form.search {
         }
     }
     button {
-        background: $primary;
         padding: em(10px) em(20px);
         border-radius: 4px;
-        color: #FFF;
+        color: $text;
         border: none;
         transition: .2s;
+        font-size: .8em;
         &:hover {
-            background: #999;
             transition: .2s;
         }
-    }
-    .delete {
-        background: #999;
     }
 }
 
@@ -309,6 +322,7 @@ footer {
     background:$beekeeperPrimary;
 }
 .user-profile{
+    margin-top:em(20px);
     h1{
         font-size: 2em;
     }

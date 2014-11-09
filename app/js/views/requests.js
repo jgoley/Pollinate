@@ -43,9 +43,9 @@
             if(notAccepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request'),
+                        $container: $('.requests'),
                         collection: notAccepted,
-                        info: {title: 'Un-accepted Requests', class:'unAccepted'}
+                        info: {title: 'Pending Requests', class:'notAccepted'}
                 }));
             } 
             // else {
@@ -69,7 +69,7 @@
                         info: {title: 'Archived', class:'archived'}
                 }));
             } else{
-                $('.requests').append('<a href="#/requests/archived">View Archived Requests</a>');
+                $('.requests').append('<a href="#/requests/archived" class="button">View Archived Requests</a>');
             }
         },
 
@@ -89,6 +89,7 @@
             this.render();
         },
         render: function() {
+            //this.$el.addClass(this.info.class);
             if (this.info){
                 this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>')
             }
@@ -105,7 +106,7 @@
             }));
         }
 
-    })
+    });
 
     Bees.Views.RequestListItem = BaseView.extend({
         tagName: 'li',
@@ -218,6 +219,77 @@
             this.$el.find('ul').toggleClass('hidden');
             this.$el.toggleClass('selected');
         }
+    });
+
+    Bees.Views.BeekeeperUpcomingRequestsList = BaseView.extend({
+        tagName: 'ul',
+        subViews: [],
+        className: 'upcomming-requests',
+        initialize: function(opts) {
+            var options = _.defaults({}, opts, {
+                $container: opts.$container,
+                info: opts.info
+            });
+            this.info =  options.info;
+            options.$container.append(this.el);
+            this.render();
+        },
+        render: function() {
+            this.$el.append('<h1 class="main-title">Upcomming requests:</h1>');
+            if (this.info){
+                this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>');
+            }
+            if (this.collection.length === 0){
+                this.$el.append();
+            }
+            this.collection.each(_.bind(this.renderChildren, this));
+        },
+        renderChildren: function(request) {
+            this.subViews.push(
+                new Bees.Views.BeekeeperUpcomingRequestsListItem({
+                model: request,
+                $container: this.$el,
+            }));
+        }
+
+    });
+
+    Bees.Views.BeekeeperUpcomingRequestsListItem = BaseView.extend({
+        tagName: 'li',
+        className: 'request',
+        template: Bees.templates.beekeeperIndex.upcomming,
+        initialize: function(opts) {
+            var options = _.defaults({}, opts, {
+                $container: opts.$container,
+            });
+            options.$container.append(this.el);
+            this.render();
+        },
+        render: function() {
+            _.invoke(this.subViews, 'dispose');
+            var request = this.model;
+            var formattedDates = {
+                'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
+                'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
+                'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
+            };
+            this.userType = Parse.User.current().get('userType');
+            if(this.userType === 'beekeeper'){
+                var w = 'farmer';
+            }   else{
+                var w = 'beekeeper';
+            }
+            var that = this;
+            var user = new Parse.Query(Bees.Models.User);
+            user.get(request.get(w).id)
+                .then(function(user){
+                    that.$el.html(that.template({
+                        request: request.toJSON(),
+                        user: user.toJSON(),
+                        formattedDates: formattedDates 
+                }));
+            })
+        },
     });
 
 })();

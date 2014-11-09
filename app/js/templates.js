@@ -56,13 +56,13 @@ this["Bees"]["templates"]["shortList"] = Handlebars.template({"compiler":[6,">= 
     + "</a>";
 },"useData":true});
 this["Bees"]["templates"]["userLanding"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  return "<section><div class=\"top-info\"></div></section>\n";
+  return "<section><div class=\"active-request-info\"></div></section>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = escapeExpression(helpers.log.call(depth0, depth0, {"name":"log","hash":{},"data":data}))
     + "\n\n<section class='requests-container'>\n	<div class=\"requests-list-container\">\n		<div class='requests'>\n			<h1 class=\"main-title\">Open Requests</h1>\n		</div>\n		<a href=\"#/requests\" class=\"button\">View All Requests</a>\n	</div>\n</section>\n\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.userType : depth0), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\" class=\"button\">Find More</a>\n	</div>\n</section>\n\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews-list\"></div>\n		<a href=\"#/reviews\" class=\"button\">View all Reviews</a>\n	</div>\n</section>";
+  return buffer + "\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\" class=\"button\">Find More</a>\n	</div>\n</section>\n\n<section class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews\"></div>\n		<a href=\"#/reviews\" class=\"button\">View all Reviews</a>\n	</div>\n</section>";
 },"useData":true});
 this["Bees"]["templates"]["account"] = this["Bees"]["templates"]["account"] || {};
 this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -100,9 +100,7 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
     + "\" placeholder=\"Street Address\" required>\n	<input type=\"text\" name=\"city\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" placeholder=\"City\" required>\n	<input type=\"text\" name=\"state\" value=\""
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
-    + "\" placeholder=\"State\" required>\n	<input type=\"text\" name=\"zipCode\" value=\""
+    + "\" placeholder=\"City\" required>\n	<select name=\"state\" required>\n		<option value=\"\">State</option>\n		<option value=\"AL\">Alabama</option>\n		<option value=\"AK\">Alaska</option>\n		<option value=\"AZ\">Arizona</option>\n		<option value=\"AR\">Arkansas</option>\n		<option value=\"CA\">California</option>\n		<option value=\"CO\">Colorado</option>\n		<option value=\"CT\">Connecticut</option>\n		<option value=\"DE\">Delaware</option>\n		<option value=\"DC\">District Of Columbia</option>\n		<option value=\"FL\">Florida</option>\n		<option value=\"GA\">Georgia</option>\n		<option value=\"HI\">Hawaii</option>\n		<option value=\"ID\">Idaho</option>\n		<option value=\"IL\">Illinois</option>\n		<option value=\"IN\">Indiana</option>\n		<option value=\"IA\">Iowa</option>\n		<option value=\"KS\">Kansas</option>\n		<option value=\"KY\">Kentucky</option>\n		<option value=\"LA\">Louisiana</option>\n		<option value=\"ME\">Maine</option>\n		<option value=\"MD\">Maryland</option>\n		<option value=\"MA\">Massachusetts</option>\n		<option value=\"MI\">Michigan</option>\n		<option value=\"MN\">Minnesota</option>\n		<option value=\"MS\">Mississippi</option>\n		<option value=\"MO\">Missouri</option>\n		<option value=\"MT\">Montana</option>\n		<option value=\"NE\">Nebraska</option>\n		<option value=\"NV\">Nevada</option>\n		<option value=\"NH\">New Hampshire</option>\n		<option value=\"NJ\">New Jersey</option>\n		<option value=\"NM\">New Mexico</option>\n		<option value=\"NY\">New York</option>\n		<option value=\"NC\">North Carolina</option>\n		<option value=\"ND\">North Dakota</option>\n		<option value=\"OH\">Ohio</option>\n		<option value=\"OK\">Oklahoma</option>\n		<option value=\"OR\">Oregon</option>\n		<option value=\"PA\">Pennsylvania</option>\n		<option value=\"RI\">Rhode Island</option>\n		<option value=\"SC\">South Carolina</option>\n		<option value=\"SD\">South Dakota</option>\n		<option value=\"TN\">Tennessee</option>\n		<option value=\"TX\">Texas</option>\n		<option value=\"UT\">Utah</option>\n		<option value=\"VT\">Vermont</option>\n		<option value=\"VA\">Virginia</option>\n		<option value=\"WA\">Washington</option>\n		<option value=\"WV\">West Virginia</option>\n		<option value=\"WI\">Wisconsin</option>\n		<option value=\"WY\">Wyoming</option>\n	</select>\n	<input type=\"text\" name=\"zipCode\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
     + "\" placeholder=\"Zip Code\" required>\n</div>\n\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data}));
@@ -179,15 +177,27 @@ this["Bees"]["templates"]["beekeeperIndex"]["hivesOut"] = Handlebars.template({"
   },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<a href=\"#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "\">"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</a>\n<p>Pickup date: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
-    + "</p>\n<a href=\"#/review/"
+  return "<a href=\"#/request/"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "\">more info</a>";
+    + "\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
+    + " to "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + " | Pickup date: "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
+    + "</a>\n";
+},"useData":true});
+this["Bees"]["templates"]["beekeeperIndex"]["upcomming"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<a href=\"#/request/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + " Due to "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + " on "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.startDate : stack1), depth0))
+    + "</a>";
 },"useData":true});
 this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
 this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -232,27 +242,27 @@ this["Bees"]["templates"]["newUser"]["farmer"] = Handlebars.template({"compiler"
 },"useData":true});
 this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class='form-block'>\n	<label>Username</label>\n	<input type=\"text\" name=\"username\" value=\"\" placeholder=\"\" required>\n</div>\n\n<div class='form-block email'>\n	<label>Email Address</label>\n	<input id=\"email\" type=\"email\" name=\"email\" value=\""
+  return "<div class='form-block'>\n	<label>Username</label>\n	<input type=\"text\" name=\"username\" value=\"\" placeholder=\"\" required>\n</div>\n<div class='form-block email'>\n	<label>Email Address</label>\n	<input id=\"email\" type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
     + "\" placeholder=\"youremail@domain.com\" required >\n	<label>Confirm Email Address</label>\n	<input type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"youremail@domain.com\" data-parsley-equalto=\"#email\" required>\n</div>\n\n<div class='form-block password'>\n	<label>Choose Account Type</label>\n	<select name='userType' class='userType' required>\n		<option value=\"\">Account Type</option>\n		<option value=\"beekeeper\">Beekeeper</option>\n		<option value=\"farmer\">Farmer</option>\n	</select>\n</div>\n\n<div class='form-block password'>\n	<label>Password</label>\n	<input id=\"pass\" type=\"password\" value=\""
+    + "\" placeholder=\"youremail@domain.com\" data-parsley-equalto=\"#email\" required>\n</div>\n<div class='form-block password'>\n	<label>Choose Account Type</label>\n	<select name='userType' class='userType' required>\n		<option value=\"\">Account Type</option>\n		<option value=\"beekeeper\">Beekeeper</option>\n		<option value=\"farmer\">Farmer</option>\n	</select>\n</div>\n<div class='form-block password'>\n	<label>Password</label>\n	<input id=\"pass\" type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
     + "\" name=\"password\" type=\"password\" placeholder=\"\" required data-parsley-minlength=\"3\">\n	<label>Confirm Password</label>\n	<input type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
-    + "\" name=\"password\" placeholder=\"\" data-parsley-equalto=\"#pass\" required data-parsley-minlength=\"3\">\n</div>\n\n<div class='form-block'>\n	<label>Name of Business</label>\n	<input type=\"text\" value=\""
+    + "\" name=\"password\" placeholder=\"\" data-parsley-equalto=\"#pass\" required data-parsley-minlength=\"3\">\n</div>\n<div class='form-block'>\n	<label>Name of Business</label>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "\" name=\"businessName\" placeholder=\"\" required>\n	<div class=\"name\">\n		<label>First name</label>\n		<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
     + "\" name=\"firstName\" placeholder=\"\" required>\n		<label>Last Name</label>\n		<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "\" name=\"lastName\" placeholder=\"\" required>\n	</div>\n</div>\n\n<div class='form-block address'>\n	<label>Street Address</label>\n	<input type=\"text\" value=\""
+    + "\" name=\"lastName\" placeholder=\"\" required>\n	</div>\n</div>\n<div class='form-block address'>\n	<label>Street Address</label>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
     + "\" name=\"address\" placeholder=\"Street Address\" required>\n	<div>\n		<label>City</label>\n		<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" name=\"city\" placeholder=\"City\" required>\n		<select name=\"state\" required>\n		<option value=\"\">State</option>\n		<option value=\"AL\">Alabama</option>\n		<option value=\"AK\">Alaska</option>\n		<option value=\"AZ\">Arizona</option>\n		<option value=\"AR\">Arkansas</option>\n		<option value=\"CA\">California</option>\n		<option value=\"CO\">Colorado</option>\n		<option value=\"CT\">Connecticut</option>\n		<option value=\"DE\">Delaware</option>\n		<option value=\"DC\">District Of Columbia</option>\n		<option value=\"FL\">Florida</option>\n		<option value=\"GA\">Georgia</option>\n		<option value=\"HI\">Hawaii</option>\n		<option value=\"ID\">Idaho</option>\n		<option value=\"IL\">Illinois</option>\n		<option value=\"IN\">Indiana</option>\n		<option value=\"IA\">Iowa</option>\n		<option value=\"KS\">Kansas</option>\n		<option value=\"KY\">Kentucky</option>\n		<option value=\"LA\">Louisiana</option>\n		<option value=\"ME\">Maine</option>\n		<option value=\"MD\">Maryland</option>\n		<option value=\"MA\">Massachusetts</option>\n		<option value=\"MI\">Michigan</option>\n		<option value=\"MN\">Minnesota</option>\n		<option value=\"MS\">Mississippi</option>\n		<option value=\"MO\">Missouri</option>\n		<option value=\"MT\">Montana</option>\n		<option value=\"NE\">Nebraska</option>\n		<option value=\"NV\">Nevada</option>\n		<option value=\"NH\">New Hampshire</option>\n		<option value=\"NJ\">New Jersey</option>\n		<option value=\"NM\">New Mexico</option>\n		<option value=\"NY\">New York</option>\n		<option value=\"NC\">North Carolina</option>\n		<option value=\"ND\">North Dakota</option>\n		<option value=\"OH\">Ohio</option>\n		<option value=\"OK\">Oklahoma</option>\n		<option value=\"OR\">Oregon</option>\n		<option value=\"PA\">Pennsylvania</option>\n		<option value=\"RI\">Rhode Island</option>\n		<option value=\"SC\">South Carolina</option>\n		<option value=\"SD\">South Dakota</option>\n		<option value=\"TN\">Tennessee</option>\n		<option value=\"TX\">Texas</option>\n		<option value=\"UT\">Utah</option>\n		<option value=\"VT\">Vermont</option>\n		<option value=\"VA\">Virginia</option>\n		<option value=\"WA\">Washington</option>\n		<option value=\"WV\">West Virginia</option>\n		<option value=\"WI\">Wisconsin</option>\n		<option value=\"WY\">Wyoming</option>\n	</select>\n\n	<label>Zip Code</label>\n	<input type=\"text\" value=\""
+    + "\" name=\"city\" placeholder=\"City\" required>\n		<select name=\"state\" required>\n			<option value=\"\">State</option>\n			<option value=\"AL\">Alabama</option>\n			<option value=\"AK\">Alaska</option>\n			<option value=\"AZ\">Arizona</option>\n			<option value=\"AR\">Arkansas</option>\n			<option value=\"CA\">California</option>\n			<option value=\"CO\">Colorado</option>\n			<option value=\"CT\">Connecticut</option>\n			<option value=\"DE\">Delaware</option>\n			<option value=\"DC\">District Of Columbia</option>\n			<option value=\"FL\">Florida</option>\n			<option value=\"GA\">Georgia</option>\n			<option value=\"HI\">Hawaii</option>\n			<option value=\"ID\">Idaho</option>\n			<option value=\"IL\">Illinois</option>\n			<option value=\"IN\">Indiana</option>\n			<option value=\"IA\">Iowa</option>\n			<option value=\"KS\">Kansas</option>\n			<option value=\"KY\">Kentucky</option>\n			<option value=\"LA\">Louisiana</option>\n			<option value=\"ME\">Maine</option>\n			<option value=\"MD\">Maryland</option>\n			<option value=\"MA\">Massachusetts</option>\n			<option value=\"MI\">Michigan</option>\n			<option value=\"MN\">Minnesota</option>\n			<option value=\"MS\">Mississippi</option>\n			<option value=\"MO\">Missouri</option>\n			<option value=\"MT\">Montana</option>\n			<option value=\"NE\">Nebraska</option>\n			<option value=\"NV\">Nevada</option>\n			<option value=\"NH\">New Hampshire</option>\n			<option value=\"NJ\">New Jersey</option>\n			<option value=\"NM\">New Mexico</option>\n			<option value=\"NY\">New York</option>\n			<option value=\"NC\">North Carolina</option>\n			<option value=\"ND\">North Dakota</option>\n			<option value=\"OH\">Ohio</option>\n			<option value=\"OK\">Oklahoma</option>\n			<option value=\"OR\">Oregon</option>\n			<option value=\"PA\">Pennsylvania</option>\n			<option value=\"RI\">Rhode Island</option>\n			<option value=\"SC\">South Carolina</option>\n			<option value=\"SD\">South Dakota</option>\n			<option value=\"TN\">Tennessee</option>\n			<option value=\"TX\">Texas</option>\n			<option value=\"UT\">Utah</option>\n			<option value=\"VT\">Vermont</option>\n			<option value=\"VA\">Virginia</option>\n			<option value=\"WA\">Washington</option>\n			<option value=\"WV\">West Virginia</option>\n			<option value=\"WI\">Wisconsin</option>\n			<option value=\"WY\">Wyoming</option>\n		</select>\n	</div>\n	<label>Zip Code</label>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" name=\"zipCode\" placeholder=\"Zip Code\" maxlength=\"5\" size=\"5\" required>\n</div>\n\n<div class=\"image\">\n	<label>Profile image <span class=\"detail\">(image of your farm or apiary)</span></label>\n	<input type=\"file\">\n</div>\n\n<div class=\"userType-info\"></div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
+    + "\" name=\"zipCode\" placeholder=\"Zip Code\" maxlength=\"5\" size=\"5\" required>\n</div>\n<div class=\"image\">\n	<label>Profile image <span class=\"detail\">(image of your farm or apiary)</span></label>\n	<input type=\"file\">\n</div>\n<div class=\"userType-info\"></div>\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

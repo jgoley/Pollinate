@@ -129,7 +129,7 @@
                 new Bees.Collections.RequestsArchived({
                     user: Parse.User.current(),
                 }).fetch().then(function(requests){
-                    Bees.currentView = new Bees.Views.RequestList({
+                    Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests
                     });

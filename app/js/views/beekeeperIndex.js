@@ -6,6 +6,7 @@
         className: 'landing',
         subViews: [],
         currentDate: moment().format('YYYY-MM-DD'),
+        currentDatePlus: moment().add(14, 'days').format('YYYY-MM-DD'),
         template: Bees.templates.userLanding,
         initialize: function(opts){
             var options = _.defaults({}, opts, {
@@ -19,8 +20,6 @@
             var requests = this.collection;
             this.$el.html(this.template(Parse.User.current().toJSON()));
 
-            console.log("!!!!!!!!!Requests",requests)
-
             var hivesOut = new Parse.Collection(
                 requests.filter(function(request){
                     return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
@@ -30,41 +29,56 @@
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
-            console.log('!!!!NOT', notAccepted);
 
-            this.subViews.push(
-                new Bees.Views.BeekeeperIndexInfo({
-                    $container: $('.top-info'),
+            var upcommingRequests = new Parse.Collection(
+                requests.filter(function(request){
+                    return request.get('startDate') >= that.currentDate && request.get('startDate') <= that.currentDatePlus && request.get('accepted');
             }));
 
+
+            // this.subViews.push(
+            //     new Bees.Views.BeekeeperIndexInfo({
+            //         $container: $('.active-request-info'),
+            // }));
+            
             this.subViews.push(
-                new Bees.Views.BeekeeperHivesOut({
-                    $container: $('.top-info'),
-                    collection: hivesOut
+                new Bees.Views.BeekeeperUpcomingRequestsList({
+                    $container: $('.active-request-info'),
+                    collection: upcommingRequests
             }));
+
+            if(hivesOut.length > 0){
+                this.subViews.push(
+                    new Bees.Views.BeekeeperHivesOut({
+                        $container: $('.active-request-info'),
+                        collection: hivesOut
+                }));
+            } else{
+                $('.requests').append('<p>Currently you have no open requests.</p>')
+            }
 
             if(notAccepted.length > 0){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request-list'),
+                        $container: $('.requests'),
                         collection: notAccepted,
                 }));
             } else{
-                $('.request-list').append('<p>Currently you have no open requests.</p>')
+                $('.requests').append('<p>Currently you have no open requests.</p>')
             }
 
             new Bees.Collections.UserReviews({
                 user: Parse.User.current(),
-                limit:5,
+                limit: 3,
             }).fetch().then(function(userReviews){
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
-                            $container: $('.reviews-list'),
+                            $container: $('.reviews'),
                             collection: userReviews
                         }))
                 } else{
-                    $('.reviews-list').append('<p>No user reviews.</p>')
+                    $('.reviews').append('<p>No user reviews.</p>')
                 }
             });
 
@@ -116,7 +130,7 @@
         render: function(){
             _.invoke(this.subViews, 'dispose');
             var that = this;
-            this.$el.append(this.template());
+            this.$el.append('<h1 class="main-title">Requests currently out:</h1>');
             this.collection.each(_.bind(this.renderChildren, this));
         },
         renderChildren: function(request){
@@ -157,6 +171,6 @@
                     that.$el.append(that.template({request: that.model.toJSON(), user: user.toJSON()}));
             });
         }
-    })
+    });
 
 })();

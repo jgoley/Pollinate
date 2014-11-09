@@ -5,6 +5,10 @@
 }
 
 
+.requests{
+    margin-bottom:em(15px);
+}
+
 .request {
     margin: 0 0 em(10px) 0;
     position: relative;
@@ -51,12 +55,12 @@
 }
 
 .accepted {
-    background: RGBA(0, 115, 0, 0.2);
+    background: RGBA(0, 115, 0, 0.1);
     transition: .3s;
 }
 
 .notAccepted {
-    background: RGBA(255, 0, 0, 0.2);
+    background: $action;
     transition: .3s;
 }
 

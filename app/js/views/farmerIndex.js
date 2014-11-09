@@ -39,11 +39,11 @@
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
-                            $container: $('.reviews-list'),
+                            $container: $('.reviews'),
                             collection: userReviews
                         }))
                 } else{
-                    $('.reviews-list').append('<p>No user reviews.</p>')
+                    $('.reviews').append('<p>No user reviews.</p>')
                 }
 
             });
