@@ -31,24 +31,24 @@
 
         index: function() {
             disposeViews();
+            console.log("The Current User:",Parse.User.current());
             if (!this.currentUser) {
                 this.goLogin();
             } else {
                 if (Parse.User.current().get('userType') === 'beekeeper') {
-                    new Bees.Collections.RequestsNotAccepted({
+                    new Bees.Collections.Requests({
                         user: Parse.User.current()
                     }).fetch().then(function(collection){
-                        console.log("!!!!!!!!!!!!!!",collection)
+                        console.log("!Collection in router",collection)
                         Bees.currentView = new Bees.Views.BeekeeperIndex({
                             $container: $('.main-container'),
                             collection: collection
                         });    
                     })
                 } else {
-                    new Bees.Collections.RequestsNotAccepted({
+                    new Bees.Collections.Requests({
                         user: Parse.User.current()
                     }).fetch().then(function(collection){
-                        console.log("!!!!!!!!!!!!!!",collection)
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -118,10 +118,9 @@
             if (!this.currentUser) {
                 this.goLogin();
             } else{
-                var requests = new Bees.Collections.Requests({
-                    user: this.currentUser
-                })
-                requests.fetch().then(function(requests){
+                new Bees.Collections.Requests({
+                    user: Parse.User.current()
+                }).fetch().then(function(requests){
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests

@@ -18,7 +18,7 @@
                 this.$el.append('<p>Currently, you have no requests</p>')
             }
 
-            var unAccepted = new Parse.Collection(
+            var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
@@ -37,16 +37,16 @@
                     return request.get(archivedCheck);
             }));            
 
-            if(unAccepted.length >0 ){
+            if(notAccepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
                         $container: $('.request-container'),
-                        collection: unAccepted,
+                        collection: notAccepted,
                         info: {title: 'Un-accepted Requests', class:'unAccepted'}
                 }));
             }
 
-            if(accepted.length >0 ){
+            if(accepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
                         $container: $('.request-container'),
@@ -55,13 +55,14 @@
                 }));
             }
 
-            if(archived.length > 0 ){
-                // this.subViews.push(
-                //     new Bees.Views.RequestList({
-                //         $container: $('.request-container'),
-                //         collection: archived,
-                //         info: {title: 'Archived', class:'archived'}
-                // }));
+            if(archived.length > 0 && accepted.length === 0 && notAccepted.length === 0){
+                this.subViews.push(
+                    new Bees.Views.RequestList({
+                        $container: $('.request-container'),
+                        collection: archived,
+                        info: {title: 'Archived', class:'archived'}
+                }));
+            } else{
                 $('.request-container').append('<a href="#/requests/archived">View Archived Requests</a>');
             }
         },

@@ -19,15 +19,18 @@
             var requests = this.collection;
             this.$el.html(this.template());
 
+            console.log("!!!!!!!!!Requests",requests)
+
             var hivesOut = new Parse.Collection(
                 requests.filter(function(request){
                     return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
             }));
 
-            var unAccepted = new Parse.Collection(
+            var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
+            console.log('!!!!NOT', notAccepted);
 
             this.subViews.push(
                 new Bees.Views.BeekeeperIndexInfo({
@@ -40,11 +43,11 @@
                     collection: hivesOut
             }));
 
-            if(unAccepted.length > 0){
+            if(notAccepted.length > 0){
                 this.subViews.push(
                     new Bees.Views.RequestList({
                         $container: $('.request-list-container'),
-                        collection: unAccepted,
+                        collection: notAccepted,
                 }));
             } else{
                 $('.request-list-container').append('<p>Currently you have no open requests.</p>')
