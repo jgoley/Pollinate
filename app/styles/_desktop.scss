@@ -1,4 +1,6 @@
 @include media(min-width 600px) {
+    
+
     .beekeeper-details {
         @include span-columns(5 of 10);
     }
@@ -47,6 +49,12 @@
             }
         }
     }
+
+
+    input.search{
+        display: inline-block;
+    }
+
     form.user,
     form.user-login, 
     form.search, 

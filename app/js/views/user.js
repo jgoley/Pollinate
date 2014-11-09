@@ -25,7 +25,7 @@
                 }));
                 
                 this.subViews.push(
-                    new Bees.Views.Request({
+                    new Bees.Views.RequestNew({
                         $container: $('.new-request'),
                         model: this.model,
                     })
@@ -55,7 +55,7 @@
     });
 
 
-    Bees.Views.Request = BaseView.extend({
+    Bees.Views.RequestNew = BaseView.extend({
         template: Bees.templates.user.request,
         events: {
             'click .calculate': 'calculate',

@@ -3,7 +3,8 @@ Bees.Views.EditAccountView = BaseView.extend({
     className: 'user',
 
     events: {
-        'submit': 'saveUser'
+        'submit': 'saveUser',
+        'change .image': 'getImage'
     },
 
     initialize: function(opts) {
@@ -62,5 +63,6 @@ Bees.Views.EditAccountView = BaseView.extend({
                 // $('.loading').remove();
                 that.model.set('image', file.url());
             });
+        console.log(this.model);
     }
 });
