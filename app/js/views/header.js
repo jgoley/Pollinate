@@ -46,6 +46,7 @@ Bees.Views.HeaderView = BaseView.extend({
     },
     showMenu: function(){
         $('nav').toggleClass('showing');
+        $('.main-container').toggleClass('menu-showing');
     },
     showAccount: function(){
         BeesApp.navigate('/account', {

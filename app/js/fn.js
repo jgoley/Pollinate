@@ -48,6 +48,10 @@ Parse.Collection.prototype.findWhere = function(attrs) {
 function disposeViews() {
     console.log("The Current View", Bees.currentView);
     if (Bees.currentView) Bees.currentView.dispose();
+    if($('nav').hasClass('showing')){
+      $('nav').removeClass('showing');
+      $('.main-container').removeClass('menu-showing');
+    } 
 }
 
 // Round numbers

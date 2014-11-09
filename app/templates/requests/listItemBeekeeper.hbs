@@ -1,7 +1,7 @@
 {{!-- Requests on Beekeeper pages --}}
-
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
-	<ul>
+	<p>{{request.numHives}} requested by {{user.username}}</p>
+	<ul class='hidden'>
 		<li>{{request.objectId}}</li>
 		<li>{{user.userType}}: {{user.username}}</li>
 		<li>Number of Hives: {{request.numHives}}</li>
@@ -13,11 +13,14 @@
 		<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>
 		{{/if}}
 	</ul>
-{{#if request.accepted}}
-	{{#unless request.archivedBeekeeper}}
+	<div class="actions">
+		{{#if request.accepted}}
+		{{#unless request.archivedBeekeeper}}
 		<button class='archive'>Archive</button>
-	{{/unless}}
-	{{else}}
-	<button class='accept'>Accept</button>
-{{/if}}
+		{{/unless}}
+		{{else}}
+		<button class='accept'>Accept</button>
+		{{/if}}
+		<button class='more-info'>More Info</button>
+	</div>
 </div>

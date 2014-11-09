@@ -3,7 +3,7 @@
 
 $text: rgba(75, 75, 75, 1);
 
-$farmerPrimary: rgba(90, 129, 107, .9);
+$farmerPrimary: rgba(90, 129, 107, 0.9);
 $farmerSecondary: rgba(145, 115, 80, 1);
 $farmerText: $text;
 
@@ -33,7 +33,7 @@ body {
     padding: 0;
     margin: 0;
     color: $text;
-    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 button {
@@ -64,19 +64,21 @@ a {
     }
 }
 
-.hidden{
+.hidden {
     display: none;
+    height: 0;
+    transition: .3s;
 }
 
-.showing{
+.showing {
     display: block;
+    height: auto;
+    transition: .3s;
 }
-
 
 // Beekeeper
 
 .beekeeper {
-    
     header {
         background: $beekeeperPrimary;
     }
@@ -128,10 +130,10 @@ form.user, form.search, form.review {
     }
 }
 
-form.search{
-    input{
+form.search {
+    input {
         display: inline-block;
-        width:auto;
+        width: auto;
     }
 }
 
@@ -177,6 +179,10 @@ form.search {
     .delete {
         background: #999;
     }
+}
+
+.menu-showing{
+    margin-top:em(20px);
 }
 
 header {
@@ -332,11 +338,24 @@ footer {
     position: relative;
     .details {
         padding: em(1px) em(20px);
+        border-radius: .2em;
     }
-    .actions{
-        position: absolute;
-        right: 10px;
-        top: 10px;
+    .actions {}
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    ul {
+        margin-bottom: 20px;
+    }
+}
+
+.selected {
+    .actions {
+        right: 15px;
+        top: 15px;
+        transform: translate(0, 0);
     }
 }
 
@@ -422,6 +441,33 @@ footer {
     //         max-width: 100%;
     //     }
     // }
+    .request {
+        margin: 0 0 em(10px) 0;
+        position: relative;
+        .details {
+            padding: em(1px) em(20px);
+        }
+        .actions {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translate(0, -50%);
+            button {
+                margin-bottom: 0;
+                width: auto;
+            }
+        }
+        ul {
+            margin-bottom: 20px;
+        }
+    }
+    .selected {
+        .actions {
+            right: 15px;
+            top: 15px;
+            transform: translate(0, 0);
+        }
+    }
     header {
         h2 {
             display: inline-block;
