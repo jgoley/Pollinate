@@ -120,11 +120,13 @@
         },
         render: function() {
             var that = this;
+            var createdAt = moment(this.model.createdAt).format('MMM D, YYYY | h:mm a');
             var query = new Parse.Query(Bees.Models.User);
             query.get(this.model.get('reviewer').id).then(function(reviewer) {
                 that.$el.append(that.template({
                     review: that.model.toJSON(),
-                    reviewer: reviewer.toJSON()
+                    reviewer: reviewer.toJSON(),
+                    createdAt: createdAt
                 }));
             })
         },

@@ -1,0 +1,100 @@
+section {
+    @include span-columns(12);
+}
+
+.menu-showing {
+    margin-top: em(20px);
+}
+
+header {
+    // height: em(50px);
+    padding: em(12px) em(12px) 0 em(12px);
+    height: em(50px);
+    width: 100%;
+    position: relative;
+    background: rgba(200, 200, 200, 0.9);
+    li {
+        display: inline-block;
+    }
+    h1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        // &::before{
+        //     @extend .icon;
+        //     content: "i";
+        //     color:brown;
+        //     font-size: .8em;
+        // }
+   
+    }
+    h2 {
+        display: inline-block;
+    }
+    h2 {
+        font-size: 1em;
+        margin-right: .2em;
+        color: #999;
+        display: none;
+    }
+    button, h2 {
+        vertical-align: middle;
+        &:hover{
+            text-shadow: none;
+        }
+    }
+    a {
+        color: #000;
+        &:hover {
+            color: #FFF;
+        }
+    }
+    input[type='search']{
+        background:rgba(250,250,250,.7);
+        border:1px solid #FFF;
+        border-radius: 4px;
+        &:focus{
+            outline:0;
+        }
+    }
+}
+
+.show-menu {
+    background: none;
+    border: 0;
+    span {
+        vertical-align: middle;
+    }
+    &::before {
+        content: 'm';
+        @extend .icon;
+        font-size: 2em;
+        margin-right: .25em;
+        vertical-align: middle;
+    }
+    &:hover {
+        color: brown;
+    }
+    &:focus {
+        color: #999;
+    }
+}
+
+nav {
+    text-align: center;
+    display: none;
+    li {
+        display: block;
+        border-bottom: 1px solid #FFF;
+    }
+    a {
+        padding: 1em .4em;
+        background: rgba(100, 100, 100, 0.1);
+        display: block;
+        font-size: .8em;
+        &:hover {
+            background: rgba(100, 100, 100, 0.2);
+        }
+    }
+}

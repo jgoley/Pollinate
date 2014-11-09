@@ -1,7 +1,7 @@
 Bees.Views.EditAccountView = BaseView.extend({
     tagName: 'form',
-    className: 'user',
-
+    className: 'account',
+    template: Bees.templates.account.edit,
     events: {
         'submit': 'saveUser',
         'change .image': 'getImage'
@@ -16,11 +16,6 @@ Bees.Views.EditAccountView = BaseView.extend({
     },
 
     render: function() {
-        if (Parse.User.current().get('userType') === 'beekeeper') {
-            this.template = Bees.templates.account.editBeekeeper;
-        } else {
-            this.template = Bees.templates.account.editFarmer;
-        }
         this.$el.prepend(this.template({
             user: this.model.toJSON()
         }));

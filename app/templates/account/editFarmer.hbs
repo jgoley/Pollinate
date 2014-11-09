@@ -5,10 +5,12 @@
 
 <input type="text" name="businessName" value="{{user.businessName}}" placeholder="Business name" required>
 
-<input type="text" name="address" value="{{user.address}}" placeholder="Street Address" required>
-<input type="text" name="city" value="{{user.city}}" placeholder="City" required>
-<input type="text" name="state" value="{{user.state}}" placeholder="State" required>
-<input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code" required>
+<div class="address">
+	<input type="text" name="address" value="{{user.address}}" placeholder="Street Address" required>
+	<input type="text" name="city" value="{{user.city}}" placeholder="City" required>
+	<input type="text" name="state" value="{{user.state}}" placeholder="State" required>
+	<input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code" required>
+</div>
 
 <input type="number" name="crop" value="{{user.crop}}" placeholder="Crop" required>
 <input type="number" name="farmAcerage" value="{{user.farmAcerage}}" placeholder="Farm acerage" required>

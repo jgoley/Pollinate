@@ -5,6 +5,7 @@
     Bees.Views.User = BaseView.extend({
         className: 'user',
         subViews: [],
+        tagName: 'section',
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,

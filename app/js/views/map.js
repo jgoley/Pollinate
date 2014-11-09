@@ -1,6 +1,6 @@
-(function(){
+(function() {
     'use strict';
-    
+
     Bees.Views.Map = BaseView.extend({
         id: "map",
         initialize: function(opts) {
@@ -18,7 +18,7 @@
             var that = this;
             var points;
             var curUser = Parse.User.current();
-            var map = new GMaps({
+            this.map = new GMaps({
                 div: '#map',
                 lat: curUser.get('geoCenter').latitude,
                 lng: curUser.get('geoCenter').longitude,
@@ -26,25 +26,14 @@
             var i = 0;
 
             // Add marker for current user
-            map.addMarker({
+            this.map.addMarker({
                 lat: curUser.get('geoCenter').latitude,
                 lng: curUser.get('geoCenter').longitude,
                 icon: 'https://maps.google.com/mapfiles/kml/paddle/U.png',
             });
 
             if (curUser.get('userType') == 'beekeeper') {
-                map.drawCircle({
-                    lat: curUser.get('geoCenter').latitude,
-                    lng: curUser.get('geoCenter').longitude,
-                    radius: this.searchRadius / 0.00062137, // convert miles to meters
-                    fillColor: 'black',
-                    fillOpacity: .3,
-                    strokeColor: '#999',
-                    strokeWeight: 1,
-                    strokeOpacity: .8,
-                    clickable: true
-
-                });
+                this.drawCircle(curUser, '#000');
             }
 
             // Add markers for the collection of users
@@ -54,41 +43,38 @@
                 } else {
                     var icon = 'https://maps.google.com/mapfiles/kml/paddle/F.png';
                 }
-                map.addMarker({
+                that.drawCircle(user, '#000');
+                that.map.addMarker({
                     lat: user.get('geoCenter').latitude,
                     lng: user.get('geoCenter').longitude,
                     title: user.get('businessName'),
                     icon: icon,
                     click: function(e) {
-                        BeesApp.navigate('user/' + user.id, {
-                            trigger: true
-                        });
-                        that.dispose();
+                        // BeesApp.navigate('user/' + user.id, {
+                        //     trigger: true
+                        // });
+                        // that.dispose();
                     },
                     infoWindow: {
-                        content: user.get('userType'),
+                        content: '<h1>'+user.get('businessName')+'</h1><p><a href="#user/'+user.id+'">Go to profile</a></p>',
                     }
                 });
-                if (user.get('userType') == 'beekeeper') {
-                    map.drawCircle({
-                        lat: user.get('geoCenter').latitude,
-                        lng: user.get('geoCenter').longitude,
-                        radius: user.get('geoRangeRadius') / 0.00062137, // convert miles to meters
-                        fillColor: colors[i],
-                        fillOpacity: .1,
-                        strokeColor: '#999',
-                        strokeWeight: 1,
-                        strokeOpacity: .8,
-                        clickable: true
-                    })
-                }
-                if (i === colors.length) 
-                    i = 1;
-                else 
-                    i++;
             })
-            map.fitZoom();
+            this.map.fitZoom();
         },
+        drawCircle: function(user, color) {
+            return this.map.drawCircle({
+                lat: user.get('geoCenter').latitude,
+                lng: user.get('geoCenter').longitude,
+                radius: user.get('geoRangeRadius') / 0.00062137, // convert miles to meters
+                fillColor: color,
+                fillOpacity: .1,
+                strokeColor: '#FFF',
+                strokeWeight: 1,
+                strokeOpacity: .9,
+                clickable: true
+            });
+        }
 
     });
 })();

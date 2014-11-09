@@ -1,19 +1,29 @@
 <p>account type: {{user.userType}}</p>
 
+<input type="text" name="firstName" value="{{user.firstName}}" placeholder="First Name" required>
+<input type="text" name="lastName" value="{{user.lastName}}" placeholder="Last Name" required>
 
-<input type="text" name="firstName" value="{{user.firstName}}" placeholder="First Name">
-<input type="text" name="lastName" value="{{user.lastName}}" placeholder="Last Name">
+<input type="text" name="email" value="{{user.email}}" placeholder="email" required>
 
-<input type="text" name="address" value="{{user.address}}" placeholder="Street Address">
-<input type="text" name="city" value="{{user.city}}" placeholder="City">
-<input type="text" name="state" value="{{user.state}}" placeholder="State">
-<input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code">
+<input type="text" name="businessName" value="{{user.businessName}}" placeholder="Business name" required>
+
+<div class="address">
+	<input type="text" name="address" value="{{user.address}}" placeholder="Street Address" required>
+	<input type="text" name="city" value="{{user.city}}" placeholder="City" required>
+	<input type="text" name="state" value="{{user.state}}" placeholder="State" required>
+	<input type="text" name="zipCode" value="{{user.zipCode}}" placeholder="Zip Code" required>
+</div>
 
 {{#if_eq user.userType "beekeeper"}}
-<input type="text" name="geoRangeRadius" value="{{user.geoRangeRadius}}" placeholder="Range in miles">
+<label for="hivesTotal">Total number of Hives</label><input type="number" name="hivesTotal" value="{{user.hivesTotal}}" placeholder="" required>
+<label for="costPerHive">Cost Per hive</label><input type="number" name="costPerHive" value="{{user.costPerHive}}" placeholder="" required>
+
+<label for="geoRangeRadius">Geographic range</label><input type="number" name="geoRangeRadius" value="{{user.geoRangeRadius}}" placeholder="miles" required>
+<label for="maxDistFree">Maximum transport distance before charge</label><input type="number" name="maxDistFree" value="{{user.maxDistFree}}" placeholder="miles" required>
+<label for="costPerMile">Cents Per Mile</label><input type="number" name="costPerMile" value="{{user.costPerMile}}" placeholder="$" required>
 {{else}}
-<input type="text" name="crop" value="{{user.crop}}" placeholder="Crop">
-<input type="text" name="farmAcerage" value="{{user.farmAcerage}}" placeholder="Farm acerage">
+<input type="text" name="crop" value="{{user.crop}}" placeholder="Crop" required>
+<input type="text" name="farmAcerage" value="{{user.farmAcerage}}" placeholder="Farm acerage" required>
 {{/if_eq}}
 
 <div class="image">

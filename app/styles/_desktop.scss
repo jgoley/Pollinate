@@ -12,10 +12,8 @@
     }
     .main-container {
         @include outer-container;
-        margin: em(40px) auto;
         section {
-            padding: 1em 0;
-            background: rgba(200,200,200,.1);
+            // background: rgba(200,200,200,.1);    
             > div {
                 $max-width: 1000px;
                 @include outer-container;
@@ -59,6 +57,28 @@
     form.user-login, 
     form.search, 
     form.review {
+    }
+
+    
+    form.account, 
+    form.new-user{
+        @include span-columns(6);
+        @include shift(3);
+
+        input[name=city]{
+            width:60%;
+            display:inline-block;
+        }
+        select[name=state]{
+            width:25%;
+            display:inline-block;
+        }
+
+        input[name=zipCode]{
+            width:25%;
+            display:inline-block;
+        }
+
     }
 
     form.user-login{

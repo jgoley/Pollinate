@@ -1,0 +1,21 @@
+
+.request, .reviews {
+    margin: 30px 0;
+    border-radius: .4em;
+}
+
+.review-list-item{
+	margin-bottom:em(10px);
+	p{
+		margin:0;
+	}
+}
+
+.review-body{
+	margin-bottom:em(10px);
+}
+
+.review-date{
+    color:#999;
+    font-size:80%;
+}

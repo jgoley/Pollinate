@@ -1,0 +1,55 @@
+
+.cost-details {
+    span {
+        display: block;
+        color: #999;
+        font-size: 75%;
+    }
+}
+
+
+.request {
+    margin: 0 0 em(10px) 0;
+    position: relative;
+    .details {
+        padding: em(1px) em(20px);
+        border-radius: .2em;
+    }
+    .actions {}
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    ul {
+        margin-bottom: 20px;
+    }
+}
+
+.selected {
+    .actions {
+        right: 15px;
+        top: 15px;
+        transform: translate(0, 0);
+    }
+}
+
+.requestDetails {
+    background: #ebebeb;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.accepted {
+    background: RGBA(0, 115, 0, 0.2);
+    transition: .3s;
+}
+
+.notAccepted {
+    background: RGBA(255, 0, 0, 0.2);
+    transition: .3s;
+}
+
+.archived {
+    background: RGBA(225, 225, 225, 0.4);
+}

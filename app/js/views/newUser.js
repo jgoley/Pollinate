@@ -1,6 +1,6 @@
 Bees.Views.NewUserView = BaseView.extend({
     tagName: 'form',
-    className: 'user',
+    className: 'new-user',
     template: Bees.templates.newUser.index,
     subViews: [],
     user: {
