@@ -1,6 +1,6 @@
 Bees.Views.LoginView = BaseView.extend({
     tagName: 'form',
-    className: 'user',
+    className: 'user-login',
     template: Bees.templates.login,
 
     events: {

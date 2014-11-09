@@ -15,9 +15,17 @@ $vividWarning: RGBA(128, 21, 21, 1);
 
 $primary: RGBA(116, 150, 131, 1);
 
+.white-shadow{
+    text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+
 @font-face {
     font-family: icons;
     src: url(../fonts/icons.ttf);
+}
+
+.sourceFont{
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 
@@ -30,14 +38,20 @@ $primary: RGBA(116, 150, 131, 1);
 $gutter: 0;
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 100%;
     padding: 0;
     margin: 0;
-    color: $text;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+
 }
 
+form,
+body,
+ul,
+input{
+    @extend .sourceFont;
+    color: $text;
+    @extend .white-shadow;
+}
 button {
     cursor: pointer;
     &:focus {
@@ -105,8 +119,13 @@ a {
     }
 }
 
-form.user, form.search, form.review {
+form.user,
+form.user-login, 
+form.search, 
+form.review {
     margin-top: em(20px);
+    @include span-columns(11);
+    @include shift(.5);
     input, select, textarea {
         width: 100%;
         display: block;
@@ -120,8 +139,14 @@ form.user, form.search, form.review {
         min-height: 2.75em;
     }
     input[type=submit] {
+        @extend .white-shadow;
         cursor: pointer;
-        box-shadow: 0 3px 0 rgba(100, 100, 100, 0.8);
+        background: $beekeeperPrimary;
+        border:0;
+        font-size: 1.2em;
+        color: $text;
+        text-transform: uppercase;
+        padding:.5em 1.5em;
     }
     select {
         height: 2.5em;
@@ -146,7 +171,7 @@ textarea {
 
 
 form.search {
-    @include span-columns(6 of 12);
+    @include span-columns(12);
     @include omega(0);
     @include shift(0);
 }

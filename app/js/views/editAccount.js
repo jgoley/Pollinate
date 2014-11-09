@@ -50,5 +50,17 @@ Bees.Views.EditAccountView = BaseView.extend({
             trigger: true
         });
         this.dispose();
+    },
+
+    getImage: function(e) {
+        var that = this;
+        var image = $(e.target)[0].files[0];
+        var file = new Parse.File(image.name, image);
+        file.save()
+            .then(function() {
+                $('.image').attr('disabled', false);
+                // $('.loading').remove();
+                that.model.set('image', file.url());
+            });
     }
 });

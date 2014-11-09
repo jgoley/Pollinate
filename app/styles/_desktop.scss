@@ -1,0 +1,107 @@
+@include media(min-width 600px) {
+    .beekeeper-details {
+        @include span-columns(5 of 10);
+    }
+    .hives-out {
+        @include span-columns(5 of 10);
+    }
+    .show-menu {
+        display: none;
+    }
+    .main-container {
+        @include outer-container;
+        margin: em(40px) auto;
+        section {
+            padding: 1em 0;
+            background: rgba(200,200,200,.1);
+            > div {
+                $max-width: 1000px;
+                @include outer-container;
+                padding: 0 2em;
+            }
+        }
+    }
+    .photos {
+        @include span-columns(11.5);
+        @include outer-container;
+        @include shift(0.25);
+        li {
+            $gutter: 0;
+            @include span-columns(4);
+            @include shift(0);
+            @include omega(3n);
+            margin-bottom: 30px;
+        }
+    }
+    nav {
+        background: #ebebeb;
+        display: block;
+        li {
+            display: inline-block;
+            border: 0;
+        }
+        a {
+            padding: 1em 1.5em;
+            &:hover {
+                background: #FFF;
+            }
+        }
+    }
+    form.user,
+    form.user-login, 
+    form.search, 
+    form.review {
+    }
+
+    form.user-login{
+        @include span-columns(4);
+        @include shift(4)
+    }
+    form.search{
+        @include span-columns(6 of 12);
+    }
+
+    .search-results-container {
+        @include outer-container;
+
+        margin-top: 2em;
+    }
+    #map {
+        @include span-columns(8);
+    }
+    .search-results-users {
+        @include span-columns(4);
+    }
+    .request {
+        margin: 0 0 em(10px) 0;
+        position: relative;
+        .details {
+            padding: em(1px) em(20px);
+        }
+        .actions {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translate(0, -50%);
+            button {
+                margin-bottom: 0;
+                width: auto;
+            }
+        }
+        ul {
+            margin-bottom: 20px;
+        }
+    }
+    .selected {
+        .actions {
+            right: 15px;
+            top: 15px;
+            transform: translate(0, 0);
+        }
+    }
+    header {
+        h2 {
+            display: inline-block;
+        }
+    }
+}

@@ -16,7 +16,8 @@ Bees.Views.NewUserView = BaseView.extend({
 
     events: {
         'submit': 'createUser',
-        'change .userType': 'addUserInfo'
+        'change .userType': 'addUserInfo',
+        'change .image': 'getImage'
     },
 
     initialize: function(opts) {
@@ -24,7 +25,7 @@ Bees.Views.NewUserView = BaseView.extend({
             $container: opts.$container
         });
         options.$container.html(this.el);
-        this.model = this.user;
+        this.model = new Bees.Models.User();
         this.render();
     },
 
@@ -39,12 +40,13 @@ Bees.Views.NewUserView = BaseView.extend({
         e.preventDefault();
         var that = this;
         var credentials = this.$el.serializeObject();
-        var user = new Bees.Models.User();
+        user = this.model;
         if (credentials.userType == 'beekeeper') {
             user.set('userType', 'beekeeper');
         } else {
             user.set('userType', 'farmer');
         }
+        conosle.log(user);
         user.set(credentials);
         user.set('costPerHive', +credentials.costPerHive);
         user.set('maxDistFree', +credentials.maxDistFree);
@@ -67,8 +69,6 @@ Bees.Views.NewUserView = BaseView.extend({
                 alert('Error: ' + error.code + ' ' + error.message);
             }
         });
-        // saveLocation
-
     },
 
     addUserInfo: function(e){
@@ -79,6 +79,18 @@ Bees.Views.NewUserView = BaseView.extend({
             $container: $('.userType-info'),
             userType: userType
         }));
+    },
+
+    getImage: function(e) {
+        var that = this;
+        var image = $(e.target)[0].files[0];
+        var file = new Parse.File(image.name, image);
+        file.save()
+            .then(function() {
+                $('.image').attr('disabled', false);
+                // $('.loading').remove();
+                that.model.set('image', file.url());
+            });
     }
 });
 

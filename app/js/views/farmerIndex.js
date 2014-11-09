@@ -5,7 +5,7 @@
     Bees.Views.FarmerIndex = BaseView.extend({
         subViews: [],
         className: 'farmer',
-        template: Bees.templates.farmerIndex.base,
+        template: Bees.templates.userLanding,
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
@@ -39,11 +39,11 @@
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
-                            $container: $('.review-container'),
+                            $container: $('.reviews-list'),
                             collection: userReviews
                         }))
                 } else{
-                    $('.review-container').append('<p>No user reviews.</p>')
+                    $('.reviews-list').append('<p>No user reviews.</p>')
                 }
 
             });

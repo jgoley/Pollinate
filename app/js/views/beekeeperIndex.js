@@ -6,7 +6,7 @@
         className: 'beekeeper',
         subViews: [],
         currentDate: moment().format('YYYY-MM-DD'),
-        template: Bees.templates.beekeeperIndex.base,
+        template: Bees.templates.userLanding,
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
@@ -60,11 +60,11 @@
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
-                            $container: $('.reviews'),
+                            $container: $('.reviews-list'),
                             collection: userReviews
                         }))
                 } else{
-                    $('.reviews').append('<p>No user reviews.</p>')
+                    $('.reviews-list').append('<p>No user reviews.</p>')
                 }
             });
 

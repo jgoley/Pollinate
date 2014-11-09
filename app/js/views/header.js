@@ -5,7 +5,8 @@ Bees.Views.HeaderView = BaseView.extend({
         'click .log-out': 'logout',
         'click .log-in': 'login',
         'click .show-menu': 'showMenu',
-        'click .account': 'showAccount'
+        'click .account': 'showAccount',
+        'keyup .search' : 'search'
     },
 
     initialize: function(opts) {
@@ -52,6 +53,12 @@ Bees.Views.HeaderView = BaseView.extend({
         BeesApp.navigate('/account', {
             trigger: true
         });  
+    },
+
+    search: function(e){
+        if(e.keyCode === 13){
+            BeesApp.navigate('search/'+$(e.target).val(), {trigger: true});
+        }
     }
 });
 
