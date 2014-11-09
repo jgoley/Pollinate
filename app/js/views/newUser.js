@@ -32,6 +32,7 @@ Bees.Views.NewUserView = BaseView.extend({
         this.$el.prepend(this.template({
             user: this.model
         }));
+        this.$el.parsley();
     },
 
     createUser: function(e) {

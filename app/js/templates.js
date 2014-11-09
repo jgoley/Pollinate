@@ -106,29 +106,31 @@ this["Bees"]["templates"]["account"]["editBeekeeper"] = Handlebars.template({"co
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
     + "</p>\n\n<input type=\"text\" name=\"firstName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
-    + "\" placeholder=\"First Name\">\n<input type=\"text\" name=\"lastName\" value=\""
+    + "\" placeholder=\"First Name\" required>\n<input type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "\" placeholder=\"Last Name\">\n\n<input type=\"text\" name=\"businessName\" value=\""
+    + "\" placeholder=\"Last Name\" required>\n\n<input type=\"text\" name=\"email\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
+    + "\" placeholder=\"email\" required>\n\n<input type=\"text\" name=\"businessName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\" placeholder=\"Business name\">\n\n<input type=\"text\" name=\"address\" value=\""
+    + "\" placeholder=\"Business name\" required>\n\n<input type=\"text\" name=\"address\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
-    + "\" placeholder=\"Street Address\">\n<input type=\"text\" name=\"city\" value=\""
+    + "\" placeholder=\"Street Address\" required>\n<input type=\"text\" name=\"city\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" placeholder=\"City\">\n<input type=\"text\" name=\"state\" value=\""
+    + "\" placeholder=\"City\" required>\n<input type=\"text\" name=\"state\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
-    + "\" placeholder=\"State\">\n<label for=\"zipCode\">Zip code</label><input type=\"text\" name=\"zipCode\" value=\""
+    + "\" placeholder=\"State\" required>\n<label for=\"zipCode\">Zip code</label><input type=\"number\" name=\"zipCode\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" placeholder=\"Zip Code\">\n\n<label for=\"hivesTotal\">Total number of Hives</label><input type=\"text\" name=\"hivesTotal\" value=\""
+    + "\" placeholder=\"Zip Code\" required>\n\n<label for=\"hivesTotal\">Total number of Hives</label><input type=\"number\" name=\"hivesTotal\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
-    + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
+    + "\" placeholder=\"\" required>\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"number\" name=\"costPerHive\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
-    + "\" placeholder=\"\">\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"text\" name=\"geoRangeRadius\" value=\""
+    + "\" placeholder=\"\" required>\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"number\" name=\"geoRangeRadius\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"text\" name=\"maxDistFree\" value=\""
+    + "\" placeholder=\"miles\" required>\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"number\" name=\"maxDistFree\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"costPerMile\">Cost Per Mile</label><input type=\"text\" name=\"costPerMile\" value=\""
+    + "\" placeholder=\"miles\" required>\n<label for=\"costPerMile\">Cents Per Mile</label><input type=\"number\" name=\"costPerMile\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
-    + "\" placeholder=\"$\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+    + "\" placeholder=\"$\" required>\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
 this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -136,23 +138,23 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
     + "</p>\n\n<input type=\"text\" name=\"firstName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
-    + "\" placeholder=\"First Name\">\n<input type=\"text\" name=\"lastName\" value=\""
+    + "\" placeholder=\"First Name\" required>\n<input type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "\" placeholder=\"Last Name\">\n\n<input type=\"text\" name=\"businessName\" value=\""
+    + "\" placeholder=\"Last Name\" required>\n\n<input type=\"text\" name=\"businessName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\" placeholder=\"Business name\">\n\n<input type=\"text\" name=\"address\" value=\""
+    + "\" placeholder=\"Business name\" required>\n\n<input type=\"text\" name=\"address\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
-    + "\" placeholder=\"Street Address\">\n<input type=\"text\" name=\"city\" value=\""
+    + "\" placeholder=\"Street Address\" required>\n<input type=\"text\" name=\"city\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" placeholder=\"City\">\n<input type=\"text\" name=\"state\" value=\""
+    + "\" placeholder=\"City\" required>\n<input type=\"text\" name=\"state\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
-    + "\" placeholder=\"State\">\n<input type=\"text\" name=\"zipCode\" value=\""
+    + "\" placeholder=\"State\" required>\n<input type=\"text\" name=\"zipCode\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" placeholder=\"Zip Code\">\n\n<input type=\"text\" name=\"crop\" value=\""
+    + "\" placeholder=\"Zip Code\" required>\n\n<input type=\"number\" name=\"crop\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
-    + "\" placeholder=\"Crop\">\n<input type=\"text\" name=\"farmAcerage\" value=\""
+    + "\" placeholder=\"Crop\" required>\n<input type=\"number\" name=\"farmAcerage\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
-    + "\" placeholder=\"Farm acerage\">\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
+    + "\" placeholder=\"Farm acerage\" required>\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
 this["Bees"]["templates"]["beekeeperIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -267,17 +269,17 @@ this["Bees"]["templates"]["hiveGroups"]["listUser"] = Handlebars.template({"comp
 this["Bees"]["templates"]["newUser"] = this["Bees"]["templates"]["newUser"] || {};
 this["Bees"]["templates"]["newUser"]["beekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<label for=\"hivesTotal\">Total number of Hives Available</label><input type=\"text\" name=\"hivesAvailable\" value=\""
+  return "<label for=\"hivesTotal\">Total number of Hives Available</label><input type=\"number\" name=\"hivesAvailable\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesTotal : stack1), depth0))
-    + "\" placeholder=\"\">\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"text\" name=\"costPerHive\" value=\""
+    + "\" placeholder=\"\" required>\n<label for=\"costPerHive\">Cost Per hive</label><input type=\"number\" name=\"costPerHive\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
-    + "\" placeholder=\"\">\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"text\" name=\"geoRangeRadius\" value=\""
+    + "\" placeholder=\"\" required>\n\n<label for=\"geoRangeRadius\">Geographic range</label><input type=\"number\" name=\"geoRangeRadius\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.geoRangeRadius : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"text\" name=\"maxDistFree\" value=\""
+    + "\" placeholder=\"miles\" required>\n<label for=\"maxDistFree\">Maximum transport distance before charge</label><input type=\"number\" name=\"maxDistFree\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + "\" placeholder=\"miles\">\n<label for=\"costPerMile\">Cost Per Mile</label><input type=\"text\" name=\"costPerMile\" value=\""
+    + "\" placeholder=\"miles\" required>\n<label for=\"costPerMile\">Cost Per Mile</label><input data-parsley-type=\"number\" name=\"costPerMile\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
-    + "\" placeholder=\"$\">";
+    + "\" placeholder=\"$\" required>";
 },"useData":true});
 this["Bees"]["templates"]["newUser"]["farmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -289,30 +291,49 @@ this["Bees"]["templates"]["newUser"]["farmer"] = Handlebars.template({"compiler"
 },"useData":true});
 this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<input type=\"text\" name=\"username\" value=\"\" placeholder=\"Username\">\n<input type=\"email\" name=\"email\" value=\""
+  return "<input type=\"text\" name=\"username\" value=\"\" placeholder=\"Username\" required>\n<input id=\"email\" type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"Email address\">\n<input type=\"email\" name=\"email\" value=\""
+    + "\" placeholder=\"Email address\" required>\n<input type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"Confirm Email address\">\n<select name='userType' class='userType'>\n	<option>User Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input type=\"password\" value=\""
+    + "\" placeholder=\"Confirm Email address\" data-parsley-equalto=\"#email\" required>\n<select name='userType' class='userType' required>\n	<option>User Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input id=\"pass\" type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
-    + "\" name=\"password\" type=\"password\" placeholder=\"password\">\n	<input type=\"password\" value=\""
+    + "\" name=\"password\" type=\"password\" placeholder=\"password\" required>\n	<input type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
-    + "\" placeholder=\"Confirm password\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
+    + "\" name=\"password\" placeholder=\"Confirm password\" data-parsley-equalto=\"#pass\" required>\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\" name=\"businessName\" placeholder=\"Name of Business\">\n	<input type=\"text\" value=\""
+    + "\" name=\"businessName\" placeholder=\"Name of Business\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
-    + "\" name=\"firstName\" placeholder=\"First Name\">\n	<input type=\"text\" value=\""
+    + "\" name=\"firstName\" placeholder=\"First Name\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "\" name=\"lastName\" placeholder=\"Last Name\">\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
+    + "\" name=\"lastName\" placeholder=\"Last Name\" required>\n</div>\n\n<div class='form-block'>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.address : stack1), depth0))
-    + "\" name=\"address\" placeholder=\"Street Address\">\n	<input type=\"text\" value=\""
+    + "\" name=\"address\" placeholder=\"Street Address\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.city : stack1), depth0))
-    + "\" name=\"city\" placeholder=\"City\">\n	<input type=\"text\" value=\""
+    + "\" name=\"city\" placeholder=\"City\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
-    + "\" name=\"state\" placeholder=\"State\">\n	<input type=\"text\" value=\""
+    + "\" name=\"state\" placeholder=\"State\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" name=\"zipCode\" placeholder=\"Zip Code\">\n</div>\n\n<div class=\"userType-info\">\n	\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
+    + "\" name=\"zipCode\" placeholder=\"Zip Code\" required>\n</div>\n\n<div class=\"userType-info\">\n	\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
+this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
+this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\"><button type=\"button\" class=\"cancel-review\">Cancel</button>";
+  },"useData":true});
+this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1><a href='#/user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "'>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</a></h1>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
+    + "</p>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + "</p>";
+},"useData":true});
+this["Bees"]["templates"]["reviews"]["new"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<button class=\"addReview\">Add a Review</button>";
+  },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div class=\"request-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></div>";
@@ -429,25 +450,26 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   if (stack1 != null) { buffer += stack1; }
   return buffer + "	<button class='more-info'>More Info</button>\n	</div>\n</div>";
 },"useData":true});
-this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
-this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\"><button type=\"button\" class=\"cancel-review\">Cancel</button>";
-  },"useData":true});
-this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<h1><a href='#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "'>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</a></h1>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
-    + "</p>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
-    + "</p>";
+this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, escapeExpression=this.escapeExpression, lambda=this.lambda, functionType="function", helperMissing=helpers.helperMissing;
+  return "<h1>A Request</h1>\n"
+    + escapeExpression(helpers.log.call(depth0, depth0, {"name":"log","hash":{},"data":data}))
+    + "\n\n<ul>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.farmer : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "</li>\n	<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "</li>\n	<li>"
+    + escapeExpression(((helper = (helper = helpers.total || (depth0 != null ? depth0.total : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"total","hash":{},"data":data}) : helper)))
+    + "</li>	\n	<li>"
+    + escapeExpression(((helper = (helper = helpers.numHives || (depth0 != null ? depth0.numHives : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"numHives","hash":{},"data":data}) : helper)))
+    + "</li>	\n	<li>"
+    + escapeExpression(((helper = (helper = helpers.totalCost || (depth0 != null ? depth0.totalCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"totalCost","hash":{},"data":data}) : helper)))
+    + "</li>	\n	<li>"
+    + escapeExpression(((helper = (helper = helpers.startDate || (depth0 != null ? depth0.startDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"startDate","hash":{},"data":data}) : helper)))
+    + " - "
+    + escapeExpression(((helper = (helper = helpers.endDate || (depth0 != null ? depth0.endDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"endDate","hash":{},"data":data}) : helper)))
+    + "</li>	\n</ul>\n\n\n\n";
 },"useData":true});
-this["Bees"]["templates"]["reviews"]["new"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<button class=\"addReview\">Add a Review</button>";
-  },"useData":true});
 this["Bees"]["templates"]["search"] = this["Bees"]["templates"]["search"] || {};
 this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";

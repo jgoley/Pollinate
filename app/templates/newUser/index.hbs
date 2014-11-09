@@ -1,27 +1,27 @@
-<input type="text" name="username" value="" placeholder="Username">
-<input type="email" name="email" value="{{user.email}}" placeholder="Email address">
-<input type="email" name="email" value="{{user.email}}" placeholder="Confirm Email address">
-<select name='userType' class='userType'>
+<input type="text" name="username" value="" placeholder="Username" required>
+<input id="email" type="email" name="email" value="{{user.email}}" placeholder="Email address" required>
+<input type="email" name="email" value="{{user.email}}" placeholder="Confirm Email address" data-parsley-equalto="#email" required>
+<select name='userType' class='userType' required>
 	<option>User Type</option>
 	<option value="beekeeper">Beekeeper</option>
 	<option value="farmer">Farmer</option>
 </select>
 <div class='form-block'>
-	<input type="password" value="{{user.password}}" name="password" type="password" placeholder="password">
-	<input type="password" value="{{user.password}}" placeholder="Confirm password">
+	<input id="pass" type="password" value="{{user.password}}" name="password" type="password" placeholder="password" required>
+	<input type="password" value="{{user.password}}" name="password" placeholder="Confirm password" data-parsley-equalto="#pass" required>
 </div>
 
 <div class='form-block'>
-	<input type="text" value="{{user.businessName}}" name="businessName" placeholder="Name of Business">
-	<input type="text" value="{{user.firstName}}" name="firstName" placeholder="First Name">
-	<input type="text" value="{{user.lastName}}" name="lastName" placeholder="Last Name">
+	<input type="text" value="{{user.businessName}}" name="businessName" placeholder="Name of Business" required>
+	<input type="text" value="{{user.firstName}}" name="firstName" placeholder="First Name" required>
+	<input type="text" value="{{user.lastName}}" name="lastName" placeholder="Last Name" required>
 </div>
 
 <div class='form-block'>
-	<input type="text" value="{{user.address}}" name="address" placeholder="Street Address">
-	<input type="text" value="{{user.city}}" name="city" placeholder="City">
-	<input type="text" value="{{user.state}}" name="state" placeholder="State">
-	<input type="text" value="{{user.zipCode}}" name="zipCode" placeholder="Zip Code">
+	<input type="text" value="{{user.address}}" name="address" placeholder="Street Address" required>
+	<input type="text" value="{{user.city}}" name="city" placeholder="City" required>
+	<input type="text" value="{{user.state}}" name="state" placeholder="State" required>
+	<input type="text" value="{{user.zipCode}}" name="zipCode" placeholder="Zip Code" required>
 </div>
 
 <div class="userType-info">

@@ -23,6 +23,7 @@ Bees.Views.EditAccountView = BaseView.extend({
         this.$el.prepend(this.template({
             user: this.model.toJSON()
         }));
+        this.$el.parsley();
     },
 
     saveUser: function(e) {

@@ -12,6 +12,7 @@
             'user/:user_id': 'user',
             'user/:user_id/reviews': 'reviews',
             'requests': 'requests',
+            'request/:request_id': 'request',
             'reviews': 'reviews',
             'search': 'search',
             'search/:query_text': 'search',
@@ -19,6 +20,7 @@
         },
 
         initialize: function() {
+
             if(Parse.User.current()){
                 this.currentUser = Parse.User.current();
                 this.userType = this.currentUser.get('userType');
@@ -110,6 +112,25 @@
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests
+                    });
+                });
+            }
+        },
+
+            // var GameScore = Parse.Object.extend("GameScore");
+            // var query = new Parse.Query(GameScore);
+            // query.get("xWMyZ4YEGZ",
+
+        request: function(requestID) {
+            disposeViews();
+            if (!this.currentUser) {
+                this.goLogin();
+            } else{
+                var query = new Parse.Query('Requests');
+                query.get(requestID).then(function(request){
+                    Bees.currentView = new Bees.Views.Request({
+                        $container: $('.main-container'),
+                        model: request
                     });
                 });
             }

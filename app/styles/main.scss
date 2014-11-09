@@ -10,7 +10,7 @@ $farmerText: $text;
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(247, 171, 59, 0.9);
 
-$subtleWarning: RGBA(170, 57, 57, 1);
+$subtleWarning: RGBA(170, 57, 57, .1);
 $vividWarning: RGBA(128, 21, 21, 1);
 
 $primary: RGBA(116, 150, 131, 1);
@@ -20,6 +20,7 @@ $primary: RGBA(116, 150, 131, 1);
     src: url(../fonts/icons.ttf);
 }
 
+@import 'validation';
 
 .icon {
     font-family: icons;
@@ -117,7 +118,7 @@ form.user, form.search, form.review {
         box-shadow: inset 2px 2px 4px rgba(200, 200, 200, 0.4);
         font-size: 1em;
         outline: 0;
-        height: 2.75em;
+        min-height: 2.75em;
     }
     input[type=submit] {
         cursor: pointer;
@@ -393,84 +394,4 @@ footer {
     @include shift(0.5);
 }
 
-@include media(min-width 600px) {
-    .beekeeper-details {
-        @include span-columns(5 of 10);
-    }
-    .hives-out {
-        @include span-columns(5 of 10);
-    }
-    .show-menu {
-        display: none;
-    }
-    .main-container {
-        $max-width: 800px;
-        @include outer-container;
-        margin: em(40px) auto;
-    }
-    .photos {
-        @include span-columns(11.5);
-        @include outer-container;
-        @include shift(0.25);
-        li {
-            $gutter: 0;
-            @include span-columns(4);
-            @include shift(0);
-            @include omega(3n);
-            margin-bottom: 30px;
-        }
-    }
-    nav {
-        background: #ebebeb;
-        display: block;
-        li {
-            display: inline-block;
-            border: 0;
-        }
-        a {
-            padding: 1em 1.5em;
-            &:hover {
-                background: #FFF;
-            }
-        }
-    }
-    // form {
-    //     @include span-columns(4);
-    //     @include shift(4);
-    //     img {
-    //         max-width: 100%;
-    //     }
-    // }
-    .request {
-        margin: 0 0 em(10px) 0;
-        position: relative;
-        .details {
-            padding: em(1px) em(20px);
-        }
-        .actions {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translate(0, -50%);
-            button {
-                margin-bottom: 0;
-                width: auto;
-            }
-        }
-        ul {
-            margin-bottom: 20px;
-        }
-    }
-    .selected {
-        .actions {
-            right: 15px;
-            top: 15px;
-            transform: translate(0, 0);
-        }
-    }
-    header {
-        h2 {
-            display: inline-block;
-        }
-    }
-}
+@import 'desktop';

@@ -88,4 +88,14 @@ Bees.Models.Request = Parse.Object.extend({
     defaults: {
         accepted: false,
     }
-})
+});
+
+// Bees.Models.RequestQuery = Parse.Object.extend({
+//     className: 'Requests',
+//     initialize: function(opts){
+//         var options = _.defaults({}, opts, {
+//             id: opts.id
+//         });
+//         this.query = new Parse.Query('Requests').get(options.id);
+//     }
+// });
