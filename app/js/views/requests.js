@@ -6,6 +6,7 @@
         className: 'request-container',
         tagName: 'section',
         subViews: [],
+        template: Bees.templates.requests.base,
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
@@ -14,6 +15,7 @@
             this.render();
         },
         render: function() {
+            this.$el.html(this.template());
             var requests = this.collection;
             if (this.collection.length === 0){
                 this.$el.append('<p>Currently, you have no requests</p>')
@@ -41,7 +43,7 @@
             if(notAccepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request-container'),
+                        $container: $('.requests'),
                         collection: notAccepted,
                         info: {title: 'Un-accepted Requests', class:'unAccepted'}
                 }));
@@ -50,7 +52,7 @@
             if(accepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request-container'),
+                        $container: $('.requests'),
                         collection: accepted,
                         info: {title: 'Accepted Requests', class:'accepted'}
                 }));
@@ -59,12 +61,12 @@
             if(archived.length > 0 && accepted.length === 0 && notAccepted.length === 0){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request-container'),
+                        $container: $('.requests'),
                         collection: archived,
                         info: {title: 'Archived', class:'archived'}
                 }));
             } else{
-                $('.request-container').append('<a href="#/requests/archived">View Archived Requests</a>');
+                $('.requests').append('<a href="#/requests/archived">View Archived Requests</a>');
             }
         },
 

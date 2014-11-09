@@ -317,7 +317,7 @@ this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":
 },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"requests\">\n<img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'>\n</div>";
+  return "<div class=\"requests\"></div>";
   },"useData":true});
 this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "accepted";
