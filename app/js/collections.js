@@ -99,6 +99,24 @@
         model: Bees.Models.Request,
     });
 
+    Bees.Collections.RequestsArchived = Parse.Collection.extend({
+        initialize: function(opts){
+            var archiveType;
+            var options = _.defaults({}, opts, {
+                user: opts.user
+            });
+            if(options.user.get('userType') === 'beekeeper'){
+                archiveType = 'archivedBeekeeper';
+            } else{
+                archiveType = 'archivedFarmer';
+            }
+            this.query = new Parse.Query('Requests')
+                .equalTo(options.user.get('userType'), options.user)
+                .equalTo(archiveType, true);
+        },
+        model: Bees.Models.Request,
+    });
+
     Bees.Collections.HivesOut = Parse.Collection.extend({
         initialize: function(opts){
             var options = _.defaults({}, opts, {

@@ -23,7 +23,7 @@
 
             var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
-                    return !request.get('accepted');
+                    return request.get('accepted') === false;
             }));
 
             if(Parse.User.current().get('userType') === 'beekeeper'){
@@ -43,11 +43,14 @@
             if(notAccepted.length > 0 ){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.requests'),
+                        $container: $('.request'),
                         collection: notAccepted,
                         info: {title: 'Un-accepted Requests', class:'unAccepted'}
                 }));
-            }
+            } 
+            // else {
+            //     $('.requests').append('<p>Currently there are no open requests</p>');
+            // }
 
             if(accepted.length > 0 ){
                 this.subViews.push(
@@ -87,7 +90,7 @@
         },
         render: function() {
             if (this.info){
-                this.$el.append('<h1>'+this.info.title+'</h1>')
+                this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>')
             }
             if (this.collection.length === 0){
                 this.$el.append();

@@ -1,9 +1,6 @@
-
-.cost-details {
-    span {
-        display: block;
-        color: #999;
-        font-size: 75%;
+.request-container{
+    > :first-child{
+        margin-top:em(30px);
     }
 }
 
@@ -26,11 +23,24 @@
     }
 }
 
+.request-list{
+    // margin-bottom:em(30px);
+}
+
 .selected {
     .actions {
         right: 15px;
         top: 15px;
         transform: translate(0, 0);
+    }
+}
+
+
+.cost-details {
+    span {
+        display: block;
+        color: #999;
+        font-size: 75%;
     }
 }
 

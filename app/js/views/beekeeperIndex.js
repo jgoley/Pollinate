@@ -3,7 +3,7 @@
     'use strict';
 
     Bees.Views.BeekeeperIndex = BaseView.extend({
-        className: 'beekeeper',
+        className: 'landing',
         subViews: [],
         currentDate: moment().format('YYYY-MM-DD'),
         template: Bees.templates.userLanding,
@@ -17,7 +17,7 @@
         render: function(){
             var that = this;
             var requests = this.collection;
-            this.$el.html(this.template());
+            this.$el.html(this.template(Parse.User.current().toJSON()));
 
             console.log("!!!!!!!!!Requests",requests)
 

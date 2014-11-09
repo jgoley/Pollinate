@@ -4,7 +4,7 @@
 
     Bees.Views.FarmerIndex = BaseView.extend({
         subViews: [],
-        className: 'farmer',
+        className: 'landing',
         template: Bees.templates.userLanding,
         initialize: function(opts){
             var options = _.defaults({}, opts, {
@@ -19,7 +19,7 @@
          render: function(){
             var that = this;
             var requests = this.collection;
-            this.$el.html(this.template({user: Parse.User.current().toJSON()}));
+            this.$el.html(this.template(Parse.User.current().toJSON()));
 
             var unAccepted = new Parse.Collection(
                 requests.filter(function(request){
@@ -28,7 +28,7 @@
 
             this.subViews.push(
                 new Bees.Views.RequestList({
-                    $container: $('.request-list-container'),
+                    $container: $('.requests'),
                     collection: unAccepted,
             }));
 

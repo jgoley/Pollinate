@@ -62,7 +62,7 @@
             },
 
             render: function() {
-                this.$el.html("<div class='reviews'><h1>Reviews</h1></div>");
+                this.$el.html("<div class='reviews'><h1 class='main-title'>Reviews</h1></div>");
                 _.invoke(this.subViews, 'dispose');
                 if(this.collection.length > 0){
                     this.subViews.push(

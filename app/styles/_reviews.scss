@@ -1,18 +1,16 @@
 
-.request, .reviews {
-    margin: 30px 0;
+.reviews {
     border-radius: .4em;
 }
 
 .review-list-item{
 	margin-bottom:em(10px);
-	p{
-		margin:0;
-	}
 }
 
 .review-body{
-	margin-bottom:em(10px);
+	margin: em(5px) 0;
+	background: rgba(200,200,200,.2);
+	padding:em(10px);
 }
 
 .review-date{

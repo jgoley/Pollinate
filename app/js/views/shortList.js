@@ -13,7 +13,7 @@ Bees.Views.UserShortList = BaseView.extend({
     },
     render: function(){
         var that = this;
-        this.$el.append('<h1>'+this.type+' near you:</h1>');
+        this.$el.append('<h1 class="main-title">'+this.type+' near you:</h1>');
         this.collection.each(_.bind(this.renderChildren, this));
     },
     renderChildren: function(user){

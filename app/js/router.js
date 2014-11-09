@@ -12,6 +12,7 @@
             'user/:user_id': 'user',
             'user/:user_id/reviews': 'reviews',
             'requests': 'requests',
+            'requests/archived': 'requestsArchived',
             'request/:request_id': 'request',
             'reviews': 'reviews',
             'search': 'search',
@@ -50,6 +51,7 @@
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
                     }).fetch().then(function(collection){
+                        console.log("!Collection in router",collection)
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -113,14 +115,28 @@
                         $container: $('.main-container'),
                         collection: requests
                     });
+                }).fail(function(err){
+                    console.error(err);
                 });
             }
         },
 
-            // var GameScore = Parse.Object.extend("GameScore");
-            // var query = new Parse.Query(GameScore);
-            // query.get("xWMyZ4YEGZ",
-
+        requestsArchived: function() {
+            disposeViews();
+            if (!this.currentUser) {
+                this.goLogin();
+            } else{
+                new Bees.Collections.RequestsArchived({
+                    user: Parse.User.current(),
+                }).fetch().then(function(requests){
+                    Bees.currentView = new Bees.Views.RequestList({
+                        $container: $('.main-container'),
+                        collection: requests
+                    });
+                });
+            }
+        },
+        
         request: function(requestID) {
             disposeViews();
             if (!this.currentUser) {
