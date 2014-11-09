@@ -10,7 +10,7 @@ $farmerText: $text;
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(247, 171, 59, 0.9);
 
-$subtleWarning: RGBA(170, 57, 57, .1);
+$subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
 
 $primary: RGBA(116, 150, 131, 1);
@@ -20,7 +20,8 @@ $primary: RGBA(116, 150, 131, 1);
     src: url(../fonts/icons.ttf);
 }
 
-@import 'validation';
+
+@import "validation";
 
 .icon {
     font-family: icons;
@@ -85,11 +86,9 @@ a {
     }
 }
 
-.top-info {
-    $max-width: 90%;
-    @include outer-container;
-    margin-top: em(20px);
-}
+// .top-info {
+//     margin-top: em(20px);
+// }
 
 .beekeeper-details {
     @include span-columns(10 of 10);
@@ -145,14 +144,9 @@ textarea {
 
 .search-container {}
 
-.form-container {
-    @include outer-container;
-    @include span-columns(12);
-    @include shift(2);
-}
 
 form.search {
-    @include span-columns(4 of 12);
+    @include span-columns(6 of 12);
     @include omega(0);
     @include shift(0);
 }
@@ -162,9 +156,13 @@ form.search {
 }
 
 .main-container {
+    $max-width: 100%;
     margin-top: em(80px);
     margin-bottom: em(60px);
     @include outer-container;
+    section {
+        padding: 1em;
+    }
     button {
         background: $primary;
         padding: em(10px) em(20px);
@@ -182,8 +180,12 @@ form.search {
     }
 }
 
-.menu-showing{
-    margin-top:em(20px);
+section {
+    @include span-columns(12);
+}
+
+.menu-showing {
+    margin-top: em(20px);
 }
 
 header {
@@ -382,16 +384,17 @@ footer {
 
 .user {
     a {
-        padding: 1em;
-        display: block;
-        &:hover {
-            background: #ebebeb;
-        }
-        border-bottom: 1px solid #ebebeb;
+        // padding: 1em;
+        // display: block;
+        // &:hover {
+        //     background: #ebebeb;
+        // }
+        // border-bottom: 1px solid #ebebeb;
+   
     }
     li {}
     @include span-columns(11);
     @include shift(0.5);
 }
 
-@import 'desktop';
+@import "desktop";

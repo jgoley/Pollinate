@@ -4,6 +4,7 @@
 
     Bees.Views.Requests = BaseView.extend({
         className: 'request-container',
+        tagName: 'section',
         subViews: [],
         initialize: function(opts) {
             var options = _.defaults({}, opts, {

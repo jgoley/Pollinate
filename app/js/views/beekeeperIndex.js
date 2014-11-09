@@ -46,11 +46,11 @@
             if(notAccepted.length > 0){
                 this.subViews.push(
                     new Bees.Views.RequestList({
-                        $container: $('.request-list-container'),
+                        $container: $('.request-list'),
                         collection: notAccepted,
                 }));
             } else{
-                $('.request-list-container').append('<p>Currently you have no open requests.</p>')
+                $('.request-list').append('<p>Currently you have no open requests.</p>')
             }
 
             new Bees.Collections.UserReviews({
@@ -60,11 +60,11 @@
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
-                            $container: $('.review-container'),
+                            $container: $('.reviews'),
                             collection: userReviews
                         }))
                 } else{
-                    $('.review-container').append('<p>No user reviews.</p>')
+                    $('.reviews').append('<p>No user reviews.</p>')
                 }
             });
 

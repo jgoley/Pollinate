@@ -19,6 +19,7 @@ Bees.Views.LoginView = BaseView.extend({
 
     render: function() {    
         this.$el.prepend(this.template());
+        this.$el.parsley();
     },
 
     loginUser: function(e) {

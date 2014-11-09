@@ -2,7 +2,7 @@
 <input id="email" type="email" name="email" value="{{user.email}}" placeholder="Email address" required>
 <input type="email" name="email" value="{{user.email}}" placeholder="Confirm Email address" data-parsley-equalto="#email" required>
 <select name='userType' class='userType' required>
-	<option>User Type</option>
+	<option value="">Choose Account Type</option>
 	<option value="beekeeper">Beekeeper</option>
 	<option value="farmer">Farmer</option>
 </select>
@@ -24,8 +24,6 @@
 	<input type="text" value="{{user.zipCode}}" name="zipCode" placeholder="Zip Code" required>
 </div>
 
-<div class="userType-info">
-	
-</div>
+<div class="userType-info"></div>
 
 <input type="submit" name="" value="Login">

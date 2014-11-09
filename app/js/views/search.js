@@ -4,6 +4,7 @@
 
     Bees.Views.Search = BaseView.extend({
         subViews: [],
+        tagName: 'section',
         className: 'search-container',
         template: Bees.templates.search.index,
         initialize: function(opts) {
@@ -249,7 +250,7 @@
 
     Bees.Views.SearchResultsList = BaseView.extend({
         tagName: 'ul',
-        className: 'users',
+        className: 'search-results-users',
 
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
@@ -275,12 +276,8 @@
 
     Bees.Views.SearchResultsListItem = BaseView.extend({
         tagName: 'li',
-        className: 'user',
+        className: 'search-results-user',
         template: Bees.templates.search.resultItem,
-
-        events: {
-            'click .user': 'getUser',
-        },
 
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
@@ -296,13 +293,6 @@
                 user: this.model.toJSON()
             }))
         },
-
-        getUser: function(e) {
-            e.preventDefault();
-            BeesApp.navigate('user/' + this.model.id, {
-                trigger: true
-            });
-        }
     });
 
 })();

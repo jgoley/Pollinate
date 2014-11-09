@@ -39,7 +39,7 @@ this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,h
   return buffer;
 },"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\">\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\">\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not signed up? <a href=\"#/newuser\">Create account</a></p>";
+  return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\" required>\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\" required>\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not signed up? <a href=\"#/newuser\">Create account</a></p>";
   },"useData":true});
 this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div id=\"map_canvas\"></div>";
@@ -158,7 +158,7 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
 this["Bees"]["templates"]["beekeeperIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"top-info\"></div>\n<div class=\"requests\">\n	<h1>Requests</h1>\n	<div class='request-list-container'></div>\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n\n<div class=\"near-users\">\n	<a href=\"#/search\">Find More</a>\n</div>\n\n<div class=\"review-container\">\n	<h1>Reviews</h1>\n</div>";
+  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1>Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1>Reviews</h1>\n	</div>\n</section>";
   },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"]["details"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -197,7 +197,7 @@ this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":
 },"useData":true});
 this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
 this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"top-info\"></div>\n\n<div class=\"requests\">\n	<h1>Open Requests</h1>\n	<div class=\"request-list-container\"></div>\n	<a href=\"#/requests\">View All Requests</a>\n</div>\n<div class=\"near-users\">\n	<a href=\"#/search\">Find More</a>\n</div>\n\n<div class=\"review-container\">\n	<h1>Reviews</h1>\n</div>\n\n";
+  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1>Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1>Reviews</h1>\n	</div>\n</section>";
   },"useData":true});
 this["Bees"]["templates"]["hiveGroups"] = this["Bees"]["templates"]["hiveGroups"] || {};
 this["Bees"]["templates"]["hiveGroups"]["UserListItem"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -295,7 +295,7 @@ this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
     + "\" placeholder=\"Email address\" required>\n<input type=\"email\" name=\"email\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\" placeholder=\"Confirm Email address\" data-parsley-equalto=\"#email\" required>\n<select name='userType' class='userType' required>\n	<option>User Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input id=\"pass\" type=\"password\" value=\""
+    + "\" placeholder=\"Confirm Email address\" data-parsley-equalto=\"#email\" required>\n<select name='userType' class='userType' required>\n	<option value=\"\">Choose Account Type</option>\n	<option value=\"beekeeper\">Beekeeper</option>\n	<option value=\"farmer\">Farmer</option>\n</select>\n<div class='form-block'>\n	<input id=\"pass\" type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
     + "\" name=\"password\" type=\"password\" placeholder=\"password\" required>\n	<input type=\"password\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.password : stack1), depth0))
@@ -313,30 +313,11 @@ this["Bees"]["templates"]["newUser"]["index"] = Handlebars.template({"compiler":
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.state : stack1), depth0))
     + "\" name=\"state\" placeholder=\"State\" required>\n	<input type=\"text\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.zipCode : stack1), depth0))
-    + "\" name=\"zipCode\" placeholder=\"Zip Code\" required>\n</div>\n\n<div class=\"userType-info\">\n	\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
+    + "\" name=\"zipCode\" placeholder=\"Zip Code\" required>\n</div>\n\n<div class=\"userType-info\"></div>\n\n<input type=\"submit\" name=\"\" value=\"Login\">";
 },"useData":true});
-this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
-this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\"><button type=\"button\" class=\"cancel-review\">Cancel</button>";
-  },"useData":true});
-this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<h1><a href='#/user/"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "'>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</a></h1>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
-    + "</p>\n<p>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
-    + "</p>";
-},"useData":true});
-this["Bees"]["templates"]["reviews"]["new"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<button class=\"addReview\">Add a Review</button>";
-  },"useData":true});
 this["Bees"]["templates"]["requests"] = this["Bees"]["templates"]["requests"] || {};
 this["Bees"]["templates"]["requests"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"request-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></div>";
+  return "<div class=\"requests\">\n<img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'>\n</div>";
   },"useData":true});
 this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "accepted";
@@ -470,6 +451,25 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"compiler":
     + escapeExpression(((helper = (helper = helpers.endDate || (depth0 != null ? depth0.endDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"endDate","hash":{},"data":data}) : helper)))
     + "</li>	\n</ul>\n\n\n\n";
 },"useData":true});
+this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
+this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<textarea name=\"body\" placeholder=\"Your review\"></textarea>\n\n<input type=\"submit\" value=\"Submit Review\"><button type=\"button\" class=\"cancel-review\">Cancel</button>";
+  },"useData":true});
+this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<h1><a href='#/user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "'>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</a></h1>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
+    + "</p>\n<p>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + "</p>";
+},"useData":true});
+this["Bees"]["templates"]["reviews"]["new"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<button class=\"addReview\">Add a Review</button>";
+  },"useData":true});
 this["Bees"]["templates"]["search"] = this["Bees"]["templates"]["search"] || {};
 this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";
@@ -485,7 +485,9 @@ this["Bees"]["templates"]["search"]["nameSearch"] = Handlebars.template({"compil
   },"useData":true});
 this["Bees"]["templates"]["search"]["resultItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<a href=\"\" class=\"user\">"
+  return "<a href=\"#user/"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.objectId : stack1), depth0))
+    + "\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + " ("
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))

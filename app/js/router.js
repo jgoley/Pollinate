@@ -146,7 +146,7 @@
                 }).fetch().then(function(reviews){
                     console.log(reviews)
                     if(reviews.length > 0){
-                        Bees.currentView = new Bees.Views.UserReviewsList({
+                        Bees.currentView = new Bees.Views.UserReviewsPage({
                             $container: $('.main-container'),
                             collection: reviews
                         });

@@ -48,6 +48,34 @@
         },
     });
 
+    Bees.Views.UserReviewsPage = BaseView.extend({
+            className: 'reviews-container',
+            tagName: 'section',
+            subViews: [],
+
+            initialize: function(opts) {
+                var options = _.defaults({}, opts, {
+                    $container: opts.$container,
+                });
+                options.$container.html(this.el);
+                this.render();
+            },
+
+            render: function() {
+                this.$el.html("<div class='reviews'><h1>Reviews</h1></div>");
+                _.invoke(this.subViews, 'dispose');
+                if(this.collection.length > 0){
+                    this.subViews.push(
+                        new Bees.Views.UserReviewsList({
+                            $container: $('.reviews'),
+                            collection: this.collection
+                        })
+                    );  
+                } else {
+                    that.$el.append('<p>No user reviews</p>');
+                }
+            },
+    });
 
     Bees.Views.UserReviewsList = BaseView.extend({
         tagName: 'ul',

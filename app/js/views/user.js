@@ -96,7 +96,7 @@
                 distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
                 if (distance > beek.get('maxDistFree')) {
                     milesOver = Math.floor(distance - beek.get('maxDistFree'));
-                    mileageCost = roundToTwo(milesOver * beek.get('costPerMile'));
+                    mileageCost = roundToTwo(milesOver * (beek.get('costPerMile')/100));
                 }
                 var totalCost = roundToTwo(mileageCost + (numHives * beek.get('costPerHive')));
                 this.request.set({
@@ -106,7 +106,7 @@
                     'numHives': numHives
                 });
             } else {
-                alert("You've selected more hives than the beekeeper has");
+                alert("You've selected more hives than the number available in the beekeeper's inventory");
             }
         },
 
