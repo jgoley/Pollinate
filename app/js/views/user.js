@@ -93,7 +93,7 @@
                 numHives = 0;
 
             numHives = +$('[name=numHives]').val();
-            if (numHives <= beek.get('hivesAvailable')) {
+            if (numHives <= beek.get('hivesAvailable') && numHives > 0) {
                 distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
                 if (distance > beek.get('maxDistFree')) {
                     milesOver = Math.floor(distance - beek.get('maxDistFree'));
@@ -106,6 +106,8 @@
                     'mileageCost': mileageCost,
                     'numHives': numHives
                 });
+            } else if (numHives <= 0) {
+                alert("Please enter a request of 1 or more hives");
             } else {
                 alert("You've selected more hives than the number available in the beekeeper's inventory");
             }
@@ -117,12 +119,14 @@
             var beekeeper = this.model;
             var startDate = $('[name=startDate]').val();
             var endDate = $('[name=endDate]').val();
+            var message = $('[name=message]').val();
 
             var newRequest = new Bees.Models.Request();
             newRequest.set('beekeeper', beekeeper);
             newRequest.set('farmer', user);
             newRequest.set('startDate', startDate);
             newRequest.set('endDate', endDate);
+            newRequest.set('message', message);
             newRequest.set(this.request.toJSON());
             newRequest.save().then(function() {
                 var email = {

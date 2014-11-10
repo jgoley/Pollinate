@@ -8,6 +8,9 @@
 		<li>Cost: ${{request.totalCost}}</li>
 		<li>Miles over: {{request.milesOver}}</li>
 		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
+
+		<li>Message: {{request.message}}</li>
+
 		<li>Requested: {{formattedDates.createdAt}}</li>
 		{{#if request.archivedBeekeeper}}
 		<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>

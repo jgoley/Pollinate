@@ -56,6 +56,8 @@ form,
 body,
 ul,
 input,
+textarea,
+select,
 button {
     @extend .sourceFont;
     color: $text;
@@ -228,6 +230,10 @@ form.review {
     }
 }
 
+.form-button{
+
+}
+
 // form.user-login {
 //     input[type=submit] {
 //         background: $farmerPrimary;
@@ -265,11 +271,12 @@ form.search {
     $max-width: 100%;
     margin-bottom: em(60px);
     @include outer-container;
-    section {
-        > div {
-            padding: 1em;
-        }
-    }
+    padding: 0 em(20px);
+    // section {
+    //     > div {
+    //         padding: 1em;
+    //     }
+    // }
     button {
         padding: em(10px) em(20px);
         border-radius: 4px;
@@ -329,11 +336,11 @@ footer {
 }
 
 .user-image.farmer {
-    background: $farmerPrimary;
+    background-color: $farmerPrimary;
 }
 
 .user-image.beekeeper {
-    background: $beekeeperPrimary;
+    background-color: $beekeeperPrimary;
 }
 
 .user-profile {
@@ -360,5 +367,6 @@ footer {
 @import "landing";
 @import "requests";
 @import "reviews";
+@import "user";
 @import "desktop";
 @import "../bower_components/Slidebars/distribution/0.9.4/slidebars.css";

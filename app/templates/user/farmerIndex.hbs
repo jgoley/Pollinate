@@ -1,5 +1,11 @@
 <div class="user-image farmer" {{#if user.image}}style="background-image: url({{user.image}})" {{/if}}></div>
 <div class='user-profile'>
 	<h1 class="business-name">{{user.businessName}}</h1>
-	<div class="reviews"></div>
+	<div class="user-description">{{user.description}}</div>
+	<section class='reviews-container'>
+		<div class="reviews-list-container">
+			<h1 class="main-title">Reviews</h1>
+			<div class="reviews"></div>
+		</div>
+	</section>
 </div>

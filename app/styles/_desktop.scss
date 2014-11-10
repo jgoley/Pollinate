@@ -17,15 +17,17 @@
         width: 30%;
     }
     .main-container {
-        $max-width: 100%;
+        $max-width: 1000px;
         @include outer-container;
+        float:none;
         section {
+            // padding:2em 0;
             // background: rgba(200,200,200,.1);
-            > div {
-                $max-width: 1000px;
-                @include outer-container;
-                padding: 0 2em;
-            }
+            // > div {
+            //     $max-width: 1000px;
+            //     @include outer-container;
+            //     padding: 0 2em;
+            // }
         }
     }
     .main-menu {

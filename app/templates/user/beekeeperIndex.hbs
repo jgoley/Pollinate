@@ -1,17 +1,26 @@
 <div class="user-image beekeeper" {{#if user.image}}style="background-image: url({{user.image}})" {{/if}}></div>
-<div class='user-profile'>
+<section class='user-profile'>
 	<h1 class="business-name">{{user.businessName}}</h1>
 
-	<h3>Number of hives available: {{user.hivesAvailable}}</h3>
-	<h4>Distance from you: {{distance}} miles</h4>
-	<ul class="cost-details">
-		<li>Cost per hive ${{user.costPerHive}}</li>
-		<li>Transportation fee: ${{user.costPerMile}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
-	</ul>
+	<div class="user-description">{{user.description}}</div>
+</section>
+	<section>
+		<h3>Number of hives available: {{user.hivesAvailable}}</h3>
+		<h4>Distance from you: {{distance}} miles</h4>
+		<ul class="cost-details">
+			<li>Cost per hive ${{user.costPerHive}}</li>
+			<li>Transportation fee: ${{user.costPerMile}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
+		</ul>
 
-	<div class="new-request"></div>
+		<div class="new-request"></div>
+	</section>
 
-	<div class="reviews">
-		<h2>Reviews</h2>
-	</div>
-</div>
+	<a href="#" class="sendMessage">Send a Message</a>
+
+	<section class='reviews-container'>
+		<div class="reviews-list-container">
+			<div class="reviews">
+				<h2>Reviews</h2>
+			</div>
+		</div>
+	</section>

@@ -5,11 +5,11 @@
 }
 
 .user-image.farmer {
-    background: $farmerPrimary;
+    background-color: $farmerPrimary;
 }
 
 .user-image.beekeeper {
-    background: $beekeeperPrimary;
+    background-color: $beekeeperPrimary;
 }
 
 .user-profile {
@@ -18,4 +18,12 @@
 
 .business-name {
     font-size: 3em;
+    margin-bottom: 10px;
+    line-height: 1em;
+}
+
+.user{
+	section{
+		margin-bottom:em(30px);
+	}
 }
