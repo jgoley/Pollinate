@@ -48,11 +48,40 @@ Parse.Collection.prototype.findWhere = function(attrs) {
 function disposeViews() {
     console.log("The Current View", Bees.currentView);
     if (Bees.currentView) Bees.currentView.dispose();
-    if($('nav').hasClass('showing')){
-      $('nav').removeClass('showing');
-      $('.main-container').removeClass('menu-showing');
-    } 
+    if ($('nav').hasClass('showing')) {
+        $('nav').removeClass('showing');
+        $('.main-container').removeClass('menu-showing');
+    }
 }
+
+function calculateCost(numHivesRequested, beek) {
+
+    console.log("!!!!!!!!Beek in function",beek);
+    var cost = 0,
+        mileageCost = 0,
+        distance = 0,
+        milesOver = 0,
+        numHives = 0;
+
+    distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
+    if (distance > beek.get('maxDistFree')) {
+        milesOver = Math.floor(distance - beek.get('maxDistFree'));
+        mileageCost = roundToTwo(milesOver * (beek.get('costPerMile') / 100));
+    }
+    var totalCost = roundToTwo(mileageCost + (numHivesRequested * beek.get('costPerHive')));
+
+    var requestDetails = {
+        'totalCost': +totalCost,
+        'milesOver': +milesOver,
+        'mileageCost': +mileageCost,
+        'numHives': +numHivesRequested
+    }
+
+    console.log("!!!!!!!!!!Details",requestDetails);
+
+    return requestDetails;
+}
+
 
 // Round numbers
 function roundToTwo(num) {

@@ -16,6 +16,11 @@
     margin-top: em(20px);
 }
 
+.user-description{
+	width:100%;
+}
+
+
 .business-name {
     font-size: 3em;
     margin-bottom: 10px;
@@ -26,4 +31,10 @@
 	> div{
 		margin-bottom:em(30px);
 	}
+}
+
+@include media(min-width 600px) {
+	.user-description{
+		width:80%;
+	}	
 }

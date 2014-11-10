@@ -81,6 +81,10 @@
         }
     });
 
+    Bees.Models.Message = Parse.Object.extend({
+        className: 'Messages'
+    });
+
     // Bees.Models.RequestQuery = Parse.Object.extend({
     //     className: 'Requests',
     //     initialize: function(opts){

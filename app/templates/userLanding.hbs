@@ -1,5 +1,3 @@
-{{log this}}
-
 <section class='requests-container'>
 	<div class="requests-list-container">
 		<div class='requests'>
@@ -10,7 +8,9 @@
 </section>
 
 {{#if_eq userType 'beekeeper'}}
-<section><div class="active-request-info"></div></section>
+<section class="active-request-container">
+	<div class="active-request-info"></div>
+</section>
 {{/if_eq}}
 
 <section class='near-users-container'>

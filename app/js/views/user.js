@@ -6,11 +6,15 @@
         className: 'user',
         subViews: [],
         tagName: 'section',
+        events: {
+            'click .newMessage': 'newMessage'
+        },
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             })
             options.$container.html(this.el);
+            $('.main-menu a').removeClass('selected-nav');
             this.render();
         },
         render: function() {
@@ -51,10 +55,69 @@
                     })
                 );
             }
+        },
+
+        newMessage: function(e){
+            e.preventDefault();
+            console.log("asdfasdfasdf");
+            new Bees.Views.NewMessage({
+                $container: $('.newMessage-container'),
+                recepient: this.model
+            });
         }
 
     });
 
+
+    Bees.Views.NewMessage = BaseView.extend({
+        template: Bees.templates.user.newMessage,
+        tagName: 'form',
+        events: {
+            'submit': 'sendMessage',
+        },
+
+        initialize: function(opts) {
+            var options = _.defaults({}, opts, {
+                $container: opts.$container,
+                recepient: opts.recepient
+            });
+            options.$container.html(this.el);
+            this.recepient = options.recepient;
+            this.sender = Parse.User.current();
+            this.message = new Bees.Models.Message();
+            this.render();
+        },
+        render: function() {
+            // this.dispose();
+            console.log("Rendering");
+            this.$el.html(this.template());
+        },
+        sendMessage: function(e){
+            var that = this;
+            var newMessage = this.message;
+            e.preventDefault();
+            var message = $('[name=message]').val();
+            newMessage.set('message', message);
+            newMessage.set('recepient', this.recepient);
+            newMessage.set('sender', this.sender);
+            newMessage.save({
+                success:function(a){
+                    console.log(a);
+                    var email = {
+                        message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
+                        subject: 'New Message on Pollinage',
+                        from: 'jgoley.etc@gmail.com',
+                        to: 'jgoley@gmail.com',//beekeeper.get('email'),
+                    };
+                    sendMail(email);
+                },
+                error:function(a,e){
+                    console.error(e);
+                }
+            });
+            this.dispose();
+        }
+    });
 
     Bees.Views.RequestNew = BaseView.extend({
         template: Bees.templates.user.request,
@@ -84,28 +147,9 @@
 
         calculate: function(e) {
             e.preventDefault();
-            // console.log(this.request);
-            var cost = 0,
-                mileageCost = 0,
-                beek = this.model,
-                distance = 0,
-                milesOver = 0,
-                numHives = 0;
-
-            numHives = +$('[name=numHives]').val();
-            if (numHives <= beek.get('hivesAvailable') && numHives > 0) {
-                distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
-                if (distance > beek.get('maxDistFree')) {
-                    milesOver = Math.floor(distance - beek.get('maxDistFree'));
-                    mileageCost = roundToTwo(milesOver * (beek.get('costPerMile')/100));
-                }
-                var totalCost = roundToTwo(mileageCost + (numHives * beek.get('costPerHive')));
-                this.request.set({
-                    'totalCost': totalCost,
-                    'milesOver': milesOver,
-                    'mileageCost': mileageCost,
-                    'numHives': numHives
-                });
+            var numHivesRequested = +$('[name=numHives]').val();
+            if (numHivesRequested <= this.model.get('hivesAvailable') && numHivesRequested > 0) {
+                this.request.set(calculateCost(numHivesRequested, this.model));
             } else if (numHives <= 0) {
                 alert("Please enter a request of 1 or more hives");
             } else {

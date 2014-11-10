@@ -68,7 +68,7 @@
                         collection: archived,
                         info: {title: 'Archived', class:'archived'}
                 }));
-            } else{
+            } else if (archived.length > 0){
                 $('.requests').append('<a href="#/requests/archived" class="button">View Archived Requests</a>');
             }
         },
@@ -116,7 +116,8 @@
             'click .archive': 'archiveRequest',
             'click .cancel': 'cancelRequest',
             'click .delete': 'deleteRequest',
-            'click .more-info': 'moreInfo'
+            'click .more-info': 'moreInfo',
+            'click .edit-request': 'editRequest'
         },
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
@@ -215,9 +216,12 @@
             }
         },
         moreInfo: function(){
-            console.log('asdfasdf');
             this.$el.find('ul').toggleClass('hidden');
             this.$el.toggleClass('selected');
+        },
+        editRequest: function(){
+            console.log('edit')
+            BeesApp.navigate('request/'+this.model.id, {trigger: true})
         }
     });
 

@@ -350,17 +350,8 @@ footer {
     font-size: 3em;
 }
 
-
-.user {
-    a {
-        // padding: 1em;
-        // display: block;
-        // &:hover {
-        //     background: #ebebeb;
-        // }
-        // border-bottom: 1px solid #ebebeb;
-   
-    }
+.active-request-info{
+    @include outer-container;
 }
 
 @import "header-nav";

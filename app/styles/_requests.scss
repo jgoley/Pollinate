@@ -10,13 +10,19 @@
 }
 
 .request {
-    margin: 0 0 em(10px) 0;
     position: relative;
+    margin-bottom: em(20px);
     .details {
         padding: em(1px) em(20px);
         border-radius: .2em;
     }
-    .actions {}
+    .actions {
+        display:none;
+    }
+    a{
+        display: block;
+        padding: 15px 5px;
+    }
     button {
         width: 49%;
         margin-bottom: 10px;
@@ -24,6 +30,14 @@
     }
     ul {
         margin-bottom: 20px;
+    }
+    &::after{
+        content:">";
+        position:absolute;
+        right:5%;
+        transform:translate(0, -50%);
+        top:50%;
+
     }
 }
 
@@ -66,4 +80,15 @@
 
 .archived {
     background: RGBA(225, 225, 225, 0.4);
+}
+
+
+@include media(min-width 600px) {
+
+    .request {
+        .actions {
+            display:block;
+        }
+    }    
+
 }
