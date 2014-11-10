@@ -1,0 +1,21 @@
+.user-image {
+    background-size: cover;
+    background-position: center center;
+    height: 200px;
+}
+
+.user-image.farmer {
+    background: $farmerPrimary;
+}
+
+.user-image.beekeeper {
+    background: $beekeeperPrimary;
+}
+
+.user-profile {
+    margin-top: em(20px);
+}
+
+.business-name {
+    font-size: 3em;
+}

@@ -33,7 +33,7 @@
             });
 
             if (curUser.get('userType') == 'beekeeper') {
-                this.drawCircle(curUser, '#000');
+                this.drawCircle(curUser, '#000', this.searchRadius);
             }
 
             // Add markers for the collection of users
@@ -43,7 +43,7 @@
                 } else {
                     var icon = 'https://maps.google.com/mapfiles/kml/paddle/F.png';
                 }
-                that.drawCircle(user, '#000');
+                that.drawCircle(user, '#000', user.get('geoRangeRadius'));
                 that.map.addMarker({
                     lat: user.get('geoCenter').latitude,
                     lng: user.get('geoCenter').longitude,
@@ -62,11 +62,11 @@
             })
             this.map.fitZoom();
         },
-        drawCircle: function(user, color) {
+        drawCircle: function(user, color, radius) {
             return this.map.drawCircle({
                 lat: user.get('geoCenter').latitude,
                 lng: user.get('geoCenter').longitude,
-                radius: user.get('geoRangeRadius') / 0.00062137, // convert miles to meters
+                radius: radius / 0.00062137, // convert miles to meters
                 fillColor: color,
                 fillOpacity: .1,
                 strokeColor: '#FFF',

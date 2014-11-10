@@ -472,7 +472,7 @@ this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":func
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"user-image farmer\" ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.image : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "></div>\n<div class='user-profile'>\n	<h1>"
+  return buffer + "></div>\n<div class='user-profile'>\n	<h1 class=\"business-name\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "</h1>\n	<div class=\"reviews\"></div>\n</div>";
 },"useData":true});
@@ -500,7 +500,7 @@ this["Bees"]["templates"]["user"]["request"] = Handlebars.template({"1":function
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
     + "</p>\n<h3>Total Cost: $"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
-    + "</h3>\n\n<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n\n<button class='getBees' >Get some Bees</button>\n</div>\n";
+    + "</h3>\n\n<textarea name=\"message\" placeholder=\"Enter a message to the beekeeper\"></textarea>\n\n<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n\n<button class='getBees' >Get some Bees</button>\n</div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "\n\n<input name='numHives' value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))

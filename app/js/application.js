@@ -30,5 +30,5 @@ $(function() {
     Parse.initialize("HJ2pcl7OeW4shsUtxq04ZzZAQeAgwSIhe5IaWiQt", "UxWDTnnEnZc20pFLzbPP3IikP8RZlOa7VwRAB7Xz");
     window.BeesApp = new Bees.Router();
     Parse.history.start();
-    $.slidebars({});
+    $.slidebars();
 });

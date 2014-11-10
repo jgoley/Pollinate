@@ -118,7 +118,7 @@
             var startDate = $('[name=startDate]').val();
             var endDate = $('[name=endDate]').val();
 
-            newRequest = new Bees.Models.Request();
+            var newRequest = new Bees.Models.Request();
             newRequest.set('beekeeper', beekeeper);
             newRequest.set('farmer', user);
             newRequest.set('startDate', startDate);

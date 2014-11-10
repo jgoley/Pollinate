@@ -11,7 +11,7 @@ $farmerSecondarySubtle: rgba(145, 115, 80, 0.2);
 $farmerText: $text;
 
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
-$beekeeperSecondary: rgba(98, 152, 208, 1);
+$beekeeperSecondary: rgba(90, 136, 184, 1);
 $beekeeperSecondarySubtle: rgba(98, 152, 208, 0.2);
 
 $subtleWarning: RGBA(170, 57, 57, 0.1);
@@ -142,11 +142,11 @@ a {
         }
     }
     .button, button {
-        background: $beekeeperPrimary;
-        color: $text;
-        @extend .white-shadow;
+        background: $beekeeperSecondary;
+        color: #FFF;
+        @extend .black-shadow;
         &:hover {
-            background: $beekeeperSecondary;
+            background: $beekeeperPrimary;
             color: #FFF;
             @extend .black-shadow;
         }
@@ -170,11 +170,12 @@ a {
             }
         }
     }
-    .button {
-        background: $farmerPrimary;
+    .button, button {
+        background: $farmerSecondary;
+        color:#FFF;
         @extend .black-shadow;
         &:hover {
-            background: $farmerSecondary;
+            background: $farmerPrimary;
             color: #FFF;
             @extend .black-shadow;
         }
@@ -272,7 +273,6 @@ form.search {
     button {
         padding: em(10px) em(20px);
         border-radius: 4px;
-        color: $text;
         border: none;
         transition: .2s;
         font-size: .8em;
