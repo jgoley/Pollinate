@@ -93,9 +93,7 @@ gulp.task('clean', function () {
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
-var options = { 
-    remoteUrl: "https://github.com/jgoley/TIY-24_photo-share-app.git",
-    branch: "gh-pages"};
+var options = {};
 
 gulp.task('deploy', function () {
     return gulp.src('./dist/**/*')
