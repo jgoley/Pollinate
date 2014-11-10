@@ -25,7 +25,7 @@
             }
         }
     }
-    nav {
+    .main-menu {
         display: block;
         float:right;
         background: none;
@@ -36,6 +36,7 @@
         a {
             padding: 1.2em 1em;
             font-weight:bold;
+            display: block;
             font-size: .9em;
             &:hover {
                 background: #FFF;

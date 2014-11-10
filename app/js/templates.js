@@ -2,20 +2,20 @@ this["Bees"] = this["Bees"] || {};
 this["Bees"]["templates"] = this["Bees"]["templates"] || {};
 this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class='"
+  return "<div id=\"sb-site\" class=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "'>\n<header></header>\n<section class=\"main-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>\n<footer></footer>\n</div>";
+    + "\">\n<header></header>\n        <div class=\"sb-slidebar sb-left\">\n        <nav class='off-canvas'>\n        <ul>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li>Test</li>\n        <li>Test</li>\n        </ul></nav>\n        </div>\n<section class=\"main-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>\n<footer></footer>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
 },"useData":true});
 this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  return "	<a href=\"#\" class='show-menu'></a>\n	<h1 class=\"logo\"><a href=\"#/\">Pollinate</a></h1>\n";
+  return "	<a href=\"#\" class='sb-toggle-left show-menu'></a>\n	<h1 class=\"logo\"><a href=\"#/\">Pollinate</a></h1>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "<nav></nav>\n";
+  return buffer + "<nav class=\"main-menu\"></nav>\n";
 },"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\" required>\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\" required>\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not signed up? <a href=\"#/newuser\">Create account</a></p>";

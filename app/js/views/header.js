@@ -28,7 +28,7 @@
             this.$el.html(this.template({session: Bees.Session.toJSON(), user: user}));
             this.subViews.push(
                 new Bees.Views.NavView({
-                    $container: $('nav'),
+                    $container: $('.main-menu'),
                     model: Bees.Session,
                     user: user
                 }));
