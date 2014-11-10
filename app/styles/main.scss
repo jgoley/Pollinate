@@ -125,9 +125,10 @@ a {
 
 .beekeeper {
     header {
+        border-top:3px solid $beekeeperPrimary;
         background: $beekeeperPrimary;
         a{
-            color: #000;
+            color: $text;
         }
     }
     .button, button{
@@ -159,6 +160,7 @@ a {
 
 .farmer {
     color: $farmerText;
+    border-top:3px solid $farmerPrimary;    
     header {
         background: $farmerPrimary;
     }

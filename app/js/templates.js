@@ -11,20 +11,14 @@ this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0
 },"useData":true});
 this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<h2><a href=\"#/\">"
+  return "	<h2><a href=\"#/\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</a></h2>\n<button class='show-menu'><span>Menu</span></button>\n<input placeholder=\"search\" class=\"search\" type=\"search\">\n";
-},"3":function(depth0,helpers,partials,data) {
-  return "<button class=\"account\"><span>My account</span></button>\n<button class=\"auth log-out\"><span>Log out</span></button>\n";
-  },"5":function(depth0,helpers,partials,data) {
-  return "<button class=\"auth log-in\"><span>Log in</span></button>\n";
-  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    + "</a></h2>\n	<a href=\"#\" class='show-menu'><span>Menu</span></a>\n	<input placeholder=\"search\" class=\"search\" type=\"search\">\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(3, data),"inverse":this.program(5, data),"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer;
+  return buffer + "<nav></nav>\n";
 },"useData":true});
 this["Bees"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input type=\"text\" name=\"userName\" value=\"\" placeholder=\"Username\" required>\n<input type=\"password\" name=\"pass\" value=\"\" placeholder=\"Password\" required>\n<input type=\"submit\" name=\"\" value=\"Login\">\n\n<p>Not signed up? <a href=\"#/newuser\">Create account</a></p>";
@@ -33,20 +27,22 @@ this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-
   return "<div id=\"map_canvas\"></div>";
   },"useData":true});
 this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "<ul>\n\n        <li><a href=\"#/\">Home</a></li>\n";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "        <li><a href=\"#/reviews\">Reviews</a></li>\n</ul>\n";
+  return buffer + "    <li><a href=\"#/reviews\">Reviews</a></li>\n    <li><a class=\"account\" href=\"#\">My account</a></li>\n    <li><a class=\"log-out\" href=\"#\">Logout</a></li>\n\n";
 },"2":function(depth0,helpers,partials,data) {
-  return "    		<li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search\">Search for Farmers</a></li>\n";
+  return "		<li><a href=\"#/requests\">Requests</a></li>\n		<li><a href=\"#/search\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
-  return "            <li><a href=\"#/requests\">Requests</a></li>\n    		<li><a href=\"#/search\">Search for Beekeepers</a></li>\n";
-  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer;
-},"useData":true});
+  return "        <li><a href=\"#/requests\">Requests</a></li>\n		<li><a href=\"#/search\">Search for Beekeepers</a></li>\n";
+  },"6":function(depth0,helpers,partials,data) {
+  return "        <li><a class=\"log-in\" href=\"#\">Login</a></li>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1;
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(6, data),"data":data});
+  if (stack1 != null) { return stack1; }
+  else { return ''; }
+  },"useData":true});
 this["Bees"]["templates"]["shortList"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<a href=\"#/user/"

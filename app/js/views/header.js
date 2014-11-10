@@ -2,11 +2,8 @@ Bees.Views.HeaderView = BaseView.extend({
     subViews: [],
     template: Bees.templates.header,
     events: {
-        'click .log-out': 'logout',
-        'click .log-in': 'login',
         'click .show-menu': 'showMenu',
-        'click .account': 'showAccount',
-        'keyup .search' : 'search'
+        'keyup .search' : 'search',
     },
 
     initialize: function(opts) {
@@ -26,33 +23,16 @@ Bees.Views.HeaderView = BaseView.extend({
         this.$el.html(this.template({session: Bees.Session.toJSON(), user: user}));
         this.subViews.push(
             new Bees.Views.NavView({
-                $container:$('.menu'),
+                $container: $('nav'),
                 model: Bees.Session,
                 user: user
             }));
     },
 
-    login: function() {
-        BeesApp.navigate('login', {
-            trigger: true
-        });
-    },
-
-    logout: function() {
-        Parse.User.logOut();
-        Bees.Session.set('user', null);
-        BeesApp.navigate('login', {
-            trigger: true
-        });
-    },
-    showMenu: function(){
+    showMenu: function(e){
+        e.preventDefault();
         $('nav').toggleClass('showing');
         $('.main-container').toggleClass('menu-showing');
-    },
-    showAccount: function(){
-        BeesApp.navigate('/account', {
-            trigger: true
-        });  
     },
 
     search: function(e){
@@ -63,8 +43,15 @@ Bees.Views.HeaderView = BaseView.extend({
 });
 
 Bees.Views.NavView = BaseView.extend({
-    tagName: 'nav',
+    tagName: 'ul',
     template: Bees.templates.nav,
+
+    events:{
+        'click nav a': 'addClass',
+        'click .log-out': 'logout',
+        'click .log-in': 'login',
+        'click .account': 'showAccount',
+    },
 
     initialize: function(opts) {
         var options = _.defaults({}, opts, {
@@ -76,8 +63,36 @@ Bees.Views.NavView = BaseView.extend({
         this.render();
     },
 
+
     render: function() {
         this.$el.html(this.template({session: this.model.toJSON(), user: this.user}));
     },
+
+    login: function(e) {
+        e.preventDefault();
+        BeesApp.navigate('login', {
+            trigger: true
+        });
+    },
+
+    logout: function(e) {
+        e.preventDefault()
+        Parse.User.logOut();
+        Bees.Session.set('user', null);
+        BeesApp.navigate('login', {
+            trigger: true
+        });
+    },
+    showAccount: function(e){
+        e.preventDefault()
+        BeesApp.navigate('/account', {
+            trigger: true
+        });  
+    },
+    addClass: function(e){
+        console.log("clickeds");
+        $('nav ul li a').removeClass('selected-nav');
+        $(e.target).addClass('selected-nav');
+    }
 });
 

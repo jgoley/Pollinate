@@ -24,29 +24,20 @@
             }
         }
     }
-    .photos {
-        @include span-columns(11.5);
-        @include outer-container;
-        @include shift(0.25);
-        li {
-            $gutter: 0;
-            @include span-columns(4);
-            @include shift(0);
-            @include omega(3n);
-            margin-bottom: 30px;
-        }
-    }
     nav {
-        background: #ebebeb;
         display: block;
+        float:right;
+        background: none;
         li {
             display: inline-block;
             border: 0;
         }
         a {
-            padding: 1em 1.5em;
+            padding: 1.2em 1em;
+            font-weight:bold;
             &:hover {
                 background: #FFF;
+                color:$text
             }
         }
     }
@@ -134,5 +125,8 @@
         h2 {
             display: inline-block;
         }
+    }
+    .selected-nav{
+        background: #FFF;
     }
 }

@@ -1,19 +1,17 @@
-    {{#if session.user}}
-<ul>
+{{#if session.user}}
+	{{#if_eq user.userType "beekeeper"}}
+		<li><a href="#/requests">Requests</a></li>
+		<li><a href="#/search">Search for Farmers</a></li>
+	{{else}}
+        <li><a href="#/requests">Requests</a></li>
+		<li><a href="#/search">Search for Beekeepers</a></li>
+	{{/if_eq}}
+    <li><a href="#/reviews">Reviews</a></li>
+    <li><a class="account" href="#">My account</a></li>
+    <li><a class="log-out" href="#">Logout</a></li>
 
-        <li><a href="#/">Home</a></li>
-    	{{#if_eq user.userType "beekeeper"}}
-    		<li><a href="#/requests">Requests</a></li>
-    		<li><a href="#/search">Search for Farmers</a></li>
-		{{else}}
-            <li><a href="#/requests">Requests</a></li>
-    		<li><a href="#/search">Search for Beekeepers</a></li>
-    	{{/if_eq}}
-        <li><a href="#/reviews">Reviews</a></li>
-{{!-- 
-    {{else}}
-    	<li><a href="#/search">Search Farmers</a></li>
-    	<li><a href="#/search">Search Beekeepers</a></li>
-    {{/if}} --}}
-</ul>
+{{else}}
+        <li><a class="log-in" href="#">Login</a></li>
+    	{{!-- <li><a href="#/search">Search Farmers</a></li>
+    	<li><a href="#/search">Search Beekeepers</a></li> --}}
 {{/if}}

@@ -1,11 +1,6 @@
 {{#if session.user}}
-<h2><a href="#/">{{user.username}}</a></h2>
-<button class='show-menu'><span>Menu</span></button>
-<input placeholder="search" class="search" type="search">
+	<h2><a href="#/">{{user.username}}</a></h2>
+	<a href="#" class='show-menu'><span>Menu</span></a>
+	<input placeholder="search" class="search" type="search">
 {{/if}}
-{{#if session.user }}
-<button class="account"><span>My account</span></button>
-<button class="auth log-out"><span>Log out</span></button>
-{{else}}
-<button class="auth log-in"><span>Log in</span></button>
-{{/if}}
+<nav></nav>

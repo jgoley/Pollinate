@@ -34,7 +34,7 @@
         index: function() {
             disposeViews();
             console.log("The Current User:",Parse.User.current());
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else {
                 if (Parse.User.current().get('userType') === 'beekeeper') {
@@ -78,7 +78,7 @@
 
         account: function() {
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 Bees.currentView = new Bees.Views.EditAccountView({
@@ -90,7 +90,7 @@
 
         user: function(user_id) {
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 var query = new Parse.Query(Bees.Models.User);
@@ -105,7 +105,7 @@
 
         requests: function() {
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 new Bees.Collections.Requests({
@@ -123,7 +123,7 @@
 
         requestsArchived: function() {
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 new Bees.Collections.RequestsArchived({
@@ -139,7 +139,7 @@
         
         request: function(requestID) {
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 var query = new Parse.Query('Requests');
@@ -154,7 +154,7 @@
 
         reviews: function(){
             disposeViews();
-            if (!this.currentUser) {
+            if (!Parse.User.current()) {
                 this.goLogin();
             } else{
                 new Bees.Collections.UserReviews({
