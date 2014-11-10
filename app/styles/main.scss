@@ -123,6 +123,14 @@ a {
 }
 // Beekeeper
 
+.beekeeper-details {
+    @include span-columns(10 of 10);
+}
+
+.hives-out {
+    @include span-columns(10 of 10);
+}
+
 .beekeeper {
     header {
         border-top:3px solid $beekeeperPrimary;
@@ -144,25 +152,22 @@ a {
     a{
         color:$beekeeperSecondary
     }
-}
-
-// .top-info {
-//     margin-top: em(20px);
-// }
-
-.beekeeper-details {
-    @include span-columns(10 of 10);
-}
-
-.hives-out {
-    @include span-columns(10 of 10);
+    .main-title{
+    }
 }
 
 .farmer {
     color: $farmerText;
-    border-top:3px solid $farmerPrimary;    
     header {
+        border-top:3px solid $farmerPrimary;    
         background: $farmerPrimary;
+        a{
+            color: #FFF;
+            @extend .black-shadow;
+            &:hover{
+                text-shadow: none;
+            }
+        }
     }
     .button{
         background: $farmerPrimary;
@@ -176,7 +181,7 @@ a {
 }
 
 form.new-user,
-form.account,
+form.edit-account,
 form.user-login, 
 form.search, 
 form.review {

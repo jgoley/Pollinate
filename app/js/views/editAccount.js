@@ -1,6 +1,6 @@
 Bees.Views.EditAccountView = BaseView.extend({
     tagName: 'form',
-    className: 'account',
+    className: 'edit-account',
     template: Bees.templates.account.edit,
     events: {
         'submit': 'saveUser',
