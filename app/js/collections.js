@@ -131,5 +131,43 @@
         model: Bees.Models.Request
     });
 
-})()
+    Bees.Collections.UserMessages = Parse.Collection.extend({
+        initialize: function(opts){
+            var options = _.defaults({}, opts, {
+                user: opts.user
+            });
+            var q1 = new Parse.Query('Messages').equalTo('sender', options.user);
+            var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
+            this.query = new Parse.Query.or(q1,q2)
+                // .equalTo('sender_deleted', false);
+        },
+        model: Bees.Models.Request,
+    });
+
+    Bees.Collections.UserMessagesSent = Parse.Collection.extend({
+        initialize: function(opts){
+            var options = _.defaults({}, opts, {
+                user: opts.user
+            });
+            this.query = new Parse.Query('Messages')
+                .equalTo('sender', options.user);
+                // .equalTo('sender_deleted', false);
+        },
+        model: Bees.Models.Request,
+    });
+
+    Bees.Collections.UserMessagesRecieved = Parse.Collection.extend({
+        initialize: function(opts){
+            var options = _.defaults({}, opts, {
+                user: opts.user
+            });
+            this.query = new Parse.Query('Messages')
+                .equalTo('recipient', options.user);
+                // .equalTo('reciever_deleted', false);
+        },
+        model: Bees.Models.Request,
+    });
+
+
+})();
 

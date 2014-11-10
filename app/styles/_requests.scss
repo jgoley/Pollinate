@@ -1,27 +1,28 @@
-.request-container{
-    > :first-child{
-        margin-top:em(30px);
+.request-container {
+    > :first-child {
+        margin-top: em(30px);
     }
 }
 
-
-.requests{
-    margin-bottom:em(15px);
+.requests {
+    margin-bottom: em(15px);
 }
 
 .request {
     position: relative;
     margin-bottom: em(20px);
     .details {
-        padding: em(1px) em(20px);
         border-radius: .2em;
     }
     .actions {
-        display:none;
+        display: none;
     }
-    a{
+    a {
         display: block;
-        padding: 15px 5px;
+        padding: em(15px) em(10px);
+        &:hover {
+            background: #FFF;
+        }
     }
     button {
         width: 49%;
@@ -31,17 +32,17 @@
     ul {
         margin-bottom: 20px;
     }
-    &::after{
-        content:">";
-        position:absolute;
-        right:5%;
-        transform:translate(0, -50%);
-        top:50%;
-
+    &::after {
+        @extend .icon;
+        content: ">";
+        position: absolute;
+        right: em(10px);
+        transform: translate(0, -50%);
+        top: 50%;
     }
 }
 
-.request-list{
+.request-list {
     // margin-bottom:em(30px);
 }
 
@@ -52,7 +53,6 @@
         transform: translate(0, 0);
     }
 }
-
 
 .cost-details {
     span {
@@ -70,25 +70,48 @@
 
 .accepted {
     background: RGBA(0, 115, 0, 0.1);
-    transition: .3s;
+    transition: .2s;
 }
 
 .notAccepted {
     background: $action;
-    transition: .3s;
+    transition: .2s;
 }
 
 .archived {
     background: RGBA(225, 225, 225, 0.4);
 }
 
-
 @include media(min-width 600px) {
-
     .request {
+        margin: 0 0 em(10px) 0;
+        position: relative;
         .actions {
-            display:block;
+            display: block;
         }
-    }    
-
+        &::after {
+            display: none;
+        }
+        .actions {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translate(0, -50%);
+            button {
+                margin-bottom: 0;
+                width: auto;
+            }
+        }
+        ul {
+            margin-bottom: 20px;
+        }
+        a{
+            color:$text;
+            border-radius: 3px;
+            &:hover{
+                background: $beekeeperPrimary;
+                color:$text;
+            }
+        }
+    }
 }

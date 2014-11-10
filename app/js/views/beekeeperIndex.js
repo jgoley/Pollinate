@@ -54,7 +54,7 @@
                         collection: hivesOut
                 }));
             } else{
-                $('.requests').append('<p>Currently you have no open requests.</p>')
+                $('.hives-out').append('<p>Currently you have no open requests.</p>')
             }
 
             if(notAccepted.length > 0){
@@ -64,7 +64,7 @@
                         collection: notAccepted,
                 }));
             } else{
-                $('.requests').append('<p>Currently you have no open requests.</p>')
+                $('.requests-container').remove();
             }
 
             new Bees.Collections.UserReviews({

@@ -221,7 +221,7 @@
         },
         editRequest: function(){
             console.log('edit')
-            BeesApp.navigate('request/'+this.model.id, {trigger: true})
+            BeesApp.navigate('request/'+this.model.id+'/edit', {trigger: true})
         }
     });
 
