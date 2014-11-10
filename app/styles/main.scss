@@ -3,40 +3,40 @@
 
 $text: rgba(75, 75, 75, 1);
 
-$action: rgba(247, 122, 59, .15);
+$action: rgba(247, 122, 59, 0.15);
 
 $farmerPrimary: rgba(90, 129, 107, 0.9);
 $farmerSecondary: rgba(145, 115, 80, 1);
-$farmerSecondarySubtle: rgba(145, 115, 80, .2);
+$farmerSecondarySubtle: rgba(145, 115, 80, 0.2);
 $farmerText: $text;
 
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(98, 152, 208, 1);
-$beekeeperSecondarySubtle: rgba(98, 152, 208, .2);
+$beekeeperSecondarySubtle: rgba(98, 152, 208, 0.2);
 
 $subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
 
 $primary: RGBA(116, 150, 131, 1);
 
-.white-shadow{
-    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+.white-shadow {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.black-shadow{
-    text-shadow: 0 1px 0 rgba(50,50,50,.4);
+.black-shadow {
+    text-shadow: 0 1px 0 rgba(50, 50, 50, 0.4);
 }
-
 
 @font-face {
     font-family: icons;
     src: url(../fonts/icons.ttf);
 }
 
-.sourceFont{
-    font-family: 'Source Sans Pro', sans-serif;
-}
 
+.sourceFont {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
 
 @import "validation";
 
@@ -50,18 +50,18 @@ body {
     font-size: 100%;
     padding: 0;
     margin: 0;
-
 }
 
 form,
 body,
 ul,
 input,
-button{
+button {
     @extend .sourceFont;
     color: $text;
     @extend .white-shadow;
 }
+
 button {
     cursor: pointer;
     &:focus {
@@ -75,9 +75,9 @@ h1, h2 {
     padding: 0;
 }
 
-.main-title{
+.main-title {
     font-size: 2em;
-    margin-bottom:em(2px);   
+    margin-bottom: em(2px);
 }
 
 ul, li {
@@ -108,19 +108,21 @@ a {
     transition: .3s;
 }
 
-.short-list{
-    margin-bottom:em(15px);
+.short-list {
+    margin-bottom: em(15px);
 }
 
-.button{
-    padding:10px 20px;
-    color:#fff;
+.button {
+    padding: 10px 20px;
+    color: #fff;
     border-radius: 3px;
     display: block;
-    &:hover{
+    &:hover {
         // @extend .white-shadow;
+   
     }
 }
+
 // Beekeeper
 
 .beekeeper-details {
@@ -133,48 +135,47 @@ a {
 
 .beekeeper {
     header {
-        border-top:3px solid $beekeeperPrimary;
+        border-top: 3px solid $beekeeperPrimary;
         background: $beekeeperPrimary;
-        a{
+        a {
             color: $text;
         }
     }
-    .button, button{
+    .button, button {
         background: $beekeeperPrimary;
-        color:$text;
+        color: $text;
         @extend .white-shadow;
-        &:hover{
+        &:hover {
             background: $beekeeperSecondary;
-            color:#FFF;
+            color: #FFF;
             @extend .black-shadow;
         }
     }
-    a{
-        color:$beekeeperSecondary
+    a {
+        color: $beekeeperSecondary;
     }
-    .main-title{
-    }
+    .main-title {}
 }
 
 .farmer {
     color: $farmerText;
     header {
-        border-top:3px solid $farmerPrimary;    
+        border-top: 3px solid $farmerPrimary;
         background: $farmerPrimary;
-        a{
+        a {
             color: #FFF;
             @extend .black-shadow;
-            &:hover{
+            &:hover {
                 text-shadow: none;
             }
         }
     }
-    .button{
+    .button {
         background: $farmerPrimary;
         @extend .black-shadow;
-        &:hover{
+        &:hover {
             background: $farmerSecondary;
-            color:#FFF;
+            color: #FFF;
             @extend .black-shadow;
         }
     }
@@ -182,12 +183,12 @@ a {
 
 form.new-user,
 form.edit-account,
-form.user-login, 
-form.search, 
+form.user-login,
+form.search,
 form.review {
     margin-top: em(20px);
     @include span-columns(11);
-    @include shift(.5);
+    @include shift(0.5);
     input, select, textarea {
         width: 100%;
         display: block;
@@ -204,28 +205,36 @@ form.review {
         @extend .white-shadow;
         cursor: pointer;
         background: $beekeeperPrimary;
-        border:0;
+        border: 0;
         font-size: 1.2em;
         color: $text;
         text-transform: uppercase;
-        padding:.5em 1.5em;
+        padding: .5em 1.5em;
     }
     select {
         height: 2.5em;
         background: #FFF;
     }
-    label{
-        margin-bottom:em(3px);
-        font-weight:bold;
+    label {
+        margin-bottom: em(3px);
+        font-weight: bold;
         display: block;
     }
-    .detail{
-        font-weight:normal;
-        color:#999;
+    .detail {
+        font-weight: normal;
+        color: #999;
         font-size: 80%;
     }
 }
 
+// form.user-login {
+//     input[type=submit] {
+//         background: $farmerPrimary;
+//         box-shadow: none;
+//         color: #FFF;
+//         @extend .black-shadow;
+//     }
+// }
 
 form.search {
     input {
@@ -240,7 +249,6 @@ textarea {
 }
 
 .search-container {}
-
 
 form.search {
     @include span-columns(12);
@@ -257,7 +265,7 @@ form.search {
     margin-bottom: em(60px);
     @include outer-container;
     section {
-        > div{
+        > div {
             padding: 1em;
         }
     }
@@ -274,9 +282,7 @@ form.search {
     }
 }
 
-
-
-.search{
+.search {
     display: none;
 }
 
@@ -316,23 +322,25 @@ footer {
     background: #CCC;
 }
 
-.user-image{
+.user-image {
     background-size: cover;
     background-position: center center;
     height: 200px;
 }
-.user-image.farmer{
-    background:$farmerPrimary;
+
+.user-image.farmer {
+    background: $farmerPrimary;
 }
 
-.user-image.beekeeper{
-    background:$beekeeperPrimary;
+.user-image.beekeeper {
+    background: $beekeeperPrimary;
 }
-.user-profile{
-    margin-top:em(20px);
-    h1{
-        font-size: 2em;
-    }
+
+.user-profile {
+    margin-top: em(20px);
+}
+.business-name{
+    font-size: 3em;
 }
 
 
@@ -347,7 +355,6 @@ footer {
    
     }
 }
-
 
 @import "header-nav";
 @import "landing";

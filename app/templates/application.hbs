@@ -1,4 +1,5 @@
 <div id="sb-site" class="{{user.userType}}">
+{{#if user}}
 <header></header>
         <div class="sb-slidebar sb-left">
         <nav class='off-canvas'>
@@ -13,6 +14,10 @@
         <li>Test</li>
         </ul></nav>
         </div>
+{{else}}
+<div class='noAuth-header'><img src="images/logo.png"></div>
+
+{{/if}}
 <section class="main-container"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>
 <footer></footer>
 </div>

@@ -52,10 +52,11 @@ header {
 }
 
 .nav-container{
-    $max-width: 1000px;
     @include outer-container;
-    min-height: em(50px);
     position: relative;
+    $max-width: 1000px;
+    min-height: em(50px);
+    overflow: hidden;
 }
 
 .logo{
@@ -107,4 +108,15 @@ header {
 
 .main-menu {
     text-align: center;
+    display: none;
+}
+
+.noAuth-header{
+    background: $beekeeperPrimary;
+    padding:em(50px);
+    text-align: center;
+    margin-bottom:em(20px);
+    img{
+        max-width:220px;
+    }
 }

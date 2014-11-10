@@ -1,6 +1,9 @@
 @include media(min-width 600px) {
-    
-
+    .noAuth-header {
+        img {
+            max-width: 320px;
+        }
+    }
     .upcomming-requests {
         @include span-columns(5 of 10);
     }
@@ -10,14 +13,14 @@
     .show-menu {
         display: none;
     }
-    .button{
-        width:30%;
+    .button {
+        width: 30%;
     }
     .main-container {
         $max-width: 100%;
         @include outer-container;
         section {
-            // background: rgba(200,200,200,.1);    
+            // background: rgba(200,200,200,.1);
             > div {
                 $max-width: 1000px;
                 @include outer-container;
@@ -27,7 +30,7 @@
     }
     .main-menu {
         display: block;
-        float:right;
+        float: right;
         background: none;
         li {
             display: inline-block;
@@ -35,68 +38,55 @@
         }
         a {
             padding: 1.2em 1em;
-            font-weight:bold;
             display: block;
             font-size: .9em;
             &:hover {
                 background: #FFF;
-                color:$text
+                color: $text;
             }
         }
-        ul{
-            margin-right:15px;
+        ul {
+            margin-right: 15px;
         }
     }
-
-    .logo{
+    .logo {
         left: em(10px);
-        transform: translate(0, -50%)
+        transform: translate(0, -50%);
     }
-
-
-    input.search{
+    input.search {
         display: inline-block;
     }
-
     form.user,
-    form.user-login, 
-    form.search, 
-    form.review {
-    }
-
-    
-    form.edit-account, 
-    form.new-user{
+    form.user-login,
+    form.search,
+    form.review,
+    form.edit-account,
+    form.new-user {
         @include span-columns(6);
         @include shift(3);
-
-        input[name=city]{
-            width:60%;
-            display:inline-block;
+        input[name=city] {
+            width: 60%;
+            display: inline-block;
         }
-        select[name=state]{
-            width:25%;
-            display:inline-block;
+        select[name=state] {
+            width: 25%;
+            display: inline-block;
         }
-
-        input[name=zipCode]{
-            width:25%;
-            display:inline-block;
+        input[name=zipCode] {
+            width: 25%;
+            display: inline-block;
         }
-
     }
-
-    form.user-login{
+    form.user-login {
         @include span-columns(4);
-        @include shift(4)
+        @include shift(4);
+
     }
-    form.search{
+    form.search {
         @include span-columns(6 of 12);
     }
-
     .search-results-container {
         @include outer-container;
-
         margin-top: 2em;
     }
     #map {
@@ -137,7 +127,9 @@
             display: inline-block;
         }
     }
-    .selected-nav{
+    .selected-nav {
         background: #FFF;
+        color:$text !important;
+        text-shadow: none !important;
     }
 }

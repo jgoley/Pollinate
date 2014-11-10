@@ -1,10 +1,16 @@
 this["Bees"] = this["Bees"] || {};
 this["Bees"]["templates"] = this["Bees"]["templates"] || {};
-this["Bees"]["templates"]["application"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div id=\"sb-site\" class=\""
+this["Bees"]["templates"]["application"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  return "<header></header>\n        <div class=\"sb-slidebar sb-left\">\n        <nav class='off-canvas'>\n        <ul>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li>Test</li>\n        <li>Test</li>\n        </ul></nav>\n        </div>\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "<div class='noAuth-header'><img src=\"images/logo.png\"></div>\n\n";
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div id=\"sb-site\" class=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "\">\n<header></header>\n        <div class=\"sb-slidebar sb-left\">\n        <nav class='off-canvas'>\n        <ul>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li><a href=\"#\">Test</a></li>\n        <li>Test</li>\n        <li>Test</li>\n        </ul></nav>\n        </div>\n<section class=\"main-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>\n<footer></footer>\n</div>";
+    + "\">\n";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.user : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "<section class=\"main-container\"><img src='https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif'></section>\n<footer></footer>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
@@ -27,7 +33,7 @@ this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,help
   var stack1, helperMissing=helpers.helperMissing, buffer = "";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "    <li><a href=\"#/reviews\">Reviews</a></li>\n    <li><a class=\"account\" href=\"#\"><span>a</span></a></li>\n\n";
+  return buffer + "    <li><a href=\"#/reviews\">Reviews</a></li>\n    <li><a class=\"log-out\" href=\"#\">Logout</a></li>\n    <li><a class=\"account\" href=\"#\"><span>a</span></a></li>\n\n";
 },"2":function(depth0,helpers,partials,data) {
   return "		<li><a href=\"#/requests\">Requests</a></li>\n		<li><a href=\"#/search\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
@@ -443,7 +449,7 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
   var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing, buffer = "<div class=\"user-image beekeeper\" ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.image : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "></div>\n<div class='user-profile'>\n	<h1>"
+  return buffer + "></div>\n<div class='user-profile'>\n	<h1 class=\"business-name\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "</h1>\n\n	<h3>Number of hives available: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))

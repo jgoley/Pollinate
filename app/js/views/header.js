@@ -9,6 +9,7 @@
         events: {
             'click .show-menu': 'showMenu',
             'keyup .search' : 'search',
+            'click .logo': 'removeSelected',
         },
 
         initialize: function(opts) {
@@ -44,6 +45,9 @@
             if(e.keyCode === 13){
                 BeesApp.navigate('search/'+$(e.target).val(), {trigger: true});
             }
+        },
+        removeSelected: function(){
+            $('.main-menu a').removeClass('selected-nav');
         }
     });
 
@@ -52,7 +56,7 @@
         template: Bees.templates.nav,
 
         events:{
-            'click nav a': 'addClass',
+            'click a': 'addClass',
             'click .log-out': 'logout',
             'click .log-in': 'login',
             'click .account': 'showAccount',
@@ -95,8 +99,8 @@
             });  
         },
         addClass: function(e){
-            console.log("clickeds");
-            $('nav ul li a').removeClass('selected-nav');
+            console.log(e.target);
+            $('.main-menu a').removeClass('selected-nav');
             $(e.target).addClass('selected-nav');
         }
     });
