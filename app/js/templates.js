@@ -457,11 +457,11 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
   var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing, buffer = "<div class=\"user-image beekeeper\" ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.image : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "></div>\n<section class='user-profile'>\n	<h1 class=\"business-name\">"
+  return buffer + "></div>\n<div class='user-profile'>\n	<h1 class=\"business-name\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "</h1>\n\n	<div class=\"user-description\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n</section>\n	<section>\n		<h3>Number of hives available: "
+    + "</div>\n</div>\n	<div>\n		<h3>Number of hives available: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))
     + "</h3>\n		<h4>Distance from you: "
     + escapeExpression(((helper = (helper = helpers.distance || (depth0 != null ? depth0.distance : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"distance","hash":{},"data":data}) : helper)))
@@ -471,7 +471,7 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
     + " per mile <span>if distance is over "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + " miles</span></li>\n		</ul>\n\n		<div class=\"new-request\"></div>\n	</section>\n\n	<a href=\"#\" class=\"sendMessage\">Send a Message</a>\n\n	<section class='reviews-container'>\n		<div class=\"reviews-list-container\">\n			<div class=\"reviews\">\n				<h2>Reviews</h2>\n			</div>\n		</div>\n	</section>";
+    + " miles</span></li>\n		</ul>\n\n		<div class=\"new-request\"></div>\n	</div>\n\n	<a href=\"#\" class=\"sendMessage\">Send a Message</a>\n\n	<div class='reviews-container'>\n		<div class=\"reviews-list-container\">\n			<div class=\"reviews\">\n				<h2>Reviews</h2>\n			</div>\n		</div>\n	</div>";
 },"useData":true});
 this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -486,7 +486,7 @@ this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":func
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "</h1>\n	<div class=\"user-description\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n	<section class='reviews-container'>\n		<div class=\"reviews-list-container\">\n			<h1 class=\"main-title\">Reviews</h1>\n			<div class=\"reviews\"></div>\n		</div>\n	</section>\n</div>";
+    + "</div>\n</div>\n\n<div class=\"message\">\n<a href=\"#\" class=\"button\">Send a message</a>\n</div>\n\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews\"></div>\n	</div>\n</div>\n";
 },"useData":true});
 this["Bees"]["templates"]["user"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
