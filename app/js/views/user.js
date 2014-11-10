@@ -99,13 +99,15 @@
             var message = $('[name=message]').val();
             newMessage.set('message', message);
             newMessage.set('recepient', this.recepient);
+            newMessage.set('recepientName', this.recepient.get('username'));
             newMessage.set('sender', this.sender);
+            newMessage.set('senderName', this.sender.get('username'));
             newMessage.save({
                 success:function(a){
                     console.log(a);
                     var email = {
                         message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
-                        subject: 'New Message on Pollinage',
+                        subject: 'New Message on Pollinate',
                         from: 'jgoley.etc@gmail.com',
                         to: 'jgoley@gmail.com',//beekeeper.get('email'),
                     };

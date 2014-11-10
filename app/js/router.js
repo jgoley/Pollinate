@@ -14,7 +14,10 @@
             'requests': 'requests',
             'requests/archived': 'requestsArchived',
             'request/:request_id': 'request',
+            'request/:request_id/edit': 'editRequest',
             'reviews': 'reviews',
+            'messages': 'messages',
+            'messages/message_id': 'messageView',
             'search': 'search',
             'search/:query_text': 'search',
             'map': 'map'
@@ -152,6 +155,22 @@
             }
         },
 
+        editRequest: function(requestID){
+            console.log("!!!!!!!!!!!!!!!!!!!!");
+            disposeViews();
+            if (!Parse.User.current()) {
+                this.goLogin();
+            } else{
+                var query = new Parse.Query('Requests');
+                query.get(requestID).then(function(request){
+                    Bees.currentView = new Bees.Views.RequestEdit({
+                        $container: $('.main-container'),
+                        model: request
+                    });
+                });
+            }
+        },
+
         reviews: function(){
             disposeViews();
             if (!Parse.User.current()) {
@@ -170,6 +189,23 @@
                         $('.main-container').html('<p>No reviews.</p>')
                     }
                 });   
+            }
+        },
+
+        messages: function(){
+            disposeViews();
+            if (!Parse.User.current()) {
+                this.goLogin();
+            } else{
+
+                new Bees.Collections.UserMessages({user: Parse.User.current()})
+                    .fetch().then(function(messages){
+                        new Bees.Views.Messages({
+                            $container: $('.main-container'),
+                            collection: messages
+                        });
+                    });
+
             }
         },
 

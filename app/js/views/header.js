@@ -33,6 +33,12 @@
                     model: Bees.Session,
                     user: user
                 }));
+            this.subViews.push(
+                new Bees.Views.NavView({
+                    $container: $('.off-canvas'),
+                    model: Bees.Session,
+                    user: user
+                }));
         },
 
         showMenu: function(e){

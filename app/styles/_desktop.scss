@@ -97,26 +97,7 @@
     .search-results-users {
         @include span-columns(4);
     }
-    .request {
-        margin: 0 0 em(10px) 0;
-        position: relative;
-        .details {
-            padding: em(1px) em(20px);
-        }
-        .actions {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translate(0, -50%);
-            button {
-                margin-bottom: 0;
-                width: auto;
-            }
-        }
-        ul {
-            margin-bottom: 20px;
-        }
-    }
+    
     .selected {
         .actions {
             right: 15px;

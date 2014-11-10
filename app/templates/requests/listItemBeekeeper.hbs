@@ -1,32 +1,33 @@
 {{!-- Requests on Beekeeper pages --}}
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<a href="#/request/{{request.objectId}}">
-	{{request.numHives}} requested by {{user.username}}
-	<ul class='hidden'>
-		<li>{{request.objectId}}</li>
-		<li>{{user.userType}}: {{user.username}}</li>
-		<li>Number of Hives: {{request.numHives}}</li>
-		<li>Cost: ${{request.totalCost}}</li>
-		<li>Miles over: {{request.milesOver}}</li>
-		<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
-
-		<li>Message: {{request.message}}</li>
-
-		<li>Requested: {{formattedDates.createdAt}}</li>
-		{{#if request.archivedBeekeeper}}
-		<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>
-		{{/if}}
-	</ul>
+		{{request.numHives}} requested by {{user.username}}
+		<ul class='hidden'>
+			<li>{{request.objectId}}</li>
+			<li>{{user.userType}}: {{user.username}}</li>
+			<li>Number of Hives: {{request.numHives}}</li>
+			<li>Cost: ${{request.totalCost}}</li>
+			<li>Miles over: {{request.milesOver}}</li>
+			<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
+			<li>Message: {{request.message}}</li>
+			<li>Requested: {{formattedDates.createdAt}}</li>
+			{{#if request.archivedBeekeeper}}
+			<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>
+			{{/if}}
+		</ul>
 	</a>
 	<div class="actions">
+		
 		{{#if request.accepted}}
 			{{#unless request.archivedBeekeeper}}
 				<button class='archive'>Archive</button>
 			{{/unless}}
-			{{else}}
-				<button class='accept'>Accept</button>
+		{{else}}
+			<button class='accept'>Accept</button>
 		{{/if}}
+		
 		<button class='more-info'>More Info</button>
+		
 		{{#unless request.archivedBeekeeper}}
 			<button class='edit-request'>Edit Request</button>
 		{{/unless}}
