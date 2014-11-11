@@ -37,6 +37,7 @@
             });
 
             if (this.userType === 'farmer') {
+                $('.search-params').html(firstCap(this.searchType)+' whose ranges include you:');
                 queryBeekeepers(0).then(function(beekeepers) {
                     var beekeepers = new Parse.Collection(beekeepers);
                     if (beekeepers.length > 0)
@@ -56,10 +57,11 @@
                             radius: 200
                         })
                     );
-
                 });
             } else {
-                this.searchGeo(200);
+                var defaultRange = 200;
+                $('.search-params').html(firstCap(this.searchType)+'s who are within '+defaultRange+' miles:');
+                this.searchGeo(defaultRange);
             }
 
 
@@ -151,21 +153,19 @@
                     that.subViews.push(
                         new Bees.Views.SearchResults({
                             collection: searchResults,
-                            radius: data.distance,
                             $container: $('.search-list-container')
                         }));
                     that.subViews.push(
                         new Bees.Views.Map({
                             $container: $('.map-container'),
                             collection: searchResults,
-                            radius: 200
                         })
                     );
                 } else {
-                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
+                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>');
                 }
             });
-
+            $('.search-params').html(firstCap(this.searchType)+'s matching "'+data.businessName+'":');
         }
 
     });
@@ -216,6 +216,8 @@
                             radius: data.distance
                         })
                     );
+                    console.log("!!!!!!!!!!!!!!",that.searchType)
+                $('.search-params').html(firstCap(that.searchType)+'s who are within '+data.distance+' miles:');
                 } else {
                     $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
                 }

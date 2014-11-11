@@ -83,6 +83,11 @@ function calculateCost(numHivesRequested, beek) {
 }
 
 
+function firstCap(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Round numbers
 function roundToTwo(num) {
     return +(Math.round(num + "e+2") + "e-2");

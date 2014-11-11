@@ -17,7 +17,7 @@ this["Bees"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0
 },"useData":true});
 this["Bees"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "	<a href=\"#\" class='sb-toggle-left show-menu'></a>\n	<h1 class=\"logo\"><a href=\"#/\">Pollinate</a></h1>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.session : depth0)) != null ? stack1.user : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
@@ -488,7 +488,7 @@ this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler
   return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";
   },"useData":true});
 this["Bees"]["templates"]["search"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "\n<div class=\"search-results-container\">\n	<div class=\"search-form-container\">\n	</div>	\n	<div class=\"search-params\"></div>\n	<div class=\"search-list-container\"></div>\n</div>\n<div class=\"map-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></div>\n\n	\n";
+  return "\n<div class=\"search-results-container\">\n	<div class=\"search-form-container\">\n	</div>	\n	<div class=\"search-params\">Test content</div>\n	<div class=\"search-list-container\"></div>\n</div>\n<div class=\"map-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></div>\n\n	\n";
 },"useData":true});
 this["Bees"]["templates"]["search"]["name"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
