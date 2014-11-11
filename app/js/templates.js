@@ -481,7 +481,7 @@ this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compile
     + "</p>\n	</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["reviews"]["new"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<button class=\"addReview\">Add a Review</button>";
+  return "<button class=\"add-review\">Add a Review</button>";
   },"useData":true});
 this["Bees"]["templates"]["search"] = this["Bees"]["templates"]["search"] || {};
 this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -532,7 +532,7 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
     + " per mile <span>if distance is over "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + " miles</span></li>\n	</ul>\n	<div class=\"new-request\"></div>\n</div>\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<div class=\"reviews\">\n			<h2>Reviews</h2>\n		</div>\n	</div>\n</div>";
+    + " miles</span></li>\n	</ul>\n	<div class=\"new-request\"></div>\n</div>\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<div class=\"reviews\">\n			<h1 class=\"main-title\">Reviews</h1>\n		</div>\n	</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;

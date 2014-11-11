@@ -22,7 +22,7 @@
 
 
 .business-name {
-    font-size: 3em;
+    font-size: 2em;
     margin-bottom: 10px;
     line-height: 1em;
 }
@@ -37,4 +37,12 @@
 	.user-description{
 		width:80%;
 	}	
+}
+
+@include media(min-width 600px) {
+
+    .business-name {
+        font-size: 3.5em;
+    }
+
 }

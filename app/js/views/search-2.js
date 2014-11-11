@@ -172,6 +172,7 @@
                     $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
                 } else {
                     $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>');
+                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
                 }
             });
 

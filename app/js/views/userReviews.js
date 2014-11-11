@@ -136,7 +136,7 @@
         className: 'new-review',
         subViews: [],
         events: {
-            'click .addReview': 'addReview'
+            'click .add-review': 'addReview'
         },
         template: Bees.templates.reviews.new,
         initialize: function(opts) {

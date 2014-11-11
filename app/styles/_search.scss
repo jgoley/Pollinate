@@ -11,6 +11,13 @@
     }
 }
 
+.search-list-container{
+    h2{
+        font-size: 1em;
+        padding:em(10px)
+    }
+}
+
 @include media(min-width 600px) {
     form.search {
         @include span-columns(6 of 12);

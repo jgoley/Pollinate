@@ -80,7 +80,9 @@ h1, h2 {
 
 .main-title {
     font-size: 1.8em;
-    margin-bottom: em(2px);
+    margin-bottom: em(10px);
+    border-bottom:2px solid $farmerSecondarySubtle;
+
 }
 
 ul, li {
