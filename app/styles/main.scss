@@ -338,8 +338,9 @@ form.search {
 }
 
 footer {
-    height:30px;
+    min-height:50px;
     width:100%;
+    border-top: 3px solid #FFF;
 }
 
 .user-image {

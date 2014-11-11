@@ -25,7 +25,15 @@
             this.$el.append(this.template());
 
             new Bees.Views.NameSearch({
-                $container: $('.search-form-container')
+                $container: $('.search-form-container'),
+                searchType: this.searchType,
+                userType: this.userType
+            });
+
+            new Bees.Views.DistanceSearch({
+                $container: $('.search-form-container'),
+                searchType: this.searchType,
+                userType: this.userType
             });
 
             // IF FARMER
@@ -90,12 +98,9 @@
                     );
 
                 });
-            }
-            else{
+            } else {
                 this.searchGeo(200);
             }
-
-
 
 
         },
@@ -149,7 +154,7 @@
     });
     Bees.Views.NameSearch = BaseView.extend({
         tagName: 'form',
-        className: 'search',
+        className: 'search-query',
         template: Bees.templates.search.nameSearch,
         subViews: [],
         events: {
@@ -159,11 +164,13 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
-                userType: opts.userType
+                userType: opts.userType,
+                searchType: opts.searchType
             });
             options.$container.append(this.el);
             this.model = this.user;
             this.userType = options.userType;
+            this.searchType = options.searchType;
             this.render();
         },
 
@@ -176,6 +183,7 @@
             e.preventDefault();
             var that = this;
             var data = this.$el.serializeObject();
+            console.log(data);
             new Bees.Collections.NameSearch({
                 userType: this.userType,
                 business: data.businessName.toLowerCase()
@@ -190,7 +198,7 @@
                     that.subViews.push(
                         new Bees.Views.Map({
                             $container: $('.map-container'),
-                            collection: beekeepers,
+                            collection: searchResults,
                             radius: 200
                         })
                     );
@@ -220,6 +228,7 @@
             options.$container.append(this.el);
             this.model = this.user;
             this.userType = options.userType;
+            this.searchType = options.searchType;
             this.render();
         },
 
@@ -232,6 +241,7 @@
             e.preventDefault();
             var that = this;
             var data = this.$el.serializeObject();
+            console.log(data);
             if (this.userType === 'beekeeper') {
                 console.log(this.userType);
                 queryBeekeepers().then(function(inRange) {
@@ -240,26 +250,39 @@
                         that.subViews.push(new Bees.Views.SearchResults({
                             collection: collection,
                             radius: data.distance,
-                            $container: $('.search-results-container')
+                            $container: $('.search-list-container')
                         }));
+                        that.subViews.push(
+                            new Bees.Views.Map({
+                                $container: $('.map-container'),
+                                collection: collection,
+                                radius: data.distance
+                            })
+                        );
                     } else {
-                        $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
                     }
                 });
             } else {
                 var query = new Parse.Query(Bees.Models.User);
-                query.equalTo('userType', this.userType);
-                query.withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
-                var collection = query.collection();
-                collection.fetch().then(function() {
-                    if (collection.length > 0) {
+                query.equalTo('userType', this.userType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+                query.collection().fetch().then(function(users) {
+                    console.log(users, data)
+                    if (users.length > 0) {
                         that.subViews.push(new Bees.Views.SearchResults({
-                            collection: collection,
+                            collection: users,
                             radius: data.distance,
-                            $container: $('.search-results-container')
+                            $container: $('.search-list-container')
                         }));
+                        that.subViews.push(
+                            new Bees.Views.Map({
+                                $container: $('.map-container'),
+                                collection: users,
+                                radius: data.distance
+                            })
+                        );
                     } else {
-                        $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
                     }
                 });
             }
