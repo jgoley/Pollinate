@@ -84,41 +84,7 @@
         @include shift(4);
 
     }
-    form.search {
-        @include span-columns(6 of 12);
-    }
-    .search-container{
-        min-height: 700px;
-    }
-    .search-results-container {
-        @include span-columns(4.5);
-        max-height: 700px;
-        overflow: scroll;
-    }
-    .search-container{
-        @include outer-container;
-    }
-    .map-container{
-        @include span-columns(7.5);
-    }
-    .search-form-container,
-    .search-list-container{
-        @include span-columns(12);
-    }
-    .search-form-container{
-        margin-bottom:20px;
-    }
 
-    .search-list-container{
-        a{
-            padding:em(5px);
-            border-bottom: 1px solid #ebebeb;
-            display: block;
-        }
-    }
-    #map{
-        min-height:700px;
-    }
     
     .selected {
         .actions {

@@ -36,46 +36,6 @@
                 userType: this.userType
             });
 
-            // IF FARMER
-            // if (this.userType === 'farmer') {
-
-            //     if (this.queryText) {
-            //         this.searchByText();
-            //     } else {
-            //         queryBeekeepers(0).then(function(beekeepers) {
-            //             var beekeepers = new Parse.Collection(beekeepers);
-            //             that.subViews.push(new Bees.Views.SearchResults({
-            //                 $container: $('.search-results-container'),
-            //                 collection: beekeepers
-            //             }));
-            //             that.subViews.push(new Bees.Views.NameSearch({
-            //                 userType: that.searchType,
-            //                 $container: $('.form-container')
-            //             }));
-            //         });
-            //     }
-
-            // } else {
-            //     if (this.queryText) {
-            //         this.searchByText('farmer');
-            //     } else {
-
-            //         this.searchGeo(200);
-
-            //         that.subViews.push(
-            //             new Bees.Views.NameSearch({
-            //                 userType: that.searchType,
-            //                 $container: $('.form-container')
-            //             }));
-
-            //         that.subViews.push(
-            //             new Bees.Views.DistanceSearch({
-            //                 userType: that.searchType,
-            //                 $container: $('.form-container')
-            //             }));
-
-            //     }
-            // }
             if (this.userType === 'farmer') {
                 queryBeekeepers(0).then(function(beekeepers) {
                     var beekeepers = new Parse.Collection(beekeepers);
@@ -183,7 +143,6 @@
             e.preventDefault();
             var that = this;
             var data = this.$el.serializeObject();
-            console.log(data);
             new Bees.Collections.NameSearch({
                 userType: this.searchType,
                 business: data.businessName.toLowerCase()
@@ -241,51 +200,26 @@
             e.preventDefault();
             var that = this;
             var data = this.$el.serializeObject();
-            console.log(data);
-            if (this.userType === 'beekeeper') {
-                queryBeekeepers().then(function(inRange) {
-                    var collection = new Parse.Collection(inRange);
-                    if (inRange.length > 0) {
-                        that.subViews.push(new Bees.Views.SearchResults({
-                            collection: collection,
-                            radius: data.distance,
-                            $container: $('.search-list-container')
-                        }));
-                        that.subViews.push(
-                            new Bees.Views.Map({
-                                $container: $('.map-container'),
-                                collection: collection,
-                                radius: data.distance
-                            })
-                        );
-                    } else {
-                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
-                    }
-                });
-            } else {
-                console.log("")
-                var query = new Parse.Query(Bees.Models.User);
-                query.equalTo('userType', this.userType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
-                query.collection().fetch().then(function(users) {
-                    console.log(users, data);
-                    if (users.length > 0) {
-                        that.subViews.push(new Bees.Views.SearchResults({
+            var query = new Parse.Query(Bees.Models.User);
+            query.equalTo('userType', this.searchType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+            query.collection().fetch().then(function(users) {
+                if (users.length > 0) {
+                    that.subViews.push(new Bees.Views.SearchResults({
+                        collection: users,
+                        radius: data.distance,
+                        $container: $('.search-list-container')
+                    }));
+                    that.subViews.push(
+                        new Bees.Views.Map({
+                            $container: $('.map-container'),
                             collection: users,
-                            radius: data.distance,
-                            $container: $('.search-list-container')
-                        }));
-                        that.subViews.push(
-                            new Bees.Views.Map({
-                                $container: $('.map-container'),
-                                collection: users,
-                                radius: data.distance
-                            })
-                        );
-                    } else {
-                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
-                    }
-                });
-            }
+                            radius: data.distance
+                        })
+                    );
+                } else {
+                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
+                }
+            });
         }
 
     });
@@ -301,7 +235,6 @@
             options.$container.html(this.el);
             this.radius = options.radius;
             this.render();
-            //this.listenTo(this.collection, 'change', this.render);
         },
 
 
@@ -314,8 +247,6 @@
                     $container: this.$el,
                     collection: this.collection
                 }));
-
-
         }
 
     })
@@ -333,7 +264,6 @@
         },
 
         render: function() {
-            console.log('Search results List rendering', this.collection)
             this.collection.each(_.bind(this.renderChildren, this));
         },
 

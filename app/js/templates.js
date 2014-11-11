@@ -163,20 +163,6 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\" required>\n\n<div class=\"image\">\n	<input type=\"file\">\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
-this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
-this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "";
-},"useData":true});
-this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<ul>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
-    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
-},"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
 this["Bees"]["templates"]["beekeeperIndex"]["details"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -212,6 +198,20 @@ this["Bees"]["templates"]["beekeeperIndex"]["upcomming"] = Handlebars.template({
     + " on "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.startDate : stack1), depth0))
     + "</a>";
+},"useData":true});
+this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
+this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "";
+},"useData":true});
+this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<ul>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
+    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
 },"useData":true});
 this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
 this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -488,7 +488,7 @@ this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler
   return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";
   },"useData":true});
 this["Bees"]["templates"]["search"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "\n<div class=\"search-results-container\">\n	<div class=\"search-form-container\">\n	</div>	\n	<div class=\"search-list-container\"></div>\n</div>\n<div class=\"map-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></div>\n\n	\n";
+  return "\n<div class=\"search-results-container\">\n	<div class=\"search-form-container\">\n	</div>	\n	<div class=\"search-params\"></div>\n	<div class=\"search-list-container\"></div>\n</div>\n<div class=\"map-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></div>\n\n	\n";
 },"useData":true});
 this["Bees"]["templates"]["search"]["name"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";
@@ -518,7 +518,9 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
   if (stack1 != null) { buffer += stack1; }
   return buffer + "></div>\n<div class='user-profile'>\n	<h1 class=\"business-name\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "</h1>\n\n	<div class=\"user-description\">"
+    + "</h1>\n	<h2 class=\"crops\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crops : stack1), depth0))
+    + "</h2>\n	<div class=\"user-description\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.description : stack1), depth0))
     + "</div>\n</div>\n	<div>\n		<h3>Number of hives available: "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))
