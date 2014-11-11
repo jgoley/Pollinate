@@ -64,7 +64,8 @@
                         collection: notAccepted,
                 }));
             } else{
-                $('.requests-container').remove();
+                $('.requests').prepend('<p>You currently do not have any pending requests.</p>');
+                $('.request-list-container .button').remove();
             }
 
             new Bees.Collections.UserReviews({

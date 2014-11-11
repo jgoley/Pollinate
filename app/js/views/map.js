@@ -9,7 +9,7 @@
                 radius: opts.radius
             });
             this.searchRadius = options.radius;
-            options.$container.append(this.el);
+            options.$container.html(this.el);
             this.render();
         },
 

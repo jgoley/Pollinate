@@ -21,16 +21,21 @@
             var requests = this.collection;
             this.$el.html(this.template(Parse.User.current().toJSON()));
 
-            var unAccepted = new Parse.Collection(
+            var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
 
-            this.subViews.push(
-                new Bees.Views.RequestList({
-                    $container: $('.requests'),
-                    collection: unAccepted,
-            }));
+            if(notAccepted.length > 0){
+                this.subViews.push(
+                    new Bees.Views.RequestList({
+                        $container: $('.requests'),
+                        collection: notAccepted,
+                }));
+            } else{
+                $('.requests').append('<p>You currently do not have any pending requests.</p>');
+                $('.requests-list-container').find('.button').remove();
+            }
 
             new Bees.Collections.UserReviews({
                 user: Parse.User.current(),
@@ -43,7 +48,9 @@
                             collection: userReviews
                         }))
                 } else{
-                    $('.reviews').append('<p>No user reviews.</p>')
+                    $('.reviews').append('<p>No user reviews.</p>');
+                $('.reviews-list-container').find('.button').remove();
+
                 }
 
             });

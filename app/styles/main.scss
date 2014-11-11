@@ -1,4 +1,5 @@
 @import "../bower_components/bourbon/dist/bourbon";
+$gutter:0em;
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
 $text: rgba(75, 75, 75, 1);
@@ -157,6 +158,10 @@ a {
         color: $beekeeperSecondary;
     }
     .main-title {}
+    footer{
+        border-bottom: 3px solid $beekeeperPrimary;
+        background: $beekeeperPrimary;
+    }
 }
 
 .farmer {
@@ -182,12 +187,15 @@ a {
             @extend .black-shadow;
         }
     }
+    footer{
+        border-bottom: 3px solid $farmerPrimary;
+        background: $farmerPrimary;
+    }
 }
 
 form.new-user,
 form.edit-account,
 form.user-login,
-form.search,
 form.review {
     margin-top: em(20px);
     @include span-columns(11);
@@ -273,7 +281,7 @@ form.search {
 
 .main-container {
     $max-width: 100%;
-    margin-bottom: em(60px);
+    // margin-bottom: em(60px);
     @include outer-container;
     padding: 0 em(20px);
     // section {
@@ -330,7 +338,8 @@ form.search {
 }
 
 footer {
-    background: #CCC;
+    height:30px;
+    width:100%;
 }
 
 .user-image {

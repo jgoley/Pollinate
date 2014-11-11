@@ -49,7 +49,7 @@
                 }));
             } 
             else {
-                $('.requests').append('<p>Currently there are no open requests</p>');
+
             }
 
             if(accepted.length > 0 ){
@@ -239,7 +239,7 @@
             this.render();
         },
         render: function() {
-            this.$el.append('<h1 class="main-title">Upcomming requests:</h1>');
+            this.$el.append('<h1 class="main-title">Upcoming requests:</h1>');
             if (this.info){
                 this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>');
             }
