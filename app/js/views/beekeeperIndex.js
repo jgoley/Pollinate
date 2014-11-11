@@ -30,7 +30,7 @@
                     return !request.get('accepted');
             }));
 
-            var upcommingRequests = new Parse.Collection(
+            var upcomingRequests = new Parse.Collection(
                 requests.filter(function(request){
                     return request.get('startDate') >= that.currentDate && request.get('startDate') <= that.currentDatePlus && request.get('accepted');
             }));
@@ -44,7 +44,7 @@
             this.subViews.push(
                 new Bees.Views.BeekeeperUpcomingRequestsList({
                     $container: $('.active-request-info'),
-                    collection: upcommingRequests
+                    collection: upcomingRequests
             }));
 
             if(hivesOut.length > 0){

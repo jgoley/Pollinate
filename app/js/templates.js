@@ -163,6 +163,20 @@ this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compi
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\" required>\n\n<div class=\"image\">\n	<input type=\"file\">\n</div>\n\n<input type=\"submit\" name=\"\" value=\"Update Account\">";
 },"useData":true});
+this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
+this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "";
+},"useData":true});
+this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
+  return "<ul>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
+    + "</li>\n<li>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
+    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
+},"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"] = this["Bees"]["templates"]["beekeeperIndex"] || {};
 this["Bees"]["templates"]["beekeeperIndex"]["details"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -187,7 +201,7 @@ this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.tem
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
     + "</a>\n";
 },"useData":true});
-this["Bees"]["templates"]["beekeeperIndex"]["upcomming"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["Bees"]["templates"]["beekeeperIndex"]["upcoming"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<a href=\"#/request/"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
@@ -198,20 +212,6 @@ this["Bees"]["templates"]["beekeeperIndex"]["upcomming"] = Handlebars.template({
     + " on "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.startDate : stack1), depth0))
     + "</a>";
-},"useData":true});
-this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
-this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "";
-},"useData":true});
-this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<ul>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.beekeeper : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.hiveGroup : depth0)) != null ? stack1.Name : stack1), depth0))
-    + "</li>\n<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
-    + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
 },"useData":true});
 this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
 this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

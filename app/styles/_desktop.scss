@@ -4,7 +4,7 @@
             max-width: 320px;
         }
     }
-    .upcomming-requests {
+    .upcoming-requests {
         @include span-columns(5 of 10);
     }
     .hives-out {
@@ -17,7 +17,7 @@
         width: 30%;
     }
     .main-container {
-        $max-width: 1000px;
+         $max-width: 100%;
         min-height: 600px;
         @include outer-container;
         float: none;
@@ -30,6 +30,15 @@
             //     padding: 0 2em;
             // }
        
+        }
+    }
+    .main-container, 
+    .landing{
+        > section{
+            > div{
+                $max-width: 1000px;
+                @include outer-container;
+            }
         }
     }
     .main-title {

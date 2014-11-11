@@ -228,7 +228,7 @@
     Bees.Views.BeekeeperUpcomingRequestsList = BaseView.extend({
         tagName: 'ul',
         subViews: [],
-        className: 'upcomming-requests',
+        className: 'upcoming-requests',
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
@@ -260,8 +260,8 @@
 
     Bees.Views.BeekeeperUpcomingRequestsListItem = BaseView.extend({
         tagName: 'li',
-        className: 'request',
-        template: Bees.templates.beekeeperIndex.upcomming,
+        className: 'upcoming-request',
+        template: Bees.templates.beekeeperIndex.upcoming,
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
