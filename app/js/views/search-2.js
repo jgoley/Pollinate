@@ -119,7 +119,7 @@
                             $container: $('.search-results-container')
                         }));
                 } else {
-                    $('.search-results-container').html('<h2>No ' + that.userType + 's found</h2>')
+                    $('.search-results-container').html('<h2>No ' + that.searchType + 's found</h2>')
                 }
             });
         },
@@ -185,7 +185,7 @@
             var data = this.$el.serializeObject();
             console.log(data);
             new Bees.Collections.NameSearch({
-                userType: this.userType,
+                userType: this.searchType,
                 business: data.businessName.toLowerCase()
             }).fetch().then(function(searchResults) {
                 if (searchResults.length > 0) {
@@ -203,7 +203,7 @@
                         })
                     );
                 } else {
-                    $('.search-list-container').html('<h2>No ' + that.userType + 's found</h2>')
+                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
                 }
             });
 
@@ -243,7 +243,6 @@
             var data = this.$el.serializeObject();
             console.log(data);
             if (this.userType === 'beekeeper') {
-                console.log(this.userType);
                 queryBeekeepers().then(function(inRange) {
                     var collection = new Parse.Collection(inRange);
                     if (inRange.length > 0) {
@@ -264,10 +263,11 @@
                     }
                 });
             } else {
+                console.log("")
                 var query = new Parse.Query(Bees.Models.User);
                 query.equalTo('userType', this.userType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
                 query.collection().fetch().then(function(users) {
-                    console.log(users, data)
+                    console.log(users, data);
                     if (users.length > 0) {
                         that.subViews.push(new Bees.Views.SearchResults({
                             collection: users,
