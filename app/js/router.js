@@ -176,8 +176,9 @@
             if (!Parse.User.current()) {
                 this.goLogin();
             } else{
+                
                 new Bees.Collections.UserReviews({
-                    user: this.currentUser
+                    user: this.currentUser,
                 }).fetch().then(function(reviews){
                     console.log(reviews)
                     if(reviews.length > 0){

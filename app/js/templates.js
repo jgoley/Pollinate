@@ -402,13 +402,13 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
     + "</li>\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "		</ul>\n		<div class=\"actions\">\n";
+  buffer += "		</ul>\n	</a>\n\n		<div class=\"actions\">\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(12, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "			<button class='more-info'>More Info</button>\n";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(14, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "		</div>\n	</a>\n</div>";
+  return buffer + "		</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
@@ -488,7 +488,7 @@ this["Bees"]["templates"]["search"]["distance"] = Handlebars.template({"compiler
   return "<input name=\"distance\" type=\"text\" placeholder=\"Distance in miles\">\n<input value=\"Search\" type=\"submit\">\n";
   },"useData":true});
 this["Bees"]["templates"]["search"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"form-container\"></div>\n<div class=\"search-results-container\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" ></div>\n";
+  return "<div class=\"form-container\"></div>\n<div class=\"search-results-container\">\n	<div class=\"left\">\n		<div class=\"search-list-container\"></div>\n	</div>\n	<div class=\"map-container\"></div>\n	<img src=\"https://d13yacurqjgara.cloudfront.net/users/43718/screenshots/1137881/loadinganimation2.gif\" >\n</div>\n";
   },"useData":true});
 this["Bees"]["templates"]["search"]["name"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<input name=\"businessName\"  type=\"text\" placeholder=\"Business Name\">\n<input name=\"name\" type=\"text\" placeholder=\"Name\">\n\n<input value=\"Search\" type=\"submit\">\n\n<div class=\"search-results\"></div>\n";

@@ -100,7 +100,7 @@ gulp.task('deploy', function () {
         .pipe(deploy(options));
 });
 
-gulp.task('build', ['html', 'templates', 'images', 'extras'], function () {
+gulp.task('build', ['html', 'templates', 'images'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -128,21 +128,21 @@ gulp.task('serve', ['connect', 'templates', 'styles'], function () {
 });
 
 // inject bower components
-gulp.task('wiredep', function () {
-    var wiredep = require('wiredep').stream;
+// gulp.task('wiredep', function () {
+//     var wiredep = require('wiredep').stream;
 
-    gulp.src('app/styles/*.scss')
-        .pipe(wiredep({
-            directory: 'app/bower_components'
-        }))
-        .pipe(gulp.dest('app/styles'));
+//     gulp.src('app/styles/*.scss')
+//         .pipe(wiredep({
+//             directory: 'app/bower_components'
+//         }))
+//         .pipe(gulp.dest('app/styles'));
 
-    gulp.src('app/*.html')
-        .pipe(wiredep({
-            directory: 'app/bower_components'
-        }))
-        .pipe(gulp.dest('app'));
-});
+//     gulp.src('app/*.html')
+//         .pipe(wiredep({
+//             directory: 'app/bower_components'
+//         }))
+//         .pipe(gulp.dest('app'));
+// });
 
 gulp.task('watch', ['connect', 'serve'], function () {
     var server = $.livereload();

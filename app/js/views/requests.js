@@ -48,9 +48,9 @@
                         info: {title: 'Pending Requests', class:'notAccepted'}
                 }));
             } 
-            // else {
-            //     $('.requests').append('<p>Currently there are no open requests</p>');
-            // }
+            else {
+                $('.requests').append('<p>Currently there are no open requests</p>');
+            }
 
             if(accepted.length > 0 ){
                 this.subViews.push(

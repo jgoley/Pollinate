@@ -48,7 +48,7 @@
 
             });
 
-            queryBeekeepers().then(function(beekeepers) {
+            queryBeekeepers(0).then(function(beekeepers) {
                     beekeepers = new Parse.Collection(beekeepers);
                     that.subViews.push(
                         new Bees.Views.UserShortList({

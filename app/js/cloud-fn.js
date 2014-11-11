@@ -9,8 +9,8 @@ function sendMail(params) {
     });
 }
 
-function queryBeekeepers() {
-    return Parse.Cloud.run('queryBeekeepers', {}, {
+function queryBeekeepers(distance) {
+    return Parse.Cloud.run('queryBeekeepers', {distance: distance}, {
         success: function(result) {
             return result;
         },
@@ -19,6 +19,22 @@ function queryBeekeepers() {
         }
     });
 }
+
+// function queryBeekeepers(distance) {
+//     console.log("!!!!!!!!!",distance);
+//     return Parse.Cloud.run('queryBeekeepers', {distance: distance}, {
+//         success: function(result) {
+//             if (result.length === 0){
+//                 queryBeekeepers(distance + 500);
+//             } else
+//                 console.log(result);
+//                 return result;
+//         },
+//         error: function(error) {
+//             console.log(error)
+//         }
+//     });
+// }
 
 function saveLocation() {
     return Parse.Cloud.run('saveLocation', {}, {

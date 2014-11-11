@@ -55,6 +55,7 @@
                 limit: opts.limit,
                 skip: opts.skip
             });
+            this.user = options.user;
             this.query = new Parse.Query('Reviews')
                 .equalTo('reviewee', options.user)
                 .ascending('createdAt')
@@ -62,6 +63,13 @@
                 .skip(options.skip);
         },
         model: Bees.Models.Review,
+
+        count: function(){
+            return new Parse.Query('Reviews')
+                .equalTo('reviewee', this.user).count(function(c){
+                    return c;
+                });
+        }
     });
 
     Bees.Collections.Requests = Parse.Collection.extend({

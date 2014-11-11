@@ -88,8 +88,7 @@
         @include span-columns(6 of 12);
     }
     .search-results-container {
-        @include outer-container;
-        margin-top: 2em;
+        // @include outer-container;
     }
     #map {
         @include span-columns(8);

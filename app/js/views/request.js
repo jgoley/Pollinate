@@ -20,11 +20,8 @@
         },
 
         editRequest: function(){
-            new Bees.Views.RequestEdit({
-                $container: that.$el,
-                model: that.model,
-                beekeeper: beekeeper
-            });
+            console.log("sdfasdfa");
+            BeesApp.navigate('request/'+this.model.id+'/edit', {trigger: true});
         }
     });
 

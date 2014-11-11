@@ -28,13 +28,12 @@
                 if (this.queryText) {
                     this.searchByText();
                 } else {
-                    queryBeekeepers().then(function(beekeepers) {
+                    queryBeekeepers(0).then(function(beekeepers) {
                         var beekeepers = new Parse.Collection(beekeepers);
                         that.subViews.push(new Bees.Views.SearchResults({
                             $container: $('.search-results-container'),
                             collection: beekeepers
                         }));
-
                         that.subViews.push(new Bees.Views.NameSearch({
                             userType: that.searchType,
                             $container: $('.form-container')

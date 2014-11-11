@@ -9,7 +9,7 @@
 
  */
 
-/* globals Pix, $, Parse, _ , PixApp */
+/* globals, $, Parse, _  */
 /* jshint quotmark: false */
 
 (function() {
