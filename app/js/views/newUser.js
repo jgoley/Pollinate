@@ -77,7 +77,7 @@ Bees.Views.NewUserView = BaseView.extend({
         this.subViews.push(
             new Bees.Views.UserTypeFormFields({
             $container: $('.userType-info'),
-            userType: userType
+            userType: userType,
         }));
     },
 
@@ -114,7 +114,7 @@ Bees.Views.UserTypeFormFields = BaseView.extend({
     },
 
     render: function() {
-        this.$el.prepend(this.template());
+        this.$el.prepend(this.template({user: Parse.User.current().toJSON()}));
     },
 
 

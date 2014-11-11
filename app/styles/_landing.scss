@@ -1,12 +1,21 @@
-.landing{
-	section{
-		padding-bottom:em(35px);
-	}
+.landing {
+    section {
+        padding-bottom: em(25px);
+    }
 }
 
-.requests-container{
+.requests-container {}
+
+.near-users-container {}
+
+.reviews-container {}
+
+.hives-out {
+    margin-top: 20px;
 }
-.near-users-container{
-}
-.reviews-container{
+
+@include media(min-width 600px) {
+    .hives-out {
+        margin-top: 0;
+    }
 }

@@ -180,15 +180,10 @@
                 new Bees.Collections.UserReviews({
                     user: this.currentUser,
                 }).fetch().then(function(reviews){
-                    console.log(reviews)
-                    if(reviews.length > 0){
-                        Bees.currentView = new Bees.Views.UserReviewsPage({
-                            $container: $('.main-container'),
-                            collection: reviews
-                        });
-                    } else{
-                        $('.main-container').html('<p>No reviews.</p>')
-                    }
+                    Bees.currentView = new Bees.Views.UserReviewsPage({
+                        $container: $('.main-container'),
+                        collection: reviews
+                    });
                 });   
             }
         },

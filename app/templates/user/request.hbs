@@ -1,8 +1,8 @@
-
+<form class="calculate-form">
 <label>Number of hives needed</label>
-<input name='numHives' value="{{request.numHives}}" type='text'>
+<input name='numHives' value="{{request.numHives}}" type='number' required>
 <button class='calculate' >calculate cost</button>
-
+</form>
 {{#if request.totalCost}}
 <div class="requestDetails">
 <p>Number of hives requested: {{request.numHives}}</p>

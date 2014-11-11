@@ -4,6 +4,7 @@
 
     Bees.Views.Request = BaseView.extend({
         className: 'request-container',
+        tagName: 'section',
         template: Bees.templates.requests.solo,
         events:{
             'click .edit-request': 'editRequest',
@@ -27,6 +28,7 @@
 
     Bees.Views.RequestEdit = BaseView.extend({
         className: 'request-container',
+        tagName: 'section',
         template: Bees.templates.requests.soloEdit,
         events:{
             'click .edit-request': 'editRequest',

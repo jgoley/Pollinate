@@ -1,5 +1,6 @@
 Bees.Views.FooterView = BaseView.extend({
-    template: Bees.templates.footer, //Handlebars.compile($('#footer').html()),
+    className: 'footer-container',
+    template: Bees.templates.footer,
     initialize: function(opts){
         var options = _.defaults({}, opts,{
             $container: opts.$container

@@ -133,6 +133,7 @@
                 $container: opts.$container,
             });
             options.$container.append(this.el);
+            this.$container = options.container;
             this.request = new Bees.Models.Request();
             this.render();
             this.listenTo(this.request, 'change', this.render);
@@ -152,10 +153,10 @@
             var numHivesRequested = +$('[name=numHives]').val();
             if (numHivesRequested <= this.model.get('hivesAvailable') && numHivesRequested > 0) {
                 this.request.set(calculateCost(numHivesRequested, this.model));
-            } else if (numHives <= 0) {
-                alert("Please enter a request of 1 or more hives");
+            } else if (numHivesRequested <= 0) {
+                alert("Please enter a request of 1 or more hives.");
             } else {
-                alert("You've selected more hives than the number available in the beekeeper's inventory");
+                alert("You've selected more hives than the number available in the beekeeper's inventory.");
             }
         },
 
@@ -179,10 +180,11 @@
                     message: 'Go to the website and accept the request',
                     subject: 'New Request for bees',
                     from: 'jgoley@gmail.com',
-                    to: beekeeper.get('email'),
+                    to:  'jgoley.etc@gmail.com' //beekeeper.get('email'),
                 }
                 sendMail(email);
                 that.dispose();
+                $('.new-request').append("<h2 class='submitted'>Request submitted!</h1>");
             });
         }
     });

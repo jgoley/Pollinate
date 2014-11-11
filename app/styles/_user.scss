@@ -29,14 +29,36 @@
 
 .user{
 	> div{
-		margin-bottom:em(30px);
+		margin-bottom:em(5px);
 	}
+}
+
+.submitted{
+    margin: 15px 0 0 0;
+    padding:15px;
+    background: $beekeeperPrimary;
+    color: $text;
+    @extend .white-shadow;
+    border-radius: 3px;
 }
 
 @include media(min-width 600px) {
 	.user-description{
 		width:80%;
 	}	
+}
+
+.sub-details{
+    li{
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $farmerSecondary;
+    }
+    span{
+        font-weight: normal;
+        color:$text;
+    }
+    margin-bottom:em(15px);
 }
 
 @include media(min-width 600px) {

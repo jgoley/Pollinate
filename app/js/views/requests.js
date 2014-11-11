@@ -18,7 +18,7 @@
             this.$el.html(this.template());
             var requests = this.collection;
             if (this.collection.length === 0){
-                this.$el.append('<p>Currently, you have no requests</p>')
+                $('.requests').append('<p>Currently, you have no requests</p>')
             }
 
             var notAccepted = new Parse.Collection(
@@ -276,6 +276,11 @@
                 'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
                 'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
                 'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
+                // 'startDateFromNow':      moment(request.get('startDate')).from(new Date()),
+                // 'endDateFromNow':      moment(request.get('endDate')).from(new Date()),
+
+                'startDateFromNow':      moment(new Date()).from(request.get('startDate')),
+                'endDateFromNow':      moment(new Date()).from(request.get('endDate')),
             };
             this.userType = Parse.User.current().get('userType');
             if(this.userType === 'beekeeper'){

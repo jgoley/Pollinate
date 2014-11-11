@@ -1,1 +1,7 @@
-<a href="#user/{{user.objectId}}">{{user.businessName}} ({{user.username}})</a>
+<a href="#user/{{user.objectId}}">{{user.businessName}}
+<span class="user-details">
+	<span class="hives">
+	{{user.hivesAvailable}} hives available</span> | 
+	<span class="hiveCost">${{user.costPerHive}}/hive</span>
+</span>
+</a>

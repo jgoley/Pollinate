@@ -1,9 +1,11 @@
 Bees.Views.EditAccountView = BaseView.extend({
     tagName: 'form',
     className: 'edit-account',
+    subViews: [],
     template: Bees.templates.account.edit,
     events: {
         'submit': 'saveUser',
+        'change .userType': 'addUserInfo',
         'change .image': 'getImage'
     },
 
@@ -20,6 +22,8 @@ Bees.Views.EditAccountView = BaseView.extend({
             user: this.model.toJSON()
         }));
         this.$el.parsley();
+        $("[name=state]").val(this.model.get("state"));
+        $("[name=userType]").val(this.model.get("userType"));
     },
 
     saveUser: function(e) {
@@ -59,5 +63,15 @@ Bees.Views.EditAccountView = BaseView.extend({
                 that.model.set('image', file.url());
             });
         console.log(this.model);
-    }
+    },
+
+    addUserInfo: function(e){
+        _.invoke(this.subViews, 'dispose');
+        var userType = $(e.target).val();
+        this.subViews.push(
+            new Bees.Views.UserTypeFormFields({
+            $container: $('.userType-info'),
+            userType: userType,
+        }));
+    },
 });

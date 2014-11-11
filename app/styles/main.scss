@@ -28,8 +28,8 @@ $primary: RGBA(116, 150, 131, 1);
     right: em(10px);
     transform: translate(0, -50%);
     top: 50%;
-    color:$color;
-    font-weight:normal;
+    color: $color;
+    font-weight: normal;
 }
 
 .white-shadow {
@@ -317,12 +317,6 @@ form.search {
     $max-width: 100%;
     margin-top: em(20px);
     @include outer-container;
-    padding: 0 em(20px);
-    // section {
-    //     > div {
-    //         padding: 1em;
-    //     }
-    // }
     button {
         padding: em(10px) em(20px);
         border-radius: 4px;
@@ -331,6 +325,15 @@ form.search {
         font-size: .8em;
         &:hover {
             transition: .2s;
+        }
+    }
+}
+
+.main-container,
+.landing {
+    > section {
+        > div {
+            padding: em(15px);
         }
     }
 }
@@ -371,13 +374,6 @@ form.search {
     display: block;
 }
 
-footer {
-    margin-top: em(20px);
-    min-height: 50px;
-    width: 100%;
-    border-top: 3px solid #FFF;
-}
-
 .user-image {
     background-size: cover;
     background-position: center center;
@@ -411,4 +407,6 @@ footer {
 @import "reviews";
 @import "user";
 @import "desktop";
+@import "footer";
 @import "../bower_components/Slidebars/distribution/0.9.4/slidebars";
+@import "slideBar";
