@@ -117,7 +117,7 @@
     });
     Bees.Views.NameSearch = BaseView.extend({
         tagName: 'form',
-        className: 'search',
+        className: 'name-search',
         template: Bees.templates.search.nameSearch,
         subViews: [],
         events: {
@@ -166,7 +166,7 @@
 
     Bees.Views.DistanceSearch = BaseView.extend({
         tagName: 'form',
-        className: 'search',
+        className: 'distance-search',
         template: Bees.templates.search.distance,
         subViews: [],
         events: {

@@ -37,17 +37,17 @@
             });
 
             if (this.userType === 'farmer') {
-                $('.search-params').html(firstCap(this.searchType)+'s whose ranges include you:');
                 queryBeekeepers(0).then(function(beekeepers) {
                     var beekeepers = new Parse.Collection(beekeepers);
-                    if (beekeepers.length > 0)
-
+                    if (beekeepers.length > 0) {
                         that.subViews.push(new Bees.Views.SearchResultsList({
                             $container: $('.search-list-container'),
                             collection: beekeepers
                         }));
-                    else {
-                        $('.search-list-container').html('No users found.')
+                        $('.search-params').html(firstCap(that.searchType) + 's whose ranges include you:');
+                    } else {
+                        var defaultRange = 500;
+                        that.searchGeo(defaultRange);
                     }
 
                     that.subViews.push(
@@ -60,7 +60,7 @@
                 });
             } else {
                 var defaultRange = 200;
-                $('.search-params').html(firstCap(this.searchType)+'s within '+defaultRange+' miles:');
+                $('.search-params').html(firstCap(this.searchType) + 's within ' + defaultRange + ' miles:');
                 this.searchGeo(defaultRange);
             }
 
@@ -89,26 +89,34 @@
         searchGeo: function(distance) {
             var that = this;
             new Bees.Collections.UserSearchGeo({
-                userType: 'farmer',
+                userType: this.searchType,
                 distance: distance,
                 limit: 5,
             }).fetch().then(
-                function(farmers) {
-                    if (farmers.length === 0) {
+                function(users) {
+                    if (users.length === 0) {
                         that.searchGeo(distance + 500);
                     } else {
                         that.subViews.push(new Bees.Views.SearchResultsList({
                             $container: $('.search-list-container'),
-                            collection: farmers
+                            collection: users
                         }));
 
                         that.subViews.push(
                             new Bees.Views.Map({
                                 $container: $('.map-container'),
-                                collection: farmers,
+                                collection: users,
                                 radius: that.radius
                             })
                         );
+                        if (users.length > 1) {
+                            var pluralize = 's';
+                        } else {
+                            var pluralize = '';
+                        }
+                        if (that.searchType == "beekeeper") {
+                            $('.search-params').html("<span class='noneFound'>No " + firstCap(that.searchType) + pluralize + " found in your area.</span> Found " + users.length + ' ' + firstCap(that.searchType) + pluralize + ' within ' + distance + ' miles:');
+                        }
                     }
                 });
         }
@@ -116,7 +124,7 @@
     });
     Bees.Views.NameSearch = BaseView.extend({
         tagName: 'form',
-        className: 'search-query',
+        className: 'name-search',
         template: Bees.templates.search.nameSearch,
         subViews: [],
         events: {
@@ -148,31 +156,32 @@
             new Bees.Collections.NameSearch({
                 userType: this.searchType,
                 business: data.businessName.toLowerCase()
-            }).fetch().then(function(searchResults) {
-                if (searchResults.length > 0) {
+            }).fetch().then(function(users) {
+                if (users.length > 0) {
                     that.subViews.push(
                         new Bees.Views.SearchResults({
-                            collection: searchResults,
+                            collection: users,
                             $container: $('.search-list-container')
                         }));
                     that.subViews.push(
                         new Bees.Views.Map({
                             $container: $('.map-container'),
-                            collection: searchResults,
+                            collection: users,
                         })
                     );
+                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
                 } else {
                     $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>');
                 }
             });
-            $('.search-params').html(firstCap(this.searchType)+'s matching "'+data.businessName+'":');
+
         }
 
     });
 
     Bees.Views.DistanceSearch = BaseView.extend({
         tagName: 'form',
-        className: 'search',
+        className: 'distance-search',
         template: Bees.templates.search.distance,
         subViews: [],
         events: {
@@ -216,10 +225,10 @@
                             radius: data.distance
                         })
                     );
-                    console.log("!!!!!!!!!!!!!!",that.searchType)
-                $('.search-params').html(firstCap(that.searchType)+'s within '+data.distance+' miles:');
+                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
                 } else {
                     $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
+                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
                 }
             });
         }

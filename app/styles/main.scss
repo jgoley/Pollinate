@@ -1,5 +1,5 @@
 @import "../bower_components/bourbon/dist/bourbon";
-$gutter:0em;
+// $gutter:0em;
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
 $text: rgba(75, 75, 75, 1);
@@ -8,12 +8,12 @@ $action: rgba(247, 122, 59, 0.15);
 
 $farmerPrimary: rgba(90, 129, 107, 0.9);
 $farmerSecondary: rgba(145, 115, 80, 1);
-$farmerSecondarySubtle: rgba(145, 115, 80, 0.2);
+$farmerSecondarySubtle: rgba(145, 115, 80, 0.3);
 $farmerText: $text;
 
 $beekeeperPrimary: rgba(247, 171, 59, 0.9);
 $beekeeperSecondary: rgba(90, 136, 184, 1);
-$beekeeperSecondarySubtle: rgba(98, 152, 208, 0.2);
+$beekeeperSecondarySubtle: rgba(98, 152, 208, 0.3);
 
 $subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
@@ -79,7 +79,7 @@ h1, h2 {
 }
 
 .main-title {
-    font-size: 2.2em;
+    font-size: 1.8em;
     margin-bottom: em(2px);
 }
 
@@ -116,7 +116,7 @@ a {
 }
 
 .button {
-    padding: 10px 20px;
+    padding: em(15px) em(20px);
     color: #fff;
     border-radius: 3px;
     display: block;
@@ -305,7 +305,7 @@ form.search {
 
 .main-container {
     $max-width: 100%;
-    // margin-bottom: em(60px);
+    margin-top: em(20px);
     @include outer-container;
     padding: 0 em(20px);
     // section {
@@ -362,6 +362,7 @@ form.search {
 }
 
 footer {
+    margin-top: em(20px);
     min-height:50px;
     width:100%;
     border-top: 3px solid #FFF;

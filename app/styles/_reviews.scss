@@ -4,7 +4,7 @@
 }
 
 .review-list-item{
-	margin-bottom:em(10px);
+	margin-bottom:em(25px);
 }
 
 .review-body{
@@ -13,6 +13,10 @@
 	padding:em(10px);
 	border-radius:.2em;
 	@extend .white-shadow;
+	p{
+		margin:0;
+		width: 75%;
+	}
 }
 
 .review-date{

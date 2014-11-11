@@ -29,7 +29,7 @@
         className: 'request-container',
         template: Bees.templates.requests.soloEdit,
         events:{
-            'click .editRequest': 'editRequest',
+            'click .edit-request': 'editRequest',
             'click .cancel-edit': 'cancel'
 
         },

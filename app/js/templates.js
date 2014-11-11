@@ -30,10 +30,10 @@ this["Bees"]["templates"]["map"] = Handlebars.template({"compiler":[6,">= 2.0.0-
   return "<div id=\"map_canvas\"></div>";
   },"useData":true});
 this["Bees"]["templates"]["nav"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "<li><a href=\"#/requests\"  class=\"nav-link\">Requests</a></li>\n";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(2, data),"inverse":this.program(4, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "<li><a href=\"#/reviews\" class=\"nav-link\">Reviews</a></li>\n<li class=\"account\"><a href=\"#\" class=\"account-link\">a</a>\n    <ul class=\"admin-menu hidden\">\n        <li><a href=\"#/account\">My Account</a></li>\n        <li><a href=\"#\" class=\"log-out\">Log-out</a></li>\n    </ul>\n</li>\n\n";
+  return buffer + "<li><a href=\"#/requests\"  class=\"nav-link\">Requests</a></li>\n<li><a href=\"#/reviews\" class=\"nav-link\">Reviews</a></li>\n<li class=\"account\"><a href=\"#\" class=\"account-link\">a</a>\n    <ul class=\"admin-menu hidden\">\n        <li><a href=\"#/account\">My Account</a></li>\n        <li><a href=\"#\" class=\"log-out\">Log-out</a></li>\n    </ul>\n</li>\n\n";
 },"2":function(depth0,helpers,partials,data) {
   return "<li><a href=\"#/search\"  class=\"nav-link\">Search for Farmers</a></li>\n";
   },"4":function(depth0,helpers,partials,data) {
@@ -57,7 +57,7 @@ this["Bees"]["templates"]["shortList"] = Handlebars.template({"compiler":[6,">= 
 this["Bees"]["templates"]["userLanding"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "<section class=\"active-request-container\">\n	<div class=\"active-request-info\"></div>\n</section>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "<section class='requests-container'>\n	<div class=\"requests-list-container\">\n		<div class='requests'>\n			<h1 class=\"main-title\">Open Requests</h1>\n		</div>\n		<a href=\"#/requests\" class=\"button\">View All Requests</a>\n	</div>\n</section>\n\n";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "<section class='requests-container'>\n	<div class=\"requests-list-container\">\n		<div class='requests'>\n			<h1 class=\"main-title\">Pending Requests</h1>\n		</div>\n		<a href=\"#/requests\" class=\"button\">View All Requests</a>\n	</div>\n</section>\n\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.userType : depth0), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data}));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\" class=\"button\">Find More</a>\n	</div>\n</section>\n\n<section class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews\"></div>\n		<a href=\"#/reviews\" class=\"button\">View all Reviews</a>\n	</div>\n</section>";
@@ -422,7 +422,7 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
   },"6":function(depth0,helpers,partials,data) {
   return "<button class=\"editRequest\">Edit request</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = "<h1 class=\"main-title\">Request</h1>\n<ul>\n	<li>Request ID: "
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = "<h1 class=\"main-title\">Request</h1>\n<ul class=\"request-details\">\n	<li>Request ID: "
     + escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"objectId","hash":{},"data":data}) : helper)))
     + "</li>\n	<li>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.farmer : depth0)) != null ? stack1.objectId : stack1), depth0))
@@ -448,7 +448,7 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
 },"useData":true});
 this["Bees"]["templates"]["requests"]["soloEdit"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda;
-  return "<h1 class=\"main-title\">Request</h1>\n\n<ul>\n	<li>Request ID: "
+  return "<h1 class=\"main-title\">Request</h1>\n\n<ul class=\"request-details\">\n	<li>Request ID: "
     + escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"objectId","hash":{},"data":data}) : helper)))
     + "</li>\n	<li>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.farmer : depth0)) != null ? stack1.objectId : stack1), depth0))
@@ -470,9 +470,9 @@ this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6
   },"useData":true});
 this["Bees"]["templates"]["reviews"]["listItem"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
-  return "<p class=\"review-body\">"
+  return "<div class=\"review-body\">\n	<p>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.review : depth0)) != null ? stack1.body : stack1), depth0))
-    + "</p>\n<div class=\"review-info\">\n	<div><a href='#/user/"
+    + "</p>\n</div>\n<div class=\"review-info\">\n	<div><a href='#/user/"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.objectId : stack1), depth0))
     + "'>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.reviewer : depth0)) != null ? stack1.username : stack1), depth0))

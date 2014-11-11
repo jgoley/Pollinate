@@ -1,10 +1,10 @@
 {{#if session.user}}
-<li><a href="#/requests"  class="nav-link">Requests</a></li>
 {{#if_eq user.userType "beekeeper"}}
 <li><a href="#/search"  class="nav-link">Search for Farmers</a></li>
 {{else}}
 <li><a href="#/search" class="nav-link">Search for Beekeepers</a></li>
 {{/if_eq}}
+<li><a href="#/requests"  class="nav-link">Requests</a></li>
 <li><a href="#/reviews" class="nav-link">Reviews</a></li>
 <li class="account"><a href="#" class="account-link">a</a>
     <ul class="admin-menu hidden">

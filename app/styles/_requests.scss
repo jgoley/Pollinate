@@ -1,7 +1,7 @@
 .request-container {
-    > :first-child {
-        margin-top: em(30px);
-    }
+    // > :first-child {
+    //     margin-top: em(30px);
+    // }
 }
 
 .requests {
@@ -44,6 +44,10 @@
 
 .request-list {
     // margin-bottom:em(30px);
+}
+
+.request-details{
+    margin-bottom:10px;
 }
 
 .selected {

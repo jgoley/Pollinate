@@ -3,6 +3,12 @@
     background:#ebebeb;
     // margin-bottom:em(10px);
     padding:em(10px) em(5px);
+    span{
+        display: block;
+    }
+    .noneFound{
+        font-weight: bold;
+    }
 }
 
 @include media(min-width 600px) {
@@ -11,6 +17,7 @@
     }
     .search-container{
         min-height: 700px;
+        background: rgba(200,200,200,.1);
     }
     .search-results-container {
         @include span-columns(4.5);
@@ -29,7 +36,35 @@
         @include outer-container;
     }
     .search-form-container{
-        margin-bottom:em(20px);
+        padding:8px 8px 0 8px;
+        margin-bottom:em(10px);
+        *{
+            box-sizing:border-box;
+        }
+        input[type=text]{
+            @include span-columns(8)
+        }
+        input[type=submit]{
+            @include span-columns(4)
+        }
+        input{
+            display: block;
+            padding: .5em;
+            border-radius: 3px;
+            border: 1px solid #CCC;
+            margin-bottom: 10px;
+            box-shadow: inset 2px 2px 4px rgba(200, 200, 200, 0.4);
+            font-size: 1em;
+            outline: 0;
+            min-height: 2.25em;
+        }
+    }
+    .form-search{
+        // @include outer-container;
+    }
+    .name-search,
+    .distance-search{
+        
     }
 
     .search-list-container{

@@ -68,7 +68,6 @@ header {
 .account {
     @extend .icon;
     padding: 0;
-    padding-top: .2em;
     &:hover {
         background: none;
     }
@@ -116,8 +115,7 @@ header {
         position: absolute;
         right: 0;
         margin: 0;
-        border: 10px solid rgba(255,255,255,.7);
-        border-top: 3px solid #FFF;
+        border-top: 1px solid #FFF;
         min-width: 200px;
         z-index: 1000;
         li{

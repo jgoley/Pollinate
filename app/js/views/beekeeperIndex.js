@@ -54,7 +54,7 @@
                         collection: hivesOut
                 }));
             } else{
-                $('.hives-out').append('<p>Currently you have no open requests.</p>')
+                $('.hives-out').append('<p>Currently you have no pending requests.</p>')
             }
 
             if(notAccepted.length > 0){

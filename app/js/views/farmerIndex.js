@@ -52,11 +52,13 @@
                 $('.reviews-list-container').find('.button').remove();
 
                 }
-
             });
-
             queryBeekeepers(0).then(function(beekeepers) {
                     beekeepers = new Parse.Collection(beekeepers);
+                    if(beekeepers.length === 0){
+                        console.log("No beekeepers in your area");
+                        
+                    }
                     that.subViews.push(
                         new Bees.Views.UserShortList({
                             $container: $('.near-users'),
