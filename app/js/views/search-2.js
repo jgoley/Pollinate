@@ -37,7 +37,7 @@
             });
 
             if (this.userType === 'farmer') {
-                $('.search-params').html(firstCap(this.searchType)+' whose ranges include you:');
+                $('.search-params').html(firstCap(this.searchType)+'s whose ranges include you:');
                 queryBeekeepers(0).then(function(beekeepers) {
                     var beekeepers = new Parse.Collection(beekeepers);
                     if (beekeepers.length > 0)
@@ -60,7 +60,7 @@
                 });
             } else {
                 var defaultRange = 200;
-                $('.search-params').html(firstCap(this.searchType)+'s who are within '+defaultRange+' miles:');
+                $('.search-params').html(firstCap(this.searchType)+'s within '+defaultRange+' miles:');
                 this.searchGeo(defaultRange);
             }
 
@@ -217,7 +217,7 @@
                         })
                     );
                     console.log("!!!!!!!!!!!!!!",that.searchType)
-                $('.search-params').html(firstCap(that.searchType)+'s who are within '+data.distance+' miles:');
+                $('.search-params').html(firstCap(that.searchType)+'s within '+data.distance+' miles:');
                 } else {
                     $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
                 }

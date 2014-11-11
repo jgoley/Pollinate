@@ -35,7 +35,7 @@
         display: block;
         float: right;
         background: none;
-        li {
+        > li {
             display: inline-block;
             border: 0;
         }
@@ -49,7 +49,7 @@
             }
         }
         ul {
-            margin-right: 15px;
+            // margin-right: 15px;
         }
     }
     .logo {
@@ -84,8 +84,6 @@
         @include shift(4);
 
     }
-
-    
     .selected {
         .actions {
             right: 15px;

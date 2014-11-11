@@ -64,7 +64,7 @@
                         collection: notAccepted,
                 }));
             } else{
-                $('.requests').prepend('<p>You currently do not have any pending requests.</p>');
+                $('.requests').append('<p>You currently do not have any pending requests.</p>');
                 $('.request-list-container .button').remove();
             }
 

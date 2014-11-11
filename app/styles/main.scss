@@ -79,7 +79,7 @@ h1, h2 {
 }
 
 .main-title {
-    font-size: 2em;
+    font-size: 2.2em;
     margin-bottom: em(2px);
 }
 
@@ -156,8 +156,10 @@ a {
     }
     a {
         color: $beekeeperSecondary;
+        &:hover{
+            color: $beekeeperPrimary;
+        }
     }
-    .main-title {}
     footer{
         border-bottom: 3px solid $beekeeperPrimary;
         background: $beekeeperPrimary;
@@ -166,6 +168,9 @@ a {
 
 .farmer {
     color: $farmerText;
+    h1{
+        color: $farmerSecondary;
+    }
     header {
         border-top: 3px solid $farmerPrimary;
         background: $farmerPrimary;
@@ -178,13 +183,32 @@ a {
         }
     }
     .button, button {
-        background: $farmerSecondary;
+        background: $beekeeperSecondary;
         color:#FFF;
         @extend .black-shadow;
         &:hover {
+            background: $beekeeperPrimary;
+            color: $text;
+            @extend .white-shadow;
+       
+        }
+    }
+    a {
+        color: $farmerSecondary;
+        &:hover{
+            color: $farmerPrimary;
+        }
+    }
+    .actions{
+        button{
             background: $farmerPrimary;
-            color: #FFF;
+            color:#FFF;
             @extend .black-shadow;
+            &:hover{
+                background: $farmerSecondary;
+                color:#FFF;
+                @extend .black-shadow;
+            }
         }
     }
     footer{

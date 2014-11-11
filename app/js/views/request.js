@@ -6,7 +6,7 @@
         className: 'request-container',
         template: Bees.templates.requests.solo,
         events:{
-            'click .editRequest': 'editRequest',
+            'click .edit-request': 'editRequest',
         },
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
@@ -29,7 +29,9 @@
         className: 'request-container',
         template: Bees.templates.requests.soloEdit,
         events:{
-            'click .editRequest': 'editRequest'
+            'click .editRequest': 'editRequest',
+            'click .cancel-edit': 'cancel'
+
         },
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
@@ -77,6 +79,9 @@
                     BeesApp.navigate('request/'+that.model.id, {trigger: true});
                 });
         },
+        cancel: function(){
+            BeesApp.navigate('request/'+this.model.id, {trigger: true});
+        }
 
     });
 

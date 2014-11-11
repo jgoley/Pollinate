@@ -7,7 +7,7 @@
         className: 'nav-container',
         template: Bees.templates.header,
         events: {
-            'click .show-menu': 'showMenu',
+            // 'click .show-menu': 'showMenu',
             'keyup .search' : 'search',
             'click .logo': 'removeSelected',
         },
@@ -41,11 +41,11 @@
                 }));
         },
 
-        showMenu: function(e){
-            e.preventDefault();
-            $('nav').toggleClass('showing');
-            $('.main-container').toggleClass('menu-showing');
-        },
+        // showMenu: function(e){
+        //     e.preventDefault();
+        //     $('nav').toggleClass('showing');
+        //     $('.main-container').toggleClass('menu-showing');
+        // },
 
         search: function(e){
             if(e.keyCode === 13){
@@ -62,10 +62,11 @@
         template: Bees.templates.nav,
 
         events:{
-            'click a': 'addClass',
+            'click .nav-link': 'addClass',
             'click .log-out': 'logout',
             'click .log-in': 'login',
-            'click .account': 'showAccount',
+            'mouseover .account': 'showSubMenu',
+            'mouseout .account': 'hideSubMenu'
         },
 
         initialize: function(opts) {
@@ -105,9 +106,16 @@
             });  
         },
         addClass: function(e){
-            console.log(e.target);
-            $('.main-menu a').removeClass('selected-nav');
+            $('.nav-link').removeClass('selected-nav');
             $(e.target).addClass('selected-nav');
+        },
+        showSubMenu: function(e){
+            $('.admin-menu').toggleClass('hidden');
+            $(e.target).addClass('selectedNav');
+        },
+        hideSubMenu: function(e){
+            $('.admin-menu').toggleClass('hidden');
+            $(e.target).removeClass('selectedNav');
         }
     });
 

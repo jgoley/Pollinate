@@ -2,25 +2,20 @@
     margin-top: em(20px);
 }
 
-.beekeeper{
+.beekeeper {}
 
-}
-
-.farmer{
-
-}
+.farmer {}
 
 header {
     width: 100%;
     background: rgba(200, 200, 200, 0.9);
     border-top: 3px solid rgba(200, 200, 200, 0.9);
     border-bottom: 3px solid #FFF;
-    
     li {
         display: inline-block;
     }
     h2 {
-        color:#FFF;
+        color: #FFF;
         display: inline-block;
     }
     h2 {
@@ -31,32 +26,31 @@ header {
     }
     button, h2 {
         vertical-align: middle;
-        &:hover{
+        &:hover {
             text-shadow: none;
         }
     }
     a {
-        color:$text;
+        color: $text;
     }
-    input[type='search']{
-        background:rgba(250,250,250,.7); 
-        border:1px solid #FFF;
+    input[type='search'] {
+        background: rgba(250, 250, 250, 0.7);
+        border: 1px solid #FFF;
         border-radius: 4px;
-        &:focus{
-            outline:0;
+        &:focus {
+            outline: 0;
         }
     }
 }
 
-.nav-container{
+.nav-container {
     $max-width: 1000px;
     @include outer-container;
     position: relative;
     min-height: em(50px);
-    overflow: hidden;
 }
 
-.logo{
+.logo {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -66,25 +60,25 @@ header {
     width: 190px;
     height: 26px;
     text-indent: -9999px;
-    a{
+    a {
         display: block;
     }
 }
-.account{
+
+.account {
     @extend .icon;
-    font-size: 1.2em;
-    padding:0;
-    padding-top:.2em;
-    &:hover{
+    padding: 0;
+    padding-top: .2em;
+    &:hover {
         background: none;
     }
 }
 
 .show-menu {
     position: absolute;
-    left:em(10px);
-    top:50%;
-    transform: translate(0,-50%);
+    left: em(10px);
+    top: 50%;
+    transform: translate(0, -50%);
     span {
         vertical-align: middle;
         font-size: .7em;
@@ -96,8 +90,7 @@ header {
         margin-right: .25em;
         vertical-align: middle;
     }
-    &:hover {
-    }
+    &:hover {}
     &:focus {
         color: #999;
     }
@@ -108,12 +101,48 @@ header {
     display: none;
 }
 
-.noAuth-header{
+.noAuth-header {
     background: $beekeeperPrimary;
-    padding:em(50px);
+    padding: em(50px);
     text-align: center;
-    margin-bottom:em(20px);
-    img{
-        max-width:220px;
+    margin-bottom: em(20px);
+    img {
+        max-width: 220px;
+    }
+}
+
+@include media(min-width 600px) {
+    .admin-menu {
+        position: absolute;
+        right: 0;
+        margin: 0;
+        border: 10px solid rgba(255,255,255,.7);
+        border-top: 3px solid #FFF;
+        min-width: 200px;
+        z-index: 1000;
+        li{
+            display: block;
+            border-bottom:1px solid #FFF;
+            &:last-child{
+                border:0;
+            }
+        }
+        a{
+            text-align: right;
+            padding:10px 10px 10px 30px !important;
+            &:hover{
+                background: #ebebeb !important;
+            }
+        }
+    }
+    .beekeeper{
+        .admin-menu {
+            background: $beekeeperPrimary;
+        }
+    }
+    .farmer{
+        .admin-menu {
+            background: $farmerPrimary;
+        }
     }
 }
