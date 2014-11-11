@@ -33,12 +33,7 @@
         margin-bottom: 20px;
     }
     &::after {
-        @extend .icon;
-        content: ">";
-        position: absolute;
-        right: em(10px);
-        transform: translate(0, -50%);
-        top: 50%;
+        @include arrowRight($text);
     }
 }
 
@@ -46,8 +41,8 @@
     // margin-bottom:em(30px);
 }
 
-.request-details{
-    margin-bottom:10px;
+.request-details {
+    margin-bottom: 10px;
 }
 
 .selected {
@@ -86,6 +81,24 @@
     background: RGBA(225, 225, 225, 0.4);
 }
 
+.upcomming-requests {
+    li {
+        border-bottom: 1px solid #ebebeb;
+        margin: 0;
+    }
+    a {
+        padding: 8px 5px;
+        border-radius: 0;
+        &:hover {
+            background: $beekeeperSecondary;
+            border-radius: 0;
+        }
+        &::after {
+            @include arrowRight(#CCC);
+        }
+    }
+}
+
 @include media(min-width 600px) {
     .request {
         margin: 0 0 em(10px) 0;
@@ -109,12 +122,12 @@
         ul {
             margin-bottom: 20px;
         }
-        a{
-            color:$text;
+        a {
+            color: $text;
             border-radius: 3px;
-            &:hover{
+            &:hover {
                 background: $beekeeperPrimary;
-                color:$text;
+                color: $text;
             }
         }
     }

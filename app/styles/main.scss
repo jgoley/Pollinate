@@ -1,4 +1,5 @@
 @import "../bower_components/bourbon/dist/bourbon";
+
 // $gutter:0em;
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
@@ -19,6 +20,17 @@ $subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
 
 $primary: RGBA(116, 150, 131, 1);
+
+@mixin arrowRight($color) {
+    @extend .icon;
+    content: ">";
+    position: absolute;
+    right: em(10px);
+    transform: translate(0, -50%);
+    top: 50%;
+    color:$color;
+    font-weight:normal;
+}
 
 .white-shadow {
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -81,8 +93,7 @@ h1, h2 {
 .main-title {
     font-size: 1.8em;
     margin-bottom: em(10px);
-    border-bottom:2px solid $farmerSecondarySubtle;
-
+    border-bottom: 2px solid $farmerSecondarySubtle;
 }
 
 ul, li {
@@ -158,11 +169,11 @@ a {
     }
     a {
         color: $beekeeperSecondary;
-        &:hover{
+        &:hover {
             color: $beekeeperPrimary;
         }
     }
-    footer{
+    footer {
         border-bottom: 3px solid $beekeeperPrimary;
         background: $beekeeperPrimary;
     }
@@ -170,7 +181,7 @@ a {
 
 .farmer {
     color: $farmerText;
-    h1{
+    h1 {
         color: $farmerSecondary;
     }
     header {
@@ -186,34 +197,33 @@ a {
     }
     .button, button {
         background: $beekeeperSecondary;
-        color:#FFF;
+        color: #FFF;
         @extend .black-shadow;
         &:hover {
             background: $beekeeperPrimary;
             color: $text;
             @extend .white-shadow;
-       
         }
     }
     a {
         color: $farmerSecondary;
-        &:hover{
+        &:hover {
             color: $farmerPrimary;
         }
     }
-    .actions{
-        button{
+    .actions {
+        button {
             background: $farmerPrimary;
-            color:#FFF;
+            color: #FFF;
             @extend .black-shadow;
-            &:hover{
+            &:hover {
                 background: $farmerSecondary;
-                color:#FFF;
+                color: #FFF;
                 @extend .black-shadow;
             }
         }
     }
-    footer{
+    footer {
         border-bottom: 3px solid $farmerPrimary;
         background: $farmerPrimary;
     }
@@ -264,9 +274,7 @@ form.review {
     }
 }
 
-.form-button{
-
-}
+.form-button {}
 
 // form.user-login {
 //     input[type=submit] {
@@ -284,7 +292,7 @@ form.search {
     }
 }
 
-form.edit-account .business-description{
+form.edit-account .business-description {
     min-height: em(200px);
 }
 
@@ -365,8 +373,8 @@ form.search {
 
 footer {
     margin-top: em(20px);
-    min-height:50px;
-    width:100%;
+    min-height: 50px;
+    width: 100%;
     border-top: 3px solid #FFF;
 }
 
@@ -387,11 +395,12 @@ footer {
 .user-profile {
     margin-top: em(20px);
 }
-.business-name{
+
+.business-name {
     font-size: 3em;
 }
 
-.active-request-info{
+.active-request-info {
     @include outer-container;
 }
 
