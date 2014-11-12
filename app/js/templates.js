@@ -343,10 +343,10 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
   buffer += "		</ul>\n	</a>\n	<div class=\"actions\">\n		\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(12, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "		\n		<button class='more-info'>More Info</button>\n		\n";
+  buffer += "		\n		\n";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"unless","hash":{},"fn":this.program(14, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "	</div>\n</div>";
+  return buffer + "		<button class='more-info'>More Info</button>\n	</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "accepted";
@@ -407,10 +407,9 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   buffer += "		</ul>\n	</a>\n\n		<div class=\"actions\">\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(12, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "			<button class='more-info'>More Info</button>\n";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(14, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "		</div>\n</div>";
+  return buffer + "			<button class='more-info'>More Info</button>\n		</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
