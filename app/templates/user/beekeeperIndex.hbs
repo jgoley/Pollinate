@@ -10,12 +10,12 @@
 <div>
 	<h1 class="main-title">Request Hives</h1>
 	<ul class="sub-details">
-		<li>Number of hives available:: <span>{{user.hivesAvailable}}</span></li>
+		<li>Number of hives available: <span>{{user.hivesAvailable}}</span></li>
 		<li>Distance from you: <span>{{distance}}</span></li>
 	</ul>
 	<ul class="cost-details">
 		<li>Cost per hive ${{user.costPerHive}}</li>
-		<li>Transportation fee: ${{user.costPerMile}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
+		<li>Transportation fee: ${{transportCost}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
 	</ul>
 	<div class="new-request"></div>
 </div>

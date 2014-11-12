@@ -556,14 +556,14 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crops : stack1), depth0))
     + "</h2>\n	<div class=\"user-description\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n</div>\n<div class=\"newMessage-container\">\n	<a href=\"#\" class=\"button newMessage\">Send a Message</a>\n</div>\n<div>\n	<h1 class=\"main-title\">Request Hives</h1>\n	<ul class=\"sub-details\">\n		<li>Number of hives available:: <span>"
+    + "</div>\n</div>\n<div class=\"newMessage-container\">\n	<a href=\"#\" class=\"button newMessage\">Send a Message</a>\n</div>\n<div>\n	<h1 class=\"main-title\">Request Hives</h1>\n	<ul class=\"sub-details\">\n		<li>Number of hives available: <span>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))
     + "</span></li>\n		<li>Distance from you: <span>"
     + escapeExpression(((helper = (helper = helpers.distance || (depth0 != null ? depth0.distance : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"distance","hash":{},"data":data}) : helper)))
     + "</span></li>\n	</ul>\n	<ul class=\"cost-details\">\n		<li>Cost per hive $"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
     + "</li>\n		<li>Transportation fee: $"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerMile : stack1), depth0))
+    + escapeExpression(((helper = (helper = helpers.transportCost || (depth0 != null ? depth0.transportCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"transportCost","hash":{},"data":data}) : helper)))
     + " per mile <span>if distance is over "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
     + " miles</span></li>\n	</ul>\n	<div class=\"new-request\"></div>\n</div>\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<div class=\"reviews\">\n			<h1 class=\"main-title\">Reviews</h1>\n		</div>\n	</div>\n</div>";

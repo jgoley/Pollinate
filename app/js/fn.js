@@ -77,11 +77,8 @@ function calculateCost(numHivesRequested, beek) {
         'numHives': +numHivesRequested
     }
 
-    console.log("!!!!!!!!!!Details",requestDetails);
-
     return requestDetails;
 }
-
 
 function firstCap(string)
 {
@@ -100,10 +97,6 @@ $.fn.serializeObject = function() {
         return acum;
     }, {});
 };
-
-
-
-
 
 Handlebars.registerHelper('if_eq', function(a, b, opts) {
     if (a === b)

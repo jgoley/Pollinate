@@ -57,7 +57,7 @@
                 $container: opts.$container,
                 type: opts.type
             });
-            options.$container.html(this.el);
+            options.$container.append(this.el);
             this.type = options.type;
             this.render();
         },
