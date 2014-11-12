@@ -22,6 +22,7 @@
 
         render: function() {
             var that = this;
+            _.invoke(this.subViews, 'dispose');
             this.$el.append(this.template());
 
             new Bees.Views.NameSearch({
@@ -68,6 +69,7 @@
         },
 
         searchByText: function() {
+            _.invoke(this.subViews, 'dispose');
             var that = this;
             var searchResults = new Bees.Collections.NameSearch({
                 userType: this.searchType,
@@ -88,6 +90,7 @@
 
         searchGeo: function(distance) {
             var that = this;
+            _.invoke(this.subViews, 'dispose');
             new Bees.Collections.UserSearchGeo({
                 userType: this.searchType,
                 distance: distance,
@@ -148,6 +151,7 @@
         },
 
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.prepend(this.template());
         },
 
@@ -210,6 +214,7 @@
         },
 
         search: function(e) {
+            _.invoke(this.subViews, 'dispose');
             e.preventDefault();
             var that = this;
             var data = this.$el.serializeObject();
@@ -252,7 +257,6 @@
             this.render();
         },
 
-
         render: function() {
             _.invoke(this.subViews, 'dispose');
             this.subViews = [];
@@ -269,7 +273,7 @@
     Bees.Views.SearchResultsList = BaseView.extend({
         tagName: 'ul',
         className: 'search-results-users',
-
+        subViews: [],
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container
@@ -279,15 +283,16 @@
         },
 
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.collection.each(_.bind(this.renderChildren, this));
         },
 
         renderChildren: function(user) {
-            _.invoke(this.subViews, 'dispose');
-            new Bees.Views.SearchResultsListItem({
-                $container: this.$el,
-                model: user
-            })
+            this.subViews.push(
+                new Bees.Views.SearchResultsListItem({
+                    $container: this.$el,
+                    model: user
+            }));
         },
     });
 

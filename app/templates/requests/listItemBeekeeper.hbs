@@ -1,7 +1,7 @@
 {{!-- Requests on Beekeeper pages --}}
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<a href="#/request/{{request.objectId}}">
-		{{request.numHives}} requested by {{user.username}}
+		{{request.numHives}} requested by {{user.businessName}}
 		<ul class='hidden'>
 			<li>{{request.objectId}}</li>
 			<li>{{user.userType}}: {{user.username}}</li>

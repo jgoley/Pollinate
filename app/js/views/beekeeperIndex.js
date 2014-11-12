@@ -35,11 +35,13 @@
                     return request.get('startDate') >= that.currentDate && request.get('startDate') <= that.currentDatePlus && request.get('accepted');
             }));
 
-            this.subViews.push(
-                new Bees.Views.BeekeeperUpcomingRequestsList({
-                    $container: $('.active-request-info'),
-                    collection: upcomingRequests
-            }));
+            if(upcomingRequests.length > 0){
+                this.subViews.push(
+                    new Bees.Views.BeekeeperUpcomingRequestsList({
+                        $container: $('.active-request-info'),
+                        collection: upcomingRequests
+                }));
+            }
 
             if(hivesOut.length > 0){
                 this.subViews.push(
@@ -49,6 +51,10 @@
                 }));
             } else{
                 $('.hives-out').append('<p>Currently you have no pending requests.</p>')
+            }
+
+            if(hivesOut.length === 0 && upcomingRequests.length === 0){
+                $('.active-request-container').remove();
             }
 
             if(notAccepted.length > 0){

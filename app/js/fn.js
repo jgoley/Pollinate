@@ -26,7 +26,6 @@ _.extend(BaseView.prototype, Parse.View.prototype, {
         this.remove();
         _.invoke(this.subViews, 'dispose');
         delete Bees.viewIndex[this.cid];
-        console.log("View removed", this.cid);
     }
 });
 BaseView.extend = Parse.View.extend;
@@ -46,7 +45,6 @@ Parse.Collection.prototype.findWhere = function(attrs) {
 };
 
 function disposeViews() {
-    console.log("The Current View", Bees.currentView);
     if (Bees.currentView) Bees.currentView.dispose();
     if ($('nav').hasClass('showing')) {
         $('nav').removeClass('showing');
@@ -56,7 +54,6 @@ function disposeViews() {
 
 function calculateCost(numHivesRequested, beek) {
 
-    console.log("!!!!!!!!Beek in function",beek);
     var cost = 0,
         mileageCost = 0,
         distance = 0,

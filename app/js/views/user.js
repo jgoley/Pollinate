@@ -64,14 +64,12 @@
             new Bees.Views.NewMessage({
                 $container: $('.newMessage-container'),
                 recepient: this.model,
-                method: 'fill'
+                method: 'fill',
+                msgType: 'new'
             });
         }
 
     });
-
-
-
 
     Bees.Views.RequestNew = BaseView.extend({
         template: Bees.templates.user.request,

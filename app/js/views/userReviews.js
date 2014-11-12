@@ -11,6 +11,7 @@
             });
             options.$container.append(this.el);
             this.render();
+            
         },
 
         render: function() {
@@ -42,7 +43,7 @@
                         })
                     );  
                 } else {
-                    that.$el.append('<p>No user reviews</p>');
+                    $('.reviews').append('<p>No user reviews</p>');
                 }
             });
         },
@@ -72,7 +73,7 @@
                         })
                     );  
                 } else {
-                    that.$el.append('<p>No user reviews</p>');
+                    $('.reviews').append('<p>No user reviews</p>');
                 }
             },
     });
@@ -89,7 +90,7 @@
             });
             options.$container.append(this.el);
             this.render();
-            this.listenTo(this.collection, 'change', this.render); 
+            this.listenTo(this.collection, 'change', this.render);
         },
         render: function() {
             _.invoke(this.subViews, 'dispose');
@@ -187,7 +188,6 @@
         },
 
         submitReview: function(e) {
-            console.log("submitting");
             e.preventDefault();
             var reviewData = this.$el.serializeObject();
             var review = new Bees.Models.Review();

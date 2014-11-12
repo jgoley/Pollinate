@@ -13,7 +13,6 @@ Bees.Views.LoginView = BaseView.extend({
             session: opts.session
         });
         options.$container.html(this.el);
-        console.log("Session", options.session);
         this.render();
     },
 

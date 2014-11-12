@@ -36,7 +36,6 @@
 
         index: function() {
             disposeViews();
-            console.log("The Current User:",Parse.User.current());
             if (!Parse.User.current()) {
                 this.goLogin();
             } else {
@@ -91,7 +90,6 @@
 
         changePassword: function(){
             disposeViews();
-            console.log("change passowrd");
         },
 
         user: function(user_id) {
@@ -178,7 +176,6 @@
             if (!Parse.User.current()) {
                 this.goLogin();
             } else{
-                
                 new Bees.Collections.UserReviews({
                     user: this.currentUser,
                 }).fetch().then(function(reviews){
@@ -209,7 +206,6 @@
 
         search: function(queryText) {
             disposeViews();
-            console.log("queryText");
             Bees.currentView = new Bees.Views.Search({
                 queryText: queryText,
                 $container: $('.main-container'),

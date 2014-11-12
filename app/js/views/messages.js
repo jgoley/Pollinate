@@ -20,7 +20,6 @@
             this.listenTo(this.collection, 'add', this.render);
         },
         render: function() {
-            console.log("Messages rendered");
             this.$el.html(this.template());
             this.populateMessages('recipient', 'received');
             this.populateMessages('sender', 'sent');
@@ -31,7 +30,6 @@
                 return msg.get(searchFor).id === Parse.User.current().id;
             });
             var messages = new Parse.Collection(messages);
-            console.log(messages);
             if (messages.length > 0) {
                 this.subViews.push(
                     new Bees.Views.MessagesList({
@@ -98,8 +96,7 @@
         },
 
         reply: function(){
-            console.log('reply');
-            
+            this.$el.find('.reply').remove();            
             new Bees.Views.NewMessage({
                 $container: this.$el,
                 model: this.model,
@@ -162,7 +159,6 @@
             newMessage.set('senderName', this.sender.get('username'));
             newMessage.save({
                 success:function(a){
-                    console.log(a);
                     var email = {
                         message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
                         subject: 'New Message on Pollinate',
@@ -193,7 +189,6 @@
                 newMessage.set('msgType', 'reply');
                 newMessage.save({
                     success:function(a){
-                        console.log(a);
                         var email = {
                             message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
                             subject: 'New Message on Pollinate',
@@ -211,7 +206,6 @@
                 this.dispose();
                 that.$container.append('<h2>Reply sent</h2>');
                 that.collection.add(newMessage);
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!",that.collection)
             }
             else {
                 alert('Your message is too short.')

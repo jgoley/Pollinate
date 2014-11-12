@@ -343,7 +343,7 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
     + "\">\n		"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
     + " requested by "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "\n		<ul class='hidden'>\n			<li>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
     + "</li>\n			<li>"
@@ -409,7 +409,7 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
     + "\">\n		"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
     + " hives from "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
     + "\n		<ul class='hidden'>\n			<li>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
     + ": "
@@ -556,17 +556,17 @@ this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":f
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crops : stack1), depth0))
     + "</h2>\n	<div class=\"user-description\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n</div>\n<div class=\"newMessage-container\">\n	<a href=\"#\" class=\"button newMessage\">Send a Message</a>\n</div>\n<div>\n	<h1 class=\"main-title\">Request Hives</h1>\n	<ul class=\"sub-details\">\n		<li>Number of hives available: <span>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))
-    + "</span></li>\n		<li>Distance from you: <span>"
-    + escapeExpression(((helper = (helper = helpers.distance || (depth0 != null ? depth0.distance : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"distance","hash":{},"data":data}) : helper)))
-    + "</span></li>\n	</ul>\n	<ul class=\"cost-details\">\n		<li>Cost per hive $"
+    + "</div>\n</div>\n<div class=\"newMessage-container\">\n	<a href=\"#\" class=\"button newMessage\">Send a Message</a>\n</div>\n<div>\n	<h1 class=\"main-title request-hives\">Request Hives</h1>\n	<div class=\"opertation-details\">\n		<ul class=\"sub-details-beekeeper\">\n\n			<li class=\"hive-cost\">\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.costPerHive : stack1), depth0))
-    + "</li>\n		<li>Transportation fee: $"
+    + "</span>\n				<span class=\"detail-title\">per hive</span>\n			</li>\n			<li>\n				<span class=\"figure\"> $"
     + escapeExpression(((helper = (helper = helpers.transportCost || (depth0 != null ? depth0.transportCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"transportCost","hash":{},"data":data}) : helper)))
-    + " per mile <span>if distance is over "
+    + " / mile</span>\n				<span class=\"detail-title\">Transportation fee<span class=\"subtle\">if distance is over "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.maxDistFree : stack1), depth0))
-    + " miles</span></li>\n	</ul>\n	<div class=\"new-request\"></div>\n</div>\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<div class=\"reviews\">\n			<h1 class=\"main-title\">Reviews</h1>\n		</div>\n	</div>\n</div>";
+    + " miles</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.hivesAvailable : stack1), depth0))
+    + "</span>\n				<span class=\"detail-title\">hives available</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
+    + escapeExpression(((helper = (helper = helpers.distance || (depth0 != null ? depth0.distance : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"distance","hash":{},"data":data}) : helper)))
+    + "</span>\n				<span class=\"detail-title\">miles from you</span>\n			</li>\n		</ul>\n	</div>\n	<div class=\"new-request\"></div>\n</div>\n<div class='reviews-container'>\n	<div class=\"reviews-list-container\">\n		<div class=\"reviews\">\n			<h1 class=\"main-title\">Reviews</h1>\n		</div>\n	</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -579,7 +579,7 @@ this["Bees"]["templates"]["user"]["farmerIndex"] = Handlebars.template({"1":func
   if (stack1 != null) { buffer += stack1; }
   return buffer + "></div>\n<div class='user-profile'>\n	<h1 class=\"business-name\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "</h1>\n	<ul class=\"sub-details\">\n		<li>Crops: <span>"
+    + "</h1>\n	<ul class=\"sub-details-farmer\">\n		<li>Crops: <span>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.crop : stack1), depth0))
     + "</span></li>\n		<li>Farm Acerage: <span>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))

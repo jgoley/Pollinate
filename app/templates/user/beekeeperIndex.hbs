@@ -8,15 +8,28 @@
 	<a href="#" class="button newMessage">Send a Message</a>
 </div>
 <div>
-	<h1 class="main-title">Request Hives</h1>
-	<ul class="sub-details">
-		<li>Number of hives available: <span>{{user.hivesAvailable}}</span></li>
-		<li>Distance from you: <span>{{distance}}</span></li>
-	</ul>
-	<ul class="cost-details">
-		<li>Cost per hive ${{user.costPerHive}}</li>
-		<li>Transportation fee: ${{transportCost}} per mile <span>if distance is over {{user.maxDistFree}} miles</span></li>
-	</ul>
+	<h1 class="main-title request-hives">Request Hives</h1>
+	<div class="opertation-details">
+		<ul class="sub-details-beekeeper">
+
+			<li class="hive-cost">
+				<span class="figure">${{user.costPerHive}}</span>
+				<span class="detail-title">per hive</span>
+			</li>
+			<li>
+				<span class="figure"> ${{transportCost}} / mile</span>
+				<span class="detail-title">Transportation fee<span class="subtle">if distance is over {{user.maxDistFree}} miles</span>
+			</li>
+			<li>
+				<span class="figure">{{user.hivesAvailable}}</span>
+				<span class="detail-title">hives available</span>
+			</li>
+			<li>
+				<span class="figure">{{distance}}</span>
+				<span class="detail-title">miles from you</span>
+			</li>
+		</ul>
+	</div>
 	<div class="new-request"></div>
 </div>
 <div class='reviews-container'>

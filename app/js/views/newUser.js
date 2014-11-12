@@ -46,13 +46,12 @@ Bees.Views.NewUserView = BaseView.extend({
         } else {
             user.set('userType', 'farmer');
         }
-        conosle.log(user);
         user.set(credentials);
         user.set('costPerHive', +credentials.costPerHive);
         user.set('maxDistFree', +credentials.maxDistFree);
         user.set('costPerMile', +credentials.costPerMile);
-        user.set('hivesAvailable', +credentials.hivesAvailable);
-        user.set('hivesTotal', +credentials.hivesAvailable);
+        user.set('hivesAvailable', +credentials.hivesTotal);
+        user.set('hivesTotal', +credentials.hivesTotal);
         user.set('zipCode', +credentials.zipCode);
         user.set('geoRangeRadius', +credentials.geoRangeRadius);
         user.signUp(null, {
@@ -114,7 +113,12 @@ Bees.Views.UserTypeFormFields = BaseView.extend({
     },
 
     render: function() {
-        this.$el.prepend(this.template({user: Parse.User.current().toJSON()}));
+        if (Parse.User.current()){
+            this.$el.prepend(this.template({user: Parse.User.current().toJSON()}));
+        }
+        else {
+            this.$el.prepend(this.template());
+        }
     },
 
 

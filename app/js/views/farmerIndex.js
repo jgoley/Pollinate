@@ -60,14 +60,12 @@
                             type: 'Beekeepers'
                         }))
                 } else {
-                    console.log("No beekeepers in your area");
                     that.searchGeo(500)
                 }
             })
         },
 
         searchGeo: function(distance) {
-            console.log("geoSearch", distance);
             var that = this;
             new Bees.Collections.UserSearchGeo({
                 userType: 'beekeeper',

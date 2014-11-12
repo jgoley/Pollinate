@@ -1,7 +1,7 @@
 {{!-- Requests on Farmer pages --}}
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedFarmer}}archived {{/if}}">
 	<a href="#/request/{{request.objectId}}">
-		{{request.numHives}} hives from {{user.username}}
+		{{request.numHives}} hives from {{user.businessName}}
 		<ul class='hidden'>
 			<li>{{user.userType}}: {{user.username}}</li>
 			<li>Number of Hives: {{request.numHives}}</li>

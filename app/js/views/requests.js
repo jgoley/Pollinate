@@ -181,7 +181,6 @@
                     from: 'jgoley.etc@gmail.com',
                     to: 'jgoley@gmail.com',//farmer.get('email'),
                 };
-                console.log(farmer, email.message);
                 sendMail(email);  
             })
         },
@@ -220,7 +219,6 @@
             this.$el.toggleClass('selected');
         },
         editRequest: function(){
-            console.log('edit')
             BeesApp.navigate('request/'+this.model.id+'/edit', {trigger: true})
         }
     });

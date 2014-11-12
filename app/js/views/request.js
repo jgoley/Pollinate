@@ -21,7 +21,6 @@
         },
 
         editRequest: function(){
-            console.log("sdfasdfa");
             BeesApp.navigate('request/'+this.model.id+'/edit', {trigger: true});
         }
     });
@@ -49,7 +48,6 @@
         },
 
         editRequest: function(){
-            console.log("3333");
             var that = this;
             var request = this.model;
             var user = Parse.User.current();

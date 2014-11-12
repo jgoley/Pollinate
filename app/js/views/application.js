@@ -13,7 +13,6 @@
             this.listenTo(Bees.Session, 'change', this.render);
         },
         render: function(){
-            console.log("rendering application");
             if ( Parse.User.current()) var user = Parse.User.current().toJSON();
             this.$el.html(this.template({user: user}));
             new Bees.Views.HeaderView({

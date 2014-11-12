@@ -62,7 +62,6 @@ Bees.Views.EditAccountView = BaseView.extend({
                 // $('.loading').remove();
                 that.model.set('image', file.url());
             });
-        console.log(this.model);
     },
 
     addUserInfo: function(e){
