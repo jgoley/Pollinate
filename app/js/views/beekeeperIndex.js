@@ -25,21 +25,18 @@
                     return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
             }));
 
+
             var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
 
+            
             var upcomingRequests = new Parse.Collection(
                 requests.filter(function(request){
                     return request.get('startDate') >= that.currentDate && request.get('startDate') <= that.currentDatePlus && request.get('accepted');
             }));
 
-
-            // this.subViews.push(
-            //     new Bees.Views.BeekeeperIndexInfo({
-            //         $container: $('.active-request-info'),
-            // }));
             
             this.subViews.push(
                 new Bees.Views.BeekeeperUpcomingRequestsList({
@@ -131,7 +128,7 @@
         render: function(){
             _.invoke(this.subViews, 'dispose');
             var that = this;
-            this.$el.append('<h1 class="main-title">Requests currently out:</h1>');
+            this.$el.append('<h1 class="main-title">Hives currently out:</h1>');
             this.collection.each(_.bind(this.renderChildren, this));
         },
         renderChildren: function(request){

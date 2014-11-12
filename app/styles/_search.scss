@@ -1,6 +1,5 @@
 .search-params {
-    background: #ebebeb;
-    // margin-bottom:em(10px);
+    background: $farmerSecondarySubtle;
     padding: em(10px) em(5px);
     span {
         display: block;
@@ -116,7 +115,7 @@ form.search {
     }
     .search-container {
         min-height: 600px;
-        background: rgba(200, 200, 200, 0.1);
+        background: rgba(200, 200, 200, 0.2);
         > div{
             padding:0 !important;
         }

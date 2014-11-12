@@ -73,6 +73,9 @@
     });
 
     Bees.Collections.Requests = Parse.Collection.extend({
+        comparator: function(request) {
+            return request.get('startDate');
+        },
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 user: opts.user

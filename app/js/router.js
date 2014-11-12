@@ -9,6 +9,7 @@
             'login': 'login',
             'newuser': 'newUser',
             'account': 'account',
+            'change-password': 'changePassword',
             'user/:user_id': 'user',
             'user/:user_id/reviews': 'reviews',
             'requests': 'requests',
@@ -20,7 +21,6 @@
             'messages/message_id': 'messageView',
             'search': 'search',
             'search/:query_text': 'search',
-            'map': 'map'
         },
 
         initialize: function() {
@@ -44,7 +44,6 @@
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
                     }).fetch().then(function(collection){
-                        console.log("!Collection in router",collection)
                         Bees.currentView = new Bees.Views.BeekeeperIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -54,7 +53,6 @@
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
                     }).fetch().then(function(collection){
-                        console.log("!Collection in router",collection)
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -89,6 +87,11 @@
                     model: Parse.User.current()
                 });
             }
+        },
+
+        changePassword: function(){
+            disposeViews();
+            console.log("change passowrd");
         },
 
         user: function(user_id) {
@@ -156,7 +159,6 @@
         },
 
         editRequest: function(requestID){
-            console.log("!!!!!!!!!!!!!!!!!!!!");
             disposeViews();
             if (!Parse.User.current()) {
                 this.goLogin();

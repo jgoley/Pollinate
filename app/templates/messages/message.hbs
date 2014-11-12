@@ -1,5 +1,11 @@
-{{log this}}
-<div style="background:#ebebeb; margin-bottom:10px;">
-<p>{{message}}</p>
-{{senderName}}
+<div>
+{{log type}}
+<p>{{message.message}}</p>
+{{#if_eq type 'received'}}
+	<a href="#/user/{{message.sender.objectId}}">{{message.senderName}}</a> 
+	<button class="newMessage">send response</button>	
+{{/if_eq}}
+{{#if_eq type 'sent'}} 
+	<a href="#/user/{{message.recipient.objectId}}">{{message.recipientName}}</a>
+{{/if_eq}}
 </div>

@@ -19,6 +19,8 @@ $beekeeperSecondarySubtle: rgba(98, 152, 208, 0.3);
 $subtleWarning: RGBA(170, 57, 57, 0.1);
 $vividWarning: RGBA(128, 21, 21, 1);
 
+$subtleGray: rgba(235, 235, 235, 1);
+
 $primary: RGBA(116, 150, 131, 1);
 
 @mixin arrowRight($color) {
@@ -232,7 +234,8 @@ a {
 form.new-user,
 form.edit-account,
 form.user-login,
-form.review {
+form.review,
+.calculate-form {
     margin-top: em(20px);
     @include span-columns(11);
     @include shift(0.5);
@@ -407,6 +410,7 @@ form.search {
 @import "reviews";
 @import "user";
 @import "desktop";
+@import "messages";
 @import "footer";
 @import "../bower_components/Slidebars/distribution/0.9.4/slidebars";
 @import "slideBar";

@@ -3,7 +3,7 @@
     'use strict'
 
     Bees.Views.Messages = BaseView.extend({
-        className: 'messages',
+        className: 'messages-container',
         subViews: [],
         tagName: 'section',
         template: Bees.templates.messages.index,
@@ -17,6 +17,7 @@
             options.$container.html(this.el);
             $('.main-menu a').removeClass('selected-nav');
             this.render();
+            this.listenTo(this.collection, 'add', this.render);
         },
         render: function() {
             this.$el.html(this.template());
@@ -34,7 +35,8 @@
                 this.subViews.push(
                     new Bees.Views.MessagesList({
                         $container: $('.' + type + '-messages'),
-                        collection: messages
+                        collection: messages,
+                        type: type
                     }))
             } else {
                 $('.'+ type +'-messages').append('<h3>Currently no ' + type + ' messages.</h3>')
@@ -52,8 +54,10 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
+                type: opts.type
             });
             options.$container.append(this.el);
+            this.type = options.type;
             this.render();
         },
         render: function() {
@@ -64,6 +68,7 @@
                 new Bees.Views.MessagesListItem({
                     model: request,
                     $container: this.$el,
+                    type: this.type
                 }));
         }
 
@@ -76,13 +81,15 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
+                type: opts.type
             });
             options.$container.append(this.el);
+            this.type = options.type;
             this.render();
         },
         render: function() {
             _.invoke(this.subViews, 'dispose');
-            this.$el.append(this.template(this.model.toJSON()));
+            this.$el.append(this.template({message: this.model.toJSON(), type: this.type}));
         }
     });
 

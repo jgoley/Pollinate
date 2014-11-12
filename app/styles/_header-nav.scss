@@ -118,29 +118,46 @@ header {
         border-top: 1px solid #FFF;
         min-width: 200px;
         z-index: 1000;
-        li{
+        li {
             display: block;
-            border-bottom:1px solid #FFF;
-            &:last-child{
-                border:0;
+            border-bottom: 1px solid #FFF;
+            &:last-child {
+                border: 0;
             }
         }
-        a{
+        a {
             text-align: right;
-            padding:10px 10px 10px 30px !important;
-            &:hover{
+            padding: 10px 10px 10px 30px !important;
+            &:hover {
                 background: #ebebeb !important;
             }
         }
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        overflow: hidden;
     }
-    .beekeeper{
+    .beekeeper {
         .admin-menu {
             background: $beekeeperPrimary;
+            .howdy {
+                background: $beekeeperSecondary;
+                padding: 10px 10px 10px 30px !important;
+                text-align: right;
+                color: #FFF;
+                text-shadow: none;
+            }
         }
     }
-    .farmer{
+    .farmer {
         .admin-menu {
             background: $farmerPrimary;
+        }
+        .howdy {
+            background: $farmerSecondary;
+            padding: 10px 10px 10px 30px !important;
+            text-align: right;
+            color: #FFF;
+            text-shadow: none;
         }
     }
 }
