@@ -276,8 +276,8 @@
                 'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
                 'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
                 'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
-                'startDateFromNow':      moment(request.get('startDate')).fromNow(),
-                'endDateFromNow':      moment(request.get('endDate')).fromNow(),
+                'startDateFromNow':      moment( moment(request.get('startDate')).add(1, 'day') ).fromNow(),
+                'endDateFromNow':      moment( moment(request.get('endDate')).add(1, 'day') ).fromNow(),
             };
             this.userType = Parse.User.current().get('userType');
             if(this.userType === 'beekeeper'){

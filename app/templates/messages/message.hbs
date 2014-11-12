@@ -1,11 +1,24 @@
-<div>
-{{log type}}
-<p>{{message.message}}</p>
-{{#if_eq type 'received'}}
-	<a href="#/user/{{message.sender.objectId}}">{{message.senderName}}</a> 
-	<button class="newMessage">send response</button>	
-{{/if_eq}}
-{{#if_eq type 'sent'}} 
-	<a href="#/user/{{message.recipient.objectId}}">{{message.recipientName}}</a>
-{{/if_eq}}
+{{!-- <div class="review-body">
+	<p>{{review.body}}</p>
+</div>
+<div class="review-info">
+	<div><a href='#/user/{{reviewer.objectId}}'>{{reviewer.username}}</a>
+	<p class="review-date">{{createdAt}}</p>
+	</div>
+</div> --}}
+
+<div class="message-body">
+	<p>{{message.message}}</p>
+	{{#if_eq type 'received'}}
+	<button class="reply">r</button>	
+	{{/if_eq}}
+</div>
+<div class="message-info">
+	{{#if_eq type 'received'}}
+		<a href="#/user/{{message.sender.objectId}}">{{message.senderName}}</a> 
+	{{/if_eq}}
+	{{#if_eq type 'sent'}} 
+		<a href="#/user/{{message.recipient.objectId}}">{{message.recipientName}}</a>
+	{{/if_eq}}
+	<p class="message-date">{{message.createdAt}}</p>
 </div>

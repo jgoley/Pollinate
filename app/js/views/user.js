@@ -61,64 +61,15 @@
             e.preventDefault();
             new Bees.Views.NewMessage({
                 $container: $('.newMessage-container'),
-                recepient: this.model
+                recepient: this.model,
+                method: 'fill'
             });
         }
 
     });
 
 
-    Bees.Views.NewMessage = BaseView.extend({
-        template: Bees.templates.user.newMessage,
-        tagName: 'form',
-        events: {
-            'submit': 'sendMessage',
-        },
 
-        initialize: function(opts) {
-            var options = _.defaults({}, opts, {
-                $container: opts.$container,
-                recepient: opts.recepient
-            });
-            options.$container.html(this.el);
-            this.recepient = options.recepient;
-            this.sender = Parse.User.current();
-            this.message = new Bees.Models.Message();
-            this.render();
-        },
-        render: function() {
-            // this.dispose();
-            console.log("Rendering");
-            this.$el.html(this.template());
-        },
-        sendMessage: function(e){
-            var that = this;
-            var newMessage = this.message;
-            e.preventDefault();
-            var message = $('[name=message]').val();
-            newMessage.set('message', message);
-            newMessage.set('recipient', this.recepient);
-            newMessage.set('recipientName', this.recepient.get('username'));
-            newMessage.set('sender', this.sender);
-            newMessage.set('senderName', this.sender.get('username'));
-            newMessage.save({
-                success:function(a){
-                    console.log(a);
-                    var email = {
-                        message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
-                        subject: 'New Message on Pollinate',
-                        from: 'jgoley.etc@gmail.com',
-                        to: 'jgoley@gmail.com',//beekeeper.get('email'),
-                    };
-                    sendMail(email);
-                },
-                error:function(a,e){
-                    console.error(e);
-                }
-            });
-            this.dispose();
-        }
-    });
 
     Bees.Views.RequestNew = BaseView.extend({
         template: Bees.templates.user.request,
@@ -138,8 +89,6 @@
             this.listenTo(this.request, 'change', this.render);
         },
         render: function() {
-            // this.dispose();
-            console.log("Rendering");
             this.$el.html(this.template({
                 user: this.model.toJSON(),
                 request: this.request.toJSON(),

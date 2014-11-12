@@ -126,6 +126,63 @@ a {
     transition: .2s;
 }
 
+
+
+input, select, textarea {
+    width: 100%;
+    display: block;
+    padding: 1em;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    margin-bottom: 10px;
+    box-shadow: inset 1px 1px 4px rgba(200, 200, 200, 0.3);
+    font-size: 1em;
+    outline: 0;
+    min-height: 2.75em;
+}
+
+
+form.new-user,
+form.edit-account,
+form.user-login,{
+    margin-top: em(20px);
+    @include span-columns(11);
+    @include shift(0.5);
+}
+
+form.new-user,
+form.edit-account,
+form.user-login,
+form.review,
+.calculate-form,
+.new-message {
+    input[type=submit] {
+        @extend .white-shadow;
+        cursor: pointer;
+        background: $beekeeperPrimary;
+        border: 0;
+        font-size: 1.2em;
+        color: $text;
+        text-transform: uppercase;
+        padding: .5em 1.5em;
+    }
+    select {
+        height: 2.5em;
+        background: #FFF;
+    }
+    label {
+        margin-bottom: em(3px);
+        font-weight: bold;
+        display: block;
+    }
+    .detail {
+        font-weight: normal;
+        color: #999;
+        font-size: 80%;
+    }
+}
+
+
 .short-list {
     margin-bottom: em(15px);
 }
@@ -159,7 +216,7 @@ a {
             color: $text;
         }
     }
-    .button, button {
+    .button, button, input[type=submit] {
         background: $beekeeperSecondary;
         color: #FFF;
         @extend .black-shadow;
@@ -197,7 +254,7 @@ a {
             }
         }
     }
-    .button, button {
+    .button, button, input[type=submit] {
         background: $beekeeperSecondary;
         color: #FFF;
         @extend .black-shadow;
@@ -228,52 +285,6 @@ a {
     footer {
         border-bottom: 3px solid $farmerPrimary;
         background: $farmerPrimary;
-    }
-}
-
-form.new-user,
-form.edit-account,
-form.user-login,
-form.review,
-.calculate-form {
-    margin-top: em(20px);
-    @include span-columns(11);
-    @include shift(0.5);
-    input, select, textarea {
-        width: 100%;
-        display: block;
-        padding: 1em;
-        border-radius: 3px;
-        border: 1px solid #CCC;
-        margin-bottom: 10px;
-        box-shadow: inset 1px 1px 4px rgba(200, 200, 200, 0.3);
-        font-size: 1em;
-        outline: 0;
-        min-height: 2.75em;
-    }
-    input[type=submit] {
-        @extend .white-shadow;
-        cursor: pointer;
-        background: $beekeeperPrimary;
-        border: 0;
-        font-size: 1.2em;
-        color: $text;
-        text-transform: uppercase;
-        padding: .5em 1.5em;
-    }
-    select {
-        height: 2.5em;
-        background: #FFF;
-    }
-    label {
-        margin-bottom: em(3px);
-        font-weight: bold;
-        display: block;
-    }
-    .detail {
-        font-weight: normal;
-        color: #999;
-        font-size: 80%;
     }
 }
 

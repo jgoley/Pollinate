@@ -25,19 +25,16 @@
                     return request.get('startDate') <= that.currentDate && request.get('endDate') >= that.currentDate;
             }));
 
-
             var notAccepted = new Parse.Collection(
                 requests.filter(function(request){
                     return !request.get('accepted');
             }));
 
-            
             var upcomingRequests = new Parse.Collection(
                 requests.filter(function(request){
                     return request.get('startDate') >= that.currentDate && request.get('startDate') <= that.currentDatePlus && request.get('accepted');
             }));
 
-            
             this.subViews.push(
                 new Bees.Views.BeekeeperUpcomingRequestsList({
                     $container: $('.active-request-info'),
@@ -67,7 +64,7 @@
 
             new Bees.Collections.UserReviews({
                 user: Parse.User.current(),
-                limit: 3,
+                limit: 5,
             }).fetch().then(function(userReviews){
                 if(userReviews.length > 0){
                     that.subViews.push( 
