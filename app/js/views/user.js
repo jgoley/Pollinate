@@ -59,7 +59,6 @@
 
         newMessage: function(e){
             e.preventDefault();
-            console.log("asdfasdfasdf");
             new Bees.Views.NewMessage({
                 $container: $('.newMessage-container'),
                 recepient: this.model
@@ -98,8 +97,8 @@
             e.preventDefault();
             var message = $('[name=message]').val();
             newMessage.set('message', message);
-            newMessage.set('recepient', this.recepient);
-            newMessage.set('recepientName', this.recepient.get('username'));
+            newMessage.set('recipient', this.recepient);
+            newMessage.set('recipientName', this.recepient.get('username'));
             newMessage.set('sender', this.sender);
             newMessage.set('senderName', this.sender.get('username'));
             newMessage.save({

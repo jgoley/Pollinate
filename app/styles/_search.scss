@@ -117,6 +117,9 @@ form.search {
     .search-container {
         min-height: 600px;
         background: rgba(200, 200, 200, 0.1);
+        > div{
+            padding:0 !important;
+        }
     }
     .search-container {
         @include outer-container;
@@ -133,6 +136,7 @@ form.search {
     .search-list-container {
         // @include span-columns(12);
         @include outer-container;
+        padding:em(10px) em(10px) em(0) em(10px);
     }
     .form-search {
         // @include outer-container;
@@ -141,14 +145,22 @@ form.search {
     .search-results-user {
         position: relative;
         margin:0;
+        border-bottom: 1px solid #ebebeb;
+        &:last-child{
+            border:0;
+        }
+        &:hover{
+            &::after{
+                color:#FFF;
+                text-shadow: 0 1px 0 rgba(0,0,0,.6);
+            }
+        }
         a {
             padding: em(8px) em(5px);
-            border-bottom: 1px solid #ebebeb;
-            border-top: 1px solid #FFF;
             display: block;
             background: #FFF;
             color:$farmerPrimary;
-            text-shadow: 0 1px 0 rgba(255,255,255,.4);
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
             margin:0;
             border-radius: 0;
             &:hover {
@@ -166,7 +178,7 @@ form.search {
     .name-search,
     .distance-search {}
     .search-list-container {
-
+        padding:0;
     }
     #map {
         min-height: 600px;

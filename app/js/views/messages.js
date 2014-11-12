@@ -1,4 +1,4 @@
-(function(){
+(function() {
 
     'use strict'
 
@@ -6,6 +6,7 @@
         className: 'messages',
         subViews: [],
         tagName: 'section',
+        template: Bees.templates.messages.index,
         events: {
             'click .newMessage': 'newMessage'
         },
@@ -15,22 +16,36 @@
             })
             options.$container.html(this.el);
             $('.main-menu a').removeClass('selected-nav');
-            this.render()
-
+            this.render();
         },
         render: function() {
-            console.log(this.collection);
-            new Bees.Views.MessagesList({
-                $container: this.$el,
-                collection: this.collection
-            })
+            this.$el.html(this.template());
+            this.populateMessages('recipient', 'received');
+            this.populateMessages('sender', 'sent');
         },
-        newMessage: function(){
+
+        populateMessages: function(searchFor, type) {
+            var messages = this.collection.filter(function(msg) {
+                return msg.get(searchFor).id === Parse.User.current().id;
+            });
+            var messages = new Parse.Collection(messages);
+            console.log(messages);
+            if (messages.length > 0) {
+                this.subViews.push(
+                    new Bees.Views.MessagesList({
+                        $container: $('.' + type + '-messages'),
+                        collection: messages
+                    }))
+            } else {
+                $('.'+ type +'-messages').append('<h3>Currently no ' + type + ' messages.</h3>')
+            }
+        },
+        newMessage: function() {
 
         }
     });
 
-   Bees.Views.MessagesList = BaseView.extend({
+    Bees.Views.MessagesList = BaseView.extend({
         tagName: 'ul',
         subViews: [],
         className: 'message-list',
@@ -47,9 +62,9 @@
         renderChildren: function(request) {
             this.subViews.push(
                 new Bees.Views.MessagesListItem({
-                model: request,
-                $container: this.$el,
-            }));
+                    model: request,
+                    $container: this.$el,
+                }));
         }
 
     });
