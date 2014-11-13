@@ -156,32 +156,34 @@
         },
 
         search: function(e) {
-            _.invoke(this.subViews, 'dispose');
-            e.preventDefault();
-            var that = this;
             var data = this.$el.serializeObject();
-            new Bees.Collections.NameSearch({
-                userType: this.searchType,
-                business: data.businessName.toLowerCase()
-            }).fetch().then(function(users) {
-                if (users.length > 0) {
-                    that.subViews.push(
-                        new Bees.Views.SearchResults({
-                            collection: users,
-                            $container: $('.search-list-container')
-                        }));
-                    that.subViews.push(
-                        new Bees.Views.Map({
-                            $container: $('.map-container'),
-                            collection: users,
-                        })
-                    );
-                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
-                } else {
-                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>');
-                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
-                }
-            });
+            e.preventDefault();
+            if(data.businessName){
+                _.invoke(this.subViews, 'dispose');
+                var that = this;
+                new Bees.Collections.NameSearch({
+                    userType: this.searchType,
+                    business: data.businessName.toLowerCase()
+                }).fetch().then(function(users) {
+                    if (users.length > 0) {
+                        that.subViews.push(
+                            new Bees.Views.SearchResults({
+                                collection: users,
+                                $container: $('.search-list-container')
+                            }));
+                        that.subViews.push(
+                            new Bees.Views.Map({
+                                $container: $('.map-container'),
+                                collection: users,
+                            })
+                        );
+                        $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
+                    } else {
+                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>');
+                        $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's matching "' + data.businessName + '":');
+                    }
+                });
+            }
 
         }
 
@@ -214,32 +216,34 @@
         },
 
         search: function(e) {
-            _.invoke(this.subViews, 'dispose');
             e.preventDefault();
-            var that = this;
             var data = this.$el.serializeObject();
-            var query = new Parse.Query(Bees.Models.User);
-            query.equalTo('userType', this.searchType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
-            query.collection().fetch().then(function(users) {
-                if (users.length > 0) {
-                    that.subViews.push(new Bees.Views.SearchResults({
-                        collection: users,
-                        radius: data.distance,
-                        $container: $('.search-list-container')
-                    }));
-                    that.subViews.push(
-                        new Bees.Views.Map({
-                            $container: $('.map-container'),
+            if(data.distance){
+                _.invoke(this.subViews, 'dispose');
+                var that = this;
+                var query = new Parse.Query(Bees.Models.User);
+                query.equalTo('userType', this.searchType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+                query.collection().fetch().then(function(users) {
+                    if (users.length > 0) {
+                        that.subViews.push(new Bees.Views.SearchResults({
                             collection: users,
-                            radius: data.distance
-                        })
-                    );
-                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
-                } else {
-                    $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
-                    $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
-                }
-            });
+                            radius: data.distance,
+                            $container: $('.search-list-container')
+                        }));
+                        that.subViews.push(
+                            new Bees.Views.Map({
+                                $container: $('.map-container'),
+                                collection: users,
+                                radius: data.distance
+                            })
+                        );
+                        $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
+                    } else {
+                        $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
+                        $('.search-params').html('Found ' + users.length + ' ' + firstCap(that.searchType) + 's within ' + data.distance + ' miles:');
+                    }
+                });
+            }
         }
 
     });
