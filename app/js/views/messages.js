@@ -250,8 +250,8 @@
                 });
                 this.dispose();
                 that.$container.append('<h2 class="submitted">Reply sent</h2>');
-                setTimeout(removeNotification('submitted'), 2000);
                 that.collection.add(newMessage);
+                // setTimeout(removeNotification('.submitted'), 2000);
             } else {
                 alert('Your message is too short.')
             }

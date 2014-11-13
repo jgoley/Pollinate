@@ -45,6 +45,11 @@
 }
 
 form.review{
+	input[type=submit],
+	button{
+		display: inline-block;
+		margin-right:em(10px);
+	}
 	input[type=submit]{
 		width:40%;
 		background: $beekeeperSecondary;
@@ -56,4 +61,8 @@ form.review{
 		background: #CCC;
 		@extend .white-shadow;
 	}
+}
+
+.new-review{
+	margin-bottom:em(30px);
 }

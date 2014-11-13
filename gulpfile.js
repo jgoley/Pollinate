@@ -94,13 +94,12 @@ gulp.task('clean', function () {
 });
 
 var options = {};
-
 gulp.task('deploy', function () {
     return gulp.src('./dist/**/*')
         .pipe(deploy(options));
 });
 
-gulp.task('build', ['html', 'templates', 'images'], function () {
+gulp.task('build', ['html', 'templates', 'images', 'fonts', 'js'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
