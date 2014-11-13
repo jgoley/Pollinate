@@ -71,7 +71,8 @@
             new Bees.Collections.UserReviews({
                 user: Parse.User.current(),
                 limit: 5,
-            }).fetch().then(function(userReviews){
+            }).getAll().then(function(userReviews){
+                userReviews = new Parse.Collection(userReviews);
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
@@ -160,7 +161,14 @@
         render: function(){
             var that = this,
             w;
-
+            var request = this.model;
+            var formattedDates = {
+                'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
+                'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
+                'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
+                'startDateFromNow':      moment( moment(request.get('startDate')).add(1, 'day') ).fromNow(),
+                'endDateFromNow':      moment( moment(request.get('endDate')).add(1, 'day') ).fromNow(),
+            };
             if(Parse.User.current().get('userType') === 'beekeeper'){
                 w = 'farmer';
             }   else{
@@ -169,7 +177,7 @@
             var user = new Parse.Query(Bees.Models.User);
             user.get(this.model.get(w).id)
                 .then(function(user){
-                    that.$el.append(that.template({request: that.model.toJSON(), user: user.toJSON()}));
+                    that.$el.append(that.template({request: request.toJSON(), user: user.toJSON(), formattedDates: formattedDates}));
             });
         }
     });

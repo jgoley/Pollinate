@@ -20,10 +20,11 @@
 	@extend .icon;
 	background: none !important;
 	position: absolute;
-	top:5px;
-	right:5px;
+	top:12px;
+	right:12px;
 	color:$text !important;
 	text-shadow: rgba(255,255,255,.5) !important;
+	width:auto;
 }
 
 .message-date{

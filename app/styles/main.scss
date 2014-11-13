@@ -35,10 +35,12 @@ $primary: RGBA(116, 150, 131, 1);
 }
 
 .white-shadow {
+    color:$text;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .black-shadow {
+    color: #FFF;
     text-shadow: 0 1px 0 rgba(50, 50, 50, 0.4);
 }
 
@@ -80,6 +82,7 @@ button {
 }
 
 button {
+    -webkit-appearance: none;
     cursor: pointer;
     &:focus {
         outline: 0;
@@ -126,7 +129,9 @@ a {
     transition: .2s;
 }
 
-
+.strong{
+    font-weight: bold;
+}
 
 input, select, textarea {
     width: 100%;
@@ -157,12 +162,12 @@ form.review,
 .calculate-form,
 .new-message {
     input[type=submit] {
-        @extend .white-shadow;
+        @extend .black-shadow;
         cursor: pointer;
-        background: $beekeeperPrimary;
+        background: $beekeeperSecondary;
         border: 0;
         font-size: 1.2em;
-        color: $text;
+        color: #FFF;
         text-transform: uppercase;
         padding: .5em 1.5em;
     }
@@ -170,11 +175,7 @@ form.review,
         height: 2.5em;
         background: #FFF;
     }
-    label {
-        margin-bottom: em(3px);
-        font-weight: bold;
-        display: block;
-    }
+
     .detail {
         font-weight: normal;
         color: #999;
@@ -182,20 +183,15 @@ form.review,
     }
 }
 
+label {
+    margin-bottom: em(3px);
+    font-weight: bold;
+    display: block;
+}
+
 
 .short-list {
     margin-bottom: em(15px);
-}
-
-.button {
-    padding: em(15px) em(20px);
-    color: #fff;
-    border-radius: 3px;
-    display: block;
-    &:hover {
-        // @extend .white-shadow;
-   
-    }
 }
 
 // Beekeeper
@@ -332,11 +328,10 @@ form.search {
     margin-top: em(20px);
     @include outer-container;
     button {
-        padding: em(10px) em(20px);
         border-radius: 4px;
         border: none;
         transition: .2s;
-        font-size: .8em;
+        font-size: 100%;
         &:hover {
             transition: .2s;
         }
@@ -349,6 +344,17 @@ form.search {
         > div {
             padding: em(15px);
         }
+    }
+}
+
+.button, .lg-button, button {
+    padding: em(15px) em(20px);
+    color: #fff;
+    border-radius: 3px;
+    display: block;
+    &:hover {
+        // @extend .white-shadow;
+   
     }
 }
 

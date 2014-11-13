@@ -17,29 +17,28 @@
         render: function() {
             _.invoke(this.subViews, 'dispose');
             var that = this;
-            var collection = new Bees.Collections.UserReviews({
+            new Bees.Collections.UserReviews({
                 user: this.model
-            });
-
-            collection.fetch().then(function() {
-                var already = collection.find(function(model){
+            }).getAll().then(function(reviews) {
+                reviews = new Parse.Collection(reviews);
+                var already = reviews.find(function(model){
                     return model.get('reviewer').id === Parse.User.current().id;
                 });
                 if(!already){
                     that.subViews.push(
                         new Bees.Views.UserReviewsNew({
-                            collection: collection,
+                            collection: reviews,
                             model: that.model,
                             $container: that.$el,
                         })
                     );
                 }
-                if(collection.length > 0){
+                if(reviews.length > 0){
                     that.subViews.push(
                         new Bees.Views.UserReviewsList({
                             $container: that.$el,
                             model: that.model,
-                            collection: collection
+                            collection: reviews
                         })
                     );  
                 } else {
@@ -65,6 +64,7 @@
             render: function() {
                 this.$el.html("<div class='reviews'><h1 class='main-title'>Reviews</h1></div>");
                 _.invoke(this.subViews, 'dispose');
+
                 if(this.collection.length > 0){
                     this.subViews.push(
                         new Bees.Views.UserReviewsList({
@@ -141,7 +141,6 @@
         },
         template: Bees.templates.reviews.new,
         initialize: function(opts) {
-            _.invoke(this.subViews, 'dispose');
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
@@ -150,6 +149,7 @@
         },
 
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.append(this.template());
         },
 

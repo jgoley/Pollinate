@@ -43,3 +43,17 @@
 .add-review{
 	margin-bottom:em(10px);
 }
+
+form.review{
+	input[type=submit]{
+		width:40%;
+		background: $beekeeperSecondary;
+		@extend .black-shadow;
+		text-align:left;
+	}
+	.cancel-review{
+		width: 20%;
+		background: #CCC;
+		@extend .white-shadow;
+	}
+}

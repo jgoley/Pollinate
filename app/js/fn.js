@@ -45,11 +45,9 @@ Parse.Collection.prototype.findWhere = function(attrs) {
 };
 
 function disposeViews() {
-    if (Bees.currentView) Bees.currentView.dispose();
-    if ($('nav').hasClass('showing')) {
-        $('nav').removeClass('showing');
-        $('.main-container').removeClass('menu-showing');
-    }
+    if (Bees.currentView){
+        Bees.currentView.dispose();}
+
 }
 
 function calculateCost(numHivesRequested, beek) {
@@ -68,13 +66,17 @@ function calculateCost(numHivesRequested, beek) {
     var totalCost = roundToTwo(mileageCost + (numHivesRequested * beek.get('costPerHive')));
 
     var requestDetails = {
-        'totalCost': +totalCost,
+        'totalCost': +totalCost.toFixed(2),
         'milesOver': +milesOver,
-        'mileageCost': +mileageCost,
+        'mileageCost': +mileageCost.toFixed(2),
         'numHives': +numHivesRequested
     }
 
     return requestDetails;
+}
+
+function removeNotification(element){
+    $(element).remove();
 }
 
 function firstCap(string)

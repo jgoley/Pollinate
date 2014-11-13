@@ -34,7 +34,7 @@ Bees.Views.EditAccountView = BaseView.extend({
         user.set('costPerHive', +credentials.costPerHive);
         user.set('maxDistFree', +credentials.maxDistFree);
         user.set('costPerMile', +credentials.costPerMile);
-        user.set('hivesAvailable', +credentials.hivesAvailable);
+        // user.set('hivesAvailable', user.get('hivesAvailable') + ( user.get('hivesTotal') + credentials.hivesTotal ) );
         user.set('hivesTotal', +credentials.hivesTotal);
         user.set('zipCode', +credentials.zipCode);
         user.set('geoRangeRadius', +credentials.geoRangeRadius);

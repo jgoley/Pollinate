@@ -43,7 +43,7 @@
                 if (Parse.User.current().get('userType') === 'beekeeper') {
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
-                    }).fetch().then(function(collection){
+                    }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.BeekeeperIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -52,7 +52,7 @@
                 } else {
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
-                    }).fetch().then(function(collection){
+                    }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -81,7 +81,7 @@
 
         newUser: function() {
             disposeViews();
-            new Bees.Views.NewUserView({
+            Bees.currentView = new Bees.Views.NewUserView({
                 $container: $('.main-container')
             });
         },
@@ -124,7 +124,7 @@
             } else{
                 new Bees.Collections.Requests({
                     user: Parse.User.current()
-                }).fetch().then(function(requests){
+                }).getAll().then(function(requests){
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests
@@ -140,9 +140,10 @@
             if (!Parse.User.current()) {
                 this.goLogin();
             } else{
-                new Bees.Collections.RequestsArchived({
+                new Bees.Collections.Requests({
                     user: Parse.User.current(),
-                }).fetch().then(function(requests){
+                }).getArchived().then(function(requests){
+                    console.log("!!!!!!!!!!!!!!!!!!",requests)
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests
@@ -188,10 +189,10 @@
             } else{
                 new Bees.Collections.UserReviews({
                     user: this.currentUser,
-                }).fetch().then(function(reviews){
+                }).getAll().then(function(reviews){
                     Bees.currentView = new Bees.Views.UserReviewsPage({
                         $container: $('.main-container'),
-                        collection: reviews
+                        collection: new Parse.Collection(reviews)
                     });
                 });   
             }
@@ -203,13 +204,9 @@
                 this.goLogin();
             } else{
 
-                new Bees.Collections.UserMessages({user: Parse.User.current()})
-                    .fetch().then(function(messages){
-                        new Bees.Views.Messages({
-                            $container: $('.main-container'),
-                            collection: messages
-                        });
-                    });
+                Bees.currentView = new Bees.Views.Messages({
+                    $container: $('.main-container'),
+                });
 
             }
         },

@@ -101,12 +101,22 @@
     }
     .hive-cost {
         background: $beekeeperPrimary;
+        .detail-title{
+            color:$text;
+        }
     }
     span {
         display: block;
     }
     margin-bottom: em(15px);
 }
+
+.calculate-form{
+    button{
+        @extend .button;
+    }
+}
+
 
 @include media(min-width 600px) {
     .business-name {
@@ -117,10 +127,7 @@
     }
     .calculate-form {
         width: 50%;
-        button {
-            // @extend .button;
-       
-        }
+        margin-top:em(20px);
     }
     // .sub-details {
     //     @include outer-container;

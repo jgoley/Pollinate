@@ -48,9 +48,7 @@
                         info: {title: 'Pending Requests', class:'notAccepted'}
                 }));
             } 
-            else {
-
-            }
+            else {}
 
             if(accepted.length > 0 ){
                 this.subViews.push(
@@ -168,21 +166,27 @@
         acceptRequest: function(){
             var user = Parse.User.current();
             var request = this.model;
-            request.set({'accepted': true, 'acceptedDate': new Date()});
-            request.save();
-            user.set('hivesAvailable', user.get('hivesAvailable') - this.model.get('numHives'));
-            user.save();
-            // Send Confirmation Email to farmer
-            request.get('farmer').fetch().done(function(farmer){
-                var email = {
-                    subject: 'Request for Bees Accepted!',
-                    message: 'Your request for bees has been accepted. Details:'+Parse.User.current().get('username')+' '+request.id+' '+request.get('startDate')+' '+request.get('endDate')
-                    ,
-                    from: 'jgoley.etc@gmail.com',
-                    to: 'jgoley@gmail.com',//farmer.get('email'),
-                };
-                sendMail(email);  
-            })
+            var hivesAvailable = user.get('hivesAvailable');
+
+            if(hivesAvailable > request.get('numHives')){
+                request.set({'accepted': true, 'acceptedDate': new Date()});
+                request.save();
+                user.set('hivesAvailable', user.get('hivesAvailable') - request.get('numHives'));
+                user.save();
+                // Send Confirmation Email to farmer
+                request.get('farmer').fetch().done(function(farmer){
+                    var email = {
+                        subject: 'Request for Bees Accepted!',
+                        message: 'Your request for bees has been accepted. Details:'+Parse.User.current().get('username')+' '+request.id+' '+request.get('startDate')+' '+request.get('endDate')
+                        ,
+                        from: 'jgoley.etc@gmail.com',
+                        to: 'jgoley@gmail.com',//farmer.get('email'),
+                    };
+                    sendMail(email);  
+                })
+            } else{
+                alert("You don't have enough hives in your inventory to fulfill request");                
+            }
         },
         archiveRequest: function(){
             var user = Parse.User.current();
@@ -198,10 +202,11 @@
             request.save();
         },
         cancelRequest: function(){
-            this.model.destroy();
+            // this.model.destroy();
+            this.model.set('canceled', true);
             var email = {
                 subject: 'Request for Bees Canceled',
-                message: Parse.User.current().get('username')+' canceled their request for beens',
+                message: Parse.User.current().get('username')+' canceled their request for bees',
                 from: 'jgoley.etc@gmail.com',
                 to: 'jgoley@gmail.com',//beekeeper.get('email'),
             }
@@ -237,6 +242,7 @@
             this.render();
         },
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.append('<h1 class="main-title">Upcoming requests:</h1>');
             if (this.info){
                 this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>');

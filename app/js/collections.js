@@ -63,7 +63,14 @@
                 .skip(options.skip);
         },
         model: Bees.Models.Review,
-
+        getAll: function(){
+            var relation = this.user.relation('reviews');
+            return relation.query().equalTo('reviewee', this.user)
+                                    .ascending('createdAt')
+                                    .limit(this.limit)
+                                    .skip(this.skip)
+                                    .find();
+        },
         count: function(){
             return new Parse.Query('Reviews')
                 .equalTo('reviewee', this.user).count(function(c){
@@ -71,6 +78,7 @@
                 });
         }
     });
+
 
     Bees.Collections.Requests = Parse.Collection.extend({
         comparator: function(request) {
@@ -80,52 +88,31 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
-            this.query = new Parse.Query('Requests')
-                .equalTo(options.user.get('userType'), options.user);
+            this.user = options.user;
         },
         model: Bees.Models.Request,
-    });
-
-    Bees.Collections.RequestsAccepted = Parse.Collection.extend({
-        initialize: function(opts){
-            var options = _.defaults({}, opts, {
-                user: opts.user
-            });
-            this.query = new Parse.Query('Requests')
-                .equalTo(options.user.get('userType'), options.user)
-                .equalTo('accepted', true);
+        getAll: function(){
+            var relation = this.user.relation('requests');
+            return relation.query().find();
         },
-        model: Bees.Models.Request,
-    });
-
-    Bees.Collections.RequestsNotAccepted = Parse.Collection.extend({
-        initialize: function(opts){
-            var options = _.defaults({}, opts, {
-                user: opts.user
-            });
-            this.query = new Parse.Query('Requests')
-                .equalTo(options.user.get('userType'), options.user)
-                .equalTo('accepted', false);
-        },
-        model: Bees.Models.Request,
-    });
-
-    Bees.Collections.RequestsArchived = Parse.Collection.extend({
-        initialize: function(opts){
+        getArchived: function(){
             var archiveType;
-            var options = _.defaults({}, opts, {
-                user: opts.user
-            });
-            if(options.user.get('userType') === 'beekeeper'){
-                archiveType = 'archivedBeekeeper';
+            if(this.user.get('userType') === 'beekeeper'){
+                var archiveType = 'archivedBeekeeper';
             } else{
                 archiveType = 'archivedFarmer';
             }
-            this.query = new Parse.Query('Requests')
-                .equalTo(options.user.get('userType'), options.user)
-                .equalTo(archiveType, true);
-        },
-        model: Bees.Models.Request,
+            // this.query = new Parse.Query('Requests')
+            //     .equalTo(options.user.get('userType'), options.user)
+            //     .equalTo(archiveType, true);
+
+
+            var relation = this.user.relation('requests');
+            return relation.query()
+                            .equalTo(this.user.get('userType'), this.user)
+                            .equalTo(archiveType, true)
+                            .find();
+        }
     });
 
     Bees.Collections.HivesOut = Parse.Collection.extend({
@@ -133,11 +120,15 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
-            this.query = new Parse.Query('Requests')
-                                .equalTo(options.user.get('userType'), options.user)
-                                .equalTo('accepted', true)
-                                .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
-                                .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD'))
+            this.user = options.user;
+        },
+        getAll: function(){
+            var relation = this.user.relation('requests');
+            return relation.query()
+                            .equalTo(this.user.get('userType'), this.user)
+                            .equalTo('accepted', true)
+                            .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
+                            .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD')).find();
         },
         model: Bees.Models.Request
     });
@@ -150,10 +141,26 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
+            this.user = options.user;
             var q1 = new Parse.Query('Messages').equalTo('sender', options.user);
             var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
             this.query = new Parse.Query.or(q1,q2).descending('createdAt');
                 // .equalTo('sender_deleted', false);
+        },
+        getReceived: function(){
+            var relation = this.user.relation('messages');
+            return relation.query()
+                        .equalTo('recipient', this.user)
+                        .descending('createdAt')
+                        .find();
+
+        },
+        getSent: function(){
+            var relation = this.user.relation('messages');
+            return relation.query()
+                        .equalTo('sender', this.user)
+                        .descending('createdAt')
+                        .find();
         },
         model: Bees.Models.Request,
     });
@@ -187,7 +194,6 @@
         },
         model: Bees.Models.Request,
     });
-
 
 })();
 
