@@ -21,26 +21,65 @@
         },
         render: function() {
             this.$el.html(this.template());
-            this.populateMessages('recipient', 'received');
-            this.populateMessages('sender', 'sent');
+            var that = this;
+
+            new Bees.Collections.UserMessages({user: Parse.User.current()})
+                .getSent().then(function(messages){
+                    messages = new Parse.Collection(messages);
+                    var type = "sent";
+                    if (messages.length > 0) {
+                        console.log(messages);
+                        that.subViews.push(
+                            new Bees.Views.MessagesList({
+                                $container: $('.' + type + '-messages'),
+                                collection: messages,
+                                type: type
+                            }))
+                    } else {
+                        $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
+                    }
+            });
+
+
+            new Bees.Collections.UserMessages({user: Parse.User.current()})
+                .getReceived().then(function(messages){
+                    messages = new Parse.Collection(messages);
+                    var type = "received";
+                    if (messages.length > 0) {
+                        console.log(messages);
+                        that.subViews.push(
+                            new Bees.Views.MessagesList({
+                                $container: $('.' + type + '-messages'),
+                                collection: messages,
+                                type: type
+                            }))
+                    } else {
+                        $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
+                    }
+            });
+
+
+            //this.populateMessages('recipient', 'received');
+            //this.populateMessages('sender', 'sent');
         },
 
-        populateMessages: function(searchFor, type) {
-            var messages = this.collection.filter(function(msg) {
-                return msg.get(searchFor).id === Parse.User.current().id;
-            });
-            var messages = new Parse.Collection(messages);
-            if (messages.length > 0) {
-                this.subViews.push(
-                    new Bees.Views.MessagesList({
-                        $container: $('.' + type + '-messages'),
-                        collection: messages,
-                        type: type
-                    }))
-            } else {
-                $('.'+ type +'-messages').append('<h3>Currently no ' + type + ' messages.</h3>')
-            }
-        },
+        // populateMessages: function(searchFor, type) {
+        //     var messages = this.collection.filter(function(msg) {
+        //         return msg.get(searchFor).id === Parse.User.current().id;
+        //     });
+        //     var messages = new Parse.Collection(messages);
+        //     if (messages.length > 0) {
+
+        //         this.subViews.push(
+        //             new Bees.Views.MessagesList({
+        //                 $container: $('.' + type + '-messages'),
+        //                 collection: messages,
+        //                 type: type
+        //             }))
+        //     } else {
+        //         $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>')
+        //     }
+        // },
         newMessage: function() {
 
         }
@@ -92,11 +131,14 @@
         },
         render: function() {
             _.invoke(this.subViews, 'dispose');
-            this.$el.append(this.template({message: this.model.toJSON(), type: this.type}));
+            this.$el.append(this.template({
+                message: this.model.toJSON(),
+                type: this.type
+            }));
         },
 
-        reply: function(){
-            this.$el.find('.reply').remove();            
+        reply: function() {
+            this.$el.find('.reply').remove();
             new Bees.Views.NewMessage({
                 $container: this.$el,
                 model: this.model,
@@ -111,7 +153,7 @@
         }
     });
 
-        Bees.Views.NewMessage = BaseView.extend({
+    Bees.Views.NewMessage = BaseView.extend({
         template: Bees.templates.user.newMessage,
         tagName: 'form',
         className: 'new-message',
@@ -131,23 +173,23 @@
             this.sender = Parse.User.current();
             this.$container = options.$container;
             this.message = new Bees.Models.Message();
-            if(options.method === 'fill' || !options.method)
+            if (options.method === 'fill' || !options.method)
                 options.$container.html(this.el);
-            else 
+            else
                 options.$container.append(this.el);
             this.render();
         },
         render: function() {
             this.$el.html(this.template());
         },
-        sendMessage: function(e){
-            if(this.msgType === 'new')
+        sendMessage: function(e) {
+            if (this.msgType === 'new')
                 this.sendNew(e);
-            else 
+            else
                 this.sendReply(e);
         },
 
-        sendNew: function(e){
+        sendNew: function(e) {
             e.preventDefault();
             var that = this;
             var newMessage = this.message;
@@ -158,16 +200,16 @@
             newMessage.set('sender', this.sender);
             newMessage.set('senderName', this.sender.get('username'));
             newMessage.save({
-                success:function(a){
+                success: function(a) {
                     var email = {
-                        message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
+                        message: '<p>You received a message on Pollinate!</p><p>' + that.sender.get('username') + ' says:</p><p>' + message + '</p><a href="#">Goto Pollinate to respond</a>',
                         subject: 'New Message on Pollinate',
                         from: 'jgoley.etc@gmail.com',
-                        to: 'jgoley@gmail.com',//beekeeper.get('email'),
+                        to: 'jgoley@gmail.com', //beekeeper.get('email'),
                     };
                     sendMail(email);
                 },
-                error:function(a,e){
+                error: function(a, e) {
                     console.error(e);
                 }
             });
@@ -176,13 +218,13 @@
 
         },
 
-        sendReply: function(e){
+        sendReply: function(e) {
             e.preventDefault();
             var that = this;
             var prevMsg = this.model;
             var newMessage = this.message;
             var message = $('[name=message]').val();
-            if(message.length > 5){
+            if (message.length > 5) {
                 newMessage.set('message', message);
                 newMessage.set('recipient', prevMsg.get('sender'));
                 newMessage.set('recipientName', prevMsg.get('senderName'));
@@ -190,26 +232,25 @@
                 newMessage.set('senderName', prevMsg.get('recipientName'));
                 newMessage.set('msgType', 'reply');
                 newMessage.save({
-                    success:function(a){
+                    success: function(a) {
                         var email = {
-                            message: '<p>You received a message on Pollinate!</p><p>'+that.sender.get('username')+' says:</p><p>'+message+'</p><a href="#">Goto Pollinate to respond</a>',
+                            message: '<p>You received a message on Pollinate!</p><p>' + that.sender.get('username') + ' says:</p><p>' + message + '</p><a href="#">Goto Pollinate to respond</a>',
                             subject: 'New Message on Pollinate',
                             from: 'jgoley.etc@gmail.com',
-                            to: 'jgoley@gmail.com',//beekeeper.get('email'),
+                            to: 'jgoley@gmail.com', //beekeeper.get('email'),
                         };
                         sendMail(email);
                         prevMsg.set('replied', true);
                         prevMsg.save();
                     },
-                    error:function(a,e){
+                    error: function(a, e) {
                         console.error(e);
                     }
                 });
                 this.dispose();
                 that.$container.append('<h2>Reply sent</h2>');
                 that.collection.add(newMessage);
-            }
-            else {
+            } else {
                 alert('Your message is too short.')
             }
         }

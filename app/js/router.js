@@ -203,13 +203,9 @@
                 this.goLogin();
             } else{
 
-                new Bees.Collections.UserMessages({user: Parse.User.current()})
-                    .fetch().then(function(messages){
-                        new Bees.Views.Messages({
-                            $container: $('.main-container'),
-                            collection: messages
-                        });
-                    });
+                new Bees.Views.Messages({
+                    $container: $('.main-container'),
+                });
 
             }
         },
