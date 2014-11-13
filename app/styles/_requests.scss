@@ -80,8 +80,14 @@
 
 .upcoming-requests,
 .hives-out {
+    &:nth-child(2) {
+        margin-top: em(50px);
+    }
+    h1 {
+        margin: 0;
+    }
     li {
-        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
         margin: 0;
         position: relative;
         &:last-child {
@@ -89,6 +95,7 @@
         }
         &::after {
             @include arrowRight(#cccccc);
+            color: #000 !important;
             @extend .black-shadow;
         }
     }
@@ -114,13 +121,19 @@
     margin-bottom: em(30px);
 }
 
-.request-buttons{
-    button{
+.request-buttons {
+    button {
         display: block;
     }
 }
 
 @include media(min-width 600px) {
+    .upcoming-requests,
+    .hives-out {
+        &:nth-child(2) {
+            margin-top: 0;
+        }
+    }
     .request {
         margin: 0 0 em(10px) 0;
         position: relative;
@@ -159,11 +172,12 @@
         padding: em(20px);
         margin: 20px 0;
         border-radius: 3px;
-        textarea, .request-dates {
-            @include span-columns(6);
-        }
-        textarea {
+        textarea{
             min-height: 150px;
+            @include span-columns(8);
+        }
+        .request-dates {
+            @include span-columns(4);
         }
     }
     .request-details-wrap {
@@ -181,15 +195,15 @@
             background: $beekeeperPrimary;
         }
     }
-    .request-buttons{
-        button{
+    .request-buttons {
+        button {
             display: inline-block;
         }
-        .cancel{
-            background:#CCC;
+        .cancel {
+            background: #CCC;
             color: $text;
-            text-shadow: 0 1px 0 rgba(255,255,255,.6);
-            width:auto;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+            width: auto;
         }
     }
 }

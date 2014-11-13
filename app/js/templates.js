@@ -185,12 +185,10 @@ this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.tem
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<a href=\"#/request/"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "\">"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + " to "
+    + "\">Pickup from "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + " | Pickup date: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
+    + " in "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.endDateFromNow : stack1), depth0))
     + "</a>\n";
 },"useData":true});
 this["Bees"]["templates"]["beekeeperIndex"]["upcoming"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -480,11 +478,11 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
     + "</span>\n				<span class=\"detail-title\">Total cost</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "</span>\n				<span class=\"detail-title\">Number of hives requested</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
+    + "</span>\n				<span class=\"detail-title\">hives requested</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
-    + "</span>\n				<span class=\"detail-title\">Miles over</span>\n			</li>\n			<li>\n				<span class=\"figure\">$"
+    + "</span>\n				<span class=\"detail-title\">miles over</span>\n			</li>\n			<li>\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
-    + "</span>\n				<span class=\"detail-title\">Milage Cost</span>\n			</li>\n\n		</ul>\n	<ul class=\"request-details\">\n";
+    + "</span>\n				<span class=\"detail-title\">milage Cost</span>\n			</li>\n\n		</ul>\n	<ul class=\"request-details\">\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.curUser : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
   buffer += "		<li>"
@@ -644,11 +642,11 @@ this["Bees"]["templates"]["user"]["request"] = Handlebars.template({"1":function
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
     + "</span>\n					<span class=\"detail-title\">Total cost</span>\n				</li>\n				<li>\n					<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "</span>\n					<span class=\"detail-title\">Number of hives requested</span>\n				</li>\n				<li>\n					<span class=\"figure\">"
+    + "</span>\n					<span class=\"detail-title\">hives requested</span>\n				</li>\n				<li>\n					<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
-    + "</span>\n					<span class=\"detail-title\">Miles over</span>\n				</li>\n				<li>\n					<span class=\"figure\">$"
+    + "</span>\n					<span class=\"detail-title\">miles over</span>\n				</li>\n				<li>\n					<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
-    + "</span>\n					<span class=\"detail-title\">Milage Cost</span>\n				</li>\n\n			</ul>\n		</div>\n\n		<div class=\"request-dates\">\n			<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n			<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n		</div>\n		<label for='message'>Attach a message to request</label>\n		<textarea name=\"message\" placeholder=\"Enter a message\"></textarea>\n	</div>\n<button class='getBees lg-button' >Submit Request</button>\n</div>\n";
+    + "</span>\n					<span class=\"detail-title\">milage Cost</span>\n				</li>\n\n			</ul>\n		</div>\n\n		<div class=\"request-dates\">\n			<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n			<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n		</div>\n		<label for='message'>Attach a message to request</label>\n		<textarea name=\"message\" placeholder=\"Enter a message\"></textarea>\n	</div>\n<button class='getBees lg-button' >Submit Request</button>\n</div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<form class=\"calculate-form\">\n	<label>Number of hives needed</label>\n	<input name=\"numHives\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))

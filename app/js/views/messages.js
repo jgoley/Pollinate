@@ -71,10 +71,11 @@
             this.recievedMsgs = options.parentView.recieved;
             this.type = options.type;
             this.render();
-            if(this.sentMsgs)
-                this.listenTo(this.sentMsgs, 'add', this.render);
+            // if(this.sentMsgs)
+            //     this.listenTo(this.sentMsgs, 'add', this.render);
         },
         render: function() {
+            this.$el.empty();
             this.collection.each(_.bind(this.renderChildren, this));
         },
         renderChildren: function(request) {
@@ -85,7 +86,7 @@
                         $container: this.$el,
                         type: this.type,
                         collection: this.collection,
-                        sent: this.sentMsgs
+                        sentMsgs: this.sentMsgs
                     }));
             }
             else {
@@ -94,7 +95,7 @@
                         model: request,
                         $container: this.$el,
                         type: this.type,
-                        collection: this.collection
+                        collection: this.collection,
                 }));
             }
         }
@@ -112,9 +113,12 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
-                type: opts.type
+                type: opts.type,
+                sentMsgs: opts.sentMsgs
             });
             options.$container.append(this.el);
+            this.sentMsgs = options.sentMsgs;
+            console.log("!!!!!",this.sentMsgs);
             this.type = options.type;
             this.render();
         },
@@ -137,12 +141,9 @@
                     model: this.model,
                     method: 'append',
                     msgType: 'reply',
-                    collection: this.collection
+                    collection: this.collection,
+                    sentMsgs: this.sentMsgs
             }));
-
-            this.model.set('replied', true);
-            this.model.save();
-
         }
     });
 
@@ -161,7 +162,9 @@
                 recepient: opts.recepient,
                 method: opts.method,
                 msgType: opts.msgType,
+                sentMsgs: opts.sentMsgs
             });
+            this.sentMsgs = options.sentMsgs;
             this.msgType = options.msgType;
             this.recepient = options.recepient;
             this.sender = Parse.User.current();
@@ -174,6 +177,7 @@
             this.render();
         },
         render: function() {
+            console.log(this.sentMsgs);
             this.$el.html(this.template());
         },
         sendMessage: function(e) {
@@ -251,6 +255,10 @@
             } else {
                 alert('Your message is too short.')
             }
+
+            this.sentMsgs.add(newMessage);
+            this.model.set('replied', true);
+            this.model.save();
         },
 
         cancel: function(){
