@@ -23,63 +23,34 @@
             this.$el.html(this.template());
             var that = this;
 
-            new Bees.Collections.UserMessages({user: Parse.User.current()})
-                .getSent().then(function(messages){
-                    messages = new Parse.Collection(messages);
-                    var type = "sent";
-                    if (messages.length > 0) {
-                        console.log(messages);
-                        that.subViews.push(
-                            new Bees.Views.MessagesList({
-                                $container: $('.' + type + '-messages'),
-                                collection: messages,
-                                type: type
-                            }))
-                    } else {
-                        $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
-                    }
-            });
+            new Bees.Collections.UserMessages({
+                user: Parse.User.current()
+            }).getSent().then(function(messages) {
+                    that.populateMessages(messages,'sent');
+                });
 
 
-            new Bees.Collections.UserMessages({user: Parse.User.current()})
-                .getReceived().then(function(messages){
-                    messages = new Parse.Collection(messages);
-                    var type = "received";
-                    if (messages.length > 0) {
-                        console.log(messages);
-                        that.subViews.push(
-                            new Bees.Views.MessagesList({
-                                $container: $('.' + type + '-messages'),
-                                collection: messages,
-                                type: type
-                            }))
-                    } else {
-                        $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
-                    }
-            });
+            new Bees.Collections.UserMessages({
+                user: Parse.User.current()
+            }).getReceived().then(function(messages) {
+                    that.populateMessages(messages,'received')
+                });
 
-
-            //this.populateMessages('recipient', 'received');
-            //this.populateMessages('sender', 'sent');
         },
-
-        // populateMessages: function(searchFor, type) {
-        //     var messages = this.collection.filter(function(msg) {
-        //         return msg.get(searchFor).id === Parse.User.current().id;
-        //     });
-        //     var messages = new Parse.Collection(messages);
-        //     if (messages.length > 0) {
-
-        //         this.subViews.push(
-        //             new Bees.Views.MessagesList({
-        //                 $container: $('.' + type + '-messages'),
-        //                 collection: messages,
-        //                 type: type
-        //             }))
-        //     } else {
-        //         $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>')
-        //     }
-        // },
+        populateMessages: function(messages, type) {
+            var messages = new Parse.Collection(messages);
+            if (messages.length > 0) {
+                console.log(messages);
+                this.subViews.push(
+                    new Bees.Views.MessagesList({
+                        $container: $('.' + type + '-messages'),
+                        collection: messages,
+                        type: type
+                    }))
+            } else {
+                $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
+            }
+        },
         newMessage: function() {
 
         }
