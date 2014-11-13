@@ -11,6 +11,8 @@ var wrap = require('gulp-wrap');
 var declare = require('gulp-declare');
 var concat = require('gulp-concat');
 
+var mainBowerFiles = require('main-bower-files');
+
 gulp.task('templates', function() {
   gulp.src('app/templates/**/*.hbs')
     .pipe(handlebars())
@@ -77,11 +79,13 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-    return $.bowerFiles()
-        .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-        .pipe($.flatten())
-        .pipe(gulp.dest('dist/fonts'))
-        .pipe($.size());
+    return gulp.src(['app/fonts/**.ttf'])
+      .pipe(gulp.dest('dist/fonts'));
+    // return gulp.src(mainBowerFiles())
+    //     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+    //     .pipe($.flatten())
+    //     .pipe(gulp.dest('dist/fonts'))
+    //     .pipe($.size());
 });
 
 gulp.task('extras', function () {
