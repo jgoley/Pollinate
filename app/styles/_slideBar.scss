@@ -1,15 +1,24 @@
 .sb-slidebar{
-	background: $farmerSecondary;
-	border-right:3px $beekeeperSecondary solid;
+	background: $farmerPrimary;
+	// border-right:3px $text solid;
+	padding-top:50px;
 }
 
 .off-canvas{
 	a{
 		display: block;
 		padding:15px 10px;
-		background: rgba(255,255,255,.4);
+		//background: #ebebeb//#FFF;//$beekeeperPrimary;
+		color:#FFF;
+		@extend .black-shadow;
+		&:hover{
+			background: $beekeeperSecondary;
+		}
+		&:focus, &:active{
+			background: #999;
+		}
 	}
 	li{
-
+		border-bottom:1px solid #FFF;
 	}
 }

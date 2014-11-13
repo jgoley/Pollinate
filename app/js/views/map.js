@@ -43,6 +43,11 @@
                 } else {
                     var icon = 'https://maps.google.com/mapfiles/kml/paddle/F.png';
                 }
+                // if (user.get('userType') === 'beekeeper') {
+                //     var icon = '../images/hive.png';
+                // } else {
+                //     var icon = '../images/tractor.png';
+                // }
                 that.drawCircle(user, '#000', user.get('geoRangeRadius'));
                 that.map.addMarker({
                     lat: user.get('geoCenter').latitude,

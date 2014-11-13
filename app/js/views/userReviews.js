@@ -9,7 +9,6 @@
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
-            console.log('!!!!!!!!!!!!!!!!!!!!!');
             options.$container.append(this.el);
             this.render();
             
@@ -23,24 +22,24 @@
             }).getAll().then(function(reviews) {
                 reviews = new Parse.Collection(reviews);
                 console.log(reviews);
-                var already = collection.find(function(model){
+                var already = reviews.find(function(model){
                     return model.get('reviewer').id === Parse.User.current().id;
                 });
                 if(!already){
                     that.subViews.push(
                         new Bees.Views.UserReviewsNew({
-                            collection: collection,
+                            collection: reviews,
                             model: that.model,
                             $container: that.$el,
                         })
                     );
                 }
-                if(collection.length > 0){
+                if(reviews.length > 0){
                     that.subViews.push(
                         new Bees.Views.UserReviewsList({
                             $container: that.$el,
                             model: that.model,
-                            collection: collection
+                            collection: reviews
                         })
                     );  
                 } else {

@@ -15,9 +15,8 @@
                 $container: opts.$container,
             })
             options.$container.html(this.el);
-            $('.main-menu a').removeClass('selected-nav');
             this.render();
-            this.listenTo(this.collection, 'add', this.render);
+            //this.listenTo(this.collection, 'add', this.render);
         },
         render: function() {
             this.$el.html(this.template());
@@ -29,7 +28,6 @@
                     that.populateMessages(messages,'sent');
                 });
 
-
             new Bees.Collections.UserMessages({
                 user: Parse.User.current()
             }).getReceived().then(function(messages) {
@@ -40,7 +38,6 @@
         populateMessages: function(messages, type) {
             var messages = new Parse.Collection(messages);
             if (messages.length > 0) {
-                console.log(messages);
                 this.subViews.push(
                     new Bees.Views.MessagesList({
                         $container: $('.' + type + '-messages'),

@@ -108,6 +108,13 @@
     margin-bottom: em(15px);
 }
 
+.calculate-form{
+    button{
+        @extend .button;
+    }
+}
+
+
 @include media(min-width 600px) {
     .business-name {
         font-size: 3.5em;
@@ -117,10 +124,7 @@
     }
     .calculate-form {
         width: 50%;
-        button {
-            // @extend .button;
-       
-        }
+        margin-top:em(20px);
     }
     // .sub-details {
     //     @include outer-container;

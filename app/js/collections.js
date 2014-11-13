@@ -65,7 +65,11 @@
         model: Bees.Models.Review,
         getAll: function(){
             var relation = this.user.relation('reviews');
-            return relation.query().find();
+            return relation.query().equalTo('reviewee', this.user)
+                                    .ascending('createdAt')
+                                    .limit(this.limit)
+                                    .skip(this.skip)
+                                    .find();
         },
         count: function(){
             return new Parse.Query('Reviews')

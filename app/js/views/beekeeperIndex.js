@@ -71,7 +71,8 @@
             new Bees.Collections.UserReviews({
                 user: Parse.User.current(),
                 limit: 5,
-            }).fetch().then(function(userReviews){
+            }).getAll().then(function(userReviews){
+                userReviews = new Parse.Collection(userReviews);
                 if(userReviews.length > 0){
                     that.subViews.push( 
                         new Bees.Views.UserReviewsList({
