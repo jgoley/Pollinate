@@ -16,7 +16,7 @@
 
     'use strict';
 
-    window.Bees = {};
+    window.Bees = window.Bees || {};
     Bees.Views = {};
     Bees.Models = {};
     Bees.Collections = {};

@@ -23,7 +23,7 @@ gulp.task('templates', function() {
       }
     }))
     .pipe(concat('templates.js'))
-    .pipe(gulp.dest('app/js/'));
+    .pipe(gulp.dest('app/'));
 });
 
 // load plugins
@@ -90,6 +90,7 @@ gulp.task('extras', function () {
 });
 
 gulp.task('clean', function () {
+    $.cache.clearAll();
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
@@ -99,7 +100,7 @@ gulp.task('deploy', function () {
         .pipe(deploy(options));
 });
 
-gulp.task('build', ['html', 'templates', 'images', 'fonts', 'js'], function () {
+gulp.task('build', ['html', 'templates', 'images', 'fonts', 'scripts'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
