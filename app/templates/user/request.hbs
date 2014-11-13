@@ -1,21 +1,41 @@
 <form class="calculate-form">
-<label>Number of hives needed</label>
-<input name='numHives' value="{{request.numHives}}" type='number' required>
-<button class='calculate' >Calculate Cost</button>
+	<label>Number of hives needed</label>
+	<input name="numHives" value="{{request.numHives}}" type="number" required>
+	<button type="submit" class='calculate' >Calculate Cost</button>
 </form>
 {{#if request.totalCost}}
-<div class="requestDetails">
-<p>Number of hives requested: {{request.numHives}}</p>
-<p>Miles over: {{request.milesOver}}</p>
-<p>Milage Cost: ${{request.mileageCost}}</p>
-<h3>Total Cost: ${{request.totalCost}}</h3>
+<div class="request-details-container">
+	<div class="request-details-wrap">
+		<div class="request-details">
+			<ul class="sub-details-beekeeper">
+				<li class="hive-cost total-cost">
+					<span class="figure">${{request.totalCost}}</span>
+					<span class="detail-title">Total cost</span>
+				</li>
+				<li>
+					<span class="figure">{{request.numHives}}</span>
+					<span class="detail-title">Number of hives requested</span>
+				</li>
+				<li>
+					<span class="figure">{{request.milesOver}}</span>
+					<span class="detail-title">Miles over</span>
+				</li>
+				<li>
+					<span class="figure">${{request.mileageCost}}</span>
+					<span class="detail-title">Milage Cost</span>
+				</li>
 
-<textarea name="message" placeholder="Enter a message to the beekeeper"></textarea>
+			</ul>
+		</div>
 
-<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>
-<label for='endDate'>End Date of service</label><input type='date' name='endDate'>
-
-<button class='getBees' >Get some Bees</button>
+		<div class="request-dates">
+			<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>
+			<label for='endDate'>End Date of service</label><input type='date' name='endDate'>
+		</div>
+		<label for='message'>Attach a message to request</label>
+		<textarea name="message" placeholder="Enter a message"></textarea>
+	</div>
+<button class='getBees lg-button' >Get some Bees</button>
 </div>
 {{/if}}
 

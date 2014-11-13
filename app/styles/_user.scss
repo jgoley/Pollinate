@@ -101,6 +101,9 @@
     }
     .hive-cost {
         background: $beekeeperPrimary;
+        .detail-title{
+            color:$text;
+        }
     }
     span {
         display: block;

@@ -13,8 +13,11 @@
     .show-menu {
         display: none;
     }
-    .button {
+    .button, button {
         width: 30%;
+    }
+    button{
+        text-align: left;
     }
     .main-container {
          $max-width: 100%;
@@ -77,7 +80,6 @@
     }
     form.user,
     form.user-login,
-    form.review,
     form.edit-account,
     form.new-user {
         @include span-columns(6);

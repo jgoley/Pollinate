@@ -22,20 +22,21 @@
 
         render: function() {
             var that = this;
-            _.invoke(this.subViews, 'dispose');
             this.$el.append(this.template());
 
-            new Bees.Views.NameSearch({
-                $container: $('.search-form-container'),
-                searchType: this.searchType,
-                userType: this.userType
-            });
+            this.subViews.push(
+                new Bees.Views.NameSearch({
+                    $container: $('.search-form-container'),
+                    searchType: this.searchType,
+                    userType: this.userType
+            }));
 
-            new Bees.Views.DistanceSearch({
-                $container: $('.search-form-container'),
-                searchType: this.searchType,
-                userType: this.userType
-            });
+            this.subViews.push(
+                new Bees.Views.DistanceSearch({
+                    $container: $('.search-form-container'),
+                    searchType: this.searchType,
+                    userType: this.userType
+            }));
 
             if (this.userType === 'farmer') {
                 queryBeekeepers(0).then(function(beekeepers) {
@@ -69,7 +70,6 @@
         },
 
         searchByText: function() {
-            _.invoke(this.subViews, 'dispose');
             var that = this;
             var searchResults = new Bees.Collections.NameSearch({
                 userType: this.searchType,
@@ -90,7 +90,6 @@
 
         searchGeo: function(distance) {
             var that = this;
-            _.invoke(this.subViews, 'dispose');
             new Bees.Collections.UserSearchGeo({
                 userType: this.searchType,
                 distance: distance,
@@ -151,7 +150,6 @@
         },
 
         render: function() {
-            _.invoke(this.subViews, 'dispose');
             this.$el.prepend(this.template());
         },
 
@@ -211,7 +209,6 @@
         },
 
         render: function() {
-            _.invoke(this.subViews, 'dispose');
             this.$el.prepend(this.template());
         },
 

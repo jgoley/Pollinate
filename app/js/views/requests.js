@@ -48,9 +48,7 @@
                         info: {title: 'Pending Requests', class:'notAccepted'}
                 }));
             } 
-            else {
-
-            }
+            else {}
 
             if(accepted.length > 0 ){
                 this.subViews.push(
@@ -238,6 +236,7 @@
             this.render();
         },
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.append('<h1 class="main-title">Upcoming requests:</h1>');
             if (this.info){
                 this.$el.append('<h1 class="main-title">'+this.info.title+'</h1>');

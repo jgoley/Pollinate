@@ -19,6 +19,7 @@
             //this.listenTo(this.collection, 'add', this.render);
         },
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.html(this.template());
             var that = this;
 
@@ -84,6 +85,7 @@
     Bees.Views.MessagesListItem = BaseView.extend({
         tagName: 'li',
         className: 'message',
+        subViews: [],
         template: Bees.templates.messages.message,
         events: {
             'click .reply': 'reply'
@@ -99,21 +101,24 @@
         },
         render: function() {
             _.invoke(this.subViews, 'dispose');
+            var sentDate =  moment(this.model.createdAt).fromNow();
             this.$el.append(this.template({
                 message: this.model.toJSON(),
-                type: this.type
+                type: this.type,
+                sentDate : sentDate
             }));
         },
 
         reply: function() {
             this.$el.find('.reply').remove();
-            new Bees.Views.NewMessage({
-                $container: this.$el,
-                model: this.model,
-                method: 'append',
-                msgType: 'reply',
-                collection: this.collection
-            });
+            this.subViews.push(
+                new Bees.Views.NewMessage({
+                    $container: this.$el,
+                    model: this.model,
+                    method: 'append',
+                    msgType: 'reply',
+                    collection: this.collection
+            }));
 
             this.model.set('replied', true);
             this.model.save();
@@ -216,7 +221,7 @@
                     }
                 });
                 this.dispose();
-                that.$container.append('<h2>Reply sent</h2>');
+                that.$container.append('<h2 class="submitted">Reply sent</h2>');
                 that.collection.add(newMessage);
             } else {
                 alert('Your message is too short.')

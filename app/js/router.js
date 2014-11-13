@@ -81,7 +81,7 @@
 
         newUser: function() {
             disposeViews();
-            new Bees.Views.NewUserView({
+            Bees.currentView = new Bees.Views.NewUserView({
                 $container: $('.main-container')
             });
         },
@@ -203,7 +203,7 @@
                 this.goLogin();
             } else{
 
-                new Bees.Views.Messages({
+                Bees.currentView = new Bees.Views.Messages({
                     $container: $('.main-container'),
                 });
 

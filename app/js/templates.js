@@ -211,6 +211,10 @@ this["Bees"]["templates"]["beekeeperIndex"]["upcoming"] = Handlebars.template({"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.startDateFromNow : stack1), depth0))
     + "</a>";
 },"useData":true});
+this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
+this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1 class=\"main-title\">Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\" class=\"button\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\" class=\"button\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews-list\"></div>\n		<a href=\"#/search\" class=\"button\">View all Reviews</a>\n	</div>\n</section>";
+  },"useData":true});
 this["Bees"]["templates"]["bids"] = this["Bees"]["templates"]["bids"] || {};
 this["Bees"]["templates"]["bids"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "";
@@ -225,10 +229,6 @@ this["Bees"]["templates"]["bids"]["listItem"] = Handlebars.template({"compiler":
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.bid : depth0)) != null ? stack1.formatedDate : stack1), depth0))
     + "</li>\n</ul>\n<button class='revoke'>Revoke Bid</button>";
 },"useData":true});
-this["Bees"]["templates"]["farmerIndex"] = this["Bees"]["templates"]["farmerIndex"] || {};
-this["Bees"]["templates"]["farmerIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1 class=\"main-title\">Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\" class=\"button\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\" class=\"button\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1 class=\"main-title\">Reviews</h1>\n		<div class=\"reviews-list\"></div>\n		<a href=\"#/search\" class=\"button\">View all Reviews</a>\n	</div>\n</section>";
-  },"useData":true});
 this["Bees"]["templates"]["messages"] = this["Bees"]["templates"]["messages"] || {};
 this["Bees"]["templates"]["messages"]["index"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div class=\"messages\">\n	<div class=\"received-messages\">\n		<h1 class=\"main-title\">Received Messages</h1>\n	</div>\n	<div class=\"sent-messages\">\n		<h1 class=\"main-title\">Sent Messages</h1>\n	</div>\n</div>";
@@ -250,7 +250,7 @@ this["Bees"]["templates"]["messages"]["message"] = Handlebars.template({"1":func
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.message : depth0)) != null ? stack1.recipientName : stack1), depth0))
     + "</a>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "\n<div class=\"message-body\">\n	<p>"
+  var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, functionType="function", buffer = "\n<div class=\"message-body\">\n	<p>"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.message : depth0)) != null ? stack1.message : stack1), depth0))
     + "</p>\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.type : depth0), "received", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data}));
@@ -261,7 +261,7 @@ this["Bees"]["templates"]["messages"]["message"] = Handlebars.template({"1":func
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, (depth0 != null ? depth0.type : depth0), "sent", {"name":"if_eq","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data}));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "	<p class=\"message-date\">"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.message : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + escapeExpression(((helper = (helper = helpers.sentDate || (depth0 != null ? depth0.sentDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"sentDate","hash":{},"data":data}) : helper)))
     + "</p>\n</div>\n";
 },"useData":true});
 this["Bees"]["templates"]["newUser"] = this["Bees"]["templates"]["newUser"] || {};
@@ -622,19 +622,19 @@ this["Bees"]["templates"]["user"]["newMessage"] = Handlebars.template({"compiler
   },"useData":true});
 this["Bees"]["templates"]["user"]["request"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class=\"requestDetails\">\n<p>Number of hives requested: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "</p>\n<p>Miles over: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
-    + "</p>\n<p>Milage Cost: $"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
-    + "</p>\n<h3>Total Cost: $"
+  return "<div class=\"request-details-container\">\n	<div class=\"request-details-wrap\">\n		<div class=\"request-details\">\n			<ul class=\"sub-details-beekeeper\">\n				<li class=\"hive-cost total-cost\">\n					<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
-    + "</h3>\n\n<textarea name=\"message\" placeholder=\"Enter a message to the beekeeper\"></textarea>\n\n<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n\n<button class='getBees' >Get some Bees</button>\n</div>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<form class=\"calculate-form\">\n<label>Number of hives needed</label>\n<input name='numHives' value=\""
+    + "</span>\n					<span class=\"detail-title\">Total cost</span>\n				</li>\n				<li>\n					<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "\" type='number' required>\n<button class='calculate' >Calculate Cost</button>\n</form>\n";
+    + "</span>\n					<span class=\"detail-title\">Number of hives requested</span>\n				</li>\n				<li>\n					<span class=\"figure\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
+    + "</span>\n					<span class=\"detail-title\">Miles over</span>\n				</li>\n				<li>\n					<span class=\"figure\">$"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
+    + "</span>\n					<span class=\"detail-title\">Milage Cost</span>\n				</li>\n\n			</ul>\n		</div>\n\n		<div class=\"request-dates\">\n			<label for='startDate'>Start Date of service</label><input type='date' name='startDate'>\n			<label for='endDate'>End Date of service</label><input type='date' name='endDate'>\n		</div>\n		<label for='message'>Attach a message to request</label>\n		<textarea name=\"message\" placeholder=\"Enter a message\"></textarea>\n	</div>\n<button class='getBees lg-button' >Get some Bees</button>\n</div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<form class=\"calculate-form\">\n	<label>Number of hives needed</label>\n	<input name=\"numHives\" value=\""
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
+    + "\" type=\"number\" required>\n	<button type=\"submit\" class='calculate' >Calculate Cost</button>\n</form>\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n\n";

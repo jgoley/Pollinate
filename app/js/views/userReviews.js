@@ -142,7 +142,6 @@
         },
         template: Bees.templates.reviews.new,
         initialize: function(opts) {
-            _.invoke(this.subViews, 'dispose');
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
@@ -151,6 +150,7 @@
         },
 
         render: function() {
+            _.invoke(this.subViews, 'dispose');
             this.$el.append(this.template());
         },
 

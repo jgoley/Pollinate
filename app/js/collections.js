@@ -138,22 +138,18 @@
         },
         getReceived: function(){
             var relation = this.user.relation('messages');
-            // var q1 = new Parse.Query('Messages').equalTo('sender', options.user);
-            // var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
-
             return relation.query()
                         .equalTo('recipient', this.user)
+                        .descending('createdAt')
                         .find();
 
         },
         getSent: function(){
             var relation = this.user.relation('messages');
-            // var q1 = new Parse.Query('Messages').equalTo('sender', options.user);
-            // var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
             return relation.query()
                         .equalTo('sender', this.user)
+                        .descending('createdAt')
                         .find();
-
         },
         model: Bees.Models.Request,
     });
@@ -187,50 +183,6 @@
         },
         model: Bees.Models.Request,
     });
-
-
-    // Bees.Collections.RequestsAccepted = Parse.Collection.extend({
-    //     initialize: function(opts){
-    //         var options = _.defaults({}, opts, {
-    //             user: opts.user
-    //         });
-    //         this.query = new Parse.Query('Requests')
-    //             .equalTo(options.user.get('userType'), options.user)
-    //             .equalTo('accepted', true);
-    //     },
-    //     model: Bees.Models.Request,
-    // });
-
-    // Bees.Collections.RequestsNotAccepted = Parse.Collection.extend({
-    //     initialize: function(opts){
-    //         var options = _.defaults({}, opts, {
-    //             user: opts.user
-    //         });
-    //         this.query = new Parse.Query('Requests')
-    //             .equalTo(options.user.get('userType'), options.user)
-    //             .equalTo('accepted', false);
-    //     },
-    //     model: Bees.Models.Request,
-    // });
-
-    // Bees.Collections.RequestsArchived = Parse.Collection.extend({
-    //     initialize: function(opts){
-    //         var archiveType;
-    //         var options = _.defaults({}, opts, {
-    //             user: opts.user
-    //         });
-    //         if(options.user.get('userType') === 'beekeeper'){
-    //             archiveType = 'archivedBeekeeper';
-    //         } else{
-    //             archiveType = 'archivedFarmer';
-    //         }
-    //         this.query = new Parse.Query('Requests')
-    //             .equalTo(options.user.get('userType'), options.user)
-    //             .equalTo(archiveType, true);
-    //     },
-    //     model: Bees.Models.Request,
-    // });
-
 
 })();
 
