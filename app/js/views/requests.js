@@ -198,10 +198,11 @@
             request.save();
         },
         cancelRequest: function(){
-            this.model.destroy();
+            // this.model.destroy();
+            this.model.set('canceled', true);
             var email = {
                 subject: 'Request for Bees Canceled',
-                message: Parse.User.current().get('username')+' canceled their request for beens',
+                message: Parse.User.current().get('username')+' canceled their request for bees',
                 from: 'jgoley.etc@gmail.com',
                 to: 'jgoley@gmail.com',//beekeeper.get('email'),
             }

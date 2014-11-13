@@ -137,12 +137,15 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
-            var relation = options.user.relation("requests");
-            this.query = new Parse.Query('Requests')
-                                .equalTo(options.user.get('userType'), options.user)
-                                .equalTo('accepted', true)
-                                .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
-                                .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD'));
+            this.user = options.user;
+        },
+        getAll: function(){
+            var relation = this.user.relation('requests');
+            return relation.query()
+                            .equalTo(this.user.get('userType'), this.user)
+                            .equalTo('accepted', true)
+                            .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
+                            .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD')).find();
         },
         model: Bees.Models.Request
     });
@@ -159,6 +162,9 @@
             var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
             this.query = new Parse.Query.or(q1,q2).descending('createdAt');
                 // .equalTo('sender_deleted', false);
+        },
+        getAll: function(){
+
         },
         model: Bees.Models.Request,
     });
