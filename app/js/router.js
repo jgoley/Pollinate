@@ -43,7 +43,7 @@
                 if (Parse.User.current().get('userType') === 'beekeeper') {
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
-                    }).fetch().then(function(collection){
+                    }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.BeekeeperIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -52,7 +52,7 @@
                 } else {
                     new Bees.Collections.Requests({
                         user: Parse.User.current()
-                    }).fetch().then(function(collection){
+                    }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
                             collection: collection
@@ -124,7 +124,7 @@
             } else{
                 new Bees.Collections.Requests({
                     user: Parse.User.current()
-                }).fetch().then(function(requests){
+                }).getAll().then(function(requests){
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests

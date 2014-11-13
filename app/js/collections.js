@@ -72,6 +72,7 @@
         }
     });
 
+
     Bees.Collections.Requests = Parse.Collection.extend({
         comparator: function(request) {
             return request.get('startDate');
@@ -80,10 +81,13 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
-            this.query = new Parse.Query('Requests')
-                .equalTo(options.user.get('userType'), options.user);
+            this.user = options.user;
         },
         model: Bees.Models.Request,
+        getAll: function(){
+            var relation = this.user.relation('requests');
+            return relation.query().find();
+        }
     });
 
     Bees.Collections.RequestsAccepted = Parse.Collection.extend({
@@ -133,11 +137,12 @@
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
+            var relation = options.user.relation("requests");
             this.query = new Parse.Query('Requests')
                                 .equalTo(options.user.get('userType'), options.user)
                                 .equalTo('accepted', true)
                                 .greaterThanOrEqualTo('endDate', moment().format('YYYY-MM-DD'))
-                                .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD'))
+                                .lessThanOrEqualTo('startDate', moment().format('YYYY-MM-DD'));
         },
         model: Bees.Models.Request
     });
