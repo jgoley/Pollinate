@@ -172,6 +172,8 @@
                 }
             });
             this.dispose();
+            $('.newMessage-container').append("<h2 class='submitted'>Message sent!</h1>");
+
         },
 
         sendReply: function(e){

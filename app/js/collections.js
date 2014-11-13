@@ -143,19 +143,25 @@
     });
 
     Bees.Collections.UserMessages = Parse.Collection.extend({
+        // comparator: function(message) {
+        //     return message.createdAt;
+        // },
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 user: opts.user
             });
             var q1 = new Parse.Query('Messages').equalTo('sender', options.user);
             var q2 = new Parse.Query('Messages').equalTo('recipient', options.user);
-            this.query = new Parse.Query.or(q1,q2)
+            this.query = new Parse.Query.or(q1,q2).descending('createdAt');
                 // .equalTo('sender_deleted', false);
         },
         model: Bees.Models.Request,
     });
 
     Bees.Collections.UserMessagesSent = Parse.Collection.extend({
+        comparator: function(message) {
+            return message.get('createdAt');
+        },
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 user: opts.user
@@ -168,6 +174,9 @@
     });
 
     Bees.Collections.UserMessagesRecieved = Parse.Collection.extend({
+        comparator: function(message) {
+            return message.get('createdAt');
+        },
         initialize: function(opts){
             var options = _.defaults({}, opts, {
                 user: opts.user

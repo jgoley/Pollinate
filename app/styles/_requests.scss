@@ -87,9 +87,12 @@
 .upcoming-requests,
 .hives-out {
     li {
-        border-bottom: 1px solid #ebebeb;
+        border-top: 1px solid #ebebeb;
         margin: 0;
         position: relative;
+        &:last-child{
+            border-bottom: 1px solid #ebebeb;
+        }
         &::after {
             @include arrowRight(#cccccc);
             @extend .black-shadow;

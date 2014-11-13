@@ -69,7 +69,7 @@
                         info: {title: 'Archived', class:'archived'}
                 }));
             } else if (archived.length > 0){
-                $('.requests').append('<a href="#/requests/archived" class="button">View Archived Requests</a>');
+                $('.requests').append('<a href="#/requests/archived" class="button archived">View Archived Requests</a>');
             }
         },
 

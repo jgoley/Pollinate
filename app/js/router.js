@@ -7,6 +7,7 @@
         routes: {
             '': 'index',
             'login': 'login',
+            'logout': 'logout',
             'newuser': 'newUser',
             'account': 'account',
             'change-password': 'changePassword',
@@ -66,6 +67,15 @@
             Bees.currentView = new Bees.Views.LoginView({
                 $container: $('.main-container'),
                 session: new Bees.Models.Session()
+            });
+        },
+
+        logout: function(){
+            disposeViews();
+            Parse.User.logOut();
+            Bees.Session.set('user', null);
+            BeesApp.navigate('login', {
+                trigger: true
             });
         },
 

@@ -17,7 +17,10 @@
             this.render();
         },
         render: function() {
-            this.$el.append(this.template(this.model.toJSON()));            
+            if(this.model.get('archivedBeekeeper') === true || this.model.get('archivedFarmer')  === true){
+                var archived = true;
+            }
+            this.$el.append(this.template({request: this.model.toJSON(), archived: archived, curUser: Parse.User.current().toJSON()}));            
         },
 
         editRequest: function(){
@@ -31,7 +34,8 @@
         template: Bees.templates.requests.soloEdit,
         events:{
             'click .edit-request': 'editRequest',
-            'click .cancel-edit': 'cancel'
+            'click .cancel-edit': 'cancel',
+            'click .accept': 'acceptRequest'
 
         },
         initialize: function(opts) {
@@ -45,6 +49,10 @@
         },
         render: function() {
             this.$el.append(this.template(this.model.toJSON()));            
+        },
+
+        acceptRequest: function(){
+            this.model.set('accepted', true).save();
         },
 
         editRequest: function(){

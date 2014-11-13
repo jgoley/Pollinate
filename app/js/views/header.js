@@ -7,7 +7,6 @@
         className: 'nav-container',
         template: Bees.templates.header,
         events: {
-            // 'click .show-menu': 'showMenu',
             'keyup .search' : 'search',
             'click .logo': 'removeSelected',
         },
@@ -31,21 +30,17 @@
                 new Bees.Views.NavView({
                     $container: $('.main-menu'),
                     model: Bees.Session,
-                    user: user
+                    user: user,
+                    viewport: 'desktop'
                 }));
             this.subViews.push(
                 new Bees.Views.NavView({
                     $container: $('.off-canvas'),
                     model: Bees.Session,
-                    user: user
+                    user: user,
+                    viewport: 'mobile'
                 }));
         },
-
-        // showMenu: function(e){
-        //     e.preventDefault();
-        //     $('nav').toggleClass('showing');
-        //     $('.main-container').toggleClass('menu-showing');
-        // },
 
         search: function(e){
             if(e.keyCode === 13){
@@ -72,16 +67,18 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
-                user: opts.user
+                user: opts.user,
+                viewport: opts.viewport
             });
             this.user = options.user;
             options.$container.html(this.el);
+            this.viewport = options.viewport;
             this.render();
         },
 
 
         render: function() {
-            this.$el.html(this.template({session: this.model.toJSON(), user: this.user}));
+            this.$el.html(this.template({session: this.model.toJSON(), user: this.user, viewport: this.viewport}));
         },
 
         login: function(e) {
