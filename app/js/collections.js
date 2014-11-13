@@ -96,10 +96,21 @@
             return relation.query().find();
         },
         getArchived: function(){
+            var archiveType;
+            if(this.user.get('userType') === 'beekeeper'){
+                var archiveType = 'archivedBeekeeper';
+            } else{
+                archiveType = 'archivedFarmer';
+            }
+            // this.query = new Parse.Query('Requests')
+            //     .equalTo(options.user.get('userType'), options.user)
+            //     .equalTo(archiveType, true);
+
+
             var relation = this.user.relation('requests');
             return relation.query()
-                            .equalTo(options.user.get('userType'), options.user)
-                            .equalTo('accepted', true)
+                            .equalTo(this.user.get('userType'), this.user)
+                            .equalTo(archiveType, true)
                             .find();
         }
     });

@@ -94,9 +94,7 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.farmAcerage : stack1), depth0))
     + "\" placeholder=\"Farm acerage\" required>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "<p>account type: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "</p>\n\n<div class='form-block password'>\n	<label>Account Type</label>\n	<select name='userType' class='userType' required>\n		<option value=\"\">Account Type</option>\n		<option value=\"beekeeper\">Beekeeper</option>\n		<option value=\"farmer\">Farmer</option>\n	</select>\n</div>\n\n<div class=\"userType-info\">\n	\n";
+  var stack1, helperMissing=helpers.helperMissing, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class='form-block password'>\n	<label>Account Type</label>\n	<select name='userType' class='userType' required>\n		<option value=\"\">Account Type</option>\n		<option value=\"beekeeper\">Beekeeper</option>\n		<option value=\"farmer\">Farmer</option>\n	</select>\n</div>\n\n<div class=\"userType-info\">\n	\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n</div>\n\n<label for=\"firstName\">First Name</label>\n<input type=\"text\" name=\"firstName\" value=\""
@@ -119,9 +117,7 @@ this["Bees"]["templates"]["account"]["edit"] = Handlebars.template({"1":function
 },"useData":true});
 this["Bees"]["templates"]["account"]["editBeekeeper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<p>account type: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "</p>\n\n<label for=\"firstName\">First Name</label>\n<input type=\"text\" name=\"firstName\" value=\""
+  return "<label for=\"firstName\">First Name</label>\n<input type=\"text\" name=\"firstName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
     + "\" placeholder=\"First Name\" required>\n\n<label for=\"lastName\">Last Name</label>\n<input type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
@@ -151,9 +147,7 @@ this["Bees"]["templates"]["account"]["editBeekeeper"] = Handlebars.template({"co
 },"useData":true});
 this["Bees"]["templates"]["account"]["editFarmer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<p>account type: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + "</p>\n\n<label for=\"firstName\">First Name</label>\n<input type=\"text\" name=\"firstName\" value=\""
+  return "<label for=\"firstName\">First Name</label>\n<input type=\"text\" name=\"firstName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.firstName : stack1), depth0))
     + "\" placeholder=\"First Name\" required>\n\n<label for=\"lastName\">Last Name</label>\n<input type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
