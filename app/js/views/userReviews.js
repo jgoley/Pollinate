@@ -9,6 +9,7 @@
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
+            console.log('!!!!!!!!!!!!!!!!!!!!!');
             options.$container.append(this.el);
             this.render();
             
@@ -17,11 +18,11 @@
         render: function() {
             _.invoke(this.subViews, 'dispose');
             var that = this;
-            var collection = new Bees.Collections.UserReviews({
+            new Bees.Collections.UserReviews({
                 user: this.model
-            });
-
-            collection.fetch().then(function() {
+            }).getAll().then(function(reviews) {
+                reviews = new Parse.Collection(reviews);
+                console.log(reviews);
                 var already = collection.find(function(model){
                     return model.get('reviewer').id === Parse.User.current().id;
                 });
@@ -65,6 +66,7 @@
             render: function() {
                 this.$el.html("<div class='reviews'><h1 class='main-title'>Reviews</h1></div>");
                 _.invoke(this.subViews, 'dispose');
+
                 if(this.collection.length > 0){
                     this.subViews.push(
                         new Bees.Views.UserReviewsList({

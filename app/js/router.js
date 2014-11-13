@@ -188,10 +188,10 @@
             } else{
                 new Bees.Collections.UserReviews({
                     user: this.currentUser,
-                }).fetch().then(function(reviews){
+                }).getAll().then(function(reviews){
                     Bees.currentView = new Bees.Views.UserReviewsPage({
                         $container: $('.main-container'),
-                        collection: reviews
+                        collection: new Parse.Collection(reviews)
                     });
                 });   
             }
