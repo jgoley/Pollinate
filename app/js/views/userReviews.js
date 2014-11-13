@@ -21,7 +21,6 @@
                 user: this.model
             }).getAll().then(function(reviews) {
                 reviews = new Parse.Collection(reviews);
-                console.log(reviews);
                 var already = reviews.find(function(model){
                     return model.get('reviewer').id === Parse.User.current().id;
                 });

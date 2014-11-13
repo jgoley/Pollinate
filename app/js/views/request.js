@@ -52,7 +52,15 @@
         },
 
         acceptRequest: function(){
-            this.model.set('accepted', true).save();
+            var user = Parse.User.current();
+            var request = this.model;
+            var hivesAvailable = user.get('hivesAvailable');
+            if(hivesAvailable > request.get('numHives')){
+                this.model.set('accepted', true).save();
+            }
+            else{
+                alert("You don't have enough hives in your inventory to fulfill request");                
+            }
         },
 
         editRequest: function(){

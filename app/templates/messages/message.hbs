@@ -7,10 +7,14 @@
 	</div>
 </div> --}}
 
+
 <div class="message-body">
 	<p>{{message.message}}</p>
 	{{#if_eq type 'received'}}
-	<button class="reply">r</button>	
+		{{#unless message.replied}}<a href="#" class="reply">r</a>
+			{{else}}
+			<span class="reply">R</span>
+		{{/unless}}
 	{{/if_eq}}
 </div>
 <div class="message-info">

@@ -1,4 +1,12 @@
 @include media(min-width 600px) {
+    .white-shadow {
+        color: $text;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    .black-shadow {
+        color: #FFF;
+        text-shadow: 0 1px 0 rgba(50, 50, 50, 0.4);
+    }
     .noAuth-header {
         img {
             max-width: 320px;
@@ -16,11 +24,11 @@
     .button, button {
         width: 30%;
     }
-    button{
+    button {
         text-align: left;
     }
     .main-container {
-         $max-width: 100%;
+        $max-width: 100%;
         min-height: 600px;
         @include outer-container;
         float: none;
@@ -35,10 +43,10 @@
        
         }
     }
-    .main-container, 
-    .landing{
-        > section{
-            > div{
+    .main-container,
+    .landing {
+        > section {
+            > div {
                 $max-width: 1000px;
                 @include outer-container;
             }
@@ -47,7 +55,7 @@
     .main-title {
         font-size: 2.5em;
         margin-bottom: em(8px);
-        border-bottom:3px solid $farmerSecondarySubtle;
+        border-bottom: 3px solid $farmerSecondarySubtle;
     }
     .main-menu {
         display: block;
@@ -118,9 +126,4 @@
         color: $text !important;
         text-shadow: none !important;
     }
-
-
-    
-
-
 }

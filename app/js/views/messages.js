@@ -39,11 +39,13 @@
         populateMessages: function(messages, type) {
             var messages = new Parse.Collection(messages);
             if (messages.length > 0) {
+                this[type] = messages;
                 this.subViews.push(
                     new Bees.Views.MessagesList({
                         $container: $('.' + type + '-messages'),
                         collection: messages,
-                        type: type
+                        type: type,
+                        parentView: this
                     }))
             } else {
                 $('.' + type + '-messages').append('<h3>Currently no ' + type + ' messages.</h3>');
@@ -61,23 +63,40 @@
         initialize: function(opts) {
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
-                type: opts.type
+                type: opts.type,
+                parentView: opts.parentView
             });
             options.$container.append(this.el);
+            this.sentMsgs = options.parentView.sent;
+            this.recievedMsgs = options.parentView.recieved;
             this.type = options.type;
             this.render();
+            if(this.sentMsgs)
+                this.listenTo(this.sentMsgs, 'add', this.render);
         },
         render: function() {
             this.collection.each(_.bind(this.renderChildren, this));
         },
         renderChildren: function(request) {
-            this.subViews.push(
-                new Bees.Views.MessagesListItem({
-                    model: request,
-                    $container: this.$el,
-                    type: this.type,
-                    collection: this.collection
+            if(this.type === 'received'){
+                this.subViews.push(
+                    new Bees.Views.MessagesListItem({
+                        model: request,
+                        $container: this.$el,
+                        type: this.type,
+                        collection: this.collection,
+                        sent: this.sentMsgs
+                    }));
+            }
+            else {
+                this.subViews.push(
+                    new Bees.Views.MessagesListItem({
+                        model: request,
+                        $container: this.$el,
+                        type: this.type,
+                        collection: this.collection
                 }));
+            }
         }
 
     });
@@ -109,7 +128,8 @@
             }));
         },
 
-        reply: function() {
+        reply: function(e) {
+            e.preventDefault();
             this.$el.find('.reply').remove();
             this.subViews.push(
                 new Bees.Views.NewMessage({
@@ -132,6 +152,7 @@
         className: 'new-message',
         events: {
             'submit': 'sendMessage',
+            'cancel': 'cancel'
         },
 
         initialize: function(opts) {
@@ -188,6 +209,9 @@
             });
             this.dispose();
             $('.newMessage-container').append("<h2 class='submitted'>Message sent!</h1>");
+            if(this.sentMsgs){
+                this.sentMsgs.add(newMessage);
+            }
 
         },
 
@@ -222,10 +246,15 @@
                 });
                 this.dispose();
                 that.$container.append('<h2 class="submitted">Reply sent</h2>');
+                setTimeout(removeNotification('submitted'), 2000);
                 that.collection.add(newMessage);
             } else {
                 alert('Your message is too short.')
             }
+        },
+
+        cancel: function(){
+            this.dispose();
         }
     });
 

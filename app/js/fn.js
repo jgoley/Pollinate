@@ -75,6 +75,10 @@ function calculateCost(numHivesRequested, beek) {
     return requestDetails;
 }
 
+function removeNotification(element){
+    $(element).remove();
+}
+
 function firstCap(string)
 {
     return string.charAt(0).toUpperCase() + string.slice(1);

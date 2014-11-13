@@ -71,7 +71,10 @@
     });
 
     Bees.Models.Message = Parse.Object.extend({
-        className: 'Messages'
+        className: 'Messages',
+        defaults:{
+            replied: false
+        }
     });
 
 })();
