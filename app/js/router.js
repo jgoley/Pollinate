@@ -188,7 +188,7 @@
                 this.goLogin();
             } else{
                 new Bees.Collections.UserReviews({
-                    user: this.currentUser,
+                    user: Parse.User.current(),
                 }).getAll().then(function(reviews){
                     Bees.currentView = new Bees.Views.UserReviewsPage({
                         $container: $('.main-container'),
