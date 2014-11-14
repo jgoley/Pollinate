@@ -82,7 +82,7 @@ form.search {
 .map-container {
     @include span-columns(12);
     background: $farmerSecondarySubtle;
-    max-height: 600px;
+    min-height: 600px;
 }
 
 .search-form-container,
