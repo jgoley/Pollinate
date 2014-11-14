@@ -27,6 +27,7 @@
         initialize: function() {
 
             if(Parse.User.current()){
+                Parse.User.current().fetch();
                 this.currentUser = Parse.User.current();
                 this.userType = this.currentUser.get('userType');
             }
