@@ -233,7 +233,7 @@ this["Bees"]["templates"]["messages"]["message"] = Handlebars.template({"1":func
 },"2":function(depth0,helpers,partials,data) {
   return "<a href=\"#\" class=\"reply\">r</a>\n";
   },"4":function(depth0,helpers,partials,data) {
-  return "			<span class=\"reply\">R</span>\n";
+  return "			<span class=\"replied\">R</span><a href=\"#\" class=\"reply\">r</a>\n";
   },"6":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "		<a href=\"#/user/"
@@ -572,6 +572,10 @@ this["Bees"]["templates"]["search"]["resultItem"] = Handlebars.template({"1":fun
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</a>";
 },"useData":true});
+this["Bees"]["templates"]["userIndex"] = this["Bees"]["templates"]["userIndex"] || {};
+this["Bees"]["templates"]["userIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1>Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1>Reviews</h1>\n	</div>\n</section>";
+  },"useData":true});
 this["Bees"]["templates"]["user"] = this["Bees"]["templates"]["user"] || {};
 this["Bees"]["templates"]["user"]["beekeeperIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
@@ -655,7 +659,3 @@ this["Bees"]["templates"]["user"]["request"] = Handlebars.template({"1":function
   if (stack1 != null) { buffer += stack1; }
   return buffer + "\n\n";
 },"useData":true});
-this["Bees"]["templates"]["userIndex"] = this["Bees"]["templates"]["userIndex"] || {};
-this["Bees"]["templates"]["userIndex"]["base"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<section><div class=\"top-info\"></div></section>\n<section class='requests-container'>\n	<div class=\"requests\">\n		<h1>Requests</h1>\n		<div class='request-list'></div>\n		<a href=\"#/requests\">View All Requests</a>\n	</div>\n</section>\n<section class='near-users-container'>\n	<div class=\"near-users\">\n		<a href=\"#/search\">Find More</a>\n	</div>\n</section>\n<section class='reviews-container'>\n	<div class=\"reviews\">\n		<h1>Reviews</h1>\n	</div>\n</section>";
-  },"useData":true});
