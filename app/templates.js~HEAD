@@ -233,7 +233,7 @@ this["Bees"]["templates"]["messages"]["message"] = Handlebars.template({"1":func
 },"2":function(depth0,helpers,partials,data) {
   return "<a href=\"#\" class=\"reply\">r</a>\n";
   },"4":function(depth0,helpers,partials,data) {
-  return "			<span class=\"replied\">R</span><a href=\"#\" class=\"reply\">r</a>\n";
+  return "			<span class=\"reply\">R</span>\n";
   },"6":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "		<a href=\"#/user/"
