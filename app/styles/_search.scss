@@ -91,19 +91,10 @@ form.search {
     @include outer-container;
 }
 
-.search-params {
-    margin-bottom: 10px;
-}
-
 .user-details {
     display: block;
     font-size: 80%;
-    color: #999;
     margin-top: 2px;
-    transition: .2s;
-    .hives {}
-    .hiveCost {
-    }
 }
 
 @include media(min-width 600px) {

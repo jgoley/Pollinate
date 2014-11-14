@@ -89,7 +89,9 @@ header {
         margin-right: .25em;
         vertical-align: middle;
     }
-    &:hover {}
+    &:hover {
+        color:#000 !important;
+    }
     &:focus {
         color: #999;
     }

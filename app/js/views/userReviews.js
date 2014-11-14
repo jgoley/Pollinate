@@ -79,7 +79,7 @@
                     })
                 );
             } else {
-                $('.reviews').append("<div><h3>Currently, you do not have any reviews.</h3></div>")
+                $('.reviews').append("<div><h3>You currently do not have any reviews.</h3></div>")
             }
         },
     });

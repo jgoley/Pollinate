@@ -80,7 +80,7 @@
                             collection: userReviews
                         }))
                 } else{
-                    $('.reviews').append('<p>No user reviews.</p>')
+                    $('.reviews').append('<p>You currently do not have any reviews.</p>')
                 }
             });
 

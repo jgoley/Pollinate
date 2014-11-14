@@ -73,6 +73,70 @@
 .sub-details-beekeeper {
     @include outer-container;
     .figure {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $text;
+    }
+    .detail-title {
+        font-size: .8em;
+    }
+    li {
+        @include span-columns(3, block-collapse);
+        @include omega;
+        min-height: em(80px);
+        color: $farmerSecondary;
+        padding: 10px;
+        text-align: center;
+        background: $beekeeperSecondarySubtle;
+        // border: 1px solid $farmerSecondarySubtle;
+        border-right: 1px solid #FFF;
+        &:last-child {
+            border: 0;
+        }
+    }
+    .subtle {
+        font-weight: normal;
+        color: $text;
+        font-size: 50%;
+    }
+    .hive-cost {
+        background: $beekeeperPrimary;
+        .detail-title{
+            color:$text;
+        }
+    }
+    span {
+        display: block;
+    }
+    margin-bottom: em(15px);
+}
+
+.calculate-form{
+    button{
+        @extend .button;
+        width:100%;
+    }
+}
+
+
+@include media(min-width 600px) {
+    .business-name {
+        font-size: 3.5em;
+    }
+    .request-hives {
+        margin-bottom: 0;
+    }
+    .calculate-form {
+        width: 30%;
+        margin-top:em(20px);
+        button{
+            width:100% !important;
+        }
+    }
+
+    .sub-details-beekeeper {
+    @include outer-container;
+    .figure {
         font-size: 1.7em;
         font-weight: bold;
         color: $text;
@@ -81,15 +145,8 @@
         font-size: 1em;
     }
     li {
-        @include span-columns(3, block-collapse);
-        @include omega;
-        min-height: 100px;
-        color: $farmerSecondary;
-        padding: 10px;
-        text-align: center;
-        background: $beekeeperSecondarySubtle;
-        // border: 1px solid $farmerSecondarySubtle;
-        border-right: 1px solid #FFF;
+        min-height: em(100px);
+
         &:last-child {
             border: 0;
         }
@@ -110,52 +167,4 @@
     }
     margin-bottom: em(15px);
 }
-
-.calculate-form{
-    button{
-        @extend .button;
-    }
-}
-
-
-@include media(min-width 600px) {
-    .business-name {
-        font-size: 3.5em;
-    }
-    .request-hives {
-        margin-bottom: 0;
-    }
-    .calculate-form {
-        width: 50%;
-        margin-top:em(20px);
-    }
-    // .sub-details {
-    //     @include outer-container;
-    //     .figure {
-    //         font-size: 1.7em;
-    //         font-weight: bold;
-    //         color: $text;
-    //     }
-    //     .detail-title {
-    //         font-size: .9em;
-    //     }
-    //     li {
-    //         @include span-columns(3, block-collapse);
-    //         @include omega;
-    //         min-height: 100px;
-    //         color: $farmerSecondary;
-    //         padding: 10px;
-    //         text-align: center;
-    //         background: $farmerSecondarySubtle;
-    //         // border: 1px solid $farmerSecondarySubtle;
-    //     }
-    //     .subtle {
-    //         font-weight: normal;
-    //         color: $text;
-    //     }
-    //     span {
-    //         display: block;
-    //     }
-    //     margin-bottom: em(15px);
-    // }
 }
