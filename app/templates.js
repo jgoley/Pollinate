@@ -187,7 +187,7 @@ this["Bees"]["templates"]["beekeeperIndex"]["hivesOutListItem"] = Handlebars.tem
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
     + "\">Pickup from "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + " in "
+    + " "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.endDateFromNow : stack1), depth0))
     + "</a>\n";
 },"useData":true});
