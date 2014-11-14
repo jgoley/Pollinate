@@ -2,18 +2,21 @@
 <div class="details {{#if request.accepted}}accepted{{else}}notAccepted{{/if}} {{#if request.archivedBeekeeper}}archived {{/if}}">
 	<a href="#/request/{{request.objectId}}">
 		<span class='strong'>{{request.numHives}}</span> hives requested by {{user.businessName}}
-		<ul class='hidden'>
-			<li>{{request.objectId}}</li>
-			<li>{{user.userType}}: {{user.username}}</li>
-			<li>Number of Hives: {{request.numHives}}</li>
-			<li>Cost: ${{request.totalCost}}</li>
-			<li>Miles over: {{request.milesOver}}</li>
-			<li>Dates: {{formattedDates.startDate}} - {{formattedDates.endDate}}</li>
-			<li>Message: {{request.message}}</li>
-			<li>Requested: {{formattedDates.createdAt}}</li>
-			{{#if request.archivedBeekeeper}}
-			<li>Archived: {{formattedDates.archivedBeekeeperDate}}</li>
-			{{/if}}
+
+		<ul class="sub-details-beekeeper hidden">
+			<li>
+				<span class="detail-title">Total cost</span>
+				<span class="figure">${{request.totalCost}}</span>
+			</li>
+			<li>
+				<span class="detail-title">hives requested</span>
+				<span class="figure">{{request.numHives}}</span>
+			</li>
+
+			<li>
+				<span class="detail-title">Start Date</span>
+				<span class="figure">{{formattedDates.startDate}}</span>
+			</li>
 		</ul>
 	</a>
 	<div class="actions">

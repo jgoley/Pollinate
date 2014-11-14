@@ -323,20 +323,15 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
   },"5":function(depth0,helpers,partials,data) {
   return "archived ";
   },"7":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "			<li>Archived: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.archivedBeekeeperDate : stack1), depth0))
-    + "</li>\n";
-},"9":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"unless","hash":{},"fn":this.program(10, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"unless","hash":{},"fn":this.program(8, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer;
-},"10":function(depth0,helpers,partials,data) {
+},"8":function(depth0,helpers,partials,data) {
   return "				<button class='archive'>Archive</button>\n";
-  },"12":function(depth0,helpers,partials,data) {
+  },"10":function(depth0,helpers,partials,data) {
   return "			<button class='accept'>Accept</button>\n";
-  },"14":function(depth0,helpers,partials,data) {
+  },"12":function(depth0,helpers,partials,data) {
   return "			<button class='edit-request'>Edit Request</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"details ";
@@ -351,34 +346,17 @@ this["Bees"]["templates"]["requests"]["listItemBeekeeper"] = Handlebars.template
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
     + "</span> hives requested by "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\n		<ul class='hidden'>\n			<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.objectId : stack1), depth0))
-    + "</li>\n			<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + ": "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</li>\n			<li>Number of Hives: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "</li>\n			<li>Cost: $"
+    + "\n\n		<ul class=\"sub-details-beekeeper hidden\">\n			<li>\n				<span class=\"detail-title\">Total cost</span>\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
-    + "</li>\n			<li>Miles over: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
-    + "</li>\n			<li>Dates: "
+    + "</span>\n			</li>\n			<li>\n				<span class=\"detail-title\">hives requested</span>\n				<span class=\"figure\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
+    + "</span>\n			</li>\n\n			<li>\n				<span class=\"detail-title\">Start Date</span>\n				<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.startDate : stack1), depth0))
-    + " - "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.endDate : stack1), depth0))
-    + "</li>\n			<li>Message: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.message : stack1), depth0))
-    + "</li>\n			<li>Requested: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.createdAt : stack1), depth0))
-    + "</li>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "		</ul>\n	</a>\n	<div class=\"actions\">\n		\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(12, data),"data":data});
+    + "</span>\n			</li>\n		</ul>\n	</a>\n	<div class=\"actions\">\n		\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.program(10, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "		\n		\n";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"unless","hash":{},"fn":this.program(14, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedBeekeeper : stack1), {"name":"unless","hash":{},"fn":this.program(12, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "		<button class='more-info'>More Info</button>\n	</div>\n</div>";
 },"useData":true});
@@ -389,20 +367,15 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   },"5":function(depth0,helpers,partials,data) {
   return "archived ";
   },"7":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "			<li>Archived: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.archivedFarmerDate : stack1), depth0))
-    + "</li>\n";
-},"9":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(10, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(8, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer;
-},"10":function(depth0,helpers,partials,data) {
+},"8":function(depth0,helpers,partials,data) {
   return "			<button class='archive'>Archive</button>\n";
-  },"12":function(depth0,helpers,partials,data) {
+  },"10":function(depth0,helpers,partials,data) {
   return "			<button class='delete'>Cancel Request</button>\n";
-  },"14":function(depth0,helpers,partials,data) {
+  },"12":function(depth0,helpers,partials,data) {
   return "			<button class='edit-request'>Edit Request</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div class=\"details ";
@@ -417,31 +390,16 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
     + " hives from "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.businessName : stack1), depth0))
-    + "\n		<ul class='hidden'>\n			<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
-    + ": "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</li>\n			<li>Number of Hives: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
-    + "</li>\n			<li>Cost: $"
+    + "\n		<ul class=\"sub-details-beekeeper hidden\">\n			<li>\n				<span class=\"detail-title\">Total cost</span>\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
-    + "</li>\n			<li>Miles over: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
-    + "</li>\n			<li>Dates: "
+    + "</span>\n			</li>\n			<li>\n				<span class=\"detail-title\">hives requested</span>\n				<span class=\"figure\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
+    + "</span>\n			</li>\n\n			<li>\n				<span class=\"detail-title\">Start Date</span>\n				<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.startDate : stack1), depth0))
-    + " - "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.endDate : stack1), depth0))
-    + "</li>\n			<li>Message: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.message : stack1), depth0))
-    + "</li>\n			<li>Requested: "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.createdAt : stack1), depth0))
-    + "</li>\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.noop,"data":data});
+    + "</span>\n			</li>\n		</ul>\n	</a>\n\n		<div class=\"actions\">\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(7, data),"inverse":this.program(10, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "		</ul>\n	</a>\n\n		<div class=\"actions\">\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(9, data),"inverse":this.program(12, data),"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(14, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.archivedFarmer : stack1), {"name":"unless","hash":{},"fn":this.program(12, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "			<button class='more-info'>More Info</button>\n		</div>\n</div>";
 },"useData":true});
@@ -468,7 +426,7 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
   },"11":function(depth0,helpers,partials,data) {
   return "				<button class=\"edit-request\">Edit request</button>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "<div class='request-solo'>\n	<h1 class=\"main-title\">Request</h1>\n\n			<ul class=\"sub-details-beekeeper\">\n			<li class=\"hive-cost total-cost\">\n				<span class=\"figure\">$"
+  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, buffer = "<div class='request-solo'>\n	<h1 class=\"main-title\">Request</h1>\n\n		<ul class=\"sub-details-beekeeper\">\n			<li class=\"hive-cost total-cost\">\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.totalCost : stack1), depth0))
     + "</span>\n				<span class=\"detail-title\">Total cost</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.numHives : stack1), depth0))
