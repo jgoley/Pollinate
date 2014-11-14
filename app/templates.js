@@ -3,7 +3,7 @@ this["Bees"]["templates"] = this["Bees"]["templates"] || {};
 this["Bees"]["templates"]["application"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "<header></header>\n\n<div class=\"sb-slidebar sb-left\">\n    <nav class='off-canvas'>\n        \n    </nav>\n</div>\n";
   },"3":function(depth0,helpers,partials,data) {
-  return "<div class='noAuth-header'><img src=\"images/logo.png\" class=\"loader\"></div>\n";
+  return "<div class='noAuth-header'><img src=\"images/logo.png\"></div>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression, buffer = "<div id=\"sb-site\" class=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.userType : stack1), depth0))
