@@ -1,6 +1,6 @@
 <div class='request-solo'>
 	<h1 class="main-title">Request</h1>
-
+	<div class="request-details-wrap">
 		<ul class="sub-details-beekeeper">
 			<li class="hive-cost total-cost">
 				<span class="figure">${{totalCost}}</span>
@@ -21,16 +21,18 @@
 
 		</ul>
 
-	<ul class="request-details">
-		<li>Request ID: {{objectId}}</li>
-{{!-- 		<li>{{farmer.objectId}}</li>
-		<li>{{beekeeper.objectId}}</li>
- --}}
-		<li>Total Cost: ${{totalCost}}</li>
+		<div class="request-dates">
+			<label for='numHives'>Number of hives</label><input type='number'value='{{numHives}}'  name='numHives'>
+			<label for='startDate'>Start Date of service</label><input type='date' value='{{startDate}}' name='startDate'>
+			<label for='endDate'>End Date of service</label><input type='date' value='{{endDate}}' name='endDate'>
+		</div>
+		<label for='message'>Attach a message to request</label>
+		<textarea name="message" placeholder="Enter a message"></textarea>
+		{{!-- 
 		<li><input type="number" name="numHives" value="{{numHives}}"></li>	
 		<li><input name="startDate" type="date" value="{{startDate}}"> - <input type="date" name="endDate" value="{{endDate}}"></li>
-		<li><textarea name="message">{{message}}</textarea></li>
-	</ul>
+		<li><textarea name="message">{{message}}</textarea></li> --}}
+	</div>
 	<div class="request-buttons">
 		<button class="edit-request">Update Request</button>
 		<button class="cancel-edit cancel">Cancel</button>

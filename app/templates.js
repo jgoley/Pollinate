@@ -501,7 +501,7 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
 },"useData":true});
 this["Bees"]["templates"]["requests"]["soloEdit"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "<div class='request-solo'>\n	<h1 class=\"main-title\">Request</h1>\n\n		<ul class=\"sub-details-beekeeper\">\n			<li class=\"hive-cost total-cost\">\n				<span class=\"figure\">$"
+  return "<div class='request-solo'>\n	<h1 class=\"main-title\">Request</h1>\n	<div class=\"request-details-wrap\">\n		<ul class=\"sub-details-beekeeper\">\n			<li class=\"hive-cost total-cost\">\n				<span class=\"figure\">$"
     + escapeExpression(((helper = (helper = helpers.totalCost || (depth0 != null ? depth0.totalCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"totalCost","hash":{},"data":data}) : helper)))
     + "</span>\n				<span class=\"detail-title\">Total cost</span>\n			</li>\n			<li>\n				<span class=\"figure\">"
     + escapeExpression(((helper = (helper = helpers.numHives || (depth0 != null ? depth0.numHives : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"numHives","hash":{},"data":data}) : helper)))
@@ -509,19 +509,13 @@ this["Bees"]["templates"]["requests"]["soloEdit"] = Handlebars.template({"compil
     + escapeExpression(((helper = (helper = helpers.milesOver || (depth0 != null ? depth0.milesOver : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"milesOver","hash":{},"data":data}) : helper)))
     + "</span>\n				<span class=\"detail-title\">Miles over</span>\n			</li>\n			<li>\n				<span class=\"figure\">$"
     + escapeExpression(((helper = (helper = helpers.mileageCost || (depth0 != null ? depth0.mileageCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"mileageCost","hash":{},"data":data}) : helper)))
-    + "</span>\n				<span class=\"detail-title\">Milage Cost</span>\n			</li>\n\n		</ul>\n\n	<ul class=\"request-details\">\n		<li>Request ID: "
-    + escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"objectId","hash":{},"data":data}) : helper)))
-    + "</li>\n		<li>Total Cost: $"
-    + escapeExpression(((helper = (helper = helpers.totalCost || (depth0 != null ? depth0.totalCost : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"totalCost","hash":{},"data":data}) : helper)))
-    + "</li>\n		<li><input type=\"number\" name=\"numHives\" value=\""
+    + "</span>\n				<span class=\"detail-title\">Milage Cost</span>\n			</li>\n\n		</ul>\n\n		<div class=\"request-dates\">\n			<label for='numHives'>Number of hives</label><input type='number'value='"
     + escapeExpression(((helper = (helper = helpers.numHives || (depth0 != null ? depth0.numHives : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"numHives","hash":{},"data":data}) : helper)))
-    + "\"></li>	\n		<li><input name=\"startDate\" type=\"date\" value=\""
+    + "'  name='numHives'>\n			<label for='startDate'>Start Date of service</label><input type='date' value='"
     + escapeExpression(((helper = (helper = helpers.startDate || (depth0 != null ? depth0.startDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"startDate","hash":{},"data":data}) : helper)))
-    + "\"> - <input type=\"date\" name=\"endDate\" value=\""
+    + "' name='startDate'>\n			<label for='endDate'>End Date of service</label><input type='date' value='"
     + escapeExpression(((helper = (helper = helpers.endDate || (depth0 != null ? depth0.endDate : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"endDate","hash":{},"data":data}) : helper)))
-    + "\"></li>\n		<li><textarea name=\"message\">"
-    + escapeExpression(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"message","hash":{},"data":data}) : helper)))
-    + "</textarea></li>\n	</ul>\n	<div class=\"request-buttons\">\n		<button class=\"edit-request\">Update Request</button>\n		<button class=\"cancel-edit cancel\">Cancel</button>\n	</div>\n</div>\n\n\n";
+    + "' name='endDate'>\n		</div>\n		<label for='message'>Attach a message to request</label>\n		<textarea name=\"message\" placeholder=\"Enter a message\"></textarea>\n	</div>\n	<div class=\"request-buttons\">\n		<button class=\"edit-request\">Update Request</button>\n		<button class=\"cancel-edit cancel\">Cancel</button>\n	</div>\n</div>\n\n\n";
 },"useData":true});
 this["Bees"]["templates"]["reviews"] = this["Bees"]["templates"]["reviews"] || {};
 this["Bees"]["templates"]["reviews"]["add"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

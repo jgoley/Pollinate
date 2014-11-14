@@ -172,6 +172,10 @@
         padding: em(20px);
         margin: 20px 0;
         border-radius: 3px;
+
+    }
+    .request-details-wrap {
+        @include outer-container;
         textarea{
             min-height: 150px;
             @include span-columns(8);
@@ -179,9 +183,6 @@
         .request-dates {
             @include span-columns(4);
         }
-    }
-    .request-details-wrap {
-        @include outer-container;
     }
     .getBees {
         width: 40%;
@@ -196,6 +197,7 @@
         }
     }
     .request-buttons {
+        margin-top: em(20px);
         button {
             display: inline-block;
         }
