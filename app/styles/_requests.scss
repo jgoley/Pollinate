@@ -14,6 +14,14 @@
     .details {
         border-radius: .2em;
     }
+    .sub-details-beekeeper{
+        margin-top:em(20px);
+        li{
+            @include span-columns(2);
+            @include omega();
+            min-height: em(60px);
+        }
+    }
     .actions {
         display: none;
     }
