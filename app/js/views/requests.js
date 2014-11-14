@@ -18,7 +18,7 @@
             this.$el.html(this.template());
             var requests = this.collection;
             if (this.collection.length === 0){
-                $('.requests').append('<p>Currently, you have no requests</p>')
+                $('.requests').append('<h3>Currently, you have no requests</h3>')
             }
 
             var notAccepted = new Parse.Collection(
