@@ -1,4 +1,5 @@
 (function(){
+
     'use strict';
 
     Bees.Collections.HiveGroups = Parse.Collection.extend({

@@ -11,6 +11,8 @@ var wrap = require('gulp-wrap');
 var declare = require('gulp-declare');
 var concat = require('gulp-concat');
 
+var mainBowerFiles = require('main-bower-files');
+
 gulp.task('templates', function() {
   gulp.src('app/templates/**/*.hbs')
     .pipe(handlebars())
@@ -23,7 +25,7 @@ gulp.task('templates', function() {
       }
     }))
     .pipe(concat('templates.js'))
-    .pipe(gulp.dest('app/js/'));
+    .pipe(gulp.dest('app/'));
 });
 
 // load plugins
@@ -77,11 +79,13 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-    return $.bowerFiles()
-        .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-        .pipe($.flatten())
-        .pipe(gulp.dest('dist/fonts'))
-        .pipe($.size());
+    return gulp.src(['app/fonts/**.ttf'])
+      .pipe(gulp.dest('dist/fonts'));
+    // return gulp.src(mainBowerFiles())
+    //     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+    //     .pipe($.flatten())
+    //     .pipe(gulp.dest('dist/fonts'))
+    //     .pipe($.size());
 });
 
 gulp.task('extras', function () {
@@ -90,17 +94,17 @@ gulp.task('extras', function () {
 });
 
 gulp.task('clean', function () {
+    $.cache.clearAll();
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
 var options = {};
-
 gulp.task('deploy', function () {
     return gulp.src('./dist/**/*')
         .pipe(deploy(options));
 });
 
-gulp.task('build', ['html', 'templates', 'images'], function () {
+gulp.task('build', ['html', 'templates', 'images', 'fonts', 'scripts'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

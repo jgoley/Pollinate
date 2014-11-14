@@ -1,4 +1,4 @@
-(function(){
+(function() {
 
     'use strict';
 
@@ -11,7 +11,7 @@
             });
             options.$container.append(this.el);
             this.render();
-            
+
         },
 
         render: function() {
@@ -21,10 +21,10 @@
                 user: this.model
             }).getAll().then(function(reviews) {
                 reviews = new Parse.Collection(reviews);
-                var already = reviews.find(function(model){
+                var already = reviews.find(function(model) {
                     return model.get('reviewer').id === Parse.User.current().id;
                 });
-                if(!already){
+                if (!already) {
                     that.subViews.push(
                         new Bees.Views.UserReviewsNew({
                             collection: reviews,
@@ -33,49 +33,60 @@
                         })
                     );
                 }
-                if(reviews.length > 0){
+                if (reviews.length > 0) {
                     that.subViews.push(
                         new Bees.Views.UserReviewsList({
                             $container: that.$el,
                             model: that.model,
                             collection: reviews
                         })
-                    );  
+                    );
                 } else {
-                    $('.reviews').append('<p>No user reviews</p>');
+                    that.subViews.push(
+                        new Bees.Views.UserReviewsList({
+                            $container: that.$el,
+                            model: that.model,
+                            collection: reviews
+                        })
+                    );
+                    //$('.reviews').append('<p>No user reviews</p>');
                 }
             });
         },
     });
 
     Bees.Views.UserReviewsPage = BaseView.extend({
-            className: 'reviews-container',
-            tagName: 'section',
-            subViews: [],
+        className: 'reviews-container',
+        tagName: 'section',
+        subViews: [],
 
-            initialize: function(opts) {
-                var options = _.defaults({}, opts, {
-                    $container: opts.$container,
-                });
-                options.$container.html(this.el);
-                this.render();
-            },
+        initialize: function(opts) {
+            var options = _.defaults({}, opts, {
+                $container: opts.$container,
+            });
+            options.$container.html(this.el);
+            this.render();
+        },
 
-            render: function() {
-                this.$el.html("<div class='reviews'><h1 class='main-title'>Reviews</h1></div>");
-                _.invoke(this.subViews, 'dispose');
-
-                if(this.collection.length > 0){
-                    this.subViews.push(
-                        new Bees.Views.UserReviewsList({
-                            $container: $('.reviews'),
-                            collection: this.collection
-                        })
-                    );  
-                } else {
-                    $('.reviews').append('<p>No user reviews</p>');
-                }
-            },
+        render: function() {
+            this.$el.html("<div class='reviews'><h1 class='main-title'>Reviews</h1></div>");
+            _.invoke(this.subViews, 'dispose');
+            if (this.collection.length > 0) {
+                this.subViews.push(
+                    new Bees.Views.UserReviewsList({
+                        $container: $('.reviews'),
+                        collection: this.collection
+                    })
+                );
+            } else {
+                this.subViews.push(
+                    new Bees.Views.UserReviewsList({
+                        $container: $('.reviews'),
+                        collection: this.collection
+                    })
+                );
+            }
+        },
     });
 
     Bees.Views.UserReviewsList = BaseView.extend({
@@ -83,19 +94,21 @@
         className: 'review-list',
         subViews: [],
         initialize: function(opts) {
-     
+
             _.invoke(this.subViews, 'dispose');
             var options = _.defaults({}, opts, {
                 $container: opts.$container,
             });
             options.$container.append(this.el);
             this.render();
-            this.listenTo(this.collection, 'change', this.render);
+            this.listenTo(this.collection, 'add', this.render);
         },
         render: function() {
             _.invoke(this.subViews, 'dispose');
             this.$el.empty();
-            this.collection.each(_.bind(this.renderChildren, this));
+            console.log("Rendered");
+            if(this.collection)
+                this.collection.each(_.bind(this.renderChildren, this));
         },
         renderChildren: function(review) {
             this.subViews.push(
@@ -180,7 +193,9 @@
                 $container: opts.$container,
             });
             options.$container.html(this.el);
+            this.$container = options.$container;
             this.render();
+            console.log("!!!!!", this.collection)
         },
 
         render: function() {
@@ -195,10 +210,11 @@
             review.set('reviewee', this.model);
             review.save(reviewData);
             this.collection.add(review);
+            this.$container.append('<h2 class="submitted">Review submitted</h2>');
             this.dispose();
             //sendMail({});
         },
-        cancel: function(){
+        cancel: function() {
             this.dispose();
             new Bees.Views.UserReviewsNew({
                 collection: this.collection,

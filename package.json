@@ -1,7 +1,9 @@
 {
   "name": "24-photo-share",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "main-bower-files": "^2.4.0"
+  },
   "devDependencies": {
     "connect": "^2.14.4",
     "connect-livereload": "^0.4.0",
