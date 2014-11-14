@@ -446,16 +446,10 @@ this["Bees"]["templates"]["requests"]["listItemFarmer"] = Handlebars.template({"
   return buffer + "			<button class='more-info'>More Info</button>\n		</div>\n</div>";
 },"useData":true});
 this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "			<li>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.farmer : stack1)) != null ? stack1.objectId : stack1), depth0))
-    + "</li>\n";
-},"3":function(depth0,helpers,partials,data) {
-  var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "			<li>"
-    + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.beekeeper : stack1)) != null ? stack1.objectId : stack1), depth0))
-    + "</li>\n";
-},"5":function(depth0,helpers,partials,data) {
+  return "			Farmer:\n";
+  },"3":function(depth0,helpers,partials,data) {
+  return "			Beekeeper:\n";
+  },"5":function(depth0,helpers,partials,data) {
   var stack1, escapeExpression=this.escapeExpression, buffer = "		"
     + escapeExpression(helpers.log.call(depth0, (depth0 != null ? depth0.archived : depth0), {"name":"log","hash":{},"data":data}))
     + "\n";
@@ -482,16 +476,20 @@ this["Bees"]["templates"]["requests"]["solo"] = Handlebars.template({"1":functio
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.milesOver : stack1), depth0))
     + "</span>\n				<span class=\"detail-title\">miles over</span>\n			</li>\n			<li>\n				<span class=\"figure\">$"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.mileageCost : stack1), depth0))
-    + "</span>\n				<span class=\"detail-title\">milage Cost</span>\n			</li>\n\n		</ul>\n	<ul class=\"request-details\">\n";
+    + "</span>\n				<span class=\"detail-title\">milage Cost</span>\n			</li>\n\n		</ul>\n	<ul class=\"request-details\">\n\n		<h2>\n";
   stack1 = ((helpers.if_eq || (depth0 && depth0.if_eq) || helperMissing).call(depth0, ((stack1 = (depth0 != null ? depth0.curUser : depth0)) != null ? stack1.userType : stack1), "beekeeper", {"name":"if_eq","hash":{},"fn":this.program(1, data),"inverse":this.program(3, data),"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  buffer += "		<li>"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.startDate : stack1), depth0))
+  buffer += "		"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.otherUser : depth0)) != null ? stack1.username : stack1), depth0))
+    + "\n		</h2>\n\n	</ul>\n	<h2>Dates: <span>"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.startDate : stack1), depth0))
     + " - "
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.endDate : stack1), depth0))
-    + "</li>\n		<li class=\"message\">"
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.endDate : stack1), depth0))
+    + "</span></h2>\n	\n	<div class=\"request-message\">\n		<h2>Message:</h2>\n		<p class=\"message\">"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.message : stack1), depth0))
-    + "</li>\n\n	</ul>\n	<div class=\"request-buttons\">\n";
+    + "</p>\n	</div>\n\n	<p class=\"subtle\">Submitted: "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.formattedDates : depth0)) != null ? stack1.createdAt : stack1), depth0))
+    + "</p>\n\n	<div class=\"request-buttons\">\n";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 != null ? depth0.request : depth0)) != null ? stack1.accepted : stack1), {"name":"if","hash":{},"fn":this.program(5, data),"inverse":this.program(8, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "\n";

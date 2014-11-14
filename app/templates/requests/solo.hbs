@@ -21,15 +21,26 @@
 
 		</ul>
 	<ul class="request-details">
+
+		<h2>
 		{{#if_eq curUser.userType 'beekeeper'}}		
-			<li>{{request.farmer.objectId}}</li>
+			Farmer:
 		{{else}}
-			<li>{{request.beekeeper.objectId}}</li>
+			Beekeeper:
 		{{/if_eq}}
-		<li>{{request.startDate}} - {{request.endDate}}</li>
-		<li class="message">{{request.message}}</li>
+		{{otherUser.username}}
+		</h2>
 
 	</ul>
+	<h2>Dates: <span>{{formattedDates.startDate}} - {{formattedDates.endDate}}</span></h2>
+	
+	<div class="request-message">
+		<h2>Message:</h2>
+		<p class="message">{{request.message}}</p>
+	</div>
+
+	<p class="subtle">Submitted: {{formattedDates.createdAt}}</p>
+
 	<div class="request-buttons">
 		{{#if request.accepted}}
 		{{log archived}}

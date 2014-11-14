@@ -127,6 +127,13 @@
     }
 }
 
+.request-message{
+    margin-top: em(10px);
+    p{
+        margin: 5px 0 0 0;
+    }
+}
+
 @include media(min-width 600px) {
     .upcoming-requests,
     .hives-out {

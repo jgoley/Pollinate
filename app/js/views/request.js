@@ -17,10 +17,29 @@
             this.render();
         },
         render: function() {
-            if(this.model.get('archivedBeekeeper') === true || this.model.get('archivedFarmer')  === true){
+            var request = this.model;
+            if(request.get('archivedBeekeeper') === true || request.get('archivedFarmer')  === true){
                 var archived = true;
             }
-            this.$el.append(this.template({request: this.model.toJSON(), archived: archived, curUser: Parse.User.current().toJSON()}));            
+            if(Parse.User.current().get('userType') === 'beekeeper'){
+                var w = 'farmer';
+            }   else{
+                var w = 'beekeeper';
+            }
+            var formattedDates = {
+                'createdAt':    moment(request.createdAt).format('MMM D, YYYY | h:mm a'),
+                'startDate':    moment(request.get('startDate')).format('MMM D, YYYY'),
+                'endDate':      moment(request.get('endDate')).format('MMM D, YYYY'),
+                'startDateFromNow':      moment( moment(request.get('startDate')).add(1, 'day') ).fromNow(),
+                'endDateFromNow':      moment( moment(request.get('endDate')).add(1, 'day') ).fromNow(),
+            };
+            var that = this;
+            var query = new Parse.Query(Bees.Models.User);
+                query.get(request.get(w).id).then(function(user){
+                    that.$el.append(that.template({request: request.toJSON(), archived: archived, curUser: Parse.User.current().toJSON(), otherUser: user.toJSON(),
+                        formattedDates: formattedDates
+                    }));            
+                })
         },
 
         editRequest: function(){
