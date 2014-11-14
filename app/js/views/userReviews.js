@@ -79,12 +79,7 @@
                     })
                 );
             } else {
-                this.subViews.push(
-                    new Bees.Views.UserReviewsList({
-                        $container: $('.reviews'),
-                        collection: this.collection
-                    })
-                );
+                $('.reviews').append("<div><h3>Currently, you do not have any reviews.</h3></div>")
             }
         },
     });
