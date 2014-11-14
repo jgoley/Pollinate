@@ -112,13 +112,13 @@
                                 radius: that.radius
                             })
                         );
-                        if (users.length > 1 || ) {
+                        if (users.length > 1) {
                             var pluralize = 's';
                         } else {
                             var pluralize = '';
                         }
                         if (that.searchType == "beekeeper") {
-                            $('.search-params').html("<span class='noneFound'>No " + firstCap(that.searchType)+"s found in your area.</span> Found " + users.length + ' ' + firstCap(that.searchType) + pluralize + ' within ' + distance + ' miles:');
+                            $('.search-params').html("<span class='noneFound'>No " + firstCap(that.searchType) +"s found in your area.</span> Found " + users.length + ' ' + firstCap(that.searchType) + pluralize + ' within ' + distance + ' miles:');
                         }
                     } else {
                         $('.search-list-container').html('<h2>No ' + that.searchType + 's found</h2>')
