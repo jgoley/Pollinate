@@ -143,7 +143,6 @@
                 new Bees.Collections.Requests({
                     user: Parse.User.current(),
                 }).getArchived().then(function(requests){
-                    console.log("!!!!!!!!!!!!!!!!!!",requests)
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
                         collection: requests

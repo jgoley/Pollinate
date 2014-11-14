@@ -118,7 +118,6 @@
             });
             options.$container.append(this.el);
             this.sentMsgs = options.sentMsgs;
-            console.log("!!!!!",this.sentMsgs);
             this.type = options.type;
             this.render();
         },
@@ -177,7 +176,6 @@
             this.render();
         },
         render: function() {
-            console.log(this.sentMsgs);
             this.$el.html(this.template());
         },
         sendMessage: function(e) {

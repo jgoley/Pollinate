@@ -101,7 +101,6 @@
         render: function() {
             _.invoke(this.subViews, 'dispose');
             this.$el.empty();
-            console.log("Rendered");
             if(this.collection)
                 this.collection.each(_.bind(this.renderChildren, this));
         },
@@ -190,7 +189,6 @@
             options.$container.html(this.el);
             this.$container = options.$container;
             this.render();
-            console.log("!!!!!", this.collection)
         },
 
         render: function() {
