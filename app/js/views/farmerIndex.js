@@ -16,7 +16,7 @@
         render: function() {
             var that = this;
             var requests = this.collection;
-            this.$el.html(this.template(Parse.User.current().toJSON()));
+            this.$el.html(this.template(Bees.Session.get('user').toJSON()));
 
             var notAccepted = new Parse.Collection(
                 requests.filter(function(request) {
@@ -35,7 +35,7 @@
             }
 
             new Bees.Collections.UserReviews({
-                user: Parse.User.current(),
+                user: Bees.Session.get('user'),
                 limit: 5,
             }).getAll().then(function(userReviews) {
                 userReviews = new Parse.Collection(userReviews);

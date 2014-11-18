@@ -18,7 +18,7 @@
         render: function(){
             var that = this;
             var requests = this.collection;
-            this.$el.html(this.template(Parse.User.current().toJSON()));
+            this.$el.html(this.template(Bees.Session.get('user').toJSON()));
 
             var hivesOut = new Parse.Collection(
                 requests.filter(function(request){
@@ -69,7 +69,7 @@
             }
 
             new Bees.Collections.UserReviews({
-                user: Parse.User.current(),
+                user: Bees.Session.get('user'),
                 limit: 5,
             }).getAll().then(function(userReviews){
                 userReviews = new Parse.Collection(userReviews);
@@ -113,7 +113,7 @@
         },
         render: function(){
             var that = this;
-            this.$el.append(this.template(Parse.User.current().toJSON()));
+            this.$el.append(this.template(Bees.Session.get('user').toJSON()));
         }
     })
 
@@ -169,7 +169,7 @@
                 'startDateFromNow':      moment( moment(request.get('startDate')).add(1, 'day') ).fromNow(),
                 'endDateFromNow':      moment( moment(request.get('endDate')).add(1, 'day') ).fromNow(),
             };
-            if(Parse.User.current().get('userType') === 'beekeeper'){
+            if(Bees.Session.get('user').get('userType') === 'beekeeper'){
                 w = 'farmer';
             }   else{
                 w = 'beekeeper';

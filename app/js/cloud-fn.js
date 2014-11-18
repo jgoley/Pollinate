@@ -23,7 +23,7 @@ function queryBeekeepers(distance) {
 function saveLocation() {
     return Parse.Cloud.run('saveLocation', {}, {
         success: function(response) {
-            Parse.User.current().fetch();
+            Bees.Session.get('user').fetch();
             return response;
         },
         error: function(response) {

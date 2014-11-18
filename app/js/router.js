@@ -38,12 +38,12 @@
 
         index: function() {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else {
-                if (Parse.User.current().get('userType') === 'beekeeper') {
+                if (Bees.Session.get('user').get('userType') === 'beekeeper') {
                     new Bees.Collections.Requests({
-                        user: Parse.User.current()
+                        user: Bees.Session.get('user')
                     }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.BeekeeperIndex({
                             $container: $('.main-container'),
@@ -52,7 +52,7 @@
                     })
                 } else {
                     new Bees.Collections.Requests({
-                        user: Parse.User.current()
+                        user: Bees.Session.get('user')
                     }).getAll().then(function(collection){
                         Bees.currentView = new Bees.Views.FarmerIndex({
                             $container: $('.main-container'),
@@ -89,12 +89,12 @@
 
         account: function() {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 Bees.currentView = new Bees.Views.EditAccountView({
                     $container: $('.main-container'),
-                    model: Parse.User.current()
+                    model: Bees.Session.get('user')
                 });
             }
         },
@@ -105,7 +105,7 @@
 
         user: function(user_id) {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 var query = new Parse.Query(Bees.Models.User);
@@ -120,11 +120,11 @@
 
         requests: function() {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 new Bees.Collections.Requests({
-                    user: Parse.User.current()
+                    user: Bees.Session.get('user')
                 }).getAll().then(function(requests){
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
@@ -138,11 +138,11 @@
 
         requestsArchived: function() {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 new Bees.Collections.Requests({
-                    user: Parse.User.current(),
+                    user: Bees.Session.get('user'),
                 }).getArchived().then(function(requests){
                     Bees.currentView = new Bees.Views.Requests({
                         $container: $('.main-container'),
@@ -154,7 +154,7 @@
         
         request: function(requestID) {
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 var query = new Parse.Query('Requests');
@@ -169,7 +169,7 @@
 
         editRequest: function(requestID){
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 var query = new Parse.Query('Requests');
@@ -184,11 +184,11 @@
 
         reviews: function(){
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
                 new Bees.Collections.UserReviews({
-                    user: Parse.User.current(),
+                    user: Bees.Session.get('user'),
                 }).getAll().then(function(reviews){
                     Bees.currentView = new Bees.Views.UserReviewsPage({
                         $container: $('.main-container'),
@@ -200,7 +200,7 @@
 
         messages: function(){
             disposeViews();
-            if (!Parse.User.current()) {
+            if (!Bees.Session.get('user')) {
                 this.goLogin();
             } else{
 

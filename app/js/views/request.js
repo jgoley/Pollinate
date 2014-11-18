@@ -21,7 +21,7 @@
             if(request.get('archivedBeekeeper') === true || request.get('archivedFarmer')  === true){
                 var archived = true;
             }
-            if(Parse.User.current().get('userType') === 'beekeeper'){
+            if(Bees.Session.get('user').get('userType') === 'beekeeper'){
                 var w = 'farmer';
             }   else{
                 var w = 'beekeeper';
@@ -36,7 +36,7 @@
             var that = this;
             var query = new Parse.Query(Bees.Models.User);
                 query.get(request.get(w).id).then(function(user){
-                    that.$el.append(that.template({request: request.toJSON(), archived: archived, curUser: Parse.User.current().toJSON(), otherUser: user.toJSON(),
+                    that.$el.append(that.template({request: request.toJSON(), archived: archived, curUser: Bees.Session.get('user').toJSON(), otherUser: user.toJSON(),
                         formattedDates: formattedDates
                     }));            
                 })
@@ -71,7 +71,7 @@
         },
 
         acceptRequest: function(){
-            var user = Parse.User.current();
+            var user = Bees.Session.get('user');
             var request = this.model;
             var hivesAvailable = user.get('hivesAvailable');
             if(hivesAvailable > request.get('numHives')){
@@ -85,7 +85,7 @@
         editRequest: function(){
             var that = this;
             var request = this.model;
-            var user = Parse.User.current();
+            var user = Bees.Session.get('user');
             var beekeeper = this.beekeeper;
             var startDate = $('[name=startDate]').val();
             var endDate = $('[name=endDate]').val();

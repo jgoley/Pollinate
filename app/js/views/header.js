@@ -22,8 +22,8 @@
         },
 
         render: function() {
-            if (Parse.User.current()){
-                var user = Parse.User.current().toJSON()
+            if (Bees.Session.get('user')){
+                var user = Bees.Session.get('user').toJSON()
             }
             this.$el.html(this.template({session: Bees.Session.toJSON(), user: user}));
             this.subViews.push(
