@@ -9,3 +9,7 @@ Relieves the burden on both farmers and beekeepers of finding service/clients.
 - **Backbone** with **Parse** as back-end
 - HTML5
 - SASS (Bourbon & Neat)
+
+###Todo
+- Add inventory details to beekeeper's landing page (number of hives available)
+- Optimize forms
