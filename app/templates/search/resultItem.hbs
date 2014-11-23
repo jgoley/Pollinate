@@ -1,9 +1,0 @@
-<a href="#user/{{user.objectId}}">{{user.businessName}}
-{{#if_eq user.userType 'beekeeper'}}
-<span class="user-details">
-	<span class="hives">
-	{{user.hivesAvailable}} hives available</span> | 
-	<span class="hiveCost">${{user.costPerHive}}/hive</span>
-</span>
-{{/if_eq}}
-</a>
