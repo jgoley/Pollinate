@@ -1,5 +1,8 @@
 #Pollinate™
 
+![alt text](https://github.com/jgoley/Pollinate/blob/master/pollinate.jpg "Logo Title Text 1")
+
+
 A marketplace where farmers can search for and hire beekeepers who offer pollination services.
 
 ##Solved problems:
