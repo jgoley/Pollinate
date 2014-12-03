@@ -14,7 +14,7 @@
             });
             options.$container.html(this.el);
             this.queryText = options.queryText;
-            this.userType = Parse.User.current().get('userType');
+            this.userType = Bees.Session.get('user').get('userType');
             if (this.userType == 'beekeeper') this.searchType = 'farmer';
             else this.searchType = 'beekeeper';
             this.render();
@@ -219,7 +219,7 @@
                 _.invoke(this.subViews, 'dispose');
                 var that = this;
                 var query = new Parse.Query(Bees.Models.User);
-                query.equalTo('userType', this.searchType).withinMiles('geoCenter', Parse.User.current().get('geoCenter'), data.distance);
+                query.equalTo('userType', this.searchType).withinMiles('geoCenter', Bees.Session.get('user').get('geoCenter'), data.distance);
                 query.collection().fetch().then(function(users) {
                     if (users.length > 0) {
                         that.subViews.push(new Bees.Views.SearchResults({

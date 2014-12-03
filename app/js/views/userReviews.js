@@ -22,7 +22,7 @@
             }).getAll().then(function(reviews) {
                 reviews = new Parse.Collection(reviews);
                 var already = reviews.find(function(model) {
-                    return model.get('reviewer').id === Parse.User.current().id;
+                    return model.get('reviewer').id === Bees.Session.get('user').id;
                 });
                 if (!already) {
                     that.subViews.push(
@@ -199,7 +199,7 @@
             e.preventDefault();
             var reviewData = this.$el.serializeObject();
             var review = new Bees.Models.Review();
-            review.set('reviewer', Parse.User.current());
+            review.set('reviewer', Bees.Session.get('user'));
             review.set('reviewee', this.model);
             review.save(reviewData);
             this.collection.add(review);

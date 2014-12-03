@@ -19,7 +19,7 @@
             });
             this.query = new Parse.Query('User')
                             .equalTo('userType', options.userType)
-                            .withinMiles('geoCenter', Parse.User.current().get('geoCenter'), options.distance)
+                            .withinMiles('geoCenter', Bees.Session.get('user').get('geoCenter'), options.distance)
                             .limit(options.limit);
     	},
         model: Bees.Models.User,

@@ -17,7 +17,7 @@
             var colors = ['red', 'green', 'blue', 'orange'];
             var that = this;
             var points;
-            var curUser = Parse.User.current();
+            var curUser = Bees.Session.get('user');
             this.map = new GMaps({
                 div: '#map',
                 lat: curUser.get('geoCenter').latitude,

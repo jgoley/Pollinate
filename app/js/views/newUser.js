@@ -117,8 +117,8 @@
         },
 
         render: function() {
-            if (Parse.User.current()){
-                this.$el.prepend(this.template({user: Parse.User.current().toJSON()}));
+            if (Bees.Session.get('user')){
+                this.$el.prepend(this.template({user: Bees.Session.get('user').toJSON()}));
             }
             else {
                 this.$el.prepend(this.template());

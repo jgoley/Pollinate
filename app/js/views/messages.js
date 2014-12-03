@@ -24,13 +24,13 @@
             var that = this;
 
             new Bees.Collections.UserMessages({
-                user: Parse.User.current()
+                user: Bees.Session.get('user')
             }).getSent().then(function(messages) {
                     that.populateMessages(messages,'sent');
                 });
 
             new Bees.Collections.UserMessages({
-                user: Parse.User.current()
+                user: Bees.Session.get('user')
             }).getReceived().then(function(messages) {
                     that.populateMessages(messages,'received')
                 });
@@ -166,7 +166,7 @@
             this.sentMsgs = options.sentMsgs;
             this.msgType = options.msgType;
             this.recepient = options.recepient;
-            this.sender = Parse.User.current();
+            this.sender = Bees.Session.get('user');
             this.$container = options.$container;
             this.message = new Bees.Models.Message();
             if (options.method === 'fill' || !options.method)

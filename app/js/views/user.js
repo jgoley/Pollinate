@@ -22,7 +22,7 @@
             var that = this;
             if (this.model.get('userType') === 'beekeeper') {
                 this.template = Bees.templates.user.beekeeperIndex;
-                var distance = Math.ceil(this.model.get('geoCenter').milesTo(Parse.User.current().get('geoCenter')));
+                var distance = Math.ceil(this.model.get('geoCenter').milesTo(Bees.Session.get('user').get('geoCenter')));
                 var transportCost = (this.model.get('costPerMile')/100).toFixed(2);
 
                 this.$el.append(this.template({
@@ -110,7 +110,7 @@
 
         getBees: function() {
             var that = this;
-            var user = Parse.User.current();
+            var user = Bees.Session.get('user');
             var beekeeper = this.model;
             var startDate = $('[name=startDate]').val();
             var endDate = $('[name=endDate]').val();

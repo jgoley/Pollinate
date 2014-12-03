@@ -26,7 +26,7 @@
                     return request.get('accepted') === false;
             }));
 
-            if(Parse.User.current().get('userType') === 'beekeeper'){
+            if(Bees.Session.get('user').get('userType') === 'beekeeper'){
                 var archivedCheck = 'archivedBeekeeper';
             } else var archivedCheck = 'archivedFarmer';
 
@@ -122,7 +122,7 @@
                 $container: opts.$container,
             });
             options.$container.append(this.el);
-            this.userType = Parse.User.current().get('userType');
+            this.userType = Bees.Session.get('user').get('userType');
             if(this.userType === 'beekeeper'){
                 this.template = Bees.templates.requests.listItemBeekeeper;
             }
@@ -164,7 +164,7 @@
 
         },
         acceptRequest: function(){
-            var user = Parse.User.current();
+            var user = Bees.Session.get('user');
             var request = this.model;
             var hivesAvailable = user.get('hivesAvailable');
 
@@ -177,7 +177,7 @@
                 request.get('farmer').fetch().done(function(farmer){
                     var email = {
                         subject: 'Request for Bees Accepted!',
-                        message: 'Your request for bees has been accepted. Details:'+Parse.User.current().get('username')+' '+request.id+' '+request.get('startDate')+' '+request.get('endDate')
+                        message: 'Your request for bees has been accepted. Details:'+Bees.Session.get('user').get('username')+' '+request.id+' '+request.get('startDate')+' '+request.get('endDate')
                         ,
                         from: 'jgoley.etc@gmail.com',
                         to: 'jgoley@gmail.com',//farmer.get('email'),
@@ -189,7 +189,7 @@
             }
         },
         archiveRequest: function(){
-            var user = Parse.User.current();
+            var user = Bees.Session.get('user');
             var request = this.model;
             if(user.get('userType') === 'beekeeper'){
                 user.set('hivesAvailable', user.get('hivesAvailable') + request.get('numHives'));
@@ -206,7 +206,7 @@
             this.model.set('canceled', true);
             var email = {
                 subject: 'Request for Bees Canceled',
-                message: Parse.User.current().get('username')+' canceled their request for bees',
+                message: Bees.Session.get('user').get('username')+' canceled their request for bees',
                 from: 'jgoley.etc@gmail.com',
                 to: 'jgoley@gmail.com',//beekeeper.get('email'),
             }
@@ -283,7 +283,7 @@
                 'startDateFromNow':      moment( moment(request.get('startDate')).add(1, 'day') ).fromNow(),
                 'endDateFromNow':      moment( moment(request.get('endDate')).add(1, 'day') ).fromNow(),
             };
-            this.userType = Parse.User.current().get('userType');
+            this.userType = Bees.Session.get('user').get('userType');
             if(this.userType === 'beekeeper'){
                 var w = 'farmer';
             }   else{

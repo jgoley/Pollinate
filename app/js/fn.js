@@ -58,7 +58,7 @@ function calculateCost(numHivesRequested, beek) {
         milesOver = 0,
         numHives = 0;
 
-    distance = Parse.User.current().get('geoCenter').milesTo(beek.get('geoCenter'));
+    distance = Bees.Session.get('user').get('geoCenter').milesTo(beek.get('geoCenter'));
     if (distance > beek.get('maxDistFree')) {
         milesOver = Math.floor(distance - beek.get('maxDistFree'));
         mileageCost = roundToTwo(milesOver * (beek.get('costPerMile') / 100));
